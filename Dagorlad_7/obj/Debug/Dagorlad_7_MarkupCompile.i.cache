@@ -5,7 +5,7 @@ winexe
 C#
 .cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\
-Dagorlad
+Dagorlad_7
 none
 false
 DEBUG;TRACE
@@ -16,5 +16,5 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\App.xaml
 13152784993
 MainWindow.xaml;
 
-False
+True
 

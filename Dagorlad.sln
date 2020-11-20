@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service_Dagorlad", "Service_Dagorlad\Service_Dagorlad.csproj", "{3763AC90-7D0A-42BF-8D17-A7E972B20ED7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dagorlad_7", "Dagorlad_7\Dagorlad_7.csproj", "{068FE395-F256-46E7-A141-6889666CAFA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dagorlad_7", "Dagorlad_7\Dagorlad_7.csproj", "{0FCD1164-5D3B-440A-8025-11EF79103A43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{3763AC90-7D0A-42BF-8D17-A7E972B20ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3763AC90-7D0A-42BF-8D17-A7E972B20ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3763AC90-7D0A-42BF-8D17-A7E972B20ED7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{068FE395-F256-46E7-A141-6889666CAFA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{068FE395-F256-46E7-A141-6889666CAFA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{068FE395-F256-46E7-A141-6889666CAFA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{068FE395-F256-46E7-A141-6889666CAFA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FCD1164-5D3B-440A-8025-11EF79103A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FCD1164-5D3B-440A-8025-11EF79103A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FCD1164-5D3B-440A-8025-11EF79103A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FCD1164-5D3B-440A-8025-11EF79103A43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
