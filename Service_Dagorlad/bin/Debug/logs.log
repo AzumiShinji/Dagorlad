@@ -1,0 +1,28 @@
+System.IO.IOException: Процесс не может получить доступ к файлу "D:\VS\Dagorlad\Service_Dagorlad\bin\Debug\logs\21_06_2020.log", так как этот файл используется другим процессом.
+   в System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   в System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   в System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   в System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   в System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   в System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding)
+   в System.IO.File.InternalAppendAllText(String path, String contents, Encoding encoding)
+   в System.IO.File.AppendAllText(String path, String contents)
+   в Service_Dagorlad.Main_Class.TimerCallBack(Object state) в D:\VS\Dagorlad\Service_Dagorlad\Main_Class.cs:строка 90System.IO.IOException: Процесс не может получить доступ к файлу "D:\VS\Dagorlad\Service_Dagorlad\bin\Debug\logs\25_06_2020.log", так как этот файл используется другим процессом.
+   в System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   в System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   в System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   в System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   в System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   в System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding)
+   в System.IO.File.InternalAppendAllText(String path, String contents, Encoding encoding)
+   в System.IO.File.AppendAllText(String path, String contents)
+   в Service_Dagorlad.Main_Class.TimerCallBack(Object state) в D:\VS\Dagorlad\Service_Dagorlad\Main_Class.cs:строка 96System.IO.IOException: Процесс не может получить доступ к файлу "D:\VS\Dagorlad\Service_Dagorlad\bin\Debug\logs\26_06_2020.log", так как этот файл используется другим процессом.
+   в System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   в System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   в System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   в System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   в System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   в System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding)
+   в System.IO.File.InternalAppendAllText(String path, String contents, Encoding encoding)
+   в System.IO.File.AppendAllText(String path, String contents)
+   в Service_Dagorlad.Main_Class.TimerCallBack(Object state) в C:\Main\Programs\VS\Dagorlad\Service_Dagorlad\Main_Class.cs:строка 98

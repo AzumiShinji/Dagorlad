@@ -1,0 +1,17 @@
+C:\Main\Programs\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.csproj.CoreCompileInputs.cache
+C:\Main\Programs\VS\Dagorlad\Service_Dagorlad\bin\Debug\Service_Dagorlad.exe.config
+C:\Main\Programs\VS\Dagorlad\Service_Dagorlad\bin\Debug\Service_Dagorlad.exe
+C:\Main\Programs\VS\Dagorlad\Service_Dagorlad\bin\Debug\Service_Dagorlad.pdb
+C:\Main\Programs\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.ProjectInstaller.resources
+C:\Main\Programs\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.csproj.GenerateResource.cache
+C:\Main\Programs\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.exe
+C:\Main\Programs\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.pdb
+D:\VS\Dagorlad\Service_Dagorlad\bin\Debug\Service_Dagorlad.exe.config
+D:\VS\Dagorlad\Service_Dagorlad\bin\Debug\Service_Dagorlad.exe
+D:\VS\Dagorlad\Service_Dagorlad\bin\Debug\Service_Dagorlad.pdb
+D:\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.ProjectInstaller.resources
+D:\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.csproj.GenerateResource.cache
+D:\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.csproj.CoreCompileInputs.cache
+D:\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.exe
+D:\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.pdb
+D:\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.csprojAssemblyReference.cache

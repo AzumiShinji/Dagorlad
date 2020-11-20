@@ -1,0 +1,137 @@
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\bin\Release\Dagorlad.exe
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\bin\Release\Dagorlad.pdb
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\bin\Release\Newtonsoft.Json.xml
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\CustomExample.g.cs
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\MainWindow.g.cs
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\SettingsMenu.g.cs
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\App.g.cs
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\Dagorlad_MarkupCompile.cache
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\Dagorlad_MarkupCompile.lref
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\CustomExample.baml
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\MainWindow.baml
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\SettingsMenu.baml
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\Dagorlad.g.resources
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\Dagorlad.Properties.Resources.resources
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.GenerateResource.cache
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.CoreCompileInputs.cache
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.CopyComplete
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\Dagorlad.exe
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\Dagorlad.pdb
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\Employees.g.cs
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\Employees.baml
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.Fody.CopyLocal.cache
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\bin\Release\Dagorlad.exe.config
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\NotifyWindowCustom.g.cs
+D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Dagorlad\obj\Release\NotifyWindowCustom.baml
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\CustomExample.g.cs
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\Employees.g.cs
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\MainWindow.g.cs
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\NotifyWindowCustom.g.cs
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\SettingsMenu.g.cs
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\App.g.cs
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\Dagorlad_MarkupCompile.cache
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\Dagorlad_MarkupCompile.lref
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\Dagorlad.exe
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\Dagorlad.pdb
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\bin\Release\Dagorlad.exe.config
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\bin\Release\Dagorlad.exe
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\bin\Release\Dagorlad.pdb
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\bin\Release\Newtonsoft.Json.xml
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\CustomExample.baml
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\Employees.baml
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\MainWindow.baml
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\NotifyWindowCustom.baml
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\SettingsMenu.baml
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\Dagorlad.g.resources
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\Dagorlad.Properties.Resources.resources
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.GenerateResource.cache
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.Fody.CopyLocal.cache
+D:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.CopyComplete
+d:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\bin\Release\beep.mp3
+d:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\Dagorlad_Content.g.cs
+d:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\App.baml
+d:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\color.baml
+d:\programs\Google Drive\Make up\ArchiveVS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csprojAssemblyReference.cache
+C:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\Dagorlad.exe.config
+C:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\Dagorlad.exe
+C:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\Dagorlad.pdb
+C:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\Newtonsoft.Json.xml
+C:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\WpfAnimatedGif.xml
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\CustomExample.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Employees.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\MainWindow.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\NotifyWindowCustom.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\SettingsMenu.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\App.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad_Content.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad_MarkupCompile.cache
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad_MarkupCompile.lref
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\App.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\color.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\CustomExample.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Employees.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\MainWindow.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\NotifyWindowCustom.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\SettingsMenu.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.g.resources
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.Properties.Resources.resources
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.GenerateResource.cache
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.Fody.CopyLocal.cache
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.CopyComplete
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.exe
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.pdb
+c:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\Microsoft.Win32.TaskScheduler.xml
+c:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\de\Microsoft.Win32.TaskScheduler.resources.dll
+c:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\es\Microsoft.Win32.TaskScheduler.resources.dll
+c:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\fr\Microsoft.Win32.TaskScheduler.resources.dll
+c:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\it\Microsoft.Win32.TaskScheduler.resources.dll
+c:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\pl\Microsoft.Win32.TaskScheduler.resources.dll
+c:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\ru\Microsoft.Win32.TaskScheduler.resources.dll
+c:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\zh-CN\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.CoreCompileInputs.cache
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Chat.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Chat.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\GeneratedInternalTypeHelper.g.cs
+D:\VS\Dagorlad\Dagorlad\bin\Release\beep.mp3
+D:\VS\Dagorlad\Dagorlad\bin\Release\Dagorlad.exe.config
+D:\VS\Dagorlad\Dagorlad\bin\Release\Dagorlad.exe
+D:\VS\Dagorlad\Dagorlad\bin\Release\Dagorlad.pdb
+D:\VS\Dagorlad\Dagorlad\bin\Release\Microsoft.Win32.TaskScheduler.xml
+D:\VS\Dagorlad\Dagorlad\bin\Release\Newtonsoft.Json.xml
+D:\VS\Dagorlad\Dagorlad\bin\Release\WpfAnimatedGif.xml
+D:\VS\Dagorlad\Dagorlad\bin\Release\de\Microsoft.Win32.TaskScheduler.resources.dll
+D:\VS\Dagorlad\Dagorlad\bin\Release\es\Microsoft.Win32.TaskScheduler.resources.dll
+D:\VS\Dagorlad\Dagorlad\bin\Release\fr\Microsoft.Win32.TaskScheduler.resources.dll
+D:\VS\Dagorlad\Dagorlad\bin\Release\it\Microsoft.Win32.TaskScheduler.resources.dll
+D:\VS\Dagorlad\Dagorlad\bin\Release\pl\Microsoft.Win32.TaskScheduler.resources.dll
+D:\VS\Dagorlad\Dagorlad\bin\Release\ru\Microsoft.Win32.TaskScheduler.resources.dll
+D:\VS\Dagorlad\Dagorlad\bin\Release\zh-CN\Microsoft.Win32.TaskScheduler.resources.dll
+D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csprojAssemblyReference.cache
+D:\VS\Dagorlad\Dagorlad\obj\Release\Chat.g.cs
+D:\VS\Dagorlad\Dagorlad\obj\Release\CustomExample.g.cs
+D:\VS\Dagorlad\Dagorlad\obj\Release\Employees.g.cs
+D:\VS\Dagorlad\Dagorlad\obj\Release\MainWindow.g.cs
+D:\VS\Dagorlad\Dagorlad\obj\Release\NotifyWindowCustom.g.cs
+D:\VS\Dagorlad\Dagorlad\obj\Release\SettingsMenu.g.cs
+D:\VS\Dagorlad\Dagorlad\obj\Release\App.g.cs
+D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad_Content.g.cs
+D:\VS\Dagorlad\Dagorlad\obj\Release\GeneratedInternalTypeHelper.g.cs
+D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad_MarkupCompile.cache
+D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad_MarkupCompile.lref
+D:\VS\Dagorlad\Dagorlad\obj\Release\App.baml
+D:\VS\Dagorlad\Dagorlad\obj\Release\Chat.baml
+D:\VS\Dagorlad\Dagorlad\obj\Release\color.baml
+D:\VS\Dagorlad\Dagorlad\obj\Release\CustomExample.baml
+D:\VS\Dagorlad\Dagorlad\obj\Release\Employees.baml
+D:\VS\Dagorlad\Dagorlad\obj\Release\MainWindow.baml
+D:\VS\Dagorlad\Dagorlad\obj\Release\NotifyWindowCustom.baml
+D:\VS\Dagorlad\Dagorlad\obj\Release\SettingsMenu.baml
+D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.g.resources
+D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.Properties.Resources.resources
+D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.GenerateResource.cache
+D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.CoreCompileInputs.cache
+D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.Fody.CopyLocal.cache
+D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.CopyComplete
+D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.exe
+D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.pdb
+C:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\beep.mp3
