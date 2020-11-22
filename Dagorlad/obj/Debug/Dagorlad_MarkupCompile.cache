@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-c:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Debug\
+d:\VS\Dagorlad\Dagorlad\obj\Debug\
 Dagorlad
 none
 false
 DEBUG;TRACE
-c:\Main\Programs\VS\Dagorlad\Dagorlad\App.xaml
+d:\VS\Dagorlad\Dagorlad\App.xaml
 7-2041953516
 1-1414955747
-27-1042828306
-261987818088
+26-342879419
+26-192491156
 Chat.xaml;color.xaml;CustomExample.xaml;Employees.xaml;MainWindow.xaml;NotifyWindowCustom.xaml;SettingsMenu.xaml;
 system_files\splash.png
-True
+False
 
