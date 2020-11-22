@@ -1,0 +1,49 @@
+﻿<Window x:Class="Dagorlad_7.Windows.MiniMenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dagorlad_7.Windows"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="{StaticResource Background_Outside}"
+        ResizeMode="NoResize"
+        Topmost="True" Closing="Window_Closing"
+        SizeToContent="Height"
+        ShowInTaskbar="False"
+        Title="Мини-меню" Width="35">
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" PreviewMouseDown="Head_PreviewMouseDown" Height="12" 
+                    Background="{StaticResource Background_Inside_TextBox}">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="StackPanel.MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="#009687" 
+                                    Storyboard.TargetProperty="(StackPanel.Background).(SolidColorBrush.Color)" 
+                                    Duration="0:0:0.15"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="StackPanel.MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation
+                                    Storyboard.TargetProperty="(StackPanel.Background).(SolidColorBrush.Color)" 
+                                    Duration="0:0:0.15"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+        </StackPanel>
+        <Button Grid.Row="1" Content="{StaticResource Canvas_MiniMenu}" Template="{StaticResource ButtonStandart}" Height="40" Click="ShowSmartMenu_Click"/>
+    </Grid>
+</Window>

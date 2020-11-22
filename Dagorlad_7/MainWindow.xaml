@@ -11,6 +11,6 @@
         Foreground="{StaticResource Foreground}"
         Title="Dagorlad" Height="450" Width="800">
     <Grid>
-
+        <Button Content="settings" Click="Button_Click"/>
     </Grid>
 </Window>

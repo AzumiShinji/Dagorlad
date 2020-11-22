@@ -35,11 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gma.System.MouseKeyHook, Version=5.6.130.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MouseKeyHook.5.6.0\lib\net40\Gma.System.MouseKeyHook.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,10 +60,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="classes\cursor_position.cs" />
-    <Compile Include="classes\smartanswers.cs" />
-    <Compile Include="Windows\ContextMenuCustom.xaml.cs">
-      <DependentUpon>ContextMenuCustom.xaml</DependentUpon>
+    <Compile Include="classes\DispatcherControls.cs" />
+    <Compile Include="classes\SmartMenuContent.cs" />
+    <Compile Include="Windows\MiniMenuWindow.xaml.cs">
+      <DependentUpon>MiniMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MySettingsWindow.xaml.cs">
+      <DependentUpon>MySettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SmartMenuWindow.xaml.cs">
+      <DependentUpon>SmartMenuWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -72,16 +79,27 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="classes\hooks.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\Canvases.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ContextMenuCustom.xaml">
+    <Page Include="Windows\MiniMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MySettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SmartMenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,6 +130,31 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bookmark_16.png" />
+    <Resource Include="images\edit_16.png" />
+    <Resource Include="images\remove_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\copy_16.png" />
+    <Resource Include="images\eye_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\plus_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\cancel_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ok_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\down_12.png" />
+    <Resource Include="images\up_12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\minimenu_16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

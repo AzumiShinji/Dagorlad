@@ -1,4 +1,5 @@
 ﻿using Dagorlad_7.classes;
+using Dagorlad_7.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -25,12 +27,43 @@ namespace Dagorlad_7
     {
         public MainWindow()
         {
+            MySettings.Load();
             InitializeComponent();
             LoadEvents();
         }
-        private async void LoadEvents()
+        private void LoadEvents()
         {
-            await hooks.StartMouseHook();
+            ShowMiniMenu();
+        }
+        MiniMenuWindow minimenu;
+        private void ShowMiniMenu()
+        {
+            if (MySettings.Settings.SmartMenuIsEnabled)
+            {
+                if (minimenu == null)
+                {
+                    minimenu = new MiniMenuWindow();
+                    minimenu.Show();
+                }
+            }
+            else
+            {
+                if (minimenu != null)
+                {
+                    minimenu.Closing -= (qq, ee) => { ee.Cancel = true; };
+                    minimenu.Closing += (qq, ee) => { ee.Cancel = false; };
+                    minimenu.Close();
+                    minimenu = null;
+                }
+            }
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var g = new MySettingsWindow();
+            if (g.ShowDialog() == true)
+            {
+                ShowMiniMenu();
+            }
         }
     }
 }
