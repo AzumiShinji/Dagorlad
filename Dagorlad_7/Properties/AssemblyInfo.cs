@@ -7,13 +7,13 @@ using System.Windows;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набор атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Dagorlad_7")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Dagorlad_7")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTitle("Dagorlad")]
+[assembly: AssemblyDescription("Dagorlad")]
+[assembly: AssemblyConfiguration("{52101E9A-EC88-42C3-B34B-1D2F43E82ECF}")]
+[assembly: AssemblyCompany("krislechy")]
+[assembly: AssemblyProduct("Dagorlad")]
+[assembly: AssemblyCopyright("Copyright © krislechy 2020")]
+[assembly: AssemblyTrademark("krislechy")]
 [assembly: AssemblyCulture("")]
 
 // Установка значения False для параметра ComVisible делает типы в этой сборке невидимыми
@@ -51,5 +51,9 @@ using System.Windows;
 // Можно задать все значения или принять номера сборки и редакции по умолчанию 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+#if(DEBUG)
+[assembly: AssemblyVersion("0.0.*")]
+#else
+[assembly: AssemblyVersion("7.0.*")]
+#endif
+//[assembly: AssemblyFileVersion("1.0.0.0")]

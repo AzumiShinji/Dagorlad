@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Capa_1"
+   enable-background="new 0 0 512 512"
+   height="512"
+   viewBox="0 0 512 512"
+   width="512"
+   version="1.1"
+   sodipodi:docname="menu.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)">
+  <rect
+     y="0"
+     x="0"
+     height="512"
+     width="512"
+     id="rect869"
+     style="opacity:0.998;fill:#282e33;fill-opacity:1;stroke-width:20.6193" />
+  <path
+     d="M 0,429.58723 82.412771,250.9058 261.09421,333.31857 178.68143,512 Z"
+     fill="#3a6fd8"
+     id="path8-5"
+     style="fill:#373e9f;fill-opacity:1;stroke-width:2.09331" />
+  <path
+     id="path10-3"
+     d="M 250.90579,178.68143 333.31856,0 512,82.412769 429.58723,261.0942 Z"
+     style="fill:#373e9f;stroke-width:2.09331" />
+  <metadata
+     id="metadata23">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs21" />
+  <sodipodi:namedview
+     inkscape:document-rotation="0"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     id="namedview19"
+     showgrid="false"
+     inkscape:zoom="0.52539062"
+     inkscape:cx="161.02484"
+     inkscape:cy="224.10666"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Capa_1" />
+  <path
+     style="fill:#767fff;fill-opacity:1;stroke-width:0.884193"
+     id="path8"
+     fill="#3a6fd8"
+     d="m 410.57878,267.83843 -62.45857,54.83509 -54.83509,-62.45841 62.4584,-54.83525 z" />
+  <g
+     transform="matrix(1.3598944,0,0,1.3598944,-92.132975,-92.132976)"
+     id="g865">
+    <path
+       d="M 352.57311,172.63554 268.96879,215.60433 226,132 309.60433,89.031212 Z"
+       fill="#3a6fd8"
+       id="path6" />
+    <path
+       id="path12"
+       d="m 286,380 -83.60433,42.96879 -42.96878,-83.60433 83.60432,-42.96879 z"
+       style="fill:#3a6fd8;fill-opacity:1" />
+  </g>
+  <path
+     style="fill:#5560fb;fill-opacity:1;stroke-width:0.884193"
+     d="m 218.71496,251.78487 -62.45856,54.83522 -54.83514,-62.45854 62.45856,-54.83509 z"
+     id="path10" />
+</svg>

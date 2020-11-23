@@ -6,11 +6,29 @@
         xmlns:local="clr-namespace:Dagorlad_7"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanResizeWithGrip" Loaded="Window_Loaded"
+        ResizeMode="CanResizeWithGrip" Closing="Window_Closing"
         Background="{StaticResource Background_Inside}"
         Foreground="{StaticResource Foreground}"
-        Title="Dagorlad" Height="450" Width="800">
+        Title="Dagorlad"
+        Height="450" Width="800">
     <Grid>
-        <Button Content="settings" Click="SettingsButton_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Tag="Top" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Template="{StaticResource ButtonStandart}" Width="40" Height="40"
+                    Content="{StaticResource Canvas_Settings}" Click="SettingsButton_Click" ToolTip="Настройки"/>
+            <Button Grid.Column="1" Template="{StaticResource ButtonStandart}"
+                    Click="CloseApplicationButton_Click" Width="40" Height="40" 
+                    ToolTip="Выйти из приложения"
+                    Content="{StaticResource Canvas_Exit}"/>
+        </Grid>
+        <Grid Tag="Middle">
+        </Grid>
     </Grid>
 </Window>

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-d:\VS\Dagorlad\Dagorlad_7\obj\Debug\
+D:\VS\Dagorlad\Dagorlad_7\obj\Debug\
 Dagorlad_7
 none
 false
 DEBUG;TRACE
-d:\VS\Dagorlad\Dagorlad_7\App.xaml
-61441109566
+D:\VS\Dagorlad\Dagorlad_7\App.xaml
+7687571622
 
-11606460904
-16659895715
-MainWindow.xaml;Styles\Canvases.xaml;Styles\Styles.xaml;Windows\MiniMenuWindow.xaml;Windows\MySettingsWindow.xaml;Windows\SmartMenuWindow.xaml;
+12-756249273
+16240951875
+MainWindow.xaml;Styles\Canvases.xaml;Styles\Styles.xaml;Windows\MiniMenuWindow.xaml;Windows\MySettingsWindow.xaml;Windows\SmartMenuWindow.xaml;Windows\SplashWindow.xaml;
 
-False
+True
 

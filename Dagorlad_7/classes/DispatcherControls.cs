@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,42 @@ namespace Dagorlad_7.classes
 {
     class DispatcherControls
     {
+        public enum TypeDisplayVersion
+        {
+            Fully = 0,
+            Shortly = 1,
+        }
+        public enum TypeBuild
+        {
+            Debug = 0,
+            Release = 1,
+        }
+        public static string GetVersionApplication(TypeDisplayVersion typedisplayversion)
+        {
+            var version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
+            DateTime buildDate = new DateTime(2000, 1, 1)
+                        .AddDays(version.Build).AddSeconds(version.Revision * 2);
+#if(DEBUG)
+            TypeBuild typebuild = TypeBuild.Debug;
+#else
+            TypeBuild typebuild = TypeBuild.Release;
+#endif
+            string dt = "";
+            switch (typedisplayversion)
+            {
+                case (TypeDisplayVersion.Fully):
+                    {
+                        dt = buildDate.ToString();
+                        break;
+                    }
+                case (TypeDisplayVersion.Shortly):
+                    {
+                        dt = buildDate.ToShortDateString();
+                        break;
+                    }
+            }
+            return String.Format("v.{0}, [{1}] ({2})", version, dt, typebuild);
+        }
         public static Task ChangeToStablePositionWindow(Window win)
         {
             //var current_window = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(win).Handle);
@@ -60,6 +97,20 @@ namespace Dagorlad_7.classes
                 To = 1,
             };
             cmc.BeginAnimation(Window.OpacityProperty, da);
+        }
+        public static void HideAppToTaskMenu()
+        {
+            System.Windows.Forms.NotifyIcon Install_Notify = new System.Windows.Forms.NotifyIcon();
+            Install_Notify.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            Install_Notify.Visible = true;
+            Install_Notify.Text = Assembly.GetExecutingAssembly().GetName().Name;
+            Install_Notify.Click +=
+                (object sender, EventArgs args) =>
+                {
+                    Application.Current.MainWindow.Show();
+                    Application.Current.MainWindow.WindowState = WindowState.Normal;
+                    Application.Current.MainWindow.Activate();
+                };
         }
     }
     class CursorPosition

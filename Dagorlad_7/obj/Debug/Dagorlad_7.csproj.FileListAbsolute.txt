@@ -54,3 +54,5 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Styles\Canvases.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MiniMenuWindow.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MySettingsWindow.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\SmartMenuWindow.baml
+D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\SplashWindow.g.cs
+D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\SplashWindow.baml

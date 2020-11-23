@@ -25,8 +25,16 @@ namespace Dagorlad_7
     
     public partial class MainWindow : Window
     {
+        protected override void OnStateChanged(EventArgs e)
+        {
+            if (WindowState == System.Windows.WindowState.Minimized)
+                this.Hide();
+
+            base.OnStateChanged(e);
+        }
         public MainWindow()
         {
+            DispatcherControls.HideAppToTaskMenu();
             MySettings.Load();
             InitializeComponent();
             LoadEvents();
@@ -43,7 +51,6 @@ namespace Dagorlad_7
                 if (minimenu == null)
                 {
                     minimenu = new MiniMenuWindow();
-                    minimenu.Owner = this;
                     minimenu.Show();
                 }
             }
@@ -67,9 +74,14 @@ namespace Dagorlad_7
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            LoadEvents();
+            e.Cancel = true;
+            this.WindowState = WindowState.Minimized;
+        }
+        private void CloseApplicationButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
