@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:Dagorlad_7"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanResizeWithGrip"
+        ResizeMode="CanResizeWithGrip" Loaded="Window_Loaded"
         Background="{StaticResource Background_Inside}"
         Foreground="{StaticResource Foreground}"
         Title="Dagorlad" Height="450" Width="800">
     <Grid>
-        <Button Content="settings" Click="Button_Click"/>
+        <Button Content="settings" Click="SettingsButton_Click"/>
     </Grid>
 </Window>

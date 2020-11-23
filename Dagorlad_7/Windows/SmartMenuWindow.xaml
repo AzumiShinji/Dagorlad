@@ -23,11 +23,6 @@
         <Grid Grid.Row="0" Grid.ColumnSpan="2" PreviewMouseDown="DragablePanel_PreviewMouseDown"
                     x:Name="DragablePanel" Background="{StaticResource Background_Outside}" Height="40" Margin="0">
             <Grid HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <ContentPresenter Content="{StaticResource Canvas_MiniMenu}"/>
                 <Label x:Name="HeaderLabel" Content="СМАРТ-МЕНЮ" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Medium"
                    VerticalContentAlignment="Center" Foreground="{StaticResource Foreground}"/>
             </Grid>

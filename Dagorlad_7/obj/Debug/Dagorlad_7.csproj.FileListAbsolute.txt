@@ -14,11 +14,8 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csproj.GenerateReso
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csproj.CoreCompileInputs.cache
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad.exe
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad.pdb
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Debug\Gma.System.MouseKeyHook.dll
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csproj.CopyComplete
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csprojAssemblyReference.cache
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\ContextMenuCustom.g.cs
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\ContextMenuCustom.baml
 D:\VS\Dagorlad\Dagorlad_7\bin\Debug\Dagorlad.exe.config
 D:\VS\Dagorlad\Dagorlad_7\bin\Debug\Dagorlad.exe
 D:\VS\Dagorlad\Dagorlad_7\bin\Debug\Dagorlad.pdb
@@ -47,3 +44,13 @@ d:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MiniMenuWindow.baml
 d:\VS\Dagorlad\Dagorlad_7\obj\Debug\Styles\Canvases.baml
 d:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MySettingsWindow.g.cs
 d:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MySettingsWindow.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Debug\Newtonsoft.Json.dll
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Debug\Newtonsoft.Json.xml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MiniMenuWindow.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MySettingsWindow.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\SmartMenuWindow.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Styles\Canvases.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MiniMenuWindow.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MySettingsWindow.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\SmartMenuWindow.baml

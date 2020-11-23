@@ -43,6 +43,7 @@ namespace Dagorlad_7
                 if (minimenu == null)
                 {
                     minimenu = new MiniMenuWindow();
+                    minimenu.Owner = this;
                     minimenu.Show();
                 }
             }
@@ -57,13 +58,18 @@ namespace Dagorlad_7
                 }
             }
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
             var g = new MySettingsWindow();
             if (g.ShowDialog() == true)
             {
                 ShowMiniMenu();
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadEvents();
         }
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -46,6 +47,8 @@ namespace Dagorlad_7.Windows
                 if (this.Left > left_part)
                     this.Left = _left;
                 else this.Left = 0;
+                if ((this.Top+this.Height) > main_window_size.Height)
+                    this.Top = main_window_size.Height-this.ActualHeight;
             }
         }
 

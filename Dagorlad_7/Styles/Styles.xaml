@@ -4,7 +4,9 @@
     <SolidColorBrush x:Key="Background_Inside" Color="#18191d"/>
     <SolidColorBrush x:Key="Background_Outside" Color="#282e33"/>
     <SolidColorBrush x:Key="Background_Inside_TextBox" Color="#33393f"/>
-    <SolidColorBrush x:Key="Background_Green" Color="#009687"/>
+    <!--009687-->
+    <SolidColorBrush x:Key="Background_Green" Color="#FF3A6FD8"/>
+    <Color x:Key="Background_Green_Color">#FF3A6FD8</Color>
     <SolidColorBrush x:Key="Foreground" Color="White"/>
     <SolidColorBrush x:Key="Foreground_Button" Color="LightGray"/>
     <Style TargetType="TextBox">
@@ -34,7 +36,7 @@
                 <Setter Property="Background" Value="#353c43"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" TargetName="border" Value="#009687"/>
+                <Setter Property="Background" TargetName="border" Value="{StaticResource Background_Green}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
@@ -46,9 +48,7 @@
     
     <SolidColorBrush x:Key="Item.MouseOver.Background" Color="#353c43"/>
     <SolidColorBrush x:Key="Item.MouseOver.Border" Color="#a826A0Da"/>
-    <SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="#009687"/>
     <SolidColorBrush x:Key="Item.SelectedInactive.Border" Color="#FFDADADA"/>
-    <SolidColorBrush x:Key="Item.SelectedActive.Background" Color="#009687"/>
     <SolidColorBrush x:Key="Item.SelectedActive.Border" Color="#FF26A0DA"/>
     <Style TargetType="{x:Type ListBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -77,7 +77,7 @@
                                 <Condition Property="Selector.IsSelectionActive" Value="False"/>
                                 <Condition Property="IsSelected" Value="True"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Background}"/>
+                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource Background_Green}"/>
                             <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Border}"/>
                         </MultiTrigger>
                         <MultiTrigger>
@@ -85,7 +85,7 @@
                                 <Condition Property="Selector.IsSelectionActive" Value="True"/>
                                 <Condition Property="IsSelected" Value="True"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Background}"/>
+                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource Background_Green}"/>
                             <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Border}"/>
                         </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="False">
