@@ -135,3 +135,4 @@ D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csproj.CopyComplete
 D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.exe
 D:\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.pdb
 C:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Release\beep.mp3
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Release\Dagorlad.csprojAssemblyReference.cache

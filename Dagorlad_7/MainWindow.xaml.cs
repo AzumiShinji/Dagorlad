@@ -42,6 +42,12 @@ namespace Dagorlad_7
         private void LoadEvents()
         {
             ShowMiniMenu();
+            if(MySettings.Settings.IsFirstTimeLanuched)
+            {
+                DispatcherControls.Autorun(DispatcherControls.TypeAutoRunOperation.On);
+                MySettings.Settings.IsFirstTimeLanuched = false;
+            }
+            MySettings.Save();
         }
         MiniMenuWindow minimenu;
         private void ShowMiniMenu()
@@ -67,13 +73,17 @@ namespace Dagorlad_7
         }
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
+            ShowSettingsWindow();
+        }
+        private void ShowSettingsWindow()
+        {
             var g = new MySettingsWindow();
+            g.Owner = this;
             if (g.ShowDialog() == true)
             {
                 ShowMiniMenu();
             }
         }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
@@ -81,7 +91,19 @@ namespace Dagorlad_7
         }
         private void CloseApplicationButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            var g = DispatcherControls.ShowMyDialog("Выход", "Вы уверены, что хотите выйти?", MyDialogWindow.TypeMyDialog.YesNo,this);
+            if (g == MyDialogWindow.ResultMyDialog.Yes)
+            {
+                Application.Current.Shutdown();
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var SourceUri = new Uri("pack://application:,,,/Dagorlad;component/favicon.ico", UriKind.Absolute);
+            var thisIcon = new BitmapImage(SourceUri);
+            var obj = new MyNotifyClass() { dt=DateTime.Now,image=thisIcon,text= "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest" };
+            DispatcherControls.NewMyNotifyWindow(obj,this);
         }
     }
 }

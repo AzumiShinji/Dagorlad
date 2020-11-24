@@ -1,6 +1,8 @@
 ﻿using Dagorlad_7.Windows;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
+using static Dagorlad_7.Windows.MyDialogWindow;
 
 namespace Dagorlad_7.classes
 {
@@ -23,6 +26,12 @@ namespace Dagorlad_7.classes
         {
             Debug = 0,
             Release = 1,
+        }
+        public enum TypeAutoRunOperation
+        {
+            On = 0,
+            Off = 1,
+            CheckStatus = 2,
         }
         public static string GetVersionApplication(TypeDisplayVersion typedisplayversion)
         {
@@ -111,6 +120,65 @@ namespace Dagorlad_7.classes
                     Application.Current.MainWindow.WindowState = WindowState.Normal;
                     Application.Current.MainWindow.Activate();
                 };
+        }
+        public static bool? Autorun(TypeAutoRunOperation operation)
+        {
+            var path_run = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+            RegistryKey rkApp = Registry.CurrentUser.OpenSubKey(path_run, true);
+            bool IsExistKey = rkApp.GetValue(Assembly.GetEntryAssembly().GetName().Name) == null ? false : true;
+            switch (operation)
+            {
+                case (TypeAutoRunOperation.On):
+                    {
+                        if (!IsExistKey)
+                            rkApp.SetValue(Assembly.GetEntryAssembly().GetName().Name, System.Windows.Forms.Application.ExecutablePath.ToString());
+                        break;
+                    }
+                case (TypeAutoRunOperation.Off):
+                    {
+                        if (IsExistKey)
+                            rkApp.DeleteValue(Assembly.GetEntryAssembly().GetName().Name, false);
+                        break;
+                    }
+                case (TypeAutoRunOperation.CheckStatus):
+                    {
+                        return IsExistKey;
+                    }
+            }
+            return null;
+        }
+        public static ResultMyDialog ShowMyDialog(string title,string text, TypeMyDialog type,Window win)
+        {
+            var g = new MyDialogWindow(title,text,type);
+            g.Owner = win;
+            if(g.ShowDialog()==true)
+            {
+                return g.result;
+            }
+            return ResultMyDialog.Cancel;
+        }
+        public static ObservableCollection<MyNotifyClass> MyNotifyList = new ObservableCollection<MyNotifyClass>();
+        public static MyNotifyWindow _MyNotifyWindow;
+        public static void NewMyNotifyWindow(MyNotifyClass obj, Window win)
+        {
+            MyNotifyList.Add(obj);
+            if (_MyNotifyWindow == null)
+            {
+                _MyNotifyWindow = new MyNotifyWindow(win);
+                _MyNotifyWindow.Show();
+            }
+            if (_MyNotifyWindow.Visibility == Visibility.Hidden)
+            {
+                _MyNotifyWindow.Opacity = 0;
+                _MyNotifyWindow.Show();
+                var da = new DoubleAnimation()
+                {
+                    Duration = new Duration(TimeSpan.FromMilliseconds(150)),
+                    From = 0,
+                    To = 1,
+                };
+                _MyNotifyWindow.BeginAnimation(Window.OpacityProperty, da);
+            }
         }
     }
     class CursorPosition

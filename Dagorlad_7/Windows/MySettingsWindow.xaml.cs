@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UsBudget.classes;
 
 namespace Dagorlad_7.Windows
 {
@@ -24,6 +25,7 @@ namespace Dagorlad_7.Windows
     /// </summary>
     public class MySettings
     {
+        public static string RoamingFolder = "";
         private static string path = "";
         public static MySettingsWindow.SettingsClass Settings = new MySettingsWindow.SettingsClass();
         public static Task Save()
@@ -37,6 +39,7 @@ namespace Dagorlad_7.Windows
         public static void Load()
         {
             string root = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +"\\"+ Assembly.GetExecutingAssembly().GetName().Name;
+            RoamingFolder = root;
             if (!Directory.Exists(root)) Directory.CreateDirectory(root);
             path = root + "\\Settings.json";
             Console.WriteLine("Trying opening settings from: {0}", path);
@@ -56,6 +59,7 @@ namespace Dagorlad_7.Windows
     {
         public class SettingsClass
         {
+            public bool IsFirstTimeLanuched = true;
             public bool SmartMenuIsEnabled = true;
             public ObservableCollection<SmartAnswersClass> SmartMenuList = new ObservableCollection<SmartAnswersClass>();
         }
@@ -73,10 +77,15 @@ namespace Dagorlad_7.Windows
         private Task LoadSettings()
         {
             IsEnabledSmartMenuCheckBox.IsChecked = MySettings.Settings.SmartMenuIsEnabled;
+            IsAutorunCheckBox.IsChecked = DispatcherControls.Autorun(DispatcherControls.TypeAutoRunOperation.CheckStatus);
             return Task.CompletedTask;
         }
         private async Task SaveSettings()
         {
+            if (IsAutorunCheckBox.IsChecked == true)
+                DispatcherControls.Autorun(DispatcherControls.TypeAutoRunOperation.On);
+            else DispatcherControls.Autorun(DispatcherControls.TypeAutoRunOperation.Off);
+
             MySettings.Settings.SmartMenuIsEnabled = IsEnabledSmartMenuCheckBox.IsChecked.Value;
             await MySettings.Save();
         }
@@ -86,5 +95,9 @@ namespace Dagorlad_7.Windows
             this.DialogResult = true;
         }
 
+        private void OpenLogsFolder_Click(object sender, RoutedEventArgs e)
+        {
+            Logger.Open();
+        }
     }
 }

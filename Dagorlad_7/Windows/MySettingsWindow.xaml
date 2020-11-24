@@ -50,11 +50,15 @@
             </Grid.ColumnDefinitions>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <CheckBox x:Name="IsEnabledSmartMenuCheckBox" IsChecked="False" Content="Смарт-меню" Foreground="{StaticResource Foreground}" VerticalContentAlignment="Center"
+                <CheckBox x:Name="IsAutorunCheckBox" Grid.Row="0" IsChecked="False" Content="Автозапуск приложения" Foreground="{StaticResource Foreground}" VerticalContentAlignment="Center"
                       FontWeight="Medium" FontSize="14"/>
+                <CheckBox x:Name="IsEnabledSmartMenuCheckBox" Grid.Row="1" IsChecked="False" Content="Смарт-меню" Foreground="{StaticResource Foreground}" VerticalContentAlignment="Center"
+                      FontWeight="Medium" FontSize="14"/>
+                <Button Grid.Row="2" Template="{StaticResource ButtonStandart}" Content="Открыть папку с логами" Height="40" Click="OpenLogsFolder_Click"/>
             </Grid>
         </Grid>
         <Grid Tag="Bottom" Grid.Row="2">

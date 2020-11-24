@@ -194,4 +194,19 @@
             <Path Fill="#FF5A5A5A" Data="m 60 286 h 60 v 30 H 60 Z m 0 0"/>
         </Canvas>
     </Viewbox>
+    <Viewbox x:Key="Canvas_Arrow_Right" Stretch="Uniform" Width="10" Height="10" x:Shared="False">
+        <Canvas Width="255.99999" Height="255.99999" Canvas.Left="0" Canvas.Top="0">
+            <Path Fill="#FFFFFFFF" Data="M 48.907 225.813 79.093 256 207.093 128 79.093 0 48.907 30.187 146.72 128 Z"/>
+        </Canvas>
+    </Viewbox>
+    <Viewbox x:Key="Canvas_Arrow_Top" Stretch="Uniform" Width="10" Height="10" x:Shared="False">
+        <Canvas Width="255.99999" Height="255.99999" Canvas.Left="0" Canvas.Top="0">
+            <Path Fill="#FFFFFFFF" Data="M 30.187 207.093 0 176.907 l 128 -128 128 128 -30.187 30.186 L 128 109.28 Z"/>
+        </Canvas>
+    </Viewbox>
+    <Viewbox x:Key="Canvas_Arrow_Down" Stretch="Uniform" Width="10" Height="10" x:Shared="False">
+        <Canvas Width="255.99999" Height="255.99999" Canvas.Left="0" Canvas.Top="0">
+            <Path Fill="#FFFFFFFF" Data="M 30.187 48.907 0 79.093 l 128 128 128 -128 L 225.813 48.907 128 146.72 Z"/>
+        </Canvas>
+    </Viewbox>
 </ResourceDictionary>

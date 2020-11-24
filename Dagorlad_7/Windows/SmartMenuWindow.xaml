@@ -83,14 +83,10 @@
                                         <RowDefinition/>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
-                                    <Button Grid.Row="0" Click="MoveItem" CommandParameter="up"  ToolTip="Переместить вверх"
-                                            Template="{DynamicResource ButtonStandart}">
-                                        <Image Source="/images/up_12.png" Height="8" Width="12" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-                                    </Button>
-                                    <Button Grid.Row="1" Click="MoveItem" CommandParameter="down"  ToolTip="Переместить вниз"
-                                            Template="{DynamicResource ButtonStandart}">
-                                        <Image Source="/images/down_12.png" Height="8" Width="12" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-                                    </Button>
+                                    <Button Grid.Row="0" Click="MoveItem" CommandParameter="up"  ToolTip="Переместить вверх"  Content="{StaticResource Canvas_Arrow_Top}"
+                                            Template="{DynamicResource ButtonStandart}"/>
+                                    <Button Grid.Row="1" Click="MoveItem" CommandParameter="down"  ToolTip="Переместить вниз" Content="{StaticResource Canvas_Arrow_Down}"
+                                            Template="{DynamicResource ButtonStandart}"/>
                                 </Grid>
                                 <Button x:Name="SwtichRemovePanelButton" Grid.Column="2" Template="{DynamicResource ButtonStandart}" Width="30" Height="30"
                                         ToolTip="Удалить" CommandParameter="{Binding ElementName=ControlMenuGrid}" Click="ShowControlMenu_Click">
@@ -241,7 +237,7 @@
                 </ListBox>
             </Grid>
         </Grid>
-        <Button x:Name="WindowHideButton" Grid.Row="2" Height="40" FontSize="14"
+        <Button x:Name="WindowHideButton" Grid.Row="2" Height="40" FontSize="14" Foreground="{StaticResource Foreground_Button}"
                 Content="Закрыть" Click="WindowHideButton_Click" Template="{DynamicResource ButtonStandart}"/>
     </Grid>
 </Window>

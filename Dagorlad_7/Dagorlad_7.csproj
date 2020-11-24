@@ -64,9 +64,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="classes\DispatcherControls.cs" />
+    <Compile Include="classes\Logger.cs" />
     <Compile Include="classes\SmartMenuContent.cs" />
     <Compile Include="Windows\MiniMenuWindow.xaml.cs">
       <DependentUpon>MiniMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MyDialogWindow.xaml.cs">
+      <DependentUpon>MyDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MyNotifyWindow.xaml.cs">
+      <DependentUpon>MyNotifyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MySettingsWindow.xaml.cs">
       <DependentUpon>MySettingsWindow.xaml</DependentUpon>
@@ -98,6 +105,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MiniMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MyDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MyNotifyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

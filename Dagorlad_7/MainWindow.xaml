@@ -29,6 +29,7 @@
                     Content="{StaticResource Canvas_Exit}"/>
         </Grid>
         <Grid Tag="Middle">
+            <Button Content="testnotify" Click="Button_Click"/>
         </Grid>
     </Grid>
 </Window>

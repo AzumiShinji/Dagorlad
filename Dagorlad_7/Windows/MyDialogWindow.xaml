@@ -1,0 +1,40 @@
+﻿<Window x:Class="Dagorlad_7.Windows.MyDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dagorlad_7.Windows"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="{StaticResource Background_Outside}"
+        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize" Closing="Window_Closing"
+        Title="">
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Image Source="/favicon.ico" Height="64" Width="64" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Grid Grid.Row="1">
+                <TextBlock x:Name="TextTextBlock" Text="Text" Foreground="{StaticResource Foreground}" Margin="10" FontWeight="Medium" FontSize="14"/>
+            </Grid>
+            <Grid x:Name="GridButtons" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="OkButton" Grid.Column="0" Height="40" FontSize="14" Foreground="{StaticResource Foreground_Button}"
+                Content="Ок" Click="EventClick" CommandParameter="ok" Template="{DynamicResource ButtonStandart}"/>
+                <Button x:Name="YesButton" Grid.Column="1" Height="40" FontSize="14" Foreground="{StaticResource Foreground_Button}"
+                Content="Да" Click="EventClick" CommandParameter="yes" Template="{DynamicResource ButtonStandart}"/>
+                <Button x:Name="NoButton" Grid.Column="2" Height="40" FontSize="14" Foreground="{StaticResource Foreground_Button}"
+                Content="Нет" Click="EventClick" CommandParameter="no" Template="{DynamicResource ButtonStandart}"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

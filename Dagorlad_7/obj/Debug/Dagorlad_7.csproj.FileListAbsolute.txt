@@ -56,3 +56,9 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MySettingsWindow.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\SmartMenuWindow.baml
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\SplashWindow.g.cs
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\SplashWindow.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\SplashWindow.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\SplashWindow.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyDialogWindow.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyDialogWindow.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyNotifyWindow.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyNotifyWindow.baml
