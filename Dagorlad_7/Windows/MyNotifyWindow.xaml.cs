@@ -26,7 +26,13 @@ namespace Dagorlad_7.Windows
     {
         public BitmapImage image { get; set; }
         public DateTime dt { get; set; }
+        public string title { get; set; }
         public string text { get; set; }
+        public TimeSpan timetoautoclose { get; set; }
+    }
+    public enum TypeImageNotify
+    {
+        standart = 0,
     }
     public partial class MyNotifyWindow : Window
     {
@@ -41,7 +47,7 @@ namespace Dagorlad_7.Windows
         {
             await StandartPositionWindow();
             this.DataContext = DispatcherControls.MyNotifyList;
-            StartAutoCloseTemporaryNotifies(150);
+            await StartAutoCloseTemporaryNotifies(TimeSpan.FromSeconds(1));
         }
         public async Task StandartPositionWindow()
         {
@@ -50,6 +56,7 @@ namespace Dagorlad_7.Windows
             while (NotifiesListView.IsLoaded == false)
                 await Task.Delay(100);
             this.Top = main_window_size.Height - this.ActualHeight-3;
+            HideIfZero();
         }
 
         private async void NotifiesListView_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -63,6 +70,7 @@ namespace Dagorlad_7.Windows
         private void CloseButton(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
+            button.IsEnabled = false;
             MyNotifyClass obj = (MyNotifyClass)button.DataContext;
             var maingrid = button.Tag as Grid;
             var da = new DoubleAnimation()
@@ -78,33 +86,35 @@ namespace Dagorlad_7.Windows
                 if (button.CommandParameter != null)
                 {
                     var listview = (ListView)button.CommandParameter;
-                    if (listview.Items.Count == 0)
-                    {
-                        this.Hide();
-                    }
+                    HideIfZero();
                 }
             };
             maingrid.BeginAnimation(Grid.OpacityProperty, da);
         }
-
-        private void HideNotifiesListView_Button(object sender, RoutedEventArgs e)
+        private void HideIfZero()
+        {
+            if (DispatcherControls.MyNotifyList.Count == 0)
+            {
+                DispatcherControls.MyNotifyList.Clear();
+                NotifiesListView.UpdateLayout();
+                this.Hide();
+            }
+        }
+        private async void HideNotifiesListView_Button(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
             var obj = button.DataContext as ObservableCollection<MyNotifyClass>;
-            var da = new DoubleAnimation()
+            if (obj != null && obj.Count>0)
             {
-                Duration = new Duration(TimeSpan.FromMilliseconds(150)),
-                From = 1,
-                To = 0,
-            };
-            da.Completed += async (q, f) =>
-            {
-                await Task.Delay(250);
-                if (obj != null)
-                    obj.Clear();
-                this.Hide();
-            };
-            this.BeginAnimation(Window.OpacityProperty, da);
+                var list = obj.ToList();
+                foreach (var s in list)
+                {
+                    await Task.Delay(150);
+                    obj.Remove(s);
+                }
+                obj.Clear();
+            }
+            HideIfZero();
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
@@ -112,22 +122,41 @@ namespace Dagorlad_7.Windows
             e.Cancel = true;
         }
 
-        private async void StartAutoCloseTemporaryNotifies(int seconds)
+        private async Task StartAutoCloseTemporaryNotifies(TimeSpan seconds)
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(seconds));
+            await Task.Delay(seconds);
             if (DispatcherControls.MyNotifyList != null && DispatcherControls.MyNotifyList.Count() > 0)
             {
                 var list = DispatcherControls.MyNotifyList.ToList();
                 foreach (var t in list)
                 {
-                    if ((DateTime.Now-t.dt).TotalSeconds > 5)
+                    if ((DateTime.Now - t.dt).TotalSeconds > t.timetoautoclose.TotalSeconds)
                     {
                         DispatcherControls.MyNotifyList.Remove(t);
                     }
-
                 }
+                HideIfZero();
             }
-            StartAutoCloseTemporaryNotifies(seconds);
+            await StartAutoCloseTemporaryNotifies(seconds);
+        }
+
+        private void Grid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var item = sender as Grid;
+            if (item != null)
+            {
+                if (FromWindow != null)
+                {
+                    if (FromWindow.Visibility == Visibility.Hidden)
+                        FromWindow.Visibility = Visibility.Visible;
+                    FromWindow.Show();
+                    FromWindow.WindowState = WindowState.Normal;
+                    FromWindow.Activate();
+                    FromWindow.Focus();
+                }
+                DispatcherControls.MyNotifyList.Remove((MyNotifyClass)item.DataContext);
+                HideIfZero();
+            }
         }
     }
 }

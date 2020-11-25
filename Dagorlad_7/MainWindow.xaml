@@ -28,7 +28,7 @@
                     ToolTip="Выйти из приложения"
                     Content="{StaticResource Canvas_Exit}"/>
         </Grid>
-        <Grid Tag="Middle">
+        <Grid Grid.Row="1" Tag="Middle">
             <Button Content="testnotify" Click="Button_Click"/>
         </Grid>
     </Grid>

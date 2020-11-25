@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -48,6 +49,7 @@ namespace Dagorlad_7
                 MySettings.Settings.IsFirstTimeLanuched = false;
             }
             MySettings.Save();
+            DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name, "Программа запущена и работает в фоновом режиме.", 8, this, TypeImageNotify.standart);
         }
         MiniMenuWindow minimenu;
         private void ShowMiniMenu()
@@ -100,10 +102,7 @@ namespace Dagorlad_7
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var SourceUri = new Uri("pack://application:,,,/Dagorlad;component/favicon.ico", UriKind.Absolute);
-            var thisIcon = new BitmapImage(SourceUri);
-            var obj = new MyNotifyClass() { dt=DateTime.Now,image=thisIcon,text= "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest" };
-            DispatcherControls.NewMyNotifyWindow(obj,this);
+            DispatcherControls.NewMyNotifyWindow("test title","test text"+new Random().Next(0,9999),5,this,TypeImageNotify.standart);
         }
     }
 }

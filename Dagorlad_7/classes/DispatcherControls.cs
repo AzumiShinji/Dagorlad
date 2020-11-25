@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using static Dagorlad_7.Windows.MyDialogWindow;
 
 namespace Dagorlad_7.classes
@@ -159,8 +160,16 @@ namespace Dagorlad_7.classes
         }
         public static ObservableCollection<MyNotifyClass> MyNotifyList = new ObservableCollection<MyNotifyClass>();
         public static MyNotifyWindow _MyNotifyWindow;
-        public static void NewMyNotifyWindow(MyNotifyClass obj, Window win)
+        public static void NewMyNotifyWindow(string title, string text, int closeafterseconds, Window win, object image)
         {
+            var obj = new MyNotifyClass()
+            {
+                dt = DateTime.Now,
+                title = title,
+                text = text,
+                image = SetImageNotify(image),
+                timetoautoclose = TimeSpan.FromSeconds(closeafterseconds),
+            };
             MyNotifyList.Add(obj);
             if (_MyNotifyWindow == null)
             {
@@ -169,16 +178,28 @@ namespace Dagorlad_7.classes
             }
             if (_MyNotifyWindow.Visibility == Visibility.Hidden)
             {
-                _MyNotifyWindow.Opacity = 0;
                 _MyNotifyWindow.Show();
-                var da = new DoubleAnimation()
-                {
-                    Duration = new Duration(TimeSpan.FromMilliseconds(150)),
-                    From = 0,
-                    To = 1,
-                };
-                _MyNotifyWindow.BeginAnimation(Window.OpacityProperty, da);
             }
+        }
+        private static BitmapImage SetImageNotify(object type)
+        {
+            if (type.GetType() == typeof(TypeImageNotify))
+            {
+                switch (type)
+                {
+                    case (TypeImageNotify.standart):
+                        {
+                            var SourceUri = new Uri("pack://application:,,,/Dagorlad;component/favicon.ico", UriKind.Absolute);
+                            var thisIcon = new BitmapImage(SourceUri);
+                            return thisIcon;
+                        }
+                }
+            }
+            else
+            {
+                return type as BitmapImage;
+            }
+            return null;
         }
     }
     class CursorPosition
