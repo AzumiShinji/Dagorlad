@@ -62,3 +62,7 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyDialogWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyDialogWindow.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyNotifyWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyNotifyWindow.baml
+D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyDialogWindow.g.cs
+D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyNotifyWindow.g.cs
+D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyDialogWindow.baml
+D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyNotifyWindow.baml

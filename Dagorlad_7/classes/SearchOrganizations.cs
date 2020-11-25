@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Dagorlad_7.classes
@@ -70,9 +71,9 @@ namespace Dagorlad_7.classes
                                 okpoCode = (string)reader["okpoCode"],
                                 pgmu = (string)reader["pgmu"],
                                 fullName = (string)reader["fullName"],
-                                fio = (string)reader["fio"],
+                                fio = ((string)reader["fio"]).FirstWordToUpper(),
                                 recordNum = (string)reader["recordNum"],
-                                cityName = (string)reader["cityName"],
+                                cityName = ((string)reader["cityName"]).FirstWordToUpper(),
                                 phone = (string)reader["phone"],
                                 mail = (string)reader["mail"],
                                 orfkCode = (string)reader["orfkCode"],
@@ -110,6 +111,20 @@ namespace Dagorlad_7.classes
                 Console.WriteLine(ex.ToString());
             }
             return null;
+        }   
+    }
+    public static class Extensions
+    {
+        public static string FirstWordToUpper(this string text)
+        {
+            string result = text;
+            if (!String.IsNullOrEmpty(result))
+            {
+                var lower_text = result.ToLower();
+                var s = Regex.Replace(lower_text, @"(^\w)|(\s\w)", m => m.Value.ToUpper());
+                result = s;
+            }
+            return result;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Dagorlad_7
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    
+
     public partial class MainWindow : Window
     {
         protected override void OnStateChanged(EventArgs e)
@@ -43,7 +43,7 @@ namespace Dagorlad_7
         private async void LoadEvents()
         {
             ShowMiniMenu();
-            if(MySettings.Settings.IsFirstTimeLanuched)
+            if (MySettings.Settings.IsFirstTimeLanuched)
             {
                 DispatcherControls.Autorun(DispatcherControls.TypeAutoRunOperation.On);
                 MySettings.Settings.IsFirstTimeLanuched = false;
@@ -52,7 +52,7 @@ namespace Dagorlad_7
             InitClipboardMonitor();
             var dtupdateorganization = await SearchOrganizations.GetUpdateDate();
             if (dtupdateorganization != null && dtupdateorganization.HasValue)
-                DateUpdateDataBaseOfOrganizationsLabel.Content = String.Format("База организаций была обновлена {0} дн. назад",Math.Round(((DateTime.Now-dtupdateorganization).Value.TotalDays),0));
+                DateUpdateDataBaseOfOrganizationsLabel.Content = String.Format("База организаций была обновлена {0} дн. назад", Math.Round(((DateTime.Now - dtupdateorganization).Value.TotalDays), 0));
             else DateUpdateDataBaseOfOrganizationsLabel.Content = "Неизвестно";
             DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name, "Программа запущена и работает в фоновом режиме.", 8, this, TypeImageNotify.standart);
         }
@@ -127,11 +127,54 @@ namespace Dagorlad_7
         }
         private void CloseApplicationButton_Click(object sender, RoutedEventArgs e)
         {
-            var g = DispatcherControls.ShowMyDialog("Выход", "Вы уверены, что хотите выйти?", MyDialogWindow.TypeMyDialog.YesNo,this);
+            var g = DispatcherControls.ShowMyDialog("Выход", "Вы уверены, что хотите выйти?", MyDialogWindow.TypeMyDialog.YesNo, this);
             if (g == MyDialogWindow.ResultMyDialog.Yes)
             {
+                ClipboardMonitor.Stop();
                 Application.Current.Shutdown();
             }
+        }
+        private Task SearchOrganizationFromListView()
+        {
+            var key = SearchTextBox.Text;
+            if (!String.IsNullOrEmpty(key))
+            {
+                key = key.ToLower();
+                var obj = OrganizationsListView.ItemsSource;
+                if (obj != null)
+                {
+                    var founded = new List<OrganizationsClass>();
+                    var list = obj.Cast<OrganizationsClass>();
+                    var properties = typeof(OrganizationsClass).GetProperties();
+                    foreach (var s in list)
+                    {
+                        foreach (var property in properties)
+                        {
+                            var p = property.GetValue(s);
+                            if (p.GetType() == typeof(String))
+                            {
+                                string text = p as string;
+                                if (!String.IsNullOrEmpty(text))
+                                {
+                                    text = text.ToLower();
+                                    if (text == key || text.Contains(key))
+                                    {
+                                        founded.Add(s);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    OrganizationsListView.ItemsSource = founded;
+                }
+            }
+            return Task.CompletedTask;
+        }
+        private async void SearchOrganizationFromListView_Click(object sender, RoutedEventArgs e)
+        {
+            SearchGrid.IsEnabled = false;
+            await SearchOrganizationFromListView();
+            SearchGrid.IsEnabled = true;
         }
     }
     public class WidthFixedListViewConverter : IValueConverter

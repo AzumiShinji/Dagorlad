@@ -10,7 +10,7 @@
         Background="{StaticResource Background_Outside}"
         Foreground="{StaticResource Foreground}"
         Title="Dagorlad"
-        Height="600" Width="1000">
+        MinHeight="600" MinWidth="1000">
     <Window.Resources>
         <local:WidthFixedListViewConverter x:Key="WidthFixedListViewConverter"/>
     </Window.Resources>
@@ -36,8 +36,26 @@
                     Content="{StaticResource Canvas_Exit}"/>
         </Grid>
         <Grid Tag="PanelOrganizationsControl" Margin="10,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <Label x:Name="DateUpdateDataBaseOfOrganizationsLabel" Foreground="{StaticResource Foreground}" 
-                   Padding="0" FontWeight="Medium" FontSize="12" Language="RU" Content=""/>
+                   Padding="0" Grid.Row="0" FontWeight="Medium" FontSize="12" Language="RU" Content=""/>
+            <Grid Grid.Row="1" x:Name="SearchGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="SearchTextBox"
+                     Background="{StaticResource Background_Inside_TextBox}" VerticalContentAlignment="Center"/>
+                <Button Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="1"
+                        Click="SearchOrganizationFromListView_Click"
+                        Content="search"/>
+                <Button Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="2"
+                        Content="Cancel"/>
+            </Grid>
         </Grid>
         <Grid Tag="Organization" Margin="10,0,0,10" Grid.Row="1">
             <ListView x:Name="OrganizationsListView" BorderBrush="{StaticResource Background_Green}"
