@@ -40,7 +40,7 @@ namespace Dagorlad_7
             InitializeComponent();
             LoadEvents();
         }
-        private void LoadEvents()
+        private async void LoadEvents()
         {
             ShowMiniMenu();
             if(MySettings.Settings.IsFirstTimeLanuched)
@@ -48,8 +48,42 @@ namespace Dagorlad_7
                 DispatcherControls.Autorun(DispatcherControls.TypeAutoRunOperation.On);
                 MySettings.Settings.IsFirstTimeLanuched = false;
             }
-            MySettings.Save();
+            await MySettings.Save();
+            InitClipboardMonitor();
+            var dtupdateorganization = await SearchOrganizations.GetUpdateDate();
+            if (dtupdateorganization != null && dtupdateorganization.HasValue)
+                DateUpdateDataBaseOfOrganizationsLabel.Content = String.Format("База организаций была обновлена {0} дн. назад",Math.Round(((DateTime.Now-dtupdateorganization).Value.TotalDays),0));
+            else DateUpdateDataBaseOfOrganizationsLabel.Content = "Неизвестно";
             DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name, "Программа запущена и работает в фоновом режиме.", 8, this, TypeImageNotify.standart);
+        }
+        private void InitClipboardMonitor()
+        {
+            Clipboard.Clear();
+            ClipboardMonitor.OnClipboardChange += new ClipboardMonitor.OnClipboardChangeEventHandler(ClipboardMonitor_OnClipboardChange);
+            ClipboardMonitor.Start();
+        }
+        public void ClipboardMonitor_OnClipboardChange(ClipboardFormat format, object data)
+        {
+            if (format == ClipboardFormat.Text)
+            {
+                string text = data as string;
+                if (!String.IsNullOrEmpty(text))
+                {
+                    Dispatcher.BeginInvoke(new Action(async () =>
+                    {
+                        var code = SearchOrganizations.CheckIfStringAsNumberOfOrganizations(text);
+                        if (code != 0)
+                        {
+                            var list = await SearchOrganizations.TryFindOrganizations(code);
+                            if (list != null && list.Count() > 0)
+                            {
+                                DispatcherControls.NewMyNotifyWindow(text, String.Format("Найдено {0} орг. по данному коду", list.Count()), 15, this, TypeImageNotify.buildings);
+                                OrganizationsListView.ItemsSource = list;
+                            }
+                        }
+                    }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+                }
+            }
         }
         MiniMenuWindow minimenu;
         private void ShowMiniMenu()
@@ -99,10 +133,21 @@ namespace Dagorlad_7
                 Application.Current.Shutdown();
             }
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+    }
+    public class WidthFixedListViewConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            DispatcherControls.NewMyNotifyWindow("test title","test text"+new Random().Next(0,9999),5,this,TypeImageNotify.standart);
+            if (value == null || parameter == null) return 0;
+            var result = (double)value - System.Convert.ToDouble(parameter);
+            if (result >= 0)
+                return (double)value - System.Convert.ToDouble(parameter);
+            else return 0;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return 0;
         }
     }
 }

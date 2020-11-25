@@ -7,16 +7,23 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip" Closing="Window_Closing"
-        Background="{StaticResource Background_Inside}"
+        Background="{StaticResource Background_Outside}"
         Foreground="{StaticResource Foreground}"
         Title="Dagorlad"
-        Height="450" Width="800">
+        Height="600" Width="1000">
+    <Window.Resources>
+        <local:WidthFixedListViewConverter x:Key="WidthFixedListViewConverter"/>
+    </Window.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Tag="Top" HorizontalAlignment="Right">
+        <Grid Tag="Top" HorizontalAlignment="Right" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -28,8 +35,87 @@
                     ToolTip="Выйти из приложения"
                     Content="{StaticResource Canvas_Exit}"/>
         </Grid>
-        <Grid Grid.Row="1" Tag="Middle">
-            <Button Content="testnotify" Click="Button_Click"/>
+        <Grid Tag="PanelOrganizationsControl" Margin="10,10,0,0">
+            <Label x:Name="DateUpdateDataBaseOfOrganizationsLabel" Foreground="{StaticResource Foreground}" 
+                   Padding="0" FontWeight="Medium" FontSize="12" Language="RU" Content=""/>
+        </Grid>
+        <Grid Tag="Organization" Margin="10,0,0,10" Grid.Row="1">
+            <ListView x:Name="OrganizationsListView" BorderBrush="{StaticResource Background_Green}"
+                      Background="Transparent" VirtualizingPanel.ScrollUnit="Item" SelectionMode="Single">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="{Binding ActualWidth,ElementName=OrganizationsListView,Converter={StaticResource WidthFixedListViewConverter},ConverterParameter=31}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" Background="{StaticResource Background_Green}" Padding="5">
+                                <TextBlock Text="{Binding statusName}" Foreground="{StaticResource Foreground}" 
+                                               FontWeight="Medium" FontSize="14"
+                                               HorizontalAlignment="Center"/>
+                            </Border>
+                            <TextBox Grid.Row="1"
+                                    IsReadOnly="True" Text="{Binding fullName}" TextWrapping="Wrap" Background="Transparent"
+                                         FontWeight="Medium" FontSize="14"
+                                         Foreground="{StaticResource Foreground}" CaretBrush="{StaticResource Background_Green}"/>
+                            <Grid Grid.Row="2" Tag="Codes">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBox Grid.Column="0" Grid.Row="0" IsReadOnly="True" Text="{Binding inn,StringFormat={}ИНН: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="1" Grid.Row="0" IsReadOnly="True" Text="{Binding code,StringFormat={}Код по сводному реестру: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="2" Grid.Row="0" IsReadOnly="True" Text="{Binding ogrn,StringFormat={}ОГРН: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="0" Grid.Row="1" IsReadOnly="True" Text="{Binding kpp,StringFormat={}КПП: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="1" Grid.Row="1" IsReadOnly="True" Text="{Binding okpoCode,StringFormat={}ОКПО: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="2" Grid.Row="1" IsReadOnly="True" Text="{Binding pgmu,StringFormat={}ПГМУ: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                            </Grid>
+                            <Grid Grid.Row="3" Tag="AdditionalInformations">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" IsReadOnly="True" Text="{Binding fio,StringFormat={}Руководитель: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" IsReadOnly="True" Text="{Binding recordNum,StringFormat={}Регистрационный номер: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+
+                                <TextBox Grid.Column="0" Grid.Row="2" IsReadOnly="True" Text="{Binding cityName,StringFormat={}Регион: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="1" Grid.Row="2" IsReadOnly="True" Text="{Binding phone,StringFormat={}Телефон: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="2" Grid.Row="2" IsReadOnly="True" Text="{Binding mail,StringFormat={}Почта: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+
+                                <TextBox Grid.Column="0" Grid.Row="3" IsReadOnly="True" Text="{Binding orfkCode,StringFormat={}Код УФК: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" IsReadOnly="True" Text="{Binding orfkName,StringFormat={}УФК: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </Grid>
 </Window>

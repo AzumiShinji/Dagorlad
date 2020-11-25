@@ -29,10 +29,12 @@ namespace Dagorlad_7.Windows
         public string title { get; set; }
         public string text { get; set; }
         public TimeSpan timetoautoclose { get; set; }
+        public bool IsLock { get; set; }
     }
     public enum TypeImageNotify
     {
         standart = 0,
+        buildings = 1,
     }
     public partial class MyNotifyWindow : Window
     {
@@ -130,6 +132,7 @@ namespace Dagorlad_7.Windows
                 var list = DispatcherControls.MyNotifyList.ToList();
                 foreach (var t in list)
                 {
+                    if (t.IsLock) { t.timetoautoclose = TimeSpan.FromSeconds(2); continue; }
                     if ((DateTime.Now - t.dt).TotalSeconds > t.timetoautoclose.TotalSeconds)
                     {
                         DispatcherControls.MyNotifyList.Remove(t);
@@ -143,6 +146,9 @@ namespace Dagorlad_7.Windows
         private void Grid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var item = sender as Grid;
+            var textbox = item.FindName("TextBoxText") as TextBox;
+            var titlebox = item.FindName("TitleBoxText") as TextBox;
+            if (textbox.IsFocused || titlebox.IsFocused) return;
             if (item != null)
             {
                 if (FromWindow != null)
@@ -157,6 +163,22 @@ namespace Dagorlad_7.Windows
                 DispatcherControls.MyNotifyList.Remove((MyNotifyClass)item.DataContext);
                 HideIfZero();
             }
+        }
+
+        private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var item = (ListViewItem)sender;
+            var obj = item.DataContext as MyNotifyClass;
+            if(obj!=null)
+            obj.IsLock = true;
+        }
+
+        private void ListViewItem_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var item = (ListViewItem)sender;
+            var obj = item.DataContext as MyNotifyClass;
+            if(obj!=null)
+            obj.IsLock = false;
         }
     }
 }

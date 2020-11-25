@@ -63,8 +63,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="classes\ClipboardMonitor.cs" />
     <Compile Include="classes\DispatcherControls.cs" />
     <Compile Include="classes\Logger.cs" />
+    <Compile Include="classes\SearchOrganizations.cs" />
     <Compile Include="classes\SmartMenuContent.cs" />
     <Compile Include="Windows\MiniMenuWindow.xaml.cs">
       <DependentUpon>MiniMenuWindow.xaml</DependentUpon>
@@ -183,6 +185,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\buildings_64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

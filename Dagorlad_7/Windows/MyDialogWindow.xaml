@@ -18,9 +18,11 @@
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Image Source="/favicon.ico" Height="64" Width="64" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Image Source="/favicon.ico" Height="64" Width="64" RenderOptions.BitmapScalingMode="HighQuality" Margin="10"/>
             <Grid Grid.Row="1">
-                <TextBlock x:Name="TextTextBlock" Text="Text" Foreground="{StaticResource Foreground}" Margin="10" FontWeight="Medium" FontSize="14"/>
+                <TextBox x:Name="TextTextBox" IsReadOnly="True" Grid.Row="0" Text="text" Margin="10" FontSize="14" FontWeight="Medium"
+                                                 Background="{StaticResource Background_Outside}" VerticalContentAlignment="Center" Padding="0" CaretBrush="{StaticResource Background_Green}"
+                                               Foreground="{StaticResource Foreground}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow"/>
             </Grid>
             <Grid x:Name="GridButtons" Grid.Row="2">
                 <Grid.ColumnDefinitions>

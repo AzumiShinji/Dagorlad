@@ -38,6 +38,8 @@
                         <Setter Property="Padding" Value="0"/>
                         <Setter Property="Margin" Value="0,3,3,0"/>
                         <Setter Property="BorderThickness" Value="0,0,0,0"/>
+                        <EventSetter Event="MouseEnter" Handler="ListViewItem_MouseEnter" />
+                        <EventSetter Event="MouseLeave" Handler="ListViewItem_MouseLeave" />
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
@@ -80,12 +82,12 @@
                                             <RowDefinition Height="auto"/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
-                                        <TextBlock Grid.Row="0" Text="{Binding title}" Margin="5" FontSize="14" FontWeight="Medium"
-                                               Foreground="{StaticResource Foreground}" VerticalAlignment="Center" TextWrapping="NoWrap"
-                                               TextTrimming="WordEllipsis"/>
-                                        <TextBlock Grid.Row="1" Text="{Binding text}" Margin="5"
-                                               Foreground="{StaticResource Foreground}" TextWrapping="Wrap"
-                                               TextTrimming="WordEllipsis"/>
+                                        <TextBox x:Name="TitleBoxText" IsReadOnly="True" Grid.Row="0" Text="{Binding title}" Margin="5" FontSize="14" FontWeight="Medium"
+                                                 Background="{StaticResource Background_Inside}" VerticalContentAlignment="Center" Padding="0" CaretBrush="{StaticResource Background_Green}"
+                                               Foreground="{StaticResource Foreground}" VerticalAlignment="Center" TextWrapping="NoWrap"/>
+                                        <TextBox x:Name="TextBoxText" IsReadOnly="True" Grid.Row="1" Text="{Binding text}" Margin="5" CaretBrush="{StaticResource Background_Green}"
+                                                 Background="{StaticResource Background_Inside}" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch"
+                                               Foreground="{StaticResource Foreground}" TextWrapping="Wrap" Padding="0"/>
                                     </Grid>
                                 </Grid>
                             </Grid>

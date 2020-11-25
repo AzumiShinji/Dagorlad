@@ -193,6 +193,12 @@ namespace Dagorlad_7.classes
                             var thisIcon = new BitmapImage(SourceUri);
                             return thisIcon;
                         }
+                    case (TypeImageNotify.buildings):
+                        {
+                            var SourceUri = new Uri("pack://application:,,,/Dagorlad;component/images/buildings_64.png", UriKind.Absolute);
+                            var thisIcon = new BitmapImage(SourceUri);
+                            return thisIcon;
+                        }
                 }
             }
             else

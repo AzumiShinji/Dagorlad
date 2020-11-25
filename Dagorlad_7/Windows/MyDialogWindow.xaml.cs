@@ -37,7 +37,7 @@ namespace Dagorlad_7.Windows
             InitializeComponent();
             _type=type;
             this.Title = title;
-            TextTextBlock.Text = text;
+            TextTextBox.Text = text;
             switch(type)
             {
                 case (TypeMyDialog.Ok):
