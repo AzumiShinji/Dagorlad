@@ -71,3 +71,8 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Debug\HtmlAgilityPack.xml
 c:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\ChatWindow.g.cs
 c:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\ChatWindow.baml
 c:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csprojAssemblyReference.cache
+D:\VS\Dagorlad\Dagorlad_7\bin\Debug\HtmlAgilityPack.dll
+D:\VS\Dagorlad\Dagorlad_7\bin\Debug\HtmlAgilityPack.pdb
+D:\VS\Dagorlad\Dagorlad_7\bin\Debug\HtmlAgilityPack.xml
+D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\ChatWindow.g.cs
+D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\ChatWindow.baml

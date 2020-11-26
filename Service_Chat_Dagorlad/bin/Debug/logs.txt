@@ -8,3 +8,281 @@
 26.11.2020 17:02:39: Connected
 26.11.2020 17:04:35: Connected
 26.11.2020 17:08:08: Connected
+26.11.2020 21:01:24: Connected
+26.11.2020 21:25:35: Connected
+26.11.2020 21:26:01: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 21:28:13: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 21:28:37: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 21:34:26: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 21:34:55: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 21:35:09: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 21:35:22: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 21:35:40: Connected
+26.11.2020 21:36:07: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 21:36:50: Connected
+26.11.2020 21:38:53: Connected
+26.11.2020 21:39:31: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 21:39:34: Key already exist
+26.11.2020 21:39:35: Key already exist
+26.11.2020 21:39:35: Key already exist
+26.11.2020 21:39:36: Key already exist
+26.11.2020 21:39:36: Key already exist
+26.11.2020 21:43:32: Connected
+26.11.2020 21:44:10: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 21:44:13: Key already exist
+26.11.2020 21:44:14: Key already exist
+26.11.2020 21:44:15: Key already exist
+26.11.2020 21:44:15: Key already exist
+26.11.2020 21:44:16: Key already exist
+26.11.2020 21:44:16: Key already exist
+26.11.2020 21:44:16: Key already exist
+26.11.2020 21:44:16: Key already exist
+26.11.2020 21:44:16: Key already exist
+26.11.2020 21:44:17: Key already exist
+26.11.2020 21:44:17: Key already exist
+26.11.2020 21:44:17: Key already exist
+26.11.2020 21:44:17: Key already exist
+26.11.2020 21:44:17: Key already exist
+26.11.2020 21:44:17: Key already exist
+26.11.2020 21:44:17: Key already exist
+26.11.2020 21:44:18: Key already exist
+26.11.2020 21:44:18: Key already exist
+26.11.2020 21:44:18: Key already exist
+26.11.2020 21:45:47: Key already exist
+26.11.2020 21:45:48: Key already exist
+26.11.2020 21:46:04: Connected
+26.11.2020 21:49:19: Connected
+26.11.2020 21:49:41: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 21:49:43: Key already exist
+26.11.2020 21:49:44: Key already exist
+26.11.2020 21:49:44: Key already exist
+26.11.2020 21:49:45: Key already exist
+26.11.2020 21:49:45: Key already exist
+26.11.2020 21:49:45: Key already exist
+26.11.2020 21:52:14: Connected
+26.11.2020 21:52:35: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 21:53:28: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 22:05:01: Connected
+26.11.2020 22:17:24: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 22:18:58: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 22:19:11: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 22:23:27: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 22:23:28: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(List`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 197
+26.11.2020 22:30:25: Client already exist.
+26.11.2020 22:30:35: Client already exist.

@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Dagorlad_7.classes;
 
 namespace Dagorlad_7.Windows
 {
@@ -26,9 +27,10 @@ namespace Dagorlad_7.Windows
         //    public SVC.Client client { get; set; }
         //    public SVC.Message msg { get; set; }
         //}
-        SVC.ChatClient proxy = null;
-        SVC.Client receiver = null;
-        SVC.Client localClient = null;
+        string host = "localhost";
+        public static SVC.ChatClient proxy = null;
+        public static SVC.Client localClient = null;
+        public static SVC.Client receiver = null;
         ObservableCollection<SVC.Client> Users = new ObservableCollection<SVC.Client>();
         ObservableCollection<SVC.Message> Chats = new ObservableCollection<SVC.Message>();
         public ChatWindow()
@@ -76,7 +78,7 @@ namespace Dagorlad_7.Windows
         }
         string email = String.Format("Email Random: {0}",new Random().Next(0,Int32.MaxValue));
         string name = String.Format("Name Random: {0}", new Random().Next(0, Int32.MaxValue));
-        public void Start()
+        public async void Start()
         {
             if (proxy == null)
             {
@@ -88,20 +90,36 @@ namespace Dagorlad_7.Windows
                 proxy = new SVC.ChatClient(context);
                 string servicePath = proxy.Endpoint.ListenUri.AbsolutePath;
                 string serviceListenPort = proxy.Endpoint.Address.Uri.Port.ToString();
-                proxy.Endpoint.Address = new EndpointAddress("net.tcp://localhost:" + serviceListenPort + servicePath);
+                proxy.Endpoint.Address = new EndpointAddress(String.Format("net.tcp://{0}:{1}{2}", host, serviceListenPort, servicePath));
                 proxy.Open();
-                proxy.ConnectAsync(localClient);
+                var result=await proxy.ConnectAsync(localClient);
+                if (!result)
+                {
+                    if (proxy != null)
+                    {
+                        try
+                        {
+                            await proxy.DisconnectAsync(localClient);
+                        }
+                        catch 
+                        {
+
+                        }
+                    }
+                    proxy = null;
+                    Start();
+                }
             }
         }
 
         public void UserJoin(SVC.Client client)
         {
-          //  throw new NotImplementedException();
+            DispatcherControls.NewMyNotifyWindow(client.Name,"Присоединился(ась) к чату",5,this,TypeImageNotify.standart);
         }
 
         public void UserLeave(SVC.Client client)
         {
-            throw new NotImplementedException();
+            DispatcherControls.NewMyNotifyWindow(client.Name, "Покинул(а) чат", 5, this, TypeImageNotify.standart);
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

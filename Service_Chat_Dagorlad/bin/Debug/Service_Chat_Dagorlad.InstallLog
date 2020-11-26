@@ -27,3 +27,16 @@ System.Security.SecurityException: Источник не найден, но не
    logtoconsole = 
    logfile = C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\bin\Debug\Service_Chat_Dagorlad.InstallLog
    assemblypath = C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\bin\Debug\Service_Chat_Dagorlad.exe
+Выполняется установка сборки 'D:\VS\Dagorlad\Service_Chat_Dagorlad\bin\Debug\Service_Chat_Dagorlad.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\VS\Dagorlad\Service_Chat_Dagorlad\bin\Debug\Service_Chat_Dagorlad.InstallLog
+   assemblypath = D:\VS\Dagorlad\Service_Chat_Dagorlad\bin\Debug\Service_Chat_Dagorlad.exe
+Устанавливается служба ServiceChatDagorlad...
+Служба ServiceChatDagorlad успешно установлена.
+Создается исходный EventLog ServiceChatDagorlad в журнале Application...
+Выполняется фиксация сборки 'D:\VS\Dagorlad\Service_Chat_Dagorlad\bin\Debug\Service_Chat_Dagorlad.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = D:\VS\Dagorlad\Service_Chat_Dagorlad\bin\Debug\Service_Chat_Dagorlad.InstallLog
+   assemblypath = D:\VS\Dagorlad\Service_Chat_Dagorlad\bin\Debug\Service_Chat_Dagorlad.exe

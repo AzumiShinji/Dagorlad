@@ -140,12 +140,13 @@ namespace Dagorlad_7
             e.Cancel = true;
             this.WindowState = WindowState.Minimized;
         }
-        private void CloseApplicationButton_Click(object sender, RoutedEventArgs e)
+        private async void CloseApplicationButton_Click(object sender, RoutedEventArgs e)
         {
             var g = DispatcherControls.ShowMyDialog("Выход", "Вы уверены, что хотите выйти?", MyDialogWindow.TypeMyDialog.YesNo, this);
             if (g == MyDialogWindow.ResultMyDialog.Yes)
             {
                 ClipboardMonitor.Stop();
+                await ChatWindow.proxy.DisconnectAsync(ChatWindow.localClient);
                 Application.Current.Shutdown();
             }
         }

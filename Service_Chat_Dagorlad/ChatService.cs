@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.Runtime.Serialization;
+using System.IO;
 
 namespace Service_Chat_Dagorlad
 {
@@ -196,9 +197,10 @@ namespace Service_Chat_Dagorlad
                             callback.RefreshClients(clientList);
                             callback.UserJoin(client);
                         }
-                        catch
+                        catch (Exception ex)
                         {
                             clients.Remove(key);
+                            LogWrite(ex.ToString());
                             return false;
                         }
 
@@ -206,7 +208,7 @@ namespace Service_Chat_Dagorlad
 
                 }
                 return true;
-            }
+            } else { LogWrite("Client already exist.");  }
             return false;
         }
 
@@ -303,7 +305,10 @@ namespace Service_Chat_Dagorlad
                 }
             }
         }
-
+        private void LogWrite(string text)
+        {
+            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "logs.txt", String.Format("{0}: {1}\n", DateTime.Now, text));
+        }
         #endregion
     }
 }
