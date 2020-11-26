@@ -13,52 +13,64 @@
         MinHeight="600" MinWidth="1000">
     <Window.Resources>
         <local:WidthFixedListViewConverter x:Key="WidthFixedListViewConverter"/>
+        <local:statusNameBrushConverter x:Key="statusNameBrushConverter"/>
     </Window.Resources>
-    <Grid>
+    <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
         <Grid Tag="Top" HorizontalAlignment="Right" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Template="{StaticResource ButtonStandart}" Width="40" Height="40"
-                    Content="{StaticResource Canvas_Settings}" Click="SettingsButton_Click" ToolTip="Настройки"/>
-            <Button Grid.Column="1" Template="{StaticResource ButtonStandart}"
-                    Click="CloseApplicationButton_Click" Width="40" Height="40" 
-                    ToolTip="Выйти из приложения"
-                    Content="{StaticResource Canvas_Exit}"/>
-        </Grid>
-        <Grid Tag="PanelOrganizationsControl" Margin="10,10,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label x:Name="DateUpdateDataBaseOfOrganizationsLabel" Foreground="{StaticResource Foreground}" 
-                   Padding="0" Grid.Row="0" FontWeight="Medium" FontSize="12" Language="RU" Content=""/>
-            <Grid Grid.Row="1" x:Name="SearchGrid">
+            <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="SearchTextBox"
-                     Background="{StaticResource Background_Inside_TextBox}" VerticalContentAlignment="Center"/>
-                <Button Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="1"
-                        Click="SearchOrganizationFromListView_Click"
-                        Content="search"/>
-                <Button Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="2"
-                        Content="Cancel"/>
+                <Button Grid.Column="0" Template="{StaticResource ButtonStandart}" Width="40" Height="40"
+                    Content="{StaticResource Canvas_Settings}" Click="SettingsButton_Click" ToolTip="Настройки"/>
+                <Button Grid.Column="1" Template="{StaticResource ButtonStandart}"
+                    Click="CloseApplicationButton_Click" Width="40" Height="40" 
+                    ToolTip="Выйти из приложения"
+                    Content="{StaticResource Canvas_Exit}"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                
             </Grid>
         </Grid>
-        <Grid Tag="Organization" Margin="10,0,0,10" Grid.Row="1">
-            <ListView x:Name="OrganizationsListView" BorderBrush="{StaticResource Background_Green}"
+        <Grid Tag="Organization" Margin="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Tag="PanelOrganizationsControl" Margin="0,0,0,0" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label x:Name="DateUpdateDataBaseOfOrganizationsLabel" Foreground="{StaticResource Foreground}" 
+                   Margin="0,0,0,5"
+                   Padding="0" Grid.Row="0" FontWeight="Medium" FontSize="12" Language="RU" Content=""/>
+                <Grid Grid.Row="1" x:Name="SearchGrid" Margin="0,0,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="SearchTextBox" SelectionBrush="{StaticResource Background_Green}" PreviewKeyUp="SearchTextBox_PreviewKeyUp"
+                     Background="{StaticResource Background_Inside_TextBox}" VerticalContentAlignment="Center"/>
+                    <Button x:Name="SearchOrganizationFromListViewButton" Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="1"
+                        Click="SearchOrganizationFromListView_Click"
+                        Content="{StaticResource Canvas_Search}"/>
+                    <Button x:Name="Cancel_SearchOrganizationFromListView_Button" Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="2"
+                        Click="Cancel_SearchOrganizationFromListView_Click"
+                        Content="{StaticResource Canvas_Cancel}"/>
+                </Grid>
+            </Grid>
+            <ListView x:Name="OrganizationsListView" BorderBrush="{StaticResource Background_Green}" Grid.Row="1"
                       Background="Transparent" VirtualizingPanel.ScrollUnit="Item" SelectionMode="Single">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -69,7 +81,7 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <Border Grid.Row="0" Background="{StaticResource Background_Green}" Padding="5">
+                            <Border Grid.Row="0" Background="{Binding statusName,Converter={StaticResource statusNameBrushConverter}}" Padding="5">
                                 <TextBlock Text="{Binding statusName}" Foreground="{StaticResource Foreground}" 
                                                FontWeight="Medium" FontSize="14"
                                                HorizontalAlignment="Center"/>
@@ -77,7 +89,7 @@
                             <TextBox Grid.Row="1"
                                     IsReadOnly="True" Text="{Binding fullName}" TextWrapping="Wrap" Background="Transparent"
                                          FontWeight="Medium" FontSize="14"
-                                         Foreground="{StaticResource Foreground}" CaretBrush="{StaticResource Background_Green}"/>
+                                         Foreground="{StaticResource Foreground}" SelectionBrush="{StaticResource Background_Green}"/>
                             <Grid Grid.Row="2" Tag="Codes">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -89,21 +101,20 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <TextBox Grid.Column="0" Grid.Row="0" IsReadOnly="True" Text="{Binding inn,StringFormat={}ИНН: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                         Foreground="{StaticResource Foreground_Button}" SelectionBrush="{StaticResource Background_Green}"/>
                                 <TextBox Grid.Column="1" Grid.Row="0" IsReadOnly="True" Text="{Binding code,StringFormat={}Код по сводному реестру: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                         Foreground="{StaticResource Foreground_Button}" SelectionBrush="{StaticResource Background_Green}"/>
                                 <TextBox Grid.Column="2" Grid.Row="0" IsReadOnly="True" Text="{Binding ogrn,StringFormat={}ОГРН: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                         Foreground="{StaticResource Foreground_Button}" SelectionBrush="{StaticResource Background_Green}"/>
                                 <TextBox Grid.Column="0" Grid.Row="1" IsReadOnly="True" Text="{Binding kpp,StringFormat={}КПП: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                         Foreground="{StaticResource Foreground_Button}" SelectionBrush="{StaticResource Background_Green}"/>
                                 <TextBox Grid.Column="1" Grid.Row="1" IsReadOnly="True" Text="{Binding okpoCode,StringFormat={}ОКПО: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                         Foreground="{StaticResource Foreground_Button}" SelectionBrush="{StaticResource Background_Green}"/>
                                 <TextBox Grid.Column="2" Grid.Row="1" IsReadOnly="True" Text="{Binding pgmu,StringFormat={}ПГМУ: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                         Foreground="{StaticResource Foreground_Button}" SelectionBrush="{StaticResource Background_Green}"/>
                             </Grid>
                             <Grid Grid.Row="3" Tag="AdditionalInformations">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
@@ -113,22 +124,22 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" IsReadOnly="True" Text="{Binding fio,StringFormat={}Руководитель: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
-                                <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" IsReadOnly="True" Text="{Binding recordNum,StringFormat={}Регистрационный номер: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" IsReadOnly="True" Text="{Binding fio,StringFormat={}Руководитель: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" SelectionBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" IsReadOnly="True" Text="{Binding recordNum,StringFormat={}Регистрационный номер: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" SelectionBrush="{StaticResource Background_Green}"/>
 
-                                <TextBox Grid.Column="0" Grid.Row="2" IsReadOnly="True" Text="{Binding cityName,StringFormat={}Регион: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
-                                <TextBox Grid.Column="1" Grid.Row="2" IsReadOnly="True" Text="{Binding phone,StringFormat={}Телефон: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
-                                <TextBox Grid.Column="2" Grid.Row="2" IsReadOnly="True" Text="{Binding mail,StringFormat={}Почта: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="0" Grid.Row="1" IsReadOnly="True" Text="{Binding cityName,StringFormat={}Регион: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" SelectionBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="1" Grid.Row="1" IsReadOnly="True" Text="{Binding phone,StringFormat={}Телефон: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" SelectionBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="2" Grid.Row="1" IsReadOnly="True" Text="{Binding mail,StringFormat={}Почта: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" SelectionBrush="{StaticResource Background_Green}"/>
 
-                                <TextBox Grid.Column="0" Grid.Row="3" IsReadOnly="True" Text="{Binding orfkCode,StringFormat={}Код УФК: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
-                                <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" IsReadOnly="True" Text="{Binding orfkName,StringFormat={}УФК: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{StaticResource Foreground_Button}" CaretBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="0" Grid.Row="2" IsReadOnly="True" Text="{Binding orfkCode,StringFormat={}Код УФК: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" SelectionBrush="{StaticResource Background_Green}"/>
+                                <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" IsReadOnly="True" Text="{Binding orfkName,StringFormat={}УФК: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         Foreground="{StaticResource Foreground_Button}" SelectionBrush="{StaticResource Background_Green}"/>
                             </Grid>
                         </Grid>
                     </DataTemplate>

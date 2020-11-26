@@ -15,3 +15,4 @@ D:\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.csproj.CoreCompileInp
 D:\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.exe
 D:\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.pdb
 D:\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.csprojAssemblyReference.cache
+c:\Main\Programs\VS\Dagorlad\Service_Dagorlad\obj\Debug\Service_Dagorlad.csprojAssemblyReference.cache

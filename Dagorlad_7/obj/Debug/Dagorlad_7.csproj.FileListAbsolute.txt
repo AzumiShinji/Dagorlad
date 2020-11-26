@@ -15,7 +15,6 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csproj.CoreCompileI
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad.exe
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad.pdb
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csproj.CopyComplete
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csprojAssemblyReference.cache
 D:\VS\Dagorlad\Dagorlad_7\bin\Debug\Dagorlad.exe.config
 D:\VS\Dagorlad\Dagorlad_7\bin\Debug\Dagorlad.exe
 D:\VS\Dagorlad\Dagorlad_7\bin\Debug\Dagorlad.pdb
@@ -66,3 +65,9 @@ D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyDialogWindow.g.cs
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyNotifyWindow.g.cs
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyDialogWindow.baml
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyNotifyWindow.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Debug\HtmlAgilityPack.dll
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Debug\HtmlAgilityPack.pdb
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Debug\HtmlAgilityPack.xml
+c:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\ChatWindow.g.cs
+c:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\ChatWindow.baml
+c:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csprojAssemblyReference.cache

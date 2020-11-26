@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -39,7 +40,10 @@ namespace Dagorlad_7
             MySettings.Load();
             InitializeComponent();
             LoadEvents();
+            var g = new ChatWindow();
+            g.Show();
         }
+
         private async void LoadEvents()
         {
             ShowMiniMenu();
@@ -50,11 +54,16 @@ namespace Dagorlad_7
             }
             await MySettings.Save();
             InitClipboardMonitor();
+            UpdateLabelAboutUpdate();
+            DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name, "Программа запущена и работает в фоновом режиме.", 8, this, TypeImageNotify.standart);
+        }
+        private async void UpdateLabelAboutUpdate()
+        {
+            DateUpdateDataBaseOfOrganizationsLabel.Content = "Загрузка...";
             var dtupdateorganization = await SearchOrganizations.GetUpdateDate();
             if (dtupdateorganization != null && dtupdateorganization.HasValue)
                 DateUpdateDataBaseOfOrganizationsLabel.Content = String.Format("База организаций была обновлена {0} дн. назад", Math.Round(((DateTime.Now - dtupdateorganization).Value.TotalDays), 0));
             else DateUpdateDataBaseOfOrganizationsLabel.Content = "Неизвестно";
-            DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name, "Программа запущена и работает в фоновом режиме.", 8, this, TypeImageNotify.standart);
         }
         private void InitClipboardMonitor()
         {
@@ -62,28 +71,34 @@ namespace Dagorlad_7
             ClipboardMonitor.OnClipboardChange += new ClipboardMonitor.OnClipboardChangeEventHandler(ClipboardMonitor_OnClipboardChange);
             ClipboardMonitor.Start();
         }
-        public void ClipboardMonitor_OnClipboardChange(ClipboardFormat format, object data)
+        bool IsAlreadyLaunched = false;
+        public async void ClipboardMonitor_OnClipboardChange(ClipboardFormat format, object data)
         {
-            if (format == ClipboardFormat.Text)
-            {
-                string text = data as string;
-                if (!String.IsNullOrEmpty(text))
+            if (!IsAlreadyLaunched)
+                if (format == ClipboardFormat.Text)
                 {
-                    Dispatcher.BeginInvoke(new Action(async () =>
+                    IsAlreadyLaunched = true;
+                    string text = data as string;
+                    if (!String.IsNullOrEmpty(text))
                     {
-                        var code = SearchOrganizations.CheckIfStringAsNumberOfOrganizations(text);
-                        if (code != 0)
+                        await Dispatcher.BeginInvoke(new Action(async () =>
                         {
-                            var list = await SearchOrganizations.TryFindOrganizations(code);
-                            if (list != null && list.Count() > 0)
+                            var code = SearchOrganizations.CheckIfStringAsNumberOfOrganizations(text);
+                            if (code != 0)
                             {
-                                DispatcherControls.NewMyNotifyWindow(text, String.Format("Найдено {0} орг. по данному коду", list.Count()), 15, this, TypeImageNotify.buildings);
-                                OrganizationsListView.ItemsSource = list;
+                                var list = await SearchOrganizations.TryFindOrganizations(code);
+                                if (list != null && list.Count() > 0)
+                                {
+                                    DispatcherControls.NewMyNotifyWindow(text, String.Format("Найдено {0} орг. по данному коду", list.Count()), 15, this, TypeImageNotify.buildings);
+                                    OrganizationsListMain = list;
+                                    OrganizationsListView.ItemsSource = OrganizationsListMain;
+                                    UpdateLabelAboutUpdate();
+                                }
                             }
-                        }
-                    }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+                        }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+                    }
                 }
-            }
+            IsAlreadyLaunched = false;
         }
         MiniMenuWindow minimenu;
         private void ShowMiniMenu()
@@ -134,13 +149,14 @@ namespace Dagorlad_7
                 Application.Current.Shutdown();
             }
         }
+        List<OrganizationsClass> OrganizationsListMain;
         private Task SearchOrganizationFromListView()
         {
             var key = SearchTextBox.Text;
             if (!String.IsNullOrEmpty(key))
             {
                 key = key.ToLower();
-                var obj = OrganizationsListView.ItemsSource;
+                var obj = OrganizationsListMain;
                 if (obj != null)
                 {
                     var founded = new List<OrganizationsClass>();
@@ -176,6 +192,34 @@ namespace Dagorlad_7
             await SearchOrganizationFromListView();
             SearchGrid.IsEnabled = true;
         }
+        private void Cancel_SearchOrganizationFromListView_Click(object sender, RoutedEventArgs e)
+        {
+            OrganizationsListView.ItemsSource = OrganizationsListMain;
+            SearchTextBox.Text = null;
+        }
+
+        private void SearchTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case (Key.Enter):
+                    {
+                        if (SearchTextBox.IsFocused)
+                        {
+                            SearchOrganizationFromListViewButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                        }
+                        break;
+                    }
+                case (Key.Escape):
+                    {
+                        if (SearchTextBox.IsFocused)
+                        {
+                            Cancel_SearchOrganizationFromListView_Button.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                        }
+                        break;
+                    }
+            }
+        }
     }
     public class WidthFixedListViewConverter : IValueConverter
     {
@@ -191,6 +235,25 @@ namespace Dagorlad_7
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             return 0;
+        }
+    }
+    public class statusNameBrushConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if(value!=null)
+            {
+                var str = (string)value;
+                if (!String.IsNullOrEmpty(str))
+                    if (str.ToLower() != "действующая")
+                        return Brushes.OrangeRed;
+            }
+            return (Brush)new BrushConverter().ConvertFromString("#FF3A6FD8");
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return (Brush)new BrushConverter().ConvertFromString("#FF3A6FD8");
         }
     }
 }

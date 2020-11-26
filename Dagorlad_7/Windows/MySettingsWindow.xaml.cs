@@ -62,6 +62,9 @@ namespace Dagorlad_7.Windows
             public bool IsFirstTimeLanuched = true;
             public bool SmartMenuIsEnabled = true;
             public ObservableCollection<SmartAnswersClass> SmartMenuList = new ObservableCollection<SmartAnswersClass>();
+            //public string NSD_Login { get; set; }
+            //public string NSD_Password { get; set; }
+            //public string NSD_Token { get; set; }
         }
         public MySettingsWindow()
         {
@@ -73,11 +76,15 @@ namespace Dagorlad_7.Windows
             await LoadSettings();
             AppNameLabel.Content = Assembly.GetExecutingAssembly().GetName().Name.ToUpper();
             AppVersionLabel.Content = DispatcherControls.GetVersionApplication(DispatcherControls.TypeDisplayVersion.Fully);
+            //NSD_LoginTextBox.Text = MySettings.Settings.NSD_Login;
+            //NSD_PasswordTextBox.Password = MySettings.Settings.NSD_Password;
         }
         private Task LoadSettings()
         {
             IsEnabledSmartMenuCheckBox.IsChecked = MySettings.Settings.SmartMenuIsEnabled;
             IsAutorunCheckBox.IsChecked = DispatcherControls.Autorun(DispatcherControls.TypeAutoRunOperation.CheckStatus);
+            //MySettings.Settings.NSD_Login = NSD_LoginTextBox.Text;
+            //MySettings.Settings.NSD_Password = NSD_PasswordTextBox.Password;
             return Task.CompletedTask;
         }
         private async Task SaveSettings()
