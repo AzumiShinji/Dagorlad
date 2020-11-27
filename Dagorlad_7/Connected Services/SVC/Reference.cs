@@ -23,6 +23,9 @@ namespace Dagorlad_7.SVC {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CountUnreadedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -38,6 +41,19 @@ namespace Dagorlad_7.SVC {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CountUnreaded {
+            get {
+                return this.CountUnreadedField;
+            }
+            set {
+                if ((this.CountUnreadedField.Equals(value) != true)) {
+                    this.CountUnreadedField = value;
+                    this.RaisePropertyChanged("CountUnreaded");
+                }
             }
         }
         
@@ -103,6 +119,9 @@ namespace Dagorlad_7.SVC {
         private string ContentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsReadedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SenderField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -127,6 +146,19 @@ namespace Dagorlad_7.SVC {
                 if ((object.ReferenceEquals(this.ContentField, value) != true)) {
                     this.ContentField = value;
                     this.RaisePropertyChanged("Content");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsReaded {
+            get {
+                return this.IsReadedField;
+            }
+            set {
+                if ((this.IsReadedField.Equals(value) != true)) {
+                    this.IsReadedField = value;
+                    this.RaisePropertyChanged("IsReaded");
                 }
             }
         }

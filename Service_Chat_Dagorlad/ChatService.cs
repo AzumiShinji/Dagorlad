@@ -13,6 +13,7 @@ namespace Service_Chat_Dagorlad
         private string _email;
         private string _name;
         private DateTime _time;
+        private int? _countunreaded;
 
         [DataMember]
         public string Email
@@ -32,6 +33,12 @@ namespace Service_Chat_Dagorlad
             get { return _time; }
             set { _time = value; }
         }
+        [DataMember]
+        public int? CountUnreaded
+        {
+            get { return _countunreaded; }
+            set { _countunreaded = value; }
+        }
     }
 
     [DataContract]
@@ -40,6 +47,7 @@ namespace Service_Chat_Dagorlad
         private string _sender;
         private string _content;
         private DateTime _time;
+        private bool _isreaded=false;
 
         [DataMember]
         public string Sender
@@ -58,6 +66,12 @@ namespace Service_Chat_Dagorlad
         {
             get { return _time; }
             set { _time = value; }
+        }
+        [DataMember]
+        public bool IsReaded
+        {
+            get { return _isreaded; }
+            set { _isreaded = value; }
         }
     }
 
@@ -305,6 +319,7 @@ namespace Service_Chat_Dagorlad
                 }
             }
         }
+
         private void LogWrite(string text)
         {
             File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "logs.txt", String.Format("{0}: {1}\n", DateTime.Now, text));

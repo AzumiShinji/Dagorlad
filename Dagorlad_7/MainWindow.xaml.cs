@@ -146,7 +146,7 @@ namespace Dagorlad_7
             if (g == MyDialogWindow.ResultMyDialog.Yes)
             {
                 ClipboardMonitor.Stop();
-                await ChatWindow.proxy.DisconnectAsync(ChatWindow.localClient);
+                await ChatWindow.proxy.DisconnectAsync(ChatWindow.Me);
                 Application.Current.Shutdown();
             }
         }

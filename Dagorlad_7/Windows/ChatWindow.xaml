@@ -4,51 +4,133 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dagorlad_7.Windows"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Background="{StaticResource Background_Inside}"
+        WindowStartupLocation="CenterScreen"
         Title="ChatWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local:NullableContentToHidden x:Key="NullableContentToHidden"/>
+        <local:WidthFixedListViewConverter x:Key="WidthFixedListViewConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="UsersListView" Grid.Column="0">
+        <Grid Tag="InformationBlock" Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Stretch" Height="auto">
+            <Label x:Name="InformationBlockLabel" FontWeight="Normal" HorizontalContentAlignment="Center"
+                   HorizontalAlignment="Stretch" Height="auto"
+                   FontSize="14" Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"
+                   Foreground="{StaticResource Foreground}" Background="{StaticResource Background_Green}"/>
+        </Grid>
+        <Grid Tag="AdditionalBlock" Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" Height="38">
+            <Label x:Name="AdditionalBlockLabel" FontWeight="Normal" VerticalContentAlignment="Center" Padding="10,0,0,0"
+                   FontSize="14" Foreground="{StaticResource Foreground}" Background="{StaticResource Background_Outside}"/>
+        </Grid>
+        <ListView x:Name="UsersListView" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3"
+                  Background="{StaticResource Background_Outside}" BorderThickness="0" ItemsSource="{Binding}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                    <EventSetter Event="Selected" Handler="UsersListViewItem_Selected"/>
+                    <EventSetter Event="Loaded" Handler="UsersListViewItem_Loaded"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="{Binding Name}"/>
-                    </Grid>
+                    <Border Height="35" Margin="10,0,10,0">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Style.Triggers>
+                                    <EventTrigger RoutedEvent="Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation
+                             Storyboard.TargetProperty="Opacity"
+                                 Duration="0:0:0.2"
+                             From="0.0" To="1.0"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Style.Triggers>
+                            </Style>
+                            </Grid.Style>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding user.Name}" FontSize="12" Foreground="{StaticResource Foreground}" VerticalAlignment="Center"/>
+                            <Border Grid.Column="1" x:Name="UnreadedCountBorder"  
+                                    Visibility="{Binding Path=Text,ElementName=UnreadedCountTextBlock, Converter={StaticResource NullableContentToHidden}}"
+                                    CornerRadius="100" Background="Red" Width="20" Height="20" Margin="5">
+                                <TextBlock x:Name="UnreadedCountTextBlock" Text="{Binding user.CountUnreaded}" Foreground="{StaticResource Foreground}"  FontWeight="Medium"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ListView x:Name="DialogListView" Grid.Column="1">
+        <ListView x:Name="DialogListView" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding msgs}"
+                  Background="Transparent" BorderThickness="0">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                    <EventSetter Event="Loaded" Handler="DialogListViewItem_Loaded"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="{Binding Sender}"/>
-                        <TextBlock Grid.Row="1" Text="{Binding Content}"/>
-                    </Grid>
+                    <Border Width="{Binding ActualWidth,ElementName=DialogListView,Converter={StaticResource WidthFixedListViewConverter},ConverterParameter=27}"
+                        Background="{StaticResource Background_Outside}" CornerRadius="5,5,0,5" Padding="10,10,10,10" MaxWidth="300">
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Style.Triggers>
+                                        <EventTrigger RoutedEvent="Loaded">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                             Storyboard.TargetProperty="Opacity"
+                                 Duration="0:0:0.2"
+                             From="0.0" To="1.0"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Content="{Binding Time,StringFormat={}}" Language="RU" FontSize="8" Padding="0"
+                                     Background="{StaticResource Background_Outside}" Foreground="{StaticResource Foreground_Button}"/>
+                            <TextBox IsReadOnly="True" Grid.Row="1" Text="{Binding Content}" Padding="0" TextWrapping="Wrap"
+                                     Background="{StaticResource Background_Outside}" Foreground="{StaticResource Foreground}" SelectionBrush="{StaticResource Background_Green}"/>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Row="1" Grid.Column="1">
+        <Grid Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="textbox" Grid.Column="0"/>
-            <Button x:Name="button" Content="send" Grid.Column="1" Click="button_Click"/>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label x:Name="TypingLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="{StaticResource Foreground}"
+                   FontSize="10" FontWeight="Medium"
+                   Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"/>
+            <TextBox x:Name="MessageTextBox" Grid.Column="0" PreviewKeyUp="MessageTextBox_PreviewKeyUp" Grid.Row="1" GotFocus="MessageTextBox_GotFocus"/>
+            <Button x:Name="SendMessageButton" Content=">" Grid.Column="1" Click="SendMessageButton_Click" Grid.Row="1"/>
         </Grid>
     </Grid>
 </Window>

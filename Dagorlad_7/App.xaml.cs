@@ -41,7 +41,7 @@ namespace Dagorlad_7
                     var mainWindow = new MainWindow();
                     this.MainWindow = mainWindow;
 #if(DEBUG)
-                    mainWindow.Show();
+                    //mainWindow.Show();
 #endif
                     splashScreen.Closing -= (qq,ee) => { ee.Cancel = true; };
                     splashScreen.Closing += (qq, ee) => { ee.Cancel = false; };

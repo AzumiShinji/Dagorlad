@@ -14,6 +14,7 @@ namespace UsBudget.classes
         public enum TypeLogs
         {
             main = 0,
+            chat = 0,
         }
         private static string root = MySettings.RoamingFolder;
         private static string extenstion = ".log";
