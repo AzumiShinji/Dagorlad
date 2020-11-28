@@ -71,6 +71,7 @@
     </ApplicationDefinition>
     <Compile Include="classes\ClipboardMonitor.cs" />
     <Compile Include="classes\DispatcherControls.cs" />
+    <Compile Include="classes\UserImageMaster.cs" />
     <Compile Include="classes\Logger.cs" />
     <Compile Include="classes\SearchOrganizations.cs" />
     <Compile Include="classes\SmartMenuContent.cs" />

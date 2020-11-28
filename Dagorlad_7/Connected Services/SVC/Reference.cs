@@ -29,6 +29,9 @@ namespace Dagorlad_7.SVC {
         private string EmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LastMessageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -66,6 +69,19 @@ namespace Dagorlad_7.SVC {
                 if ((object.ReferenceEquals(this.EmailField, value) != true)) {
                     this.EmailField = value;
                     this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LastMessage {
+            get {
+                return this.LastMessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LastMessageField, value) != true)) {
+                    this.LastMessageField = value;
+                    this.RaisePropertyChanged("LastMessage");
                 }
             }
         }

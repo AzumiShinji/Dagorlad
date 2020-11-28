@@ -38,7 +38,7 @@ namespace Dagorlad_7.Windows
     }
     public partial class MyNotifyWindow : Window
     {
-        Window FromWindow;
+        public Window FromWindow;
         public MyNotifyWindow(Window win)
         {
             InitializeComponent();

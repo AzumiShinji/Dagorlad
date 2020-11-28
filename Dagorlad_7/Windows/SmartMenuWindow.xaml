@@ -153,13 +153,9 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <Button Grid.Row="0" Click="ControlContent_Click" CommandParameter="up"  ToolTip="Переместить вверх"
-                                            Template="{DynamicResource ButtonStandart}">
-                                        <Image Source="/images/up_12.png" Height="8" Width="12" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-                                    </Button>
+                                            Template="{DynamicResource ButtonStandart}" Content="{StaticResource Canvas_Arrow_Top}"/>
                                     <Button Grid.Row="1" Click="ControlContent_Click" CommandParameter="down"  ToolTip="Переместить вниз"
-                                            Template="{DynamicResource ButtonStandart}">
-                                        <Image Source="/images/down_12.png" Height="8" Width="12" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-                                    </Button>
+                                            Template="{DynamicResource ButtonStandart}" Content="{StaticResource Canvas_Arrow_Down}"/>
                                 </Grid>
                                 <Button Grid.Column="2" Template="{DynamicResource ButtonStandart}" ToolTip="Копировать содержание" 
                                         Width="30" Height="30"

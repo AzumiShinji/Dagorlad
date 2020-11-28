@@ -3,15 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Dagorlad_7.Windows"
+        xmlns:local="clr-namespace:Dagorlad_7.Windows" xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         mc:Ignorable="d" Background="{StaticResource Background_Inside}"
         WindowStartupLocation="CenterScreen"
-        Title="ChatWindow" Height="450" Width="800">
+        Title="ChatWindow" Height="600" Width="700">
     <Window.Resources>
         <local:NullableContentToHidden x:Key="NullableContentToHidden"/>
         <local:WidthFixedListViewConverter x:Key="WidthFixedListViewConverter"/>
+        <CollectionViewSource x:Key='src' Source="{Binding}" IsLiveSortingRequested="True">
+            <CollectionViewSource.SortDescriptions>
+                <componentModel:SortDescription PropertyName="user.CountUnreaded" Direction="Descending"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
@@ -25,15 +30,16 @@
         <Grid Tag="InformationBlock" Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Stretch" Height="auto">
             <Label x:Name="InformationBlockLabel" FontWeight="Normal" HorizontalContentAlignment="Center"
                    HorizontalAlignment="Stretch" Height="auto"
-                   FontSize="14" Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"
+                   FontSize="12" Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"
                    Foreground="{StaticResource Foreground}" Background="{StaticResource Background_Green}"/>
         </Grid>
-        <Grid Tag="AdditionalBlock" Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" Height="38">
-            <Label x:Name="AdditionalBlockLabel" FontWeight="Normal" VerticalContentAlignment="Center" Padding="10,0,0,0"
-                   FontSize="14" Foreground="{StaticResource Foreground}" Background="{StaticResource Background_Outside}"/>
+        <Grid x:Name="AdditionalBlock" Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" Height="38">
+            <Label x:Name="AdditionalBlockLabel" FontWeight="Medium"
+                   VerticalContentAlignment="Center" Padding="10,0,0,0"
+                   FontSize="13" Foreground="{StaticResource Foreground}" Background="{StaticResource Background_Outside}"/>
         </Grid>
         <ListView x:Name="UsersListView" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3"
-                  Background="{StaticResource Background_Outside}" BorderThickness="0" ItemsSource="{Binding}">
+                  Background="{StaticResource Background_Outside}" BorderThickness="0" ItemsSource="{Binding Source={StaticResource src}}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                     <EventSetter Event="Selected" Handler="UsersListViewItem_Selected"/>
@@ -42,7 +48,7 @@
             </ListBox.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border Height="35" Margin="10,0,10,0">
+                    <Border Height="auto" Margin="5,2,10,2">
                         <Grid VerticalAlignment="Center">
                             <Grid.Style>
                             <Style TargetType="Grid">
@@ -61,14 +67,29 @@
                             </Style>
                             </Grid.Style>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding user.Name}" FontSize="12" Foreground="{StaticResource Foreground}" VerticalAlignment="Center"/>
-                            <Border Grid.Column="1" x:Name="UnreadedCountBorder"  
-                                    Visibility="{Binding Path=Text,ElementName=UnreadedCountTextBlock, Converter={StaticResource NullableContentToHidden}}"
-                                    CornerRadius="100" Background="Red" Width="20" Height="20" Margin="5">
-                                <TextBlock x:Name="UnreadedCountTextBlock" Text="{Binding user.CountUnreaded}" Foreground="{StaticResource Foreground}"  FontWeight="Medium"
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Border Margin="0,0,5,0" Height="30" Width="30" Grid.RowSpan="2">
+                                <Image x:Name="UserLogoImage" Source="{Binding image}"/>
+                            </Border>
+                            <TextBlock Grid.Column="1" Text="{Binding user.Name}" FontWeight="Normal"
+                                       x:Name="NameTextBlock"
+                                       FontSize="14" Foreground="{StaticResource Foreground}" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Grid.Row="1" TextTrimming="CharacterEllipsis"
+                                       Width="120"
+                                       FontSize="10" Foreground="{StaticResource Foreground_Button}"
+                                       Text="{Binding user.LastMessage}"/>
+                            <Border Grid.Column="2" x:Name="UnreadedCountBorder" Grid.RowSpan="2" HorizontalAlignment="Right"
+                                    Visibility="{Binding user.CountUnreaded,Converter={StaticResource NullableContentToHidden}}"
+                                    CornerRadius="100" Background="{StaticResource Background_Border}" Width="20" Height="20" Margin="5,0,0,0">
+                                <TextBlock x:Name="UnreadedCountTextBlock"
+                                           Text="{Binding user.CountUnreaded}" Foreground="{StaticResource Foreground}"  FontWeight="Medium"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
@@ -108,8 +129,17 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Content="{Binding Time,StringFormat={}}" Language="RU" FontSize="8" Padding="0"
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Foreground="{StaticResource Foreground_Button}" Padding="0" FontSize="8"
+                                   VerticalContentAlignment="Center"
+                                   Content="{Binding Sender}"/>
+                            <Label Grid.Column="1" Content="{Binding Time,StringFormat={}}" Language="RU" FontSize="8" Padding="0"
                                      Background="{StaticResource Background_Outside}" Foreground="{StaticResource Foreground_Button}"/>
+                            </Grid>
                             <TextBox IsReadOnly="True" Grid.Row="1" Text="{Binding Content}" Padding="0" TextWrapping="Wrap"
                                      Background="{StaticResource Background_Outside}" Foreground="{StaticResource Foreground}" SelectionBrush="{StaticResource Background_Green}"/>
                         </Grid>
@@ -117,7 +147,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Row="3" Grid.Column="1">
+        <Grid x:Name="MessageSendingGrid" Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="auto"/>
@@ -127,10 +157,14 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label x:Name="TypingLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="{StaticResource Foreground}"
-                   FontSize="10" FontWeight="Medium"
+                   FontSize="10" FontWeight="Normal" FontStyle="Italic"
                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"/>
-            <TextBox x:Name="MessageTextBox" Grid.Column="0" PreviewKeyUp="MessageTextBox_PreviewKeyUp" Grid.Row="1" GotFocus="MessageTextBox_GotFocus"/>
-            <Button x:Name="SendMessageButton" Content=">" Grid.Column="1" Click="SendMessageButton_Click" Grid.Row="1"/>
+            <TextBox x:Name="MessageTextBox" Grid.Column="0" Height="40" VerticalContentAlignment="Center"
+                     SelectionBrush="{StaticResource Background_Green}"
+                     PreviewKeyUp="MessageTextBox_PreviewKeyUp" Grid.Row="1" GotFocus="MessageTextBox_GotFocus"/>
+            <Button x:Name="SendMessageButton" Background="{StaticResource Background_Outside}" Height="40" Width="40"
+                    Template="{StaticResource ButtonStandart}"
+                    Content="{StaticResource Canvas_Send}" Grid.Column="1" Click="SendMessageButton_Click" Grid.Row="1"/>
         </Grid>
     </Grid>
 </Window>

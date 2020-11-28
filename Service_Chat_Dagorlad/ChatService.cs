@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using System.Runtime.Serialization;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace Service_Chat_Dagorlad
 {
@@ -14,6 +15,7 @@ namespace Service_Chat_Dagorlad
         private string _name;
         private DateTime _time;
         private int? _countunreaded;
+        private string _lastmessage;
 
         [DataMember]
         public string Email
@@ -38,6 +40,12 @@ namespace Service_Chat_Dagorlad
         {
             get { return _countunreaded; }
             set { _countunreaded = value; }
+        }
+        [DataMember]
+        public string LastMessage
+        {
+            get { return _lastmessage; }
+            set { _lastmessage = value; }
         }
     }
 

@@ -178,6 +178,7 @@ namespace Dagorlad_7.classes
             }
             if (_MyNotifyWindow.Visibility == Visibility.Hidden)
             {
+                _MyNotifyWindow.FromWindow = win;
                 _MyNotifyWindow.Show();
             }
         }

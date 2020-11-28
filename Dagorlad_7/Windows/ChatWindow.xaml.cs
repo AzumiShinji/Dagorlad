@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Dagorlad_7.classes;
 using UsBudget.classes;
+using Dagorla_7.classes;
 
 namespace Dagorlad_7.Windows
 {
@@ -32,19 +33,19 @@ namespace Dagorlad_7.Windows
                 msgs.Add(msg);
                 return this;
             }
+            public BitmapImage image { get; set; }
         }
         string host = "localhost";
         public static SVC.ChatClient proxy = null;
         public static SVC.Client Me = null;
         public static SVC.Client SelectedUser = null;
-        //public static SVC.Client receiver = null;
-        //ObservableCollection<SVC.Client> Users = new ObservableCollection<SVC.Client>();
-        //ObservableCollection<SVC.Message> CurrentDialog = new ObservableCollection<SVC.Message>();
         ObservableCollection<ChatsClass> ListChats = new ObservableCollection<ChatsClass>();
         string common_chat = "common@fsfk.local";
         public ChatWindow()
         {
             InitializeComponent();
+            AdditionalBlock.Visibility = Visibility.Collapsed;
+            MessageSendingGrid.Visibility = Visibility.Collapsed;
             Start();
             DataContext = ListChats;
         }
@@ -84,6 +85,8 @@ namespace Dagorlad_7.Windows
                     if (unreaded == 0)
                         s.user.CountUnreaded = null;
                     else s.user.CountUnreaded=unreaded;
+                    s.user.LastMessage= String.Format("{0}:\n{1}",msg.Sender==Me.Email?"Вы":msg.Sender,msg.Content);
+                    DispatcherControls.NewMyNotifyWindow(s.user.Name,String.Format("{0}: {1}",msg.Sender,msg.Content),10,this,s.image);
                 }
             }
         }
@@ -115,6 +118,7 @@ namespace Dagorlad_7.Windows
                     if (unreaded == 0)
                         s.user.CountUnreaded = null;
                     else s.user.CountUnreaded = unreaded;
+                    s.user.LastMessage = String.Format("{0}:\n{1}", msg.Sender == Me.Email ? "Вы" : msg.Sender, msg.Content);
                 }
             }
         }
@@ -122,62 +126,76 @@ namespace Dagorlad_7.Windows
         public void RefreshClients(SVC.Client[] clients)
         {
             if (ListChats.Where(x => x.user.Email == common_chat).Count() == 0)
-                ListChats.Add(new ChatsClass { user = new SVC.Client { Name = "Общий", Email = common_chat } });
+                ListChats.Add(new ChatsClass
+                {
+                    user = new SVC.Client
+                    {
+                        Name = "Общий",
+                        Email = common_chat,
+                    },
+                    image= UserImageMaster.CreateProfilePicture("Общий", true),
+                });
             foreach (var s in clients)
             {
                 if (ListChats.Where(x => x.user == s).Count() == 0)
                 {
-                    ListChats.Add(new ChatsClass { user = s });
+                    ListChats.Add(new ChatsClass { 
+                        user = s, 
+                        image= UserImageMaster.CreateProfilePicture(s.Name, false),
+                    });
                 }
                 else continue;
             }
             var list = ListChats.ToList();
             foreach (var s in list)
                 if (!clients.Contains(s.user))
-                    if(s.user.Email!=common_chat)
-                    ListChats.Remove(s);
+                    if (s.user.Email != common_chat)
+                        ListChats.Remove(s);
             HandleProxy();
-            //  throw new NotImplementedException();
         }
         int reconnect_Timeout_sec = 2;
         string email = String.Format("Email Random: {0}", new Random().Next(0, 200));
         string name = String.Format("Name Random: {0}", new Random().Next(0, 200));
         public async void Start()
         {
-            if (proxy == null)
-            {
-                Me = new SVC.Client();
-                Me.Email = email;
-                Me.Name = name;
-                Me.Time = DateTime.Now;
-                this.Title = Me.Name;
-                InstanceContext context = new InstanceContext(this);
-                proxy = new SVC.ChatClient(context);
-                string servicePath = proxy.Endpoint.ListenUri.AbsolutePath;
-                string serviceListenPort = proxy.Endpoint.Address.Uri.Port.ToString();
-                proxy.Endpoint.Address = new EndpointAddress(String.Format("net.tcp://{0}:{1}{2}", host, serviceListenPort, servicePath));
-                proxy.Open();
-                var result = await proxy.ConnectAsync(Me);
-                if (!result)
+            //try
+            //{
+                if (proxy == null)
                 {
-                    InformationBlockLabel.Content = String.Format("Подключение...", reconnect_Timeout_sec);
-                    await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));
-                    if (proxy != null)
+                    Me = new SVC.Client();
+                    Me.Email = email;
+                    Me.Name = name;
+                    Me.Time = DateTime.Now;
+                    this.Title = Me.Name;
+                    InstanceContext context = new InstanceContext(this);
+                    proxy = new SVC.ChatClient(context);
+                    string servicePath = proxy.Endpoint.ListenUri.AbsolutePath;
+                    string serviceListenPort = proxy.Endpoint.Address.Uri.Port.ToString();
+                    proxy.Endpoint.Address = new EndpointAddress(String.Format("net.tcp://{0}:{1}{2}", host, serviceListenPort, servicePath));
+                    proxy.Open();
+                    var result = await proxy.ConnectAsync(Me);
+                    if (!result)
                     {
-                        try
+                        InformationBlockLabel.Content = String.Format("Подключение...", reconnect_Timeout_sec);
+                        await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));
+                        if (proxy != null)
                         {
-                            await proxy.DisconnectAsync(Me);
+                            try
+                            {
+                                await proxy.DisconnectAsync(Me);
+                            }
+                            catch (Exception ex)
+                            {
+                                Logger.Write(Logger.TypeLogs.chat, ex.ToString());
+                            }
                         }
-                        catch (Exception ex)
-                        {
-                            Logger.Write(Logger.TypeLogs.chat, ex.ToString());
-                        }
+                        proxy = null;
+                        Start();
                     }
-                    proxy = null;
-                    Start();
+                    else InformationBlockLabel.Content = null;
                 }
-                else InformationBlockLabel.Content = null;
-            }
+            //}
+            //catch (Exception ex) { DispatcherControls.ShowMyDialog("Ошибка",ex.Message,MyDialogWindow.TypeMyDialog.Ok,this); }
         }
 
         public void UserJoin(SVC.Client client)
@@ -266,6 +284,10 @@ namespace Dagorlad_7.Windows
                 var dc = obj.DataContext as ChatsClass;
                 if (dc != null)
                 {
+                    if (AdditionalBlock.Visibility == Visibility.Collapsed)
+                        AdditionalBlock.Visibility = Visibility.Visible;
+                    if (MessageSendingGrid.Visibility == Visibility.Collapsed)
+                        MessageSendingGrid.Visibility = Visibility.Visible;
                     DialogListView.ItemsSource = dc.msgs;
                     SelectedUser = dc.user;
                     AdditionalBlockLabel.Content = dc.user.Name;
@@ -346,7 +368,7 @@ namespace Dagorlad_7.Windows
             }
             return null;
         }
-
+ 
         private void MarkCurrentDialogLikeReaded()
         {
             if (SelectedUser == null) return;
@@ -371,9 +393,8 @@ namespace Dagorlad_7.Windows
     public class NullableContentToHidden : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        { 
-            if (value == null && String.IsNullOrEmpty((string)value))
-                return Visibility.Collapsed;
+        {
+            if (value == null) return Visibility.Collapsed;
             else return Visibility.Visible;
         }
 
