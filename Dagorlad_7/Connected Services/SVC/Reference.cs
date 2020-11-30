@@ -135,7 +135,19 @@ namespace Dagorlad_7.SVC {
         private string ContentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<string, string> FileLinksField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool IsReadedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsStickerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LinkStickerField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SenderField;
@@ -167,6 +179,32 @@ namespace Dagorlad_7.SVC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<string, string> FileLinks {
+            get {
+                return this.FileLinksField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileLinksField, value) != true)) {
+                    this.FileLinksField = value;
+                    this.RaisePropertyChanged("FileLinks");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsFile {
+            get {
+                return this.IsFileField;
+            }
+            set {
+                if ((this.IsFileField.Equals(value) != true)) {
+                    this.IsFileField = value;
+                    this.RaisePropertyChanged("IsFile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool IsReaded {
             get {
                 return this.IsReadedField;
@@ -175,6 +213,32 @@ namespace Dagorlad_7.SVC {
                 if ((this.IsReadedField.Equals(value) != true)) {
                     this.IsReadedField = value;
                     this.RaisePropertyChanged("IsReaded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsSticker {
+            get {
+                return this.IsStickerField;
+            }
+            set {
+                if ((this.IsStickerField.Equals(value) != true)) {
+                    this.IsStickerField = value;
+                    this.RaisePropertyChanged("IsSticker");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LinkSticker {
+            get {
+                return this.LinkStickerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LinkStickerField, value) != true)) {
+                    this.LinkStickerField = value;
+                    this.RaisePropertyChanged("LinkSticker");
                 }
             }
         }
@@ -337,10 +401,16 @@ namespace Dagorlad_7.SVC {
         System.Threading.Tasks.Task IsWritingAsync(Dagorlad_7.SVC.Client client);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/SendFile", ReplyAction="http://tempuri.org/IChat/SendFileResponse")]
-        bool SendFile(Dagorlad_7.SVC.FileMessage fileMsg, Dagorlad_7.SVC.Client receiver);
+        bool SendFile(Dagorlad_7.SVC.FileMessage fileMsg);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/SendFile", ReplyAction="http://tempuri.org/IChat/SendFileResponse")]
-        System.Threading.Tasks.Task<bool> SendFileAsync(Dagorlad_7.SVC.FileMessage fileMsg, Dagorlad_7.SVC.Client receiver);
+        System.Threading.Tasks.Task<bool> SendFileAsync(Dagorlad_7.SVC.FileMessage fileMsg);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/SendFileWhisper", ReplyAction="http://tempuri.org/IChat/SendFileWhisperResponse")]
+        bool SendFileWhisper(Dagorlad_7.SVC.FileMessage fileMsg, Dagorlad_7.SVC.Client receiver);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/SendFileWhisper", ReplyAction="http://tempuri.org/IChat/SendFileWhisperResponse")]
+        System.Threading.Tasks.Task<bool> SendFileWhisperAsync(Dagorlad_7.SVC.FileMessage fileMsg, Dagorlad_7.SVC.Client receiver);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, IsTerminating=true, Action="http://tempuri.org/IChat/Disconnect")]
         void Disconnect(Dagorlad_7.SVC.Client client);
@@ -365,7 +435,10 @@ namespace Dagorlad_7.SVC {
         void IsWritingCallback(Dagorlad_7.SVC.Client client);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChat/ReceiverFile")]
-        void ReceiverFile(Dagorlad_7.SVC.FileMessage fileMsg, Dagorlad_7.SVC.Client receiver);
+        void ReceiverFile(Dagorlad_7.SVC.FileMessage fileMsg);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChat/ReceiverFileWhisper")]
+        void ReceiverFileWhisper(Dagorlad_7.SVC.FileMessage fileMsg, Dagorlad_7.SVC.Client receiver);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChat/UserJoin")]
         void UserJoin(Dagorlad_7.SVC.Client client);
@@ -434,12 +507,20 @@ namespace Dagorlad_7.SVC {
             return base.Channel.IsWritingAsync(client);
         }
         
-        public bool SendFile(Dagorlad_7.SVC.FileMessage fileMsg, Dagorlad_7.SVC.Client receiver) {
-            return base.Channel.SendFile(fileMsg, receiver);
+        public bool SendFile(Dagorlad_7.SVC.FileMessage fileMsg) {
+            return base.Channel.SendFile(fileMsg);
         }
         
-        public System.Threading.Tasks.Task<bool> SendFileAsync(Dagorlad_7.SVC.FileMessage fileMsg, Dagorlad_7.SVC.Client receiver) {
-            return base.Channel.SendFileAsync(fileMsg, receiver);
+        public System.Threading.Tasks.Task<bool> SendFileAsync(Dagorlad_7.SVC.FileMessage fileMsg) {
+            return base.Channel.SendFileAsync(fileMsg);
+        }
+        
+        public bool SendFileWhisper(Dagorlad_7.SVC.FileMessage fileMsg, Dagorlad_7.SVC.Client receiver) {
+            return base.Channel.SendFileWhisper(fileMsg, receiver);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SendFileWhisperAsync(Dagorlad_7.SVC.FileMessage fileMsg, Dagorlad_7.SVC.Client receiver) {
+            return base.Channel.SendFileWhisperAsync(fileMsg, receiver);
         }
         
         public void Disconnect(Dagorlad_7.SVC.Client client) {

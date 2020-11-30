@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Service_Chat_Dagorlad" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Service_Chat_Dagorlad" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="Client">
     <xs:sequence>
       <xs:element minOccurs="0" name="CountUnreaded" nillable="true" type="xs:int" />
@@ -13,7 +14,11 @@
   <xs:complexType name="Message">
     <xs:sequence>
       <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="FileLinks" nillable="true" type="q1:ArrayOfKeyValueOfstringstring" />
+      <xs:element minOccurs="0" name="IsFile" type="xs:boolean" />
       <xs:element minOccurs="0" name="IsReaded" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsSticker" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LinkSticker" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Sender" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Time" type="xs:dateTime" />
     </xs:sequence>

@@ -44,6 +44,7 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Service_Chat_Dagorlad" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IChat_Connect_InputMessage">
@@ -67,6 +68,12 @@
   <wsdl:message name="IChat_SendFile_OutputMessage">
     <wsdl:part name="parameters" element="tns:SendFileResponse" />
   </wsdl:message>
+  <wsdl:message name="IChat_SendFileWhisper_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendFileWhisper" />
+  </wsdl:message>
+  <wsdl:message name="IChat_SendFileWhisper_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendFileWhisperResponse" />
+  </wsdl:message>
   <wsdl:message name="IChat_Disconnect_InputMessage">
     <wsdl:part name="parameters" element="tns:Disconnect" />
   </wsdl:message>
@@ -84,6 +91,9 @@
   </wsdl:message>
   <wsdl:message name="IChat_ReceiverFile_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiverFile" />
+  </wsdl:message>
+  <wsdl:message name="IChat_ReceiverFileWhisper_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiverFileWhisper" />
   </wsdl:message>
   <wsdl:message name="IChat_UserJoin_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UserJoin" />
@@ -109,6 +119,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IChat/SendFile" message="tns:IChat_SendFile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChat/SendFileResponse" message="tns:IChat_SendFile_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendFileWhisper">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChat/SendFileWhisper" message="tns:IChat_SendFileWhisper_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChat/SendFileWhisperResponse" message="tns:IChat_SendFileWhisper_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="true" name="Disconnect">
       <wsdl:input wsaw:Action="http://tempuri.org/IChat/Disconnect" message="tns:IChat_Disconnect_InputMessage" />
     </wsdl:operation>
@@ -126,6 +140,9 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiverFile">
       <wsdl:output wsaw:Action="http://tempuri.org/IChat/ReceiverFile" message="tns:IChat_ReceiverFile_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiverFileWhisper">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChat/ReceiverFileWhisper" message="tns:IChat_ReceiverFileWhisper_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UserJoin">
       <wsdl:output wsaw:Action="http://tempuri.org/IChat/UserJoin" message="tns:IChat_UserJoin_OutputCallbackMessage" />
@@ -174,6 +191,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SendFileWhisper">
+      <soap12:operation soapAction="http://tempuri.org/IChat/SendFileWhisper" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Disconnect">
       <soap12:operation soapAction="http://tempuri.org/IChat/Disconnect" style="document" />
       <wsdl:input>
@@ -206,6 +232,12 @@
     </wsdl:operation>
     <wsdl:operation name="ReceiverFile">
       <soap12:operation soapAction="http://tempuri.org/IChat/ReceiverFile" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiverFileWhisper">
+      <soap12:operation soapAction="http://tempuri.org/IChat/ReceiverFileWhisper" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

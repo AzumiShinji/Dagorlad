@@ -16,6 +16,13 @@ using System.Windows.Shapes;
 using Dagorlad_7.classes;
 using UsBudget.classes;
 using Dagorla_7.classes;
+using System.Windows.Threading;
+using System.IO;
+using Microsoft.Win32;
+using Dagorlad_7.SVC;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Net;
 
 namespace Dagorlad_7.Windows
 {
@@ -54,6 +61,7 @@ namespace Dagorlad_7.Windows
             InitializeComponent();
             AdditionalBlock.Visibility = Visibility.Collapsed;
             MessageSendingGrid.Visibility = Visibility.Collapsed;
+            StickersPopup.DataContext = list_stickers;
             Start();
             DataContext = ListChats;
         }
@@ -73,46 +81,48 @@ namespace Dagorlad_7.Windows
             }
         }
 
-        public void Receive(SVC.Message msg)
+        public async void Receive(SVC.Message msg)
         {
             foreach (var s in ListChats)
             {
                 if (s.user.Email == common_chat)
                 {
                     s.msgs.Add(msg);
-                    HandleProxy();
+                    await HandleProxy();
                     if (SelectedUser != null)
                     {
                         if (SelectedUser.Email == common_chat && this.IsActive)
                             foreach (var m in s.msgs)
                                 m.IsReaded = true;
-                        ScrollViewer sv = FindVisualChild(DialogListView);
-                        sv.LineDown();
+                        ScrollDialogToEnd();
                     }
                     var unreaded = s.msgs.Where(x => x.IsReaded == false).Count();
                     if (unreaded == 0)
                         s.user.CountUnreaded = null;
                     else s.user.CountUnreaded=unreaded;
-                    s.user.LastMessage= String.Format("{0}:\n{1}",msg.Sender==Me.Email?"Вы":msg.Sender,msg.Content);
+                    s.user.LastMessage= String.Format("{0}: {1}",msg.Sender==Me.Email?"Вы":msg.Sender,msg.Content);
                     if(msg.Sender!=Me.Email)
                     DispatcherControls.NewMyNotifyWindow(s.user.Name,String.Format("{0}: {1}",msg.Sender,msg.Content),10,this,s.image);
                 }
             }
         }
-
-        public void ReceiverFile(SVC.FileMessage fileMsg, SVC.Client receiver)
+ 
+        public void ReceiverFile(SVC.FileMessage fileMsg)
         {
             throw new NotImplementedException();
         }
-
-        public void ReceiveWhisper(SVC.Message msg, SVC.Client receiver)
+        public void ReceiverFileWhisper(SVC.FileMessage fileMsg, SVC.Client receiver)
+        {
+            throw new NotImplementedException();
+        }
+        public async void ReceiveWhisper(SVC.Message msg, SVC.Client receiver)
         {
             foreach (var s in ListChats)
             {
                 if (s.user.Email == receiver.Email || s.user.Email == msg.Sender)
                 {
                     s.msgs.Add(msg);
-                    HandleProxy();
+                    await HandleProxy();
                     if (SelectedUser != null)
                     {
                         if (receiver.Email == SelectedUser.Email && this.IsActive)
@@ -120,14 +130,13 @@ namespace Dagorlad_7.Windows
                             { 
                                 m.IsReaded = true;
                             }
-                        ScrollViewer sv = FindVisualChild(DialogListView);
-                        sv.LineDown();
+                        ScrollDialogToEnd();
                     }
                     var unreaded = s.msgs.Where(x => x.IsReaded == false).Count();
                     if (unreaded == 0)
                         s.user.CountUnreaded = null;
                     else s.user.CountUnreaded = unreaded;
-                    s.user.LastMessage = String.Format("{0}:\n{1}", msg.Sender == Me.Email ? "Вы" : msg.Sender, msg.Content);
+                    s.user.LastMessage = String.Format("{0}: {1}", msg.Sender == Me.Email ? "Вы" : msg.Sender, msg.Content);
                     if (msg.Sender != Me.Email && s.user.Email!=Me.Email)
                     {
                         Console.WriteLine("{0}:{1}:{2}",msg.Sender,Me.Email,receiver.Email);
@@ -137,7 +146,7 @@ namespace Dagorlad_7.Windows
             }
         }
 
-        public void RefreshClients(SVC.Client[] clients)
+        public async void RefreshClients(SVC.Client[] clients)
         {
             if (ListChats.Where(x => x.user.Email == common_chat).Count() == 0)
                 ListChats.Add(new ChatsClass
@@ -165,12 +174,12 @@ namespace Dagorlad_7.Windows
                 if (!clients.Contains(s.user))
                     if (s.user.Email != common_chat)
                         ListChats.Remove(s);
-            HandleProxy();
+            await HandleProxy();
         }
         int reconnect_Timeout_sec = 2;
-        string email = String.Format("Email Random: {0}", new Random().Next(0, 200));
-        string name = String.Format("Name Random: {0}", new Random().Next(0, 200));
-        public async void Start()
+        string email = String.Format("Email {0}", new Random().Next(0, 200));
+        string name = String.Format("Name {0}", new Random().Next(0, 200));
+        public async Task Start()
         {
             try
             {
@@ -185,64 +194,52 @@ namespace Dagorlad_7.Windows
                     proxy = new SVC.ChatClient(context);
                     string servicePath = proxy.Endpoint.ListenUri.AbsolutePath;
                     string serviceListenPort = proxy.Endpoint.Address.Uri.Port.ToString();
+
+                    proxy.Endpoint.Binding.OpenTimeout= new TimeSpan(0, 0, 3);
                     proxy.Endpoint.Address = new EndpointAddress(String.Format("net.tcp://{0}:{1}{2}", host, serviceListenPort, servicePath));
                     proxy.Open();
+                    proxy.InnerDuplexChannel.Faulted += new EventHandler(InnerDuplexChannel_Event);
+                    proxy.InnerDuplexChannel.Opened += new EventHandler(InnerDuplexChannel_Event);
+                    proxy.InnerDuplexChannel.Closed += new EventHandler(InnerDuplexChannel_Event);
                     var result = await proxy.ConnectAsync(Me);
                     if (!result)
                     {
                         InformationBlockLabel.Content = String.Format("Подключение...", reconnect_Timeout_sec);
                         await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));
                         await proxy.DisconnectAsync(Me);
-                        HandleProxy();
-                        //if (proxy != null)
-                        //{
-                        //    try
-                        //    {
-                        //        await proxy.DisconnectAsync(Me);
-                        //        HandleProxy();
-                        //    }
-                        //    catch (Exception ex)
-                        //    {
-                        //        Logger.Write(Logger.TypeLogs.chat, ex.ToString());
-                        //    }
-                        //}
-                        //proxy = null;
-                        //Start();
+                        await HandleProxy();
                     }
                     else InformationBlockLabel.Content = null;
                 }
             }
-            catch (Exception ex) { DispatcherControls.ShowMyDialog("Ошибка", ex.Message, MyDialogWindow.TypeMyDialog.Ok, this); }
+            catch (Exception ex) {
+                Logger.Write(Logger.TypeLogs.chat, ex.ToString());
+                proxy = null;
+                InformationBlockLabel.Content = String.Format("Подключение...", reconnect_Timeout_sec);
+                await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));
+                await Start();
+            }
         }
-
-        public void UserJoin(SVC.Client client)
+        async void InnerDuplexChannel_Event(object sender, EventArgs e)
+        {
+            await Dispatcher.BeginInvoke(new Action(async () =>
+            {
+                await HandleProxy();
+            }));
+        }
+        public async void UserJoin(SVC.Client client)
         {
             DispatcherControls.NewMyNotifyWindow(client.Name, "Присоединился(ась) к чату", 5, this, TypeImageNotify.standart);
-            HandleProxy();
+            await HandleProxy();
         }
 
-        public void UserLeave(SVC.Client client)
+        public async void UserLeave(SVC.Client client)
         {
             DispatcherControls.NewMyNotifyWindow(client.Name, "Покинул(а) чат", 5, this, TypeImageNotify.standart);
-            HandleProxy();
+            await HandleProxy();
         }
-        //protected async override void OnClosing(System.ComponentModel.CancelEventArgs e)
-        //{
-        //    if (proxy != null)
-        //    {
-        //        if (proxy.State == CommunicationState.Opened)
-        //        {
-        //            await proxy.DisconnectAsync(Me);
-        //            //dont set proxy.Close(); because isTerminating = true on Disconnect()
-        //            //and this by default will call HandleProxy() to take care of this.
-        //        }
-        //        else
-        //        {
-        //            HandleProxy();
-        //        }
-        //    }
-        //}
-        private void HandleProxy()
+
+        private async Task HandleProxy()
         {
             if (proxy != null)
             {
@@ -250,7 +247,7 @@ namespace Dagorlad_7.Windows
                 {
                     case CommunicationState.Closed:
                         proxy = null;
-                        Start();
+                        await Start();
                         break;
                     case CommunicationState.Closing:
                         break;
@@ -259,7 +256,7 @@ namespace Dagorlad_7.Windows
                     case CommunicationState.Faulted:
                         proxy.Abort();
                         proxy = null;
-                        Start();
+                        await Start();
                         break;
                     case CommunicationState.Opened:
                         break;
@@ -284,12 +281,16 @@ namespace Dagorlad_7.Windows
                 msg.Sender = Me.Email;
                 msg.Content = text;
                 msg.Time = DateTime.Now;
-                HandleProxy();
-                await proxy.WhisperAsync(msg, SelectedUser);
-                await proxy.IsWritingAsync(null);
-                MessageTextBox.Text = null;
-                if (SelectedUser.Email == common_chat)
-                    await proxy.SayAsync(msg);
+                await HandleProxy();
+                if (proxy != null)
+                {
+                    if (SelectedUser.Email == common_chat)
+                        await proxy.SayAsync(msg);
+                    else
+                        await proxy.WhisperAsync(msg, SelectedUser);
+                    await proxy.IsWritingAsync(null);
+                    MessageTextBox.Text = null;
+                }
             }
         }
 
@@ -336,8 +337,7 @@ namespace Dagorlad_7.Windows
                 {
                     if (dc.Sender == Me.Email)
                         obj.HorizontalContentAlignment = HorizontalAlignment.Right;
-                    ScrollViewer sv = FindVisualChild(DialogListView);
-                    sv.LineDown();
+                    ScrollDialogToEnd();
                 }
             }
         }
@@ -350,7 +350,7 @@ namespace Dagorlad_7.Windows
                   {
                       if (SelectedUser != null && SelectedUser.Email!=common_chat)
                       {
-                          HandleProxy();
+                          await HandleProxy();
                           IsTyping = true;
                           await proxy.IsWritingAsync(Me);
                           await Task.Delay(2000);
@@ -421,6 +421,182 @@ namespace Dagorlad_7.Windows
             e.Cancel = true;
             this.WindowState = WindowState.Minimized;
         }
+#if (DEBUG)
+        string directory_FTD = @"\\krislechy\Downloads\";
+#else
+        string directory_FTD = @"\\webservice\FTD\";
+#endif
+        private async void AttachmentSendButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                await HandleProxy();
+                if (proxy != null)
+                {
+                    if (SelectedUser != null)
+                    {
+                        OpenFileDialog fileDialog = new OpenFileDialog();
+                        fileDialog.Multiselect = true;
+
+                        if (fileDialog.ShowDialog() == DialogResult.HasValue)
+                        {
+                            return;
+                        }
+
+                        var filenames = fileDialog.FileNames;
+                        if (filenames != null)
+                        {
+                            //UploadFiles
+                            var list_files = new Dictionary<string, string>();
+                            foreach (var s in filenames)
+                            {
+                                var path = s;
+                                var filename = System.IO.Path.GetFileNameWithoutExtension(s);
+                                var ext = System.IO.Path.GetExtension(s);
+                                var directory_email = Me.Email;
+                                var new_name = Guid.NewGuid() + ext;
+
+                                var directory_string = directory_FTD + directory_email;
+
+                                var wu = new System.Net.WebClient();
+                                if (!Directory.Exists(directory_string))
+                                {
+                                    Directory.CreateDirectory(directory_string);
+                                }
+
+                                while(File.Exists(directory_string + "\\" + new_name))
+                                    new_name= Guid.NewGuid() + ext;
+
+                                var result_path_upload = directory_string + "\\" + new_name;
+
+                                wu.UploadFile(result_path_upload, path);
+
+                                list_files.Add(filename + ext, result_path_upload);
+                            }
+                            //
+                            SVC.Message msg = new Message();
+                            msg.FileLinks = list_files;
+                            msg.Sender = Me.Email;
+                            msg.IsFile = true;
+                            msg.Content = String.Format("Отправлены файлы ({0})", list_files.Count());
+                            msg.Time = DateTime.Now;
+                            if (SelectedUser.Email == common_chat)
+                            {
+                                await proxy.SayAsync(msg);
+                            }
+                            else
+                            {
+                                await proxy.WhisperAsync(msg, SelectedUser);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { DispatcherControls.ShowMyDialog("Ошибка отправки файлов",ex.Message,MyDialogWindow.TypeMyDialog.Ok,this); }
+        }
+
+        private void OpenDownloadedFile_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = (Button)sender;
+            var cmd = btn.CommandParameter;
+            if (btn.Content != null)
+            {
+                Process.Start((string)cmd);
+            }
+        }
+#if (DEBUG)
+        string directory_Stickers = @"\\krislechy\Downloads\Stickers\";
+#else
+        string directory_Stickers = @"\\webservice\STD\";
+#endif
+        public class StickerClass
+        {
+            public string name { get; set; }
+            public ObservableCollection<StickerItemClass> items { get; set; }
+        }
+        public class StickerItemClass
+        {
+            public string link { get; set; }
+            public ImageSource image { get; set; }
+        }
+        public ObservableCollection<StickerClass> list_stickers = new ObservableCollection<StickerClass>();
+        private async void StickersPopupChooseButton_Click(object sender, RoutedEventArgs e)
+        {
+            StickersPopup.IsOpen = true;
+            if (list_stickers.Count() == 0)
+            {
+                foreach (var s in Directory.GetDirectories(directory_Stickers))
+                {
+                    string fullPath = System.IO.Path.GetFullPath(s).TrimEnd(System.IO.Path.DirectorySeparatorChar);
+                    string name = System.IO.Path.GetFileName(fullPath);
+                    var items = new StickerClass { name = name };
+                    var items_items = new ObservableCollection<StickerItemClass>();
+                    foreach (var inner in Directory.GetFiles(s, "*.*", SearchOption.AllDirectories))
+                    {
+                        var wc = new WebClient();
+                        var dwnld = await wc.DownloadDataTaskAsync(new Uri(inner));
+                        items_items.Add(new StickerItemClass { link = inner, image = await ByteToImage(dwnld) });
+                    }
+                    items.items = items_items;
+                    list_stickers.Add(items);
+                }
+                StickersTabControl.SelectedIndex = 0;
+            }
+        }
+        public Task<ImageSource> ByteToImage(byte[] imageData)
+        {
+            try
+            {
+                BitmapImage biImg = new BitmapImage();
+                MemoryStream ms = new MemoryStream(imageData);
+                biImg.BeginInit();
+                biImg.StreamSource = ms;
+                biImg.EndInit();
+                ImageSource imgSrc = biImg as ImageSource;
+                return Task.FromResult(imgSrc);
+            }
+            catch { return null; }
+        }
+
+        private async void SendStickerButton_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = (Button)sender;
+            var cmd = btn.CommandParameter as string;
+            if (btn.Content != null)
+            {
+                SVC.Message msg = new Message();
+                msg.IsSticker = true;
+                msg.Sender = Me.Email;
+                msg.LinkSticker = cmd;
+                msg.Content = String.Format("[Стикер]");
+                msg.Time = DateTime.Now;
+                if (SelectedUser.Email == common_chat)
+                {
+                    await proxy.SayAsync(msg);
+                }
+                else
+                {
+                    await proxy.WhisperAsync(msg, SelectedUser);
+                }
+            }
+            StickersPopup.IsOpen = false;
+        }
+
+        private void StickerIsLoaded(object sender, RoutedEventArgs e)
+        {
+            ScrollDialogToEnd();
+        }
+
+        private void AttachmentIsLoadedListView(object sender, RoutedEventArgs e)
+        {
+            ScrollDialogToEnd();
+        }
+        private void ScrollDialogToEnd()
+        {
+            ScrollViewer sv = FindVisualChild(DialogListView);
+            sv.LineDown();
+            sv.ScrollToEnd();
+        }
     }
     public class NullableContentToHidden : IValueConverter
     {
@@ -431,6 +607,65 @@ namespace Dagorlad_7.Windows
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return Visibility.Collapsed;
+        }
+    }
+    public class TransparentIfSticker : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var issticker = System.Convert.ToBoolean(value);
+            if (issticker)
+                return Brushes.Transparent;
+            else return Application.Current.FindResource("Background_Outside");
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return Application.Current.FindResource("Background_Outside");
+        }
+    }
+    public class BooleanVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
+        {
+            if (value != null)
+            {
+                if (value.GetType()!= typeof(SVC.Message))
+                {
+                    return Visibility.Collapsed;                   
+                }
+                var obj = (SVC.Message)value;
+                var _parameter = (string)parameter;
+                switch(_parameter)
+                {
+                    case ("text"):
+                        {
+                            if (!obj.IsFile && !obj.IsSticker)
+                                return Visibility.Visible;
+                            break;
+                        }
+                    case ("file"):
+                        {
+                            if (obj.IsFile && !obj.IsSticker)
+                                return Visibility.Visible;
+                            break;
+                        }
+                    case ("sticker"):
+                        {
+                            if (!obj.IsFile && obj.IsSticker)
+                                return Visibility.Visible;
+                            break;
+                        }
+                }
+            }
+            return Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
         {
             return Visibility.Collapsed;
         }

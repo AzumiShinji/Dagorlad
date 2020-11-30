@@ -3,14 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com" 
         xmlns:local="clr-namespace:Dagorlad_7.Windows" xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         mc:Ignorable="d" Background="{StaticResource Background_Inside}"
         WindowStartupLocation="CenterScreen" Closing="Window_Closing"
         Icon="/chat.ico"
-        Title="ChatWindow" Height="600" Width="700">
+        Title="ChatWindow" Height="600" Width="900">
     <Window.Resources>
         <local:NullableContentToHidden x:Key="NullableContentToHidden"/>
         <local:WidthFixedListViewConverter x:Key="WidthFixedListViewConverter"/>
+        <local:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
+        <local:TransparentIfSticker x:Key="TransparentIfSticker"/>
         <CollectionViewSource x:Key='src' Source="{Binding}" IsLiveSortingRequested="True">
             <CollectionViewSource.SortDescriptions>
                 <componentModel:SortDescription PropertyName="user.CountUnreaded" Direction="Descending"/>
@@ -99,7 +102,7 @@
             </ListView.ItemTemplate>
         </ListView>
         <ListView x:Name="DialogListView" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding msgs}"
-                  PreviewMouseMove="DialogListView_PreviewMouseMove"
+                  PreviewMouseMove="DialogListView_PreviewMouseMove" VirtualizingPanel.ScrollUnit="Pixel"
                   Background="Transparent" BorderThickness="0">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
@@ -109,7 +112,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Width="{Binding ActualWidth,ElementName=DialogListView,Converter={StaticResource WidthFixedListViewConverter},ConverterParameter=27}"
-                        Background="{StaticResource Background_Outside}" CornerRadius="5,5,0,5" Padding="10,10,10,10" MaxWidth="300">
+                        Background="{Binding IsSticker,Converter={StaticResource TransparentIfSticker}}" CornerRadius="5,5,0,5" Padding="10,10,10,10" MaxWidth="300">
                         <Grid>
                             <Grid.Style>
                                 <Style TargetType="Grid">
@@ -130,20 +133,68 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Foreground="{StaticResource Foreground_Button}" Padding="0" FontSize="8"
-                                   VerticalContentAlignment="Center"
+                                <Label Grid.Column="0" Foreground="{StaticResource Foreground_Button}" Padding="0" FontSize="10"
+                                   VerticalContentAlignment="Center" FontWeight="Medium"
                                    Content="{Binding Sender}"/>
-                            <Label Grid.Column="1" Content="{Binding Time,StringFormat={}}" Language="RU" FontSize="8" Padding="0"
-                                     Background="{StaticResource Background_Outside}" Foreground="{StaticResource Foreground_Button}"/>
+                                <Label Grid.Column="1" Content="{Binding Time,StringFormat={}}" Language="RU" FontSize="8" Padding="0"
+                                     Background="Transparent" Foreground="{StaticResource Foreground_Button}"/>
                             </Grid>
                             <TextBox IsReadOnly="True" Grid.Row="1" Text="{Binding Content}" Padding="0" TextWrapping="Wrap"
-                                     Background="{StaticResource Background_Outside}" Foreground="{StaticResource Foreground}" SelectionBrush="{StaticResource Background_Green}"/>
+                                     Visibility="{Binding Converter={StaticResource BooleanVisibilityConverter},ConverterParameter=text}"
+                                     Background="Transparent" Foreground="{StaticResource Foreground}" SelectionBrush="{StaticResource Background_Green}"/>
+                            <Image gif:ImageBehavior.AnimatedSource="{Binding LinkSticker,TargetNullValue={x:Null}}"
+                                   Stretch="Uniform" MaxWidth="192" MaxHeight="192" Loaded="StickerIsLoaded" gif:ImageBehavior.RepeatBehavior="Forever"
+                                   Grid.Row="2" Visibility="{Binding Converter={StaticResource BooleanVisibilityConverter},ConverterParameter=sticker}"/>
+                            <ListView Grid.Row="3" ItemsSource="{Binding FileLinks}" Loaded="AttachmentIsLoadedListView"
+                                      Background="Transparent" BorderThickness="0" SelectionMode="Single"
+                                      Visibility="{Binding Converter={StaticResource BooleanVisibilityConverter},ConverterParameter=file}">
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListBoxItem}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ListBoxItem">
+                                                    <Border Name="Border" Padding="2" SnapsToDevicePixels="true" Background="Transparent" Margin="0">
+                                                        <ContentPresenter/>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsSelected" Value="true">
+                                                            <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Grid.Column="1" Template="{StaticResource ButtonStandart}" Padding="0"
+                                                    Foreground="{StaticResource Foreground_Button}" VerticalContentAlignment="Center"
+                                                CommandParameter="{Binding Value}"  Click="OpenDownloadedFile_Click">
+                                            <Button.Content>
+                                                <Border Padding="5">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <ContentPresenter Content="{StaticResource Canvas_Attachments}" VerticalAlignment="Center"/>
+                                                        <TextBlock Grid.Column="1" Text="{Binding Key}" Padding="5,0,0,0" VerticalAlignment="Center"/>
+                                                    </Grid>
+                                                </Border>
+                                            </Button.Content>
+                                        </Button>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -151,6 +202,8 @@
         </ListView>
         <Grid x:Name="MessageSendingGrid" Grid.Row="3" Grid.Column="1" Background="{StaticResource Background_Outside}">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
@@ -161,12 +214,64 @@
             <Label x:Name="TypingLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="{StaticResource Foreground}"
                    FontSize="10" FontWeight="Normal" FontStyle="Italic"
                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"/>
-            <TextBox x:Name="MessageTextBox" Grid.Column="0" Height="40" VerticalContentAlignment="Center"
+            <Button x:Name="StickersPopupChooseButton" Height="40" Width="40"
+                    Template="{StaticResource ButtonStandart}"
+                    Content="{StaticResource Canvas_Stickers}" Grid.Column="0" Click="StickersPopupChooseButton_Click" Grid.Row="1"/>
+            <Button x:Name="AttachmentSendButton" Height="40" Width="40"
+                    Template="{StaticResource ButtonStandart}"
+                    Content="{StaticResource Canvas_Attachments}" Grid.Column="1" Click="AttachmentSendButton_Click" Grid.Row="1"/>
+            <TextBox x:Name="MessageTextBox" Grid.Column="2" Height="40" VerticalContentAlignment="Center"
                      SelectionBrush="{StaticResource Background_Green}"
                      PreviewKeyUp="MessageTextBox_PreviewKeyUp" Grid.Row="1" GotFocus="MessageTextBox_GotFocus"/>
             <Button x:Name="SendMessageButton" Height="40" Width="40"
                     Template="{StaticResource ButtonStandart}"
-                    Content="{StaticResource Canvas_Send}" Grid.Column="1" Click="SendMessageButton_Click" Grid.Row="1"/>
+                    Content="{StaticResource Canvas_Send}" Grid.Column="3" Click="SendMessageButton_Click" Grid.Row="1"/>
         </Grid>
+        <Canvas>
+            <Popup x:Name="StickersPopup" StaysOpen="False" Width="600" Height="400" Visibility="Collapsed"
+                   Placement="MousePoint" AllowsTransparency="True" PopupAnimation="Fade">
+                <Border Background="{StaticResource Background_Outside}">
+                    <TabControl x:Name="StickersTabControl" ItemsSource="{Binding}"
+                                Background="{StaticResource Background_Outside}" BorderThickness="0">
+                        <TabControl.Style>
+                            <Style TargetType="TabControl">
+                                <Style.Resources>
+                                    <Style TargetType="TabItem">
+                                        <Setter Property="Padding" Value="0"/>
+                                    </Style>
+                                </Style.Resources>
+                            </Style>
+                        </TabControl.Style>
+                        <TabControl.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding name}" Background="{StaticResource Background_Outside}" Foreground="{StaticResource Foreground_Button}"/>
+                            </DataTemplate>
+                        </TabControl.ItemTemplate>
+                        <TabControl.ContentTemplate>
+                            <DataTemplate>
+                                <ScrollViewer>
+                                    <ItemsControl ItemsSource="{Binding items}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <Button Template="{StaticResource ButtonStandart}" Click="SendStickerButton_Click" CommandParameter="{Binding link}">
+                                                        <Image Source="{Binding image}" Width="120"/>
+                                                    </Button>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+                            </DataTemplate>
+                        </TabControl.ContentTemplate>
+                    </TabControl>
+                </Border>
+            </Popup>
+        </Canvas>
     </Grid>
 </Window>

@@ -76,3 +76,6 @@ D:\VS\Dagorlad\Dagorlad_7\bin\Debug\HtmlAgilityPack.pdb
 D:\VS\Dagorlad\Dagorlad_7\bin\Debug\HtmlAgilityPack.xml
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\ChatWindow.g.cs
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\ChatWindow.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Debug\WpfAnimatedGif.dll
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Debug\WpfAnimatedGif.pdb
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Debug\WpfAnimatedGif.xml

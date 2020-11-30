@@ -10,7 +10,7 @@
         Background="{StaticResource Background_Outside}"
         Foreground="{StaticResource Foreground}"
         Title="Dagorlad"
-        MinHeight="600" MinWidth="1000">
+        MinHeight="600" MinWidth="500">
     <Window.Resources>
         <local:WidthFixedListViewConverter x:Key="WidthFixedListViewConverter"/>
         <local:statusNameBrushConverter x:Key="statusNameBrushConverter"/>

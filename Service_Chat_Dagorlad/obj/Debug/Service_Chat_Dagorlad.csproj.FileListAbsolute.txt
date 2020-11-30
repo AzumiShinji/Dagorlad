@@ -10,9 +10,9 @@ D:\VS\Dagorlad\Service_Chat_Dagorlad\obj\Debug\Service_Chat_Dagorlad.csprojAssem
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\bin\Debug\Service_Chat_Dagorlad.exe.config
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\bin\Debug\Service_Chat_Dagorlad.exe
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\bin\Debug\Service_Chat_Dagorlad.pdb
-C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Debug\Service_Chat_Dagorlad.csprojAssemblyReference.cache
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Debug\Service_Chat_Dagorlad.ProjectInstaller.resources
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Debug\Service_Chat_Dagorlad.csproj.GenerateResource.cache
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Debug\Service_Chat_Dagorlad.csproj.CoreCompileInputs.cache
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Debug\Service_Chat_Dagorlad.exe
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Debug\Service_Chat_Dagorlad.pdb
+C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Debug\Service_Chat_Dagorlad.csprojAssemblyReference.cache

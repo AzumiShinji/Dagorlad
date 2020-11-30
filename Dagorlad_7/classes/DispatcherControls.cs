@@ -159,6 +159,7 @@ namespace Dagorlad_7.classes
         public static ResultMyDialog ShowMyDialog(string title,string text, TypeMyDialog type,Window win)
         {
             var g = new MyDialogWindow(title,text,type);
+            if(win.IsLoaded)
             g.Owner = win;
             if(g.ShowDialog()==true)
             {

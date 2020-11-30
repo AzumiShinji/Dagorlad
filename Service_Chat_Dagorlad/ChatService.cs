@@ -56,7 +56,10 @@ namespace Service_Chat_Dagorlad
         private string _content;
         private DateTime _time;
         private bool _isreaded=false;
-
+        private bool _isfile = false;
+        private Dictionary<string, string> _filelinks;
+        private bool _issticker = false;
+        private string _linksticker;
         [DataMember]
         public string Sender
         {
@@ -80,6 +83,30 @@ namespace Service_Chat_Dagorlad
         {
             get { return _isreaded; }
             set { _isreaded = value; }
+        }
+        [DataMember]
+        public bool IsFile
+        {
+            get { return _isfile; }
+            set { _isfile = value; }
+        }
+        [DataMember]
+        public Dictionary<string,string> FileLinks
+        {
+            get { return _filelinks; }
+            set { _filelinks = value; }
+        }
+        [DataMember]
+        public bool IsSticker
+        {
+            get { return _issticker; }
+            set { _issticker = value; }
+        }
+        [DataMember]
+        public string LinkSticker
+        {
+            get { return _linksticker; }
+            set { _linksticker = value; }
         }
     }
 
@@ -136,7 +163,10 @@ namespace Service_Chat_Dagorlad
         void IsWriting(Client client);
 
         [OperationContract(IsOneWay = false)]
-        bool SendFile(FileMessage fileMsg, Client receiver);
+        bool SendFile(FileMessage fileMsg);
+
+        [OperationContract(IsOneWay = false)]
+        bool SendFileWhisper(FileMessage fileMsg, Client receiver);
 
         [OperationContract(IsOneWay = true, IsTerminating = true)]
         void Disconnect(Client client);
@@ -157,7 +187,10 @@ namespace Service_Chat_Dagorlad
         void IsWritingCallback(Client client);
 
         [OperationContract(IsOneWay = true)]
-        void ReceiverFile(FileMessage fileMsg, Client receiver);
+        void ReceiverFile(FileMessage fileMsg);
+
+        [OperationContract(IsOneWay = true)]
+        void ReceiverFileWhisper(FileMessage fileMsg, Client receiver);
 
         [OperationContract(IsOneWay = true)]
         void UserJoin(Client client);
@@ -267,30 +300,25 @@ namespace Service_Chat_Dagorlad
             }
         }
 
-
-        public bool SendFile(FileMessage fileMsg, Client receiver)
+        public bool SendFile(FileMessage fileMsg)
+        {
+            foreach (Client rcvr in clients.Keys)
+            {
+                IChatCallback rcvrCallback = clients[rcvr];
+                rcvrCallback.ReceiverFile(fileMsg);
+                return true;
+            }
+            return false;
+        }
+        public bool SendFileWhisper(FileMessage fileMsg, Client receiver)
         {
             foreach (Client rcvr in clients.Keys)
             {
                 if (rcvr.Email == receiver.Email)
                 {
-                    Message msg = new Message();
-                    msg.Sender = fileMsg.Sender;
-                    msg.Content = "I'M SENDING FILE.. " + fileMsg.FileName;
-
                     IChatCallback rcvrCallback = clients[rcvr];
-                    rcvrCallback.ReceiveWhisper(msg, receiver);
-                    rcvrCallback.ReceiverFile(fileMsg, receiver);
-
-                    foreach (Client sender in clients.Keys)
-                    {
-                        if (sender.Email == fileMsg.Sender)
-                        {
-                            IChatCallback sndrCallback = clients[sender];
-                            sndrCallback.ReceiveWhisper(msg, receiver);
-                            return true;
-                        }
-                    }
+                    rcvrCallback.ReceiverFileWhisper(fileMsg, receiver);
+                    return true;
                 }
             }
             return false;

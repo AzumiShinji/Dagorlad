@@ -26,6 +26,7 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="4b0a3844-0e98-4b0f-806f-21946c1831a0" SourceId="1" SourceUrl="net.tcp://localhost:9002/Dagorlad_Chat/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="f2b3cd01-2566-4ce4-a143-6c4d6ce0c241" SourceId="1" SourceUrl="net.tcp://localhost:9002/Dagorlad_Chat/mex" />
     <MetadataFile FileName="Service_Chat_Dagorlad.xsd" MetadataType="Schema" ID="118d3103-c63e-4293-9ff7-640963ba6428" SourceId="1" SourceUrl="net.tcp://localhost:9002/Dagorlad_Chat/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="3aaf1014-c2cc-44b4-833a-99ff8c0b8214" SourceId="1" SourceUrl="net.tcp://localhost:9002/Dagorlad_Chat/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
