@@ -64,8 +64,8 @@ namespace Dagorlad_7.Windows
         private async void NotifiesListView_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (DispatcherControls.MyNotifyList.Count > 1)
-                HideNotifiesListViewButton.Visibility = Visibility.Visible;
-            else HideNotifiesListViewButton.Visibility = Visibility.Hidden;
+                HideNotifiesListViewGrid.Visibility = Visibility.Visible;
+            else HideNotifiesListViewGrid.Visibility = Visibility.Hidden;
             await StandartPositionWindow();
         }
 

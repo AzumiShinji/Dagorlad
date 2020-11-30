@@ -24,6 +24,13 @@ namespace Dagorlad_7.Windows
     /// </summary>
     public partial class ChatWindow : Window, SVC.IChatCallback
     {
+        protected override void OnStateChanged(EventArgs e)
+        {
+            if (WindowState == System.Windows.WindowState.Minimized)
+                this.Hide();
+
+            base.OnStateChanged(e);
+        }
         public class ChatsClass
         {
             public SVC.Client user { get; set; }
@@ -43,6 +50,7 @@ namespace Dagorlad_7.Windows
         string common_chat = "common@fsfk.local";
         public ChatWindow()
         {
+            DispatcherControls.HideWindowToTaskMenu(this, "Чат");
             InitializeComponent();
             AdditionalBlock.Visibility = Visibility.Collapsed;
             MessageSendingGrid.Visibility = Visibility.Collapsed;
@@ -86,6 +94,7 @@ namespace Dagorlad_7.Windows
                         s.user.CountUnreaded = null;
                     else s.user.CountUnreaded=unreaded;
                     s.user.LastMessage= String.Format("{0}:\n{1}",msg.Sender==Me.Email?"Вы":msg.Sender,msg.Content);
+                    if(msg.Sender!=Me.Email)
                     DispatcherControls.NewMyNotifyWindow(s.user.Name,String.Format("{0}: {1}",msg.Sender,msg.Content),10,this,s.image);
                 }
             }
@@ -119,6 +128,11 @@ namespace Dagorlad_7.Windows
                         s.user.CountUnreaded = null;
                     else s.user.CountUnreaded = unreaded;
                     s.user.LastMessage = String.Format("{0}:\n{1}", msg.Sender == Me.Email ? "Вы" : msg.Sender, msg.Content);
+                    if (msg.Sender != Me.Email && s.user.Email!=Me.Email)
+                    {
+                        Console.WriteLine("{0}:{1}:{2}",msg.Sender,Me.Email,receiver.Email);
+                        DispatcherControls.NewMyNotifyWindow(s.user.Name, msg.Content, 10, this, s.image);
+                    }
                 }
             }
         }
@@ -158,8 +172,8 @@ namespace Dagorlad_7.Windows
         string name = String.Format("Name Random: {0}", new Random().Next(0, 200));
         public async void Start()
         {
-            //try
-            //{
+            try
+            {
                 if (proxy == null)
                 {
                     Me = new SVC.Client();
@@ -178,24 +192,27 @@ namespace Dagorlad_7.Windows
                     {
                         InformationBlockLabel.Content = String.Format("Подключение...", reconnect_Timeout_sec);
                         await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));
-                        if (proxy != null)
-                        {
-                            try
-                            {
-                                await proxy.DisconnectAsync(Me);
-                            }
-                            catch (Exception ex)
-                            {
-                                Logger.Write(Logger.TypeLogs.chat, ex.ToString());
-                            }
-                        }
-                        proxy = null;
-                        Start();
+                        await proxy.DisconnectAsync(Me);
+                        HandleProxy();
+                        //if (proxy != null)
+                        //{
+                        //    try
+                        //    {
+                        //        await proxy.DisconnectAsync(Me);
+                        //        HandleProxy();
+                        //    }
+                        //    catch (Exception ex)
+                        //    {
+                        //        Logger.Write(Logger.TypeLogs.chat, ex.ToString());
+                        //    }
+                        //}
+                        //proxy = null;
+                        //Start();
                     }
                     else InformationBlockLabel.Content = null;
                 }
-            //}
-            //catch (Exception ex) { DispatcherControls.ShowMyDialog("Ошибка",ex.Message,MyDialogWindow.TypeMyDialog.Ok,this); }
+            }
+            catch (Exception ex) { DispatcherControls.ShowMyDialog("Ошибка", ex.Message, MyDialogWindow.TypeMyDialog.Ok, this); }
         }
 
         public void UserJoin(SVC.Client client)
@@ -331,7 +348,7 @@ namespace Dagorlad_7.Windows
             {
                 var s = Task.Factory.StartNew(new Action(async () =>
                   {
-                      if (SelectedUser != null)
+                      if (SelectedUser != null && SelectedUser.Email!=common_chat)
                       {
                           HandleProxy();
                           IsTyping = true;
@@ -372,22 +389,37 @@ namespace Dagorlad_7.Windows
         private void MarkCurrentDialogLikeReaded()
         {
             if (SelectedUser == null) return;
+            bool IsFound = false;
             foreach (var s in ListChats)
             {
                 if (s.user.Email == SelectedUser.Email)
                 {
+                    IsFound = true;
                     foreach (var m in s.msgs)
                     {
                         m.IsReaded = true;
                     }
                     s.user.CountUnreaded = null;
                 }
+                if (IsFound) return;
             }
         }
 
         private void MessageTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             MarkCurrentDialogLikeReaded();
+        }
+
+        private void DialogListView_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            if (this.IsActive)
+                MarkCurrentDialogLikeReaded();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.WindowState = WindowState.Minimized;
         }
     }
     public class NullableContentToHidden : IValueConverter

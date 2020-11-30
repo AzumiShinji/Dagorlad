@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dagorlad_7.Windows" xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         mc:Ignorable="d" Background="{StaticResource Background_Inside}"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterScreen" Closing="Window_Closing"
+        Icon="/chat.ico"
         Title="ChatWindow" Height="600" Width="700">
     <Window.Resources>
         <local:NullableContentToHidden x:Key="NullableContentToHidden"/>
@@ -98,6 +99,7 @@
             </ListView.ItemTemplate>
         </ListView>
         <ListView x:Name="DialogListView" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding msgs}"
+                  PreviewMouseMove="DialogListView_PreviewMouseMove"
                   Background="Transparent" BorderThickness="0">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
@@ -147,7 +149,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid x:Name="MessageSendingGrid" Grid.Row="3" Grid.Column="1">
+        <Grid x:Name="MessageSendingGrid" Grid.Row="3" Grid.Column="1" Background="{StaticResource Background_Outside}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="auto"/>
@@ -162,7 +164,7 @@
             <TextBox x:Name="MessageTextBox" Grid.Column="0" Height="40" VerticalContentAlignment="Center"
                      SelectionBrush="{StaticResource Background_Green}"
                      PreviewKeyUp="MessageTextBox_PreviewKeyUp" Grid.Row="1" GotFocus="MessageTextBox_GotFocus"/>
-            <Button x:Name="SendMessageButton" Background="{StaticResource Background_Outside}" Height="40" Width="40"
+            <Button x:Name="SendMessageButton" Height="40" Width="40"
                     Template="{StaticResource ButtonStandart}"
                     Content="{StaticResource Canvas_Send}" Grid.Column="1" Click="SendMessageButton_Click" Grid.Row="1"/>
         </Grid>

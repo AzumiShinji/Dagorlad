@@ -24,10 +24,9 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Button x:Name="HideNotifiesListViewButton"
-                    Grid.Row="0" Content="Скрыть все" Padding="0" Margin="1,0,4,0"
-                    Height="40" Click="HideNotifiesListView_Button" Background="{StaticResource Background_Inside}"
+            <Grid x:Name="HideNotifiesListViewGrid" Grid.Row="0" Background="{StaticResource Background_Inside}">
+                <Button Grid.Row="0" Content="Скрыть все" Padding="0" Margin="1,0,4,0"
+                    Height="40" Click="HideNotifiesListView_Button"
                     Foreground="{StaticResource Foreground_Button}" Template="{StaticResource ButtonStandart}"/>
             </Grid>
             <ListView Background="Transparent" Grid.Row="1" x:Name="NotifiesListView" BorderThickness="0" VirtualizingPanel.ScrollUnit="Pixel"
@@ -91,10 +90,12 @@
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Button Grid.Column="1" Content="{StaticResource Canvas_Arrow_Right}" Background="{StaticResource Background_Inside}"
+                            <Grid Grid.Column="1" Background="{StaticResource Background_Inside}">
+                                <Button Grid.Column="1" Content="{StaticResource Canvas_Arrow_Right}"
                                     Width="40" Click="CloseButton" CommandParameter="{Binding ElementName=NotifiesListView}"
                                     Tag="{Binding ElementName=MainGrid}" HorizontalContentAlignment="Center"
                                     Template="{StaticResource ButtonStandart}" Foreground="{StaticResource Foreground_Button}"/>
+                            </Grid>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

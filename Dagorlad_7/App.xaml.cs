@@ -1,4 +1,5 @@
-﻿using Dagorlad_7.Windows;
+﻿using Dagorlad_7.classes;
+using Dagorlad_7.Windows;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using UsBudget.classes;
 
 namespace Dagorlad_7
 {
@@ -48,6 +50,12 @@ namespace Dagorlad_7
                     splashScreen.Close();
                 });
             });
+        }
+
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            DispatcherControls.ShowMyDialog("Необработанное исключение",e.Exception.Message,MyDialogWindow.TypeMyDialog.Ok,null);
+            Logger.Write(Logger.TypeLogs.main, e.Exception.ToString());
         }
     }
 }

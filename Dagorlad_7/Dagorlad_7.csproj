@@ -231,5 +231,11 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chat.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="chat.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

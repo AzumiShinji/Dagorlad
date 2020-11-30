@@ -36,12 +36,11 @@ namespace Dagorlad_7
         }
         public MainWindow()
         {
-            DispatcherControls.HideAppToTaskMenu();
+            DispatcherControls.HideWindowToTaskMenu(this,null);
             MySettings.Load();
             InitializeComponent();
             LoadEvents();
-            var g = new ChatWindow();
-            g.Show();
+            new ChatWindow();
         }
 
         private async void LoadEvents()

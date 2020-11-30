@@ -108,18 +108,26 @@ namespace Dagorlad_7.classes
             };
             cmc.BeginAnimation(Window.OpacityProperty, da);
         }
-        public static void HideAppToTaskMenu()
+        public static void HideWindowToTaskMenu(Window win,string name)
         {
             System.Windows.Forms.NotifyIcon Install_Notify = new System.Windows.Forms.NotifyIcon();
-            Install_Notify.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            if (win.GetType() == typeof(MainWindow))
+            {
+                Install_Notify.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                Install_Notify.Text = Assembly.GetExecutingAssembly().GetName().Name;
+            }
+            else
+            {
+                Install_Notify.Icon = Dagorlad_7.Properties.Resources.chat;
+                Install_Notify.Text = Assembly.GetExecutingAssembly().GetName().Name+" - "+name;
+            }
             Install_Notify.Visible = true;
-            Install_Notify.Text = Assembly.GetExecutingAssembly().GetName().Name;
             Install_Notify.Click +=
                 (object sender, EventArgs args) =>
                 {
-                    Application.Current.MainWindow.Show();
-                    Application.Current.MainWindow.WindowState = WindowState.Normal;
-                    Application.Current.MainWindow.Activate();
+                    win.Show();
+                    win.WindowState = WindowState.Normal;
+                    win.Activate();
                 };
         }
         public static bool? Autorun(TypeAutoRunOperation operation)
@@ -176,9 +184,9 @@ namespace Dagorlad_7.classes
                 _MyNotifyWindow = new MyNotifyWindow(win);
                 _MyNotifyWindow.Show();
             }
+            _MyNotifyWindow.FromWindow = win;
             if (_MyNotifyWindow.Visibility == Visibility.Hidden)
             {
-                _MyNotifyWindow.FromWindow = win;
                 _MyNotifyWindow.Show();
             }
         }
