@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UsBudget.classes;
 
 namespace Dagorlad_7
 {
@@ -36,10 +37,16 @@ namespace Dagorlad_7
         }
         public MainWindow()
         {
+#if (!DEBUG)
+            Updater.CheckUpdate();
+#endif
             DispatcherControls.HideWindowToTaskMenu(this,null);
             MySettings.Load();
             InitializeComponent();
             LoadEvents();
+            // need to remove
+            MySettings.LoadEmailFromOldDagorlad();
+            //
             new ChatWindow();
         }
 
@@ -139,15 +146,24 @@ namespace Dagorlad_7
             e.Cancel = true;
             this.WindowState = WindowState.Minimized;
         }
-        private async void CloseApplicationButton_Click(object sender, RoutedEventArgs e)
+        private void CloseApplicationButton_Click(object sender, RoutedEventArgs e)
         {
             var g = DispatcherControls.ShowMyDialog("Выход", "Вы уверены, что хотите выйти?", MyDialogWindow.TypeMyDialog.YesNo, this);
             if (g == MyDialogWindow.ResultMyDialog.Yes)
             {
-                ClipboardMonitor.Stop();
-                await ChatWindow.proxy.DisconnectAsync(ChatWindow.Me);
-                Application.Current.Shutdown();
+                ExitFromApplication();
             }
+        }
+        public async void ExitFromApplication()
+        {
+            ClipboardMonitor.Stop();
+            try
+            {
+                if (ChatWindow.Me != null)
+                    await ChatWindow.proxy.DisconnectAsync(ChatWindow.Me);
+            }
+            catch (Exception ex) { Logger.Write(Logger.TypeLogs.chat, ex.ToString()); }
+            Application.Current.Shutdown();
         }
         List<OrganizationsClass> OrganizationsListMain;
         private Task SearchOrganizationFromListView()

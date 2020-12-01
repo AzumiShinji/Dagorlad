@@ -36,6 +36,7 @@ namespace Dagorlad_7.Windows
         {
             InitializeComponent();
             _type=type;
+            TitleLabel.Content = title;
             this.Title = title;
             TextTextBox.Text = text;
             switch(type)

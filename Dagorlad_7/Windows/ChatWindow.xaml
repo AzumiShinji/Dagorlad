@@ -8,7 +8,7 @@
         mc:Ignorable="d" Background="{StaticResource Background_Inside}"
         WindowStartupLocation="CenterScreen" Closing="Window_Closing"
         Icon="/chat.ico"
-        Title="ChatWindow" Height="600" Width="900">
+        Title="" Height="600" Width="900">
     <Window.Resources>
         <local:NullableContentToHidden x:Key="NullableContentToHidden"/>
         <local:WidthFixedListViewConverter x:Key="WidthFixedListViewConverter"/>
@@ -17,6 +17,7 @@
         <CollectionViewSource x:Key='src' Source="{Binding}" IsLiveSortingRequested="True">
             <CollectionViewSource.SortDescriptions>
                 <componentModel:SortDescription PropertyName="user.CountUnreaded" Direction="Descending"/>
+                <!--<componentModel:SortDescription PropertyName="user.Email" Direction="Ascending"/>-->
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </Window.Resources>
@@ -38,9 +39,16 @@
                    Foreground="{StaticResource Foreground}" Background="{StaticResource Background_Green}"/>
         </Grid>
         <Grid x:Name="AdditionalBlock" Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" Height="38">
-            <Label x:Name="AdditionalBlockLabel" FontWeight="Medium"
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label x:Name="NameLabel" FontWeight="Medium" Grid.Row="0"
                    VerticalContentAlignment="Center" Padding="10,0,0,0"
                    FontSize="13" Foreground="{StaticResource Foreground}" Background="{StaticResource Background_Outside}"/>
+            <Label x:Name="DirectionLabel" FontWeight="Medium" Grid.Row="1"
+                   VerticalContentAlignment="Center" Padding="10,0,0,0"
+                   FontSize="10" Foreground="{StaticResource Foreground_Dark}" Background="{StaticResource Background_Outside}"/>
         </Grid>
         <ListView x:Name="UsersListView" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3"
                   Background="{StaticResource Background_Outside}" BorderThickness="0" ItemsSource="{Binding Source={StaticResource src}}">
@@ -143,15 +151,15 @@
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Foreground="{StaticResource Foreground_Button}" Padding="0" FontSize="10"
                                    VerticalContentAlignment="Center" FontWeight="Medium"
-                                   Content="{Binding Sender}"/>
+                                   Content="{Binding SenderName}"/>
                                 <Label Grid.Column="1" Content="{Binding Time,StringFormat={}}" Language="RU" FontSize="8" Padding="0"
                                      Background="Transparent" Foreground="{StaticResource Foreground_Button}"/>
                             </Grid>
                             <TextBox IsReadOnly="True" Grid.Row="1" Text="{Binding Content}" Padding="0" TextWrapping="Wrap"
                                      Visibility="{Binding Converter={StaticResource BooleanVisibilityConverter},ConverterParameter=text}"
                                      Background="Transparent" Foreground="{StaticResource Foreground}" SelectionBrush="{StaticResource Background_Green}"/>
-                            <Image gif:ImageBehavior.AnimatedSource="{Binding LinkSticker,TargetNullValue={x:Null}}"
-                                   Stretch="Uniform" MaxWidth="192" MaxHeight="192" Loaded="StickerIsLoaded" gif:ImageBehavior.RepeatBehavior="Forever"
+                            <Image gif:ImageBehavior.AnimatedSource="{Binding LinkSticker,TargetNullValue={x:Null}}" Margin="5"
+                                   Stretch="Uniform" MaxWidth="256" MaxHeight="192" Loaded="StickerIsLoaded" gif:ImageBehavior.RepeatBehavior="Forever"
                                    Grid.Row="2" Visibility="{Binding Converter={StaticResource BooleanVisibilityConverter},ConverterParameter=sticker}"/>
                             <ListView Grid.Row="3" ItemsSource="{Binding FileLinks}" Loaded="AttachmentIsLoadedListView"
                                       Background="Transparent" BorderThickness="0" SelectionMode="Single"
@@ -228,25 +236,59 @@
                     Content="{StaticResource Canvas_Send}" Grid.Column="3" Click="SendMessageButton_Click" Grid.Row="1"/>
         </Grid>
         <Canvas>
-            <Popup x:Name="StickersPopup" StaysOpen="False" Width="600" Height="400" Visibility="Collapsed"
+            <Popup x:Name="StickersPopup" StaysOpen="True" Width="650" Height="400" Visibility="Collapsed"
                    Placement="MousePoint" AllowsTransparency="True" PopupAnimation="Fade">
-                <Border Background="{StaticResource Background_Outside}">
-                    <TabControl x:Name="StickersTabControl" ItemsSource="{Binding}"
+                <Border Background="{StaticResource Background_Outside}" Padding="5" CornerRadius="5">
+                    <TabControl x:Name="StickersTabControl" ItemsSource="{Binding}" TabStripPlacement="Left" ScrollViewer.VerticalScrollBarVisibility="Visible"
                                 Background="{StaticResource Background_Outside}" BorderThickness="0">
-                        <TabControl.Style>
-                            <Style TargetType="TabControl">
-                                <Style.Resources>
-                                    <Style TargetType="TabItem">
-                                        <Setter Property="Padding" Value="0"/>
-                                    </Style>
-                                </Style.Resources>
+                        <TabControl.ItemContainerStyle>
+                            <Style TargetType="TabItem">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Header" Value="{Binding name}"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TabItem}">
+                                            <Grid>
+                                                <Border x:Name="border" BorderThickness="1" 
+                                                        BorderBrush="{StaticResource Background_Inside_TextBox}" Padding="0">
+                                                    <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center"
+                              ContentSource="Header" TextElement.Foreground="{StaticResource Foreground}" Margin="0" RecognizesAccessKey="True" />
+                                                </Border>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter Property="Panel.Background" Value="{StaticResource Background_Inside}" TargetName="border"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </Style>
-                        </TabControl.Style>
-                        <TabControl.ItemTemplate>
-                            <DataTemplate>
-                                <Label Content="{Binding name}" Background="{StaticResource Background_Outside}" Foreground="{StaticResource Foreground_Button}"/>
-                            </DataTemplate>
-                        </TabControl.ItemTemplate>
+                        </TabControl.ItemContainerStyle>
+                        <TabControl.Template>
+                            <ControlTemplate TargetType="TabControl">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Hidden" >
+                                        <TabPanel x:Name="HeaderPanel"
+                                          Panel.ZIndex ="1" 
+                                          KeyboardNavigation.TabIndex="1"
+                                          FlowDirection="LeftToRight"
+                                          Grid.Column="0"
+                                          Grid.Row="0"
+                                          Margin="2,2,2,0"
+                                          IsItemsHost="true"/>      
+                                    </ScrollViewer>
+                                    <ContentPresenter x:Name="PART_SelectedContentHost"
+                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                      Margin="{TemplateBinding Padding}"
+                                      ContentSource="SelectedContent" Grid.Column="1"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </TabControl.Template>
                         <TabControl.ContentTemplate>
                             <DataTemplate>
                                 <ScrollViewer>

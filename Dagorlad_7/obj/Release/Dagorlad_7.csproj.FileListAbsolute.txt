@@ -62,3 +62,11 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Dagorlad.exe
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Dagorlad.pdb
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\MyNotifyWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\MyNotifyWindow.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\HtmlAgilityPack.dll
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\WpfAnimatedGif.dll
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\HtmlAgilityPack.pdb
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\HtmlAgilityPack.xml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\WpfAnimatedGif.pdb
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\WpfAnimatedGif.xml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\ChatWindow.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\ChatWindow.baml

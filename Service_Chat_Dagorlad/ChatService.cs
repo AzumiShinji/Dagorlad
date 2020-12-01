@@ -13,6 +13,7 @@ namespace Service_Chat_Dagorlad
     {
         private string _email;
         private string _name;
+        private string _direction;
         private DateTime _time;
         private int? _countunreaded;
         private string _lastmessage;
@@ -28,6 +29,12 @@ namespace Service_Chat_Dagorlad
         {
             get { return _name; }
             set { _name = value; }
+        }
+        [DataMember]
+        public string Direction
+        {
+            get { return _direction; }
+            set { _direction = value; }
         }
         [DataMember]
         public DateTime Time
@@ -53,6 +60,7 @@ namespace Service_Chat_Dagorlad
     public class Message
     {
         private string _sender;
+        private string _sendername;
         private string _content;
         private DateTime _time;
         private bool _isreaded=false;
@@ -65,6 +73,12 @@ namespace Service_Chat_Dagorlad
         {
             get { return _sender; }
             set { _sender = value; }
+        }
+        [DataMember]
+        public string SenderName
+        {
+            get { return _sendername; }
+            set { _sendername = value; }
         }
         [DataMember]
         public string Content

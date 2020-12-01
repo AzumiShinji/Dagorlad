@@ -9,7 +9,7 @@
         ResizeMode="CanResizeWithGrip"
         SizeToContent="WidthAndHeight"
         Background="{StaticResource Background_Inside}"
-        Foreground="{StaticResource Foreground}"
+        Foreground="{StaticResource Foreground}" PreviewKeyUp="Window_PreviewKeyUp"
         Title="Настройки" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -54,12 +54,21 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <CheckBox x:Name="IsAutorunCheckBox" Grid.Row="0" IsChecked="False" Content="Автозапуск приложения" Foreground="{StaticResource Foreground}" VerticalContentAlignment="Center"
                       FontWeight="Medium" FontSize="14"/>
                 <CheckBox x:Name="IsEnabledSmartMenuCheckBox" Grid.Row="1" IsChecked="False" Content="Смарт-меню" Foreground="{StaticResource Foreground}" VerticalContentAlignment="Center"
                       FontWeight="Medium" FontSize="14"/>
                 <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Адреc почты (Email, *@fsfk.local):" Foreground="{StaticResource Foreground}"/>
+                    <TextBox Grid.Column="1" x:Name="EmailTextBox" Foreground="{StaticResource Foreground}" MinWidth="100" SelectionBrush="{StaticResource Background_Green}"/>
+                </Grid>
+                <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -77,7 +86,7 @@
                     <PasswordBox x:Name="NSD_PasswordTextBox" Foreground="{StaticResource Foreground}" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1"
                              Background="{StaticResource Background_Inside_TextBox}" SelectionBrush="{StaticResource Background_Green}"/>-->
                 </Grid>
-                <Button Grid.Row="3" Template="{StaticResource ButtonStandart}" Content="Открыть папку с логами" Height="40" Click="OpenLogsFolder_Click"/>
+                <Button Grid.Row="4" Template="{StaticResource ButtonStandart}" Content="Открыть папку с логами" Height="40" Click="OpenLogsFolder_Click"/>
             </Grid>
         </Grid>
         <Grid Tag="Bottom" Grid.Row="2">

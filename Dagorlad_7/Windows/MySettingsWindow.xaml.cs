@@ -54,6 +54,20 @@ namespace Dagorlad_7.Windows
                 }
             }
         }
+        public static void LoadEmailFromOldDagorlad()
+        {
+            var emailfile = AppDomain.CurrentDomain.BaseDirectory + String.Format("{0}.email", Environment.UserName);
+            if (File.Exists(emailfile))
+            {
+                MySettings.Settings.Email = File.ReadAllText(emailfile);
+                try
+                {
+                    File.Delete(emailfile);
+                }
+                catch { }
+                MySettings.Save();
+            }
+        }
     }
     public partial class MySettingsWindow : Window
     {
@@ -62,6 +76,7 @@ namespace Dagorlad_7.Windows
             public bool IsFirstTimeLanuched = true;
             public bool SmartMenuIsEnabled = true;
             public ObservableCollection<SmartAnswersClass> SmartMenuList = new ObservableCollection<SmartAnswersClass>();
+            public string Email { get; set; }
             //public string NSD_Login { get; set; }
             //public string NSD_Password { get; set; }
             //public string NSD_Token { get; set; }
@@ -76,15 +91,14 @@ namespace Dagorlad_7.Windows
             await LoadSettings();
             AppNameLabel.Content = Assembly.GetExecutingAssembly().GetName().Name.ToUpper();
             AppVersionLabel.Content = DispatcherControls.GetVersionApplication(DispatcherControls.TypeDisplayVersion.Fully);
-            //NSD_LoginTextBox.Text = MySettings.Settings.NSD_Login;
-            //NSD_PasswordTextBox.Password = MySettings.Settings.NSD_Password;
         }
         private Task LoadSettings()
         {
             IsEnabledSmartMenuCheckBox.IsChecked = MySettings.Settings.SmartMenuIsEnabled;
             IsAutorunCheckBox.IsChecked = DispatcherControls.Autorun(DispatcherControls.TypeAutoRunOperation.CheckStatus);
-            //MySettings.Settings.NSD_Login = NSD_LoginTextBox.Text;
-            //MySettings.Settings.NSD_Password = NSD_PasswordTextBox.Password;
+            EmailTextBox.Text = MySettings.Settings.Email;
+            if (!String.IsNullOrEmpty(EmailTextBox.Text))
+                EmailTextBox.IsEnabled = false;
             return Task.CompletedTask;
         }
         private async Task SaveSettings()
@@ -92,8 +106,9 @@ namespace Dagorlad_7.Windows
             if (IsAutorunCheckBox.IsChecked == true)
                 DispatcherControls.Autorun(DispatcherControls.TypeAutoRunOperation.On);
             else DispatcherControls.Autorun(DispatcherControls.TypeAutoRunOperation.Off);
-
             MySettings.Settings.SmartMenuIsEnabled = IsEnabledSmartMenuCheckBox.IsChecked.Value;
+            if (!String.IsNullOrEmpty(EmailTextBox.Text))
+                MySettings.Settings.Email = EmailTextBox.Text.Trim();
             await MySettings.Save();
         }
         private async void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -105,6 +120,14 @@ namespace Dagorlad_7.Windows
         private void OpenLogsFolder_Click(object sender, RoutedEventArgs e)
         {
             Logger.Open();
+        }
+
+        private void Window_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.Modifiers == ModifierKeys.Control) && e.Key == Key.Enter)
+            {
+                EmailTextBox.IsEnabled = true;
+            }
         }
     }
 }

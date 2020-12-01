@@ -16,7 +16,7 @@ namespace UsBudget.classes
             main = 0,
             chat = 0,
         }
-        private static string root = MySettings.RoamingFolder;
+        private static string root = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + Assembly.GetExecutingAssembly().GetName().Name;
         private static string extenstion = ".log";
         public static void Write(TypeLogs type, string text)
         {

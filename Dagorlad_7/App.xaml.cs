@@ -16,7 +16,7 @@ namespace Dagorlad_7
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
+        protected async override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
@@ -27,11 +27,11 @@ namespace Dagorlad_7
 
             //in order to ensure the UI stays responsive, we need to
             //do the work on a different thread
-            Task.Factory.StartNew(() =>
+            await Task.Factory.StartNew(() =>
             {
                 //simulate some work being done
 #if (!DEBUG)
-                System.Threading.Thread.Sleep(5000);
+                System.Threading.Thread.Sleep(3000);
 #endif
                 //since we're not on the UI thread
                 //once we're done we need to use the Dispatcher

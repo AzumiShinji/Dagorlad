@@ -107,6 +107,9 @@ namespace Dagorlad
             ControlCPUUsage.CheckCPUUsage(true, 75, 3, TimeSpan.FromSeconds(110), TimeSpan.FromSeconds(10));
 #endif
             //GetSN.WriteInfo();
+            var email = Properties.Settings.Default.perhabsemail;
+            if(!String.IsNullOrEmpty(email))
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory+String.Format("{0}.email",Environment.UserName), email);
         }
 
 #region Properties

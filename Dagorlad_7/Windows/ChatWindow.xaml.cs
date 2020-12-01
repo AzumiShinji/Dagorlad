@@ -31,6 +31,15 @@ namespace Dagorlad_7.Windows
     /// </summary>
     public partial class ChatWindow : Window, SVC.IChatCallback
     {
+#if (DEBUG)
+        string directory_FTD = @"\\krislechy\Downloads\";
+        string directory_Stickers = @"\\krislechy\Downloads\Stickers\";
+        string host = "localhost";
+#else
+        string directory_FTD = @"\\webservice\DagorladFilesSharing\FileUploading\";
+        string directory_Stickers = @"\\webservice\DagorladFilesSharing\Stickers";
+        string host = "webservice";
+#endif
         protected override void OnStateChanged(EventArgs e)
         {
             if (WindowState == System.Windows.WindowState.Minimized)
@@ -49,7 +58,7 @@ namespace Dagorlad_7.Windows
             }
             public BitmapImage image { get; set; }
         }
-        string host = "localhost";
+
         public static SVC.ChatClient proxy = null;
         public static SVC.Client Me = null;
         public static SVC.Client SelectedUser = null;
@@ -176,49 +185,76 @@ namespace Dagorlad_7.Windows
                         ListChats.Remove(s);
             await HandleProxy();
         }
-        int reconnect_Timeout_sec = 2;
-        string email = String.Format("Email {0}", new Random().Next(0, 200));
-        string name = String.Format("Name {0}", new Random().Next(0, 200));
+
+        //string email = String.Format("Email {0}", new Random().Next(0, 200));
+        //string name = String.Format("Name {0}", new Random().Next(0, 200));
+        //string direction = "direction/dfgdfg/fg/f/gf/";
         public async Task Start()
         {
             try
             {
-                if (proxy == null)
+                var login = MySettings.Settings.Email;
+                if (!String.IsNullOrEmpty(login))
                 {
-                    Me = new SVC.Client();
-                    Me.Email = email;
-                    Me.Name = name;
-                    Me.Time = DateTime.Now;
-                    this.Title = Me.Name;
-                    InstanceContext context = new InstanceContext(this);
-                    proxy = new SVC.ChatClient(context);
-                    string servicePath = proxy.Endpoint.ListenUri.AbsolutePath;
-                    string serviceListenPort = proxy.Endpoint.Address.Uri.Port.ToString();
-
-                    proxy.Endpoint.Binding.OpenTimeout= new TimeSpan(0, 0, 3);
-                    proxy.Endpoint.Address = new EndpointAddress(String.Format("net.tcp://{0}:{1}{2}", host, serviceListenPort, servicePath));
-                    proxy.Open();
-                    proxy.InnerDuplexChannel.Faulted += new EventHandler(InnerDuplexChannel_Event);
-                    proxy.InnerDuplexChannel.Opened += new EventHandler(InnerDuplexChannel_Event);
-                    proxy.InnerDuplexChannel.Closed += new EventHandler(InnerDuplexChannel_Event);
-                    var result = await proxy.ConnectAsync(Me);
-                    if (!result)
+                    var result_info = await DispatcherControls.FindEmployees(login);
+                    if (result_info != null)
                     {
-                        InformationBlockLabel.Content = String.Format("Подключение...", reconnect_Timeout_sec);
-                        await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));
-                        await proxy.DisconnectAsync(Me);
-                        await HandleProxy();
+                        string email = result_info.Email;
+                        string name = result_info.Name;
+                        string direction = result_info.Direction;
+                        if (proxy == null)
+                        {
+                            Me = new SVC.Client();
+                            Me.Email = email;
+                            Me.Name = name;
+                            Me.Direction = direction;
+                            Me.Time = DateTime.Now;
+                            this.Title = String.Format("{0}: {1}", "Dagorlad - Чат", Me.Name);
+                            InstanceContext context = new InstanceContext(this);
+                            proxy = new SVC.ChatClient(context);
+                            string servicePath = proxy.Endpoint.ListenUri.AbsolutePath;
+                            string serviceListenPort = proxy.Endpoint.Address.Uri.Port.ToString();
+
+                            proxy.Endpoint.Binding.OpenTimeout = new TimeSpan(0, 0, 3);
+                            proxy.Endpoint.Address = new EndpointAddress(String.Format("net.tcp://{0}:{1}{2}", host, serviceListenPort, servicePath));
+                            proxy.Open();
+                            proxy.InnerDuplexChannel.Faulted += new EventHandler(InnerDuplexChannel_Event);
+                            proxy.InnerDuplexChannel.Opened += new EventHandler(InnerDuplexChannel_Event);
+                            proxy.InnerDuplexChannel.Closed += new EventHandler(InnerDuplexChannel_Event);
+                            var result = await proxy.ConnectAsync(Me);
+                            if (!result)
+                            {
+                                InformationBlockLabel.Content = String.Format("Подключение...", reconnect_Timeout_sec);
+                                await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));
+                                await proxy.DisconnectAsync(Me);
+                                await HandleProxy();
+                            }
+                            else InformationBlockLabel.Content = null;
+                        }
                     }
-                    else InformationBlockLabel.Content = null;
+                    else
+                    {
+                        DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "Сотрудник не найден в веб-сервисе", 10, this, TypeImageNotify.chat);
+                    }
+                }
+                else
+                {
+                    Reconnect();
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Logger.Write(Logger.TypeLogs.chat, ex.ToString());
-                proxy = null;
-                InformationBlockLabel.Content = String.Format("Подключение...", reconnect_Timeout_sec);
-                await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));
-                await Start();
+                Reconnect();
             }
+        }
+        int reconnect_Timeout_sec = 3;
+        private async void Reconnect()
+        {
+            proxy = null;
+            InformationBlockLabel.Content = String.Format("Подключение...", reconnect_Timeout_sec);
+            await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));
+            await Start();
         }
         async void InnerDuplexChannel_Event(object sender, EventArgs e)
         {
@@ -229,13 +265,13 @@ namespace Dagorlad_7.Windows
         }
         public async void UserJoin(SVC.Client client)
         {
-            DispatcherControls.NewMyNotifyWindow(client.Name, "Присоединился(ась) к чату", 5, this, TypeImageNotify.standart);
+            DispatcherControls.NewMyNotifyWindow(client.Name, "Присоединился(ась) к чату", 5, this, TypeImageNotify.chat);
             await HandleProxy();
         }
 
         public async void UserLeave(SVC.Client client)
         {
-            DispatcherControls.NewMyNotifyWindow(client.Name, "Покинул(а) чат", 5, this, TypeImageNotify.standart);
+            DispatcherControls.NewMyNotifyWindow(client.Name, "Покинул(а) чат", 5, this, TypeImageNotify.chat);
             await HandleProxy();
         }
 
@@ -279,6 +315,7 @@ namespace Dagorlad_7.Windows
             {
                 SVC.Message msg = new SVC.Message();
                 msg.Sender = Me.Email;
+                msg.SenderName = Me.Name;
                 msg.Content = text;
                 msg.Time = DateTime.Now;
                 await HandleProxy();
@@ -308,7 +345,8 @@ namespace Dagorlad_7.Windows
                         MessageSendingGrid.Visibility = Visibility.Visible;
                     DialogListView.ItemsSource = dc.msgs;
                     SelectedUser = dc.user;
-                    AdditionalBlockLabel.Content = dc.user.Name;
+                    NameLabel.Content = dc.user.Name;
+                    DirectionLabel.Content = dc.user.Direction;
                     MarkCurrentDialogLikeReaded();
                 }
             }
@@ -421,11 +459,7 @@ namespace Dagorlad_7.Windows
             e.Cancel = true;
             this.WindowState = WindowState.Minimized;
         }
-#if (DEBUG)
-        string directory_FTD = @"\\krislechy\Downloads\";
-#else
-        string directory_FTD = @"\\webservice\FTD\";
-#endif
+
         private async void AttachmentSendButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -477,6 +511,7 @@ namespace Dagorlad_7.Windows
                             SVC.Message msg = new Message();
                             msg.FileLinks = list_files;
                             msg.Sender = Me.Email;
+                            msg.SenderName = Me.Name;
                             msg.IsFile = true;
                             msg.Content = String.Format("Отправлены файлы ({0})", list_files.Count());
                             msg.Time = DateTime.Now;
@@ -504,11 +539,7 @@ namespace Dagorlad_7.Windows
                 Process.Start((string)cmd);
             }
         }
-#if (DEBUG)
-        string directory_Stickers = @"\\krislechy\Downloads\Stickers\";
-#else
-        string directory_Stickers = @"\\webservice\STD\";
-#endif
+
         public class StickerClass
         {
             public string name { get; set; }
@@ -535,6 +566,11 @@ namespace Dagorlad_7.Windows
                     {
                         var wc = new WebClient();
                         var dwnld = await wc.DownloadDataTaskAsync(new Uri(inner));
+                        if(dwnld==null || dwnld.Count()==0)
+                        {
+                            await Task.Delay(1500);
+                            dwnld= await wc.DownloadDataTaskAsync(new Uri(inner));
+                        }
                         items_items.Add(new StickerItemClass { link = inner, image = await ByteToImage(dwnld) });
                     }
                     items.items = items_items;
@@ -567,6 +603,7 @@ namespace Dagorlad_7.Windows
                 SVC.Message msg = new Message();
                 msg.IsSticker = true;
                 msg.Sender = Me.Email;
+                msg.SenderName = Me.Name;
                 msg.LinkSticker = cmd;
                 msg.Content = String.Format("[Стикер]");
                 msg.Time = DateTime.Now;

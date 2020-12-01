@@ -166,3 +166,4 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad\bin\Debug\beep.mp3
 D:\VS\Dagorlad\Dagorlad\bin\Debug\beep.mp3
 D:\VS\Dagorlad\Dagorlad\obj\Debug\Dagorlad.csprojAssemblyReference.cache
+C:\Main\Programs\VS\Dagorlad\Dagorlad\obj\Debug\Dagorlad.csprojAssemblyReference.cache

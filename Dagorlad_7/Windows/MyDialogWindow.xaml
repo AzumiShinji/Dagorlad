@@ -20,7 +20,13 @@
             </Grid.RowDefinitions>
             <Image Source="/favicon.ico" Height="64" Width="64" RenderOptions.BitmapScalingMode="HighQuality" Margin="10"/>
             <Grid Grid.Row="1">
-                <TextBox x:Name="TextTextBox" IsReadOnly="True" Grid.Row="0" Text="text" Margin="10" FontSize="14" FontWeight="Medium"
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label x:Name="TitleLabel" Content="title" FontSize="14" FontWeight="Medium"
+                       Foreground="{StaticResource Foreground}" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="TextTextBox" IsReadOnly="True" Grid.Row="1" Text="text" Margin="10" FontSize="12" FontWeight="Normal"
                     MaxWidth="350"                         
                 Background="{StaticResource Background_Outside}" VerticalContentAlignment="Center" Padding="0" CaretBrush="{StaticResource Background_Green}"
                 Foreground="{StaticResource Foreground}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow"/>

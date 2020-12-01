@@ -26,6 +26,9 @@ namespace Dagorlad_7.SVC {
         private System.Nullable<int> CountUnreadedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DirectionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -56,6 +59,19 @@ namespace Dagorlad_7.SVC {
                 if ((this.CountUnreadedField.Equals(value) != true)) {
                     this.CountUnreadedField = value;
                     this.RaisePropertyChanged("CountUnreaded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Direction {
+            get {
+                return this.DirectionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DirectionField, value) != true)) {
+                    this.DirectionField = value;
+                    this.RaisePropertyChanged("Direction");
                 }
             }
         }
@@ -151,6 +167,9 @@ namespace Dagorlad_7.SVC {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SenderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SenderNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime TimeField;
@@ -252,6 +271,19 @@ namespace Dagorlad_7.SVC {
                 if ((object.ReferenceEquals(this.SenderField, value) != true)) {
                     this.SenderField = value;
                     this.RaisePropertyChanged("Sender");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SenderName {
+            get {
+                return this.SenderNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SenderNameField, value) != true)) {
+                    this.SenderNameField = value;
+                    this.RaisePropertyChanged("SenderName");
                 }
             }
         }

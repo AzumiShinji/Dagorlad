@@ -34,7 +34,8 @@ namespace Dagorlad_7.Windows
     public enum TypeImageNotify
     {
         standart = 0,
-        buildings = 1,
+        chat = 1,
+        buildings = 2,
     }
     public partial class MyNotifyWindow : Window
     {

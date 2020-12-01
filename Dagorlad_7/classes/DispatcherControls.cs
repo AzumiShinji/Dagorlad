@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -159,7 +160,7 @@ namespace Dagorlad_7.classes
         public static ResultMyDialog ShowMyDialog(string title,string text, TypeMyDialog type,Window win)
         {
             var g = new MyDialogWindow(title,text,type);
-            if(win.IsLoaded)
+            if(win != null && win.IsLoaded)
             g.Owner = win;
             if(g.ShowDialog()==true)
             {
@@ -209,6 +210,12 @@ namespace Dagorlad_7.classes
                             var thisIcon = new BitmapImage(SourceUri);
                             return thisIcon;
                         }
+                    case (TypeImageNotify.chat):
+                        {
+                            var SourceUri = new Uri("pack://application:,,,/Dagorlad;component/chat.ico", UriKind.Absolute);
+                            var thisIcon = new BitmapImage(SourceUri);
+                            return thisIcon;
+                        }
                 }
             }
             else
@@ -216,6 +223,44 @@ namespace Dagorlad_7.classes
                 return type as BitmapImage;
             }
             return null;
+        }
+        public class Employees
+        {
+            public string Name { get; set; }
+            public string Email { get; set; }
+            public string Direction { get; set; }
+        }
+        public static async Task<Employees> FindEmployees(string Email)
+        {
+            Employees employees=null;
+            try
+            {
+                SqlConnection con = new SqlConnection();
+#if (DEBUG)
+                con.ConnectionString = @"Data Source=(LocalDB)\db11;Initial Catalog=SUE;Integrated Security=True;Connect Timeout=30;";
+#else
+            con.ConnectionString = @"Data Source=WebService\Carcharoth;Initial Catalog=SUE;User ID=sa;Password=iloveyoujesus;Connect Timeout=30;";
+#endif
+                con.Open();
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Users WHERE Email=@Email", con))
+                {
+                    sqlCommand.Parameters.AddWithValue("@Email",Email);
+                    using (SqlDataReader reader = await sqlCommand.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            employees= new Employees
+                            {
+                                Email = reader["Email"] == DBNull.Value ? "" : (string)reader["Email"],
+                                Name = reader["FIO"] == DBNull.Value ? "" : (string)reader["FIO"],
+                                Direction = reader["Direction"] == DBNull.Value ? "" : (string)reader["Direction"],
+                            };
+                        }
+                    }
+                }
+            }
+            catch { }
+            return employees;
         }
     }
     class CursorPosition
