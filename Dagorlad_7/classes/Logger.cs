@@ -14,7 +14,8 @@ namespace UsBudget.classes
         public enum TypeLogs
         {
             main = 0,
-            chat = 0,
+            chat = 1,
+            updater = 2,
         }
         private static string root = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + Assembly.GetExecutingAssembly().GetName().Name;
         private static string extenstion = ".log";
@@ -23,14 +24,7 @@ namespace UsBudget.classes
             if (!Directory.Exists(root)) Directory.CreateDirectory(root);
             string path = root + @"\";
             string log_text = String.Format("[{0}]: {1}\n", DateTime.Now, text);
-            switch (type)
-            {
-                case (TypeLogs.main):
-                    {
-                        File.AppendAllText(path + type.ToString() + extenstion, log_text);
-                        break;
-                    }
-            }
+            File.AppendAllText(path + type.ToString() + extenstion, log_text);
         }
         public static void Open()
         {

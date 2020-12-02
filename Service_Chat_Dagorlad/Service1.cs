@@ -34,7 +34,7 @@ namespace Service_Chat_Dagorlad
                 Uri[] address_base = { new Uri(address_TCP) };
                 service_host = new ServiceHost(typeof(ChatService), address_base);
 
-                NetTcpBinding binding_tcp = new NetTcpBinding(SecurityMode.None, true);
+                NetTcpBinding binding_tcp = new NetTcpBinding(SecurityMode.Transport, true);
 
                 binding_tcp.MaxBufferPoolSize = (int)67108864;
                 binding_tcp.MaxBufferSize = 67108864;

@@ -31,9 +31,7 @@ D:\VS\Dagorlad\Dagorlad_7\obj\Release\Dagorlad.pdb
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\Dagorlad.exe.config
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\Dagorlad.exe
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\Dagorlad.pdb
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\Newtonsoft.Json.dll
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\Newtonsoft.Json.xml
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Dagorlad_7.csprojAssemblyReference.cache
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Styles\Styles.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\MainWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\MiniMenuWindow.g.cs
@@ -62,11 +60,9 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Dagorlad.exe
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Dagorlad.pdb
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\MyNotifyWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\MyNotifyWindow.baml
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\HtmlAgilityPack.dll
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\WpfAnimatedGif.dll
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\HtmlAgilityPack.pdb
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\HtmlAgilityPack.xml
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\WpfAnimatedGif.pdb
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\WpfAnimatedGif.xml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\ChatWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\ChatWindow.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Dagorlad_7.csproj.Fody.CopyLocal.cache
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Dagorlad_7.csprojAssemblyReference.cache

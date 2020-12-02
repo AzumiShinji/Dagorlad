@@ -38,7 +38,7 @@ namespace Dagorlad_7
         public MainWindow()
         {
 #if (!DEBUG)
-            Updater.CheckUpdate();
+            Updater.CheckUpdate().GetAwaiter();
 #endif
             DispatcherControls.HideWindowToTaskMenu(this,null);
             MySettings.Load();
@@ -48,8 +48,13 @@ namespace Dagorlad_7
             MySettings.LoadEmailFromOldDagorlad();
             //
             new ChatWindow();
+            CheckingUpdateApplicationStart();
         }
-
+        private async void CheckingUpdateApplicationStart()
+        {
+            await Task.Delay(TimeSpan.FromMinutes(new Random().Next(5,15)));
+            await Updater.CheckUpdate();
+        }
         private async void LoadEvents()
         {
             ShowMiniMenu();
@@ -73,7 +78,11 @@ namespace Dagorlad_7
         }
         private void InitClipboardMonitor()
         {
-            Clipboard.Clear();
+            try
+            {
+                Clipboard.Clear();
+            }
+            catch { }
             ClipboardMonitor.OnClipboardChange += new ClipboardMonitor.OnClipboardChangeEventHandler(ClipboardMonitor_OnClipboardChange);
             ClipboardMonitor.Start();
         }

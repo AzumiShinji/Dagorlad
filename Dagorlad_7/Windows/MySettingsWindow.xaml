@@ -86,7 +86,7 @@
                     <PasswordBox x:Name="NSD_PasswordTextBox" Foreground="{StaticResource Foreground}" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1"
                              Background="{StaticResource Background_Inside_TextBox}" SelectionBrush="{StaticResource Background_Green}"/>-->
                 </Grid>
-                <Button Grid.Row="4" Template="{StaticResource ButtonStandart}" Content="Открыть папку с логами" Height="40" Click="OpenLogsFolder_Click"/>
+                <Button Grid.Row="4" Template="{StaticResource ButtonStandart}" Content="Открыть локальную папку программы" Height="40" Click="OpenLogsFolder_Click"/>
             </Grid>
         </Grid>
         <Grid Tag="Bottom" Grid.Row="2">

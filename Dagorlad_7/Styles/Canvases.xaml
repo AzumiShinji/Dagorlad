@@ -199,12 +199,12 @@
             <Path Fill="#FFFFFFFF" Data="M 30.187 48.907 0 79.093 l 128 128 128 -128 L 225.813 48.907 128 146.72 Z"/>
         </Canvas>
     </Viewbox>
-    <Viewbox x:Key="Canvas_Search" Stretch="Uniform" Width="{StaticResource CustomButtonSize}" Height="{StaticResource CustomButtonSize}" x:Shared="False">
+    <Viewbox x:Key="Canvas_Search" Stretch="Uniform" Width="20" Height="20" x:Shared="False">
         <Canvas Width="515.558" Height="515.558">
             <Path Fill="White" Data="m378.344 332.78c25.37-34.645 40.545-77.2 40.545-123.333 0-115.484-93.961-209.445-209.445-209.445s-209.444 93.961-209.444 209.445 93.961 209.445 209.445 209.445c46.133 0 88.692-15.177 123.337-40.547l137.212 137.212 45.564-45.564c0-.001-137.214-137.213-137.214-137.213zm-168.899 21.667c-79.958 0-145-65.042-145-145s65.042-145 145-145 145 65.042 145 145-65.043 145-145 145z"/>
         </Canvas>
     </Viewbox>
-    <Viewbox x:Key="Canvas_Cancel" Stretch="Uniform" Width="{StaticResource CustomButtonSize}" Height="{StaticResource CustomButtonSize}" x:Shared="False">
+    <Viewbox x:Key="Canvas_Cancel" Stretch="Uniform" Width="20" Height="20" x:Shared="False">
         <Canvas Width="386.667" Height="386.667">
             <Path Fill="White" Data="m386.667 45.564-45.564-45.564-147.77 147.769-147.769-147.769-45.564 45.564 147.769 147.769-147.769 147.77 45.564 45.564 147.769-147.769 147.769 147.769 45.564-45.564-147.768-147.77z"/>
         </Canvas>

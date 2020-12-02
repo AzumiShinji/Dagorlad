@@ -109,9 +109,9 @@ namespace Dagorlad_7.Windows
                     if (unreaded == 0)
                         s.user.CountUnreaded = null;
                     else s.user.CountUnreaded=unreaded;
-                    s.user.LastMessage= String.Format("{0}: {1}",msg.Sender==Me.Email?"Вы":msg.Sender,msg.Content);
+                    s.user.LastMessage= String.Format("{0}: {1}",msg.Sender==Me.Email?"Вы":msg.SenderName,msg.Content);
                     if(msg.Sender!=Me.Email)
-                    DispatcherControls.NewMyNotifyWindow(s.user.Name,String.Format("{0}: {1}",msg.Sender,msg.Content),10,this,s.image);
+                    DispatcherControls.NewMyNotifyWindow(s.user.Name,String.Format("{0}: {1}",msg.SenderName,msg.Content),10,this,s.image);
                 }
             }
         }
@@ -145,7 +145,7 @@ namespace Dagorlad_7.Windows
                     if (unreaded == 0)
                         s.user.CountUnreaded = null;
                     else s.user.CountUnreaded = unreaded;
-                    s.user.LastMessage = String.Format("{0}: {1}", msg.Sender == Me.Email ? "Вы" : msg.Sender, msg.Content);
+                    s.user.LastMessage = String.Format("{0}: {1}", msg.Sender == Me.Email ? "Вы" : msg.SenderName, msg.Content);
                     if (msg.Sender != Me.Email && s.user.Email!=Me.Email)
                     {
                         Console.WriteLine("{0}:{1}:{2}",msg.Sender,Me.Email,receiver.Email);
@@ -191,11 +191,14 @@ namespace Dagorlad_7.Windows
         //string direction = "direction/dfgdfg/fg/f/gf/";
         public async Task Start()
         {
+            Logger.Write(Logger.TypeLogs.chat, "Start Connection");
             try
             {
                 var login = MySettings.Settings.Email;
+                Logger.Write(Logger.TypeLogs.chat,"Try Connecting: "+ login);
                 if (!String.IsNullOrEmpty(login))
                 {
+                    Logger.Write(Logger.TypeLogs.chat, "Try Connecting: " + login);
                     var result_info = await DispatcherControls.FindEmployees(login);
                     if (result_info != null)
                     {
@@ -215,9 +218,29 @@ namespace Dagorlad_7.Windows
                             string servicePath = proxy.Endpoint.ListenUri.AbsolutePath;
                             string serviceListenPort = proxy.Endpoint.Address.Uri.Port.ToString();
 
-                            proxy.Endpoint.Binding.OpenTimeout = new TimeSpan(0, 0, 3);
-                            proxy.Endpoint.Address = new EndpointAddress(String.Format("net.tcp://{0}:{1}{2}", host, serviceListenPort, servicePath));
+                            EndpointIdentity identity = EndpointIdentity.CreateDnsIdentity(host);
+
+                            var binding = new NetTcpBinding(SecurityMode.Transport,true);
+                            binding.Security.Message.ClientCredentialType = MessageCredentialType.Windows;
+                            binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
+                            binding.Security.Transport.ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign;
+                            binding.TransferMode = TransferMode.Buffered;
+
+                            var endpointaddress = new Uri(host + ":" + serviceListenPort + servicePath);
+                            EndpointAddress endpoint = new EndpointAddress(endpointaddress,identity);
+
+                            proxy.ClientCredentials.Windows.ClientCredential.Domain = "";
+#if (DEBUG)
+                            proxy.ClientCredentials.Windows.ClientCredential.UserName = "krislechy";
+                            proxy.ClientCredentials.Windows.ClientCredential.Password = "SeriX45*";
+#else
+                            proxy.ClientCredentials.Windows.ClientCredential.UserName = "sql";
+                            proxy.ClientCredentials.Windows.ClientCredential.Password = "4815162342";
+#endif
+                            proxy.Endpoint.Binding.OpenTimeout = new TimeSpan(0, 5, 0);
+                            Logger.Write(Logger.TypeLogs.chat, "Try Connecting: " + host+":"+serviceListenPort+servicePath);
                             proxy.Open();
+                            Logger.Write(Logger.TypeLogs.chat, "Try connecting: "+ proxy.State.ToString());
                             proxy.InnerDuplexChannel.Faulted += new EventHandler(InnerDuplexChannel_Event);
                             proxy.InnerDuplexChannel.Opened += new EventHandler(InnerDuplexChannel_Event);
                             proxy.InnerDuplexChannel.Closed += new EventHandler(InnerDuplexChannel_Event);
@@ -230,6 +253,7 @@ namespace Dagorlad_7.Windows
                                 await HandleProxy();
                             }
                             else InformationBlockLabel.Content = null;
+                            Logger.Write(Logger.TypeLogs.chat, "Result connection: "+ result);
                         }
                     }
                     else
@@ -634,6 +658,7 @@ namespace Dagorlad_7.Windows
             sv.LineDown();
             sv.ScrollToEnd();
         }
+
     }
     public class NullableContentToHidden : IValueConverter
     {
@@ -661,6 +686,70 @@ namespace Dagorlad_7.Windows
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             return Application.Current.FindResource("Background_Outside");
+        }
+    }
+    public class FindHandlingLink : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if(value!=null)
+            {
+                var rtb = (RichTextBox)value;
+                rtb.Document.Blocks.Clear();
+                var content = rtb.DataContext as Message;
+                if (!String.IsNullOrEmpty(content.Content))
+                {
+                    if (content.Content.Contains("SD") || content.Content.Contains("IM"))
+                    {
+                        var run = new Run();
+                        var paragraph = new Paragraph();
+                        var splitted = content.Content.Split(' ');
+                        foreach (var s in splitted)
+                        {
+                            if (s.Contains("SD") || s.Contains("IM") && s.Length >= 8)
+                            {
+                                paragraph.Inlines.Add(run);
+                                run = new Run();
+                                //
+                                var number = s.Trim();
+                                var link = new Hyperlink();
+                                link.IsEnabled = true;
+                                link.Inlines.Add(number);
+                                link.NavigateUri = new Uri(String.Format("http://sm-sue.fsfk.local/sd/operator/#esearch:full:serviceCall:ACTIVE_OBJECTS_ONLY!%7B\"query\":\"{0}\"%7D",number));
+                                link.RequestNavigate += (sender, args) =>
+                                {
+                                    Console.WriteLine(link.NavigateUri);
+                                    Process.Start(link.NavigateUri.ToString());
+                                };
+                                paragraph.Inlines.Add(link);
+                            }
+                            else
+                            {
+                                if (paragraph.Inlines.Count() == 0)
+                                    run.Text += s + " ";
+                                else run.Text += " " + s + " ";
+                            }
+                        }
+                        if (!String.IsNullOrEmpty(run.Text))
+                        {
+                            paragraph.Inlines.Add(run);
+                        }
+                        rtb.Document.Blocks.Add(paragraph);
+                    }
+                    else
+                    {
+                        var run = new Run(content.Content);
+                        var paragraph = new Paragraph(run);
+                        rtb.Document.Blocks.Add(paragraph);
+                    }
+                }
+            }
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
         }
     }
     public class BooleanVisibilityConverter : IValueConverter

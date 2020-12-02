@@ -1,4 +1,3 @@
-C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\bin\Release\Service_Chat_Dagorlad.exe.config
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\bin\Release\Service_Chat_Dagorlad.exe
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\bin\Release\Service_Chat_Dagorlad.pdb
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Release\Service_Chat_Dagorlad.ProjectInstaller.resources
@@ -6,3 +5,4 @@ C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Release\Service_Chat_Dago
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Release\Service_Chat_Dagorlad.csproj.CoreCompileInputs.cache
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Release\Service_Chat_Dagorlad.exe
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Release\Service_Chat_Dagorlad.pdb
+C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Release\Service_Chat_Dagorlad.g.resources

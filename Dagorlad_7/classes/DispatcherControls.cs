@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -19,6 +20,13 @@ namespace Dagorlad_7.classes
 {
     class DispatcherControls
     {
+#if (DEBUG)
+        public static string ConnectionString_RUNBP = @"Data Source=(LocalDB)\db11;Initial Catalog=runbp;Integrated Security=True;Connect Timeout=30;";
+        public static string ConnectionString_SUE = @"Data Source=(LocalDB)\db11;Initial Catalog=SUE;Integrated Security=True;Connect Timeout=30;";
+#else
+        public static string ConnectionString_RUNBP = @"Data Source=WebService\Carcharoth;Initial Catalog=runbp;User ID=sa;Password=iloveyoujesus";
+        public static string ConnectionString_SUE = @"Data Source=WebService\Carcharoth;Initial Catalog=SUE;User ID=sa;Password=iloveyoujesus";
+#endif
         public enum TypeDisplayVersion
         {
             Fully = 0,
@@ -117,11 +125,12 @@ namespace Dagorlad_7.classes
                 Install_Notify.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
                 Install_Notify.Text = Assembly.GetExecutingAssembly().GetName().Name;
             }
-            else
+            else if (win.GetType() == typeof(ChatWindow))
             {
                 Install_Notify.Icon = Dagorlad_7.Properties.Resources.chat;
-                Install_Notify.Text = Assembly.GetExecutingAssembly().GetName().Name+" - "+name;
+                Install_Notify.Text = Assembly.GetExecutingAssembly().GetName().Name + " - " + name;
             }
+            else return;
             Install_Notify.Visible = true;
             Install_Notify.Click +=
                 (object sender, EventArgs args) =>
@@ -236,11 +245,7 @@ namespace Dagorlad_7.classes
             try
             {
                 SqlConnection con = new SqlConnection();
-#if (DEBUG)
-                con.ConnectionString = @"Data Source=(LocalDB)\db11;Initial Catalog=SUE;Integrated Security=True;Connect Timeout=30;";
-#else
-            con.ConnectionString = @"Data Source=WebService\Carcharoth;Initial Catalog=SUE;User ID=sa;Password=iloveyoujesus;Connect Timeout=30;";
-#endif
+                con.ConnectionString = DispatcherControls.ConnectionString_SUE;
                 con.Open();
                 using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Users WHERE Email=@Email", con))
                 {
@@ -259,8 +264,12 @@ namespace Dagorlad_7.classes
                     }
                 }
             }
-            catch { }
+            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
             return employees;
+        }
+        public static void CreateConfigFiles()
+        {
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory+ "Dagorlad.exe.config", "<?xml version=\"1.0\" encoding=\"utf-8\"?> <configuration> <startup> <supportedRuntime version=\"v4.0\" sku=\".NETFramework,Version=v4.7.2\"/> </startup> <system.serviceModel> <bindings> <netTcpBinding> <binding name=\"NetTcpBinding_IChat\"> <reliableSession inactivityTimeout=\"20:00:10\" enabled=\"true\" /> <security> <transport sslProtocols=\"None\" /> </security> </binding> </netTcpBinding> </bindings> <client> <endpoint address=\"net.tcp://webservice:9002/Dagorlad_Chat\" binding=\"netTcpBinding\" bindingConfiguration=\"NetTcpBinding_IChat\" contract=\"SVC.IChat\" name=\"NetTcpBinding_IChat\" /> </client> </system.serviceModel> </configuration>");
         }
     }
     class CursorPosition

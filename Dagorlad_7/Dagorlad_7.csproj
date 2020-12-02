@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Dagorlad_7</RootNamespace>
     <AssemblyName>Dagorlad</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -17,6 +17,7 @@
     <Deterministic>false</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -40,9 +41,7 @@
   <PropertyGroup>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="Costura, Version=4.1.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.4.1.0\lib\net40\Costura.dll</HintPath>
@@ -181,18 +180,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.manifest" />
-    <None Include="Connected Services\SVC\Arrays.xsd">
+    <None Include="Connected Services\SVC\Arrays1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\SVC\service.wsdl" />
-    <None Include="Connected Services\SVC\service.xsd">
+    <None Include="Connected Services\SVC\service1.wsdl" />
+    <None Include="Connected Services\SVC\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\SVC\service1.xsd">
+    <None Include="Connected Services\SVC\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\SVC\Service_Chat_Dagorlad.xsd">
+    <None Include="Connected Services\SVC\Service_Chat_Dagorlad1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />

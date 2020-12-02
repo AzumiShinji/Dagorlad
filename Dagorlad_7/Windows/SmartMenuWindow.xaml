@@ -216,7 +216,6 @@
                                                      VerticalScrollBarVisibility="Auto"
                                                      Background="{StaticResource Background_Inside_TextBox}"
                                                      SelectionBrush="{StaticResource Background_Green}"
-                                                     SelectionTextBrush="White"
                                                      VerticalContentAlignment="Stretch"
                                                      AcceptsReturn="True"/>
                                             </Border>

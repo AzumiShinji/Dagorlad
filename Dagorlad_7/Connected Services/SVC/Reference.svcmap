@@ -22,11 +22,11 @@
     <MetadataSource Address="net.tcp://localhost:9002/Dagorlad_Chat/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="247ccdf8-06aa-4509-8993-641eb0d0f60d" SourceId="1" SourceUrl="net.tcp://localhost:9002/Dagorlad_Chat/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="4b0a3844-0e98-4b0f-806f-21946c1831a0" SourceId="1" SourceUrl="net.tcp://localhost:9002/Dagorlad_Chat/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="f2b3cd01-2566-4ce4-a143-6c4d6ce0c241" SourceId="1" SourceUrl="net.tcp://localhost:9002/Dagorlad_Chat/mex" />
-    <MetadataFile FileName="Service_Chat_Dagorlad.xsd" MetadataType="Schema" ID="118d3103-c63e-4293-9ff7-640963ba6428" SourceId="1" SourceUrl="net.tcp://localhost:9002/Dagorlad_Chat/mex" />
-    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="3aaf1014-c2cc-44b4-833a-99ff8c0b8214" SourceId="1" SourceUrl="net.tcp://localhost:9002/Dagorlad_Chat/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="3c75bc38-297a-4e17-b33d-2d6c773dcaa1" SourceId="1" SourceUrl="net.tcp://localhost:9002/Dagorlad_Chat/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="d3547967-e237-4ae0-862c-ac9eec67450a" SourceId="1" SourceUrl="net.tcp://localhost:9002/Dagorlad_Chat/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="ccae8d1a-c737-4088-843e-9d48b7cb6b88" SourceId="1" SourceUrl="net.tcp://localhost:9002/Dagorlad_Chat/mex" />
+    <MetadataFile FileName="Service_Chat_Dagorlad1.xsd" MetadataType="Schema" ID="d5879413-c4a5-4eba-8043-63a6fd5bef12" SourceId="1" SourceUrl="net.tcp://localhost:9002/Dagorlad_Chat/mex" />
+    <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="08223801-9bed-4a76-b201-b17c72def296" SourceId="1" SourceUrl="net.tcp://localhost:9002/Dagorlad_Chat/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

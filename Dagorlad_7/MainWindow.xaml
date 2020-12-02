@@ -10,6 +10,7 @@
         Background="{StaticResource Background_Outside}"
         Foreground="{StaticResource Foreground}"
         Title="Dagorlad"
+        Width="600" Height="600"
         MinHeight="600" MinWidth="500">
     <Window.Resources>
         <local:WidthFixedListViewConverter x:Key="WidthFixedListViewConverter"/>
@@ -18,7 +19,7 @@
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <Grid Tag="Top" HorizontalAlignment="Right" Grid.Column="1">
             <Grid.RowDefinitions>

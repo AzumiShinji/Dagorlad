@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // общие сведения об этой сборке.
 [assembly: AssemblyTitle("Service_Chat_Dagorlad")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Service of the Chat")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("krislechy")]
 [assembly: AssemblyProduct("Service_Chat_Dagorlad")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright © krislechy 2020")]
+[assembly: AssemblyTrademark("krislechy")]
 [assembly: AssemblyCulture("")]
 
 // Установка значения False для параметра ComVisible делает типы в этой сборке невидимыми

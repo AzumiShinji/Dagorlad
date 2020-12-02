@@ -28,11 +28,6 @@ namespace Dagorlad_7.classes
     }
     class SearchOrganizations
     {
-#if (DEBUG)
-        private static string ConnectionString = @"Data Source=(LocalDB)\db11;Initial Catalog=runbp;Integrated Security=True;Connect Timeout=30;";
-#else
-        private static string ConnectionString = @"Data Source=WebService\Carcharoth;Initial Catalog=runbp;User ID=sa;Password=iloveyoujesus";
-#endif
         public static long CheckIfStringAsNumberOfOrganizations(string text)
         {
             if (text.Length < 20)
@@ -52,7 +47,7 @@ namespace Dagorlad_7.classes
             try
             {
                 SqlConnection con = new SqlConnection();
-                con.ConnectionString = ConnectionString;
+                con.ConnectionString = DispatcherControls.ConnectionString_RUNBP;
                 con.Open();
                 using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM runbp WHERE @code = inn OR @code=code OR @code=ogrn OR @code=kpp OR @code=pgmu OR @code = okpoCode", con))
                 {
@@ -95,7 +90,7 @@ namespace Dagorlad_7.classes
             try
             {
                 SqlConnection con = new SqlConnection();
-                con.ConnectionString = ConnectionString;
+                con.ConnectionString = DispatcherControls.ConnectionString_RUNBP;
                 con.Open();
                 using (SqlCommand sqlCommand = new SqlCommand("SELECT code FROM runbp WHERE statusName='last'", con))
                 {
