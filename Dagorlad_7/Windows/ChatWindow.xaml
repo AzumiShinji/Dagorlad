@@ -95,7 +95,7 @@
                                        x:Name="NameTextBlock"
                                        FontSize="14" Foreground="{StaticResource Foreground}" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="1" Grid.Row="1" TextTrimming="CharacterEllipsis"
-                                       Width="120"
+                                       Width="120" HorizontalAlignment="Left"
                                        FontSize="10" Foreground="{StaticResource Foreground_Button}"
                                        Text="{Binding user.LastMessage}"/>
                             <Border Grid.Column="2" x:Name="UnreadedCountBorder" Grid.RowSpan="2" HorizontalAlignment="Right"

@@ -148,6 +148,7 @@ namespace Dagorlad_7
             if (g.ShowDialog() == true)
             {
                 ShowMiniMenu();
+                DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme);
             }
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

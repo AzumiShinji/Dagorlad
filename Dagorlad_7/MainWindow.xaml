@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip" Closing="Window_Closing"
-        Background="{StaticResource Background_Outside}"
+        Background="{StaticResource Background_Inside}"
         Foreground="{StaticResource Foreground}"
         Title="Dagorlad"
         Width="600" Height="600"

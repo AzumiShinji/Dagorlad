@@ -12,12 +12,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using static Dagorlad_7.Windows.MyDialogWindow;
 
 namespace Dagorlad_7.classes
 {
+    public enum TypeColorScheme
+    {
+        dark = 0,
+        light = 1,
+    }
     class DispatcherControls
     {
 #if (DEBUG)
@@ -270,6 +276,33 @@ namespace Dagorlad_7.classes
         public static void CreateConfigFiles()
         {
             File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory+ "Dagorlad.exe.config", "<?xml version=\"1.0\" encoding=\"utf-8\"?> <configuration> <startup> <supportedRuntime version=\"v4.0\" sku=\".NETFramework,Version=v4.7.2\"/> </startup> <system.serviceModel> <bindings> <netTcpBinding> <binding name=\"NetTcpBinding_IChat\"> <reliableSession inactivityTimeout=\"20:00:10\" enabled=\"true\" /> <security> <transport sslProtocols=\"None\" /> </security> </binding> </netTcpBinding> </bindings> <client> <endpoint address=\"net.tcp://webservice:9002/Dagorlad_Chat\" binding=\"netTcpBinding\" bindingConfiguration=\"NetTcpBinding_IChat\" contract=\"SVC.IChat\" name=\"NetTcpBinding_IChat\" /> </client> </system.serviceModel> </configuration>");
+        }
+
+        public static void SetSchemeColor(TypeColorScheme type)
+        {
+            switch(type)
+            {
+                case (TypeColorScheme.light):
+                    {
+                        Application.Current.Resources["Background_Inside"] = new SolidColorBrush(Colors.White);
+                        Application.Current.Resources["Background_Outside"] = new SolidColorBrush(Colors.LightGray);
+                        Application.Current.Resources["Background_Inside_TextBox"] = new SolidColorBrush(Colors.WhiteSmoke);
+                        Application.Current.Resources["Background_Green"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF3A6FD8"));
+                        Application.Current.Resources["Background_Border"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFD8BB3A"));
+                        Application.Current.Resources["Background_Green_Color"] = (Color)ColorConverter.ConvertFromString("#FF3A6FD8");
+                        Application.Current.Resources["ListViewMouseOverBackground"] = new SolidColorBrush(Colors.Gray);
+                        Application.Current.Resources["ButtonMouseOverBackground"] = new SolidColorBrush(Colors.LightGray);
+                        Application.Current.Resources["Foreground"] = new SolidColorBrush(Colors.Black);
+                        Application.Current.Resources["Foreground_Button"] = new SolidColorBrush(Colors.Black);
+                        Application.Current.Resources["Foreground_Dark"] = new SolidColorBrush(Colors.Black);
+                        var styles = new Uri("pack://application:,,,/Dagorlad;component/Styles/Styles.xaml", UriKind.RelativeOrAbsolute);
+                        var canvas = new Uri("pack://application:,,,/Dagorlad;component/Styles/Canvases.xaml", UriKind.RelativeOrAbsolute);
+                        Application.Current.Resources.MergedDictionaries.Clear();
+                        Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = styles });
+                        Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = canvas });
+                        break;
+                    }
+            }
         }
     }
     class CursorPosition

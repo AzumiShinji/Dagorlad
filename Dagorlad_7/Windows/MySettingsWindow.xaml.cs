@@ -77,6 +77,7 @@ namespace Dagorlad_7.Windows
             public bool SmartMenuIsEnabled = true;
             public ObservableCollection<SmartAnswersClass> SmartMenuList = new ObservableCollection<SmartAnswersClass>();
             public string Email { get; set; }
+            public TypeColorScheme TypeColorScheme = TypeColorScheme.dark;
             //public string NSD_Login { get; set; }
             //public string NSD_Password { get; set; }
             //public string NSD_Token { get; set; }
@@ -97,6 +98,13 @@ namespace Dagorlad_7.Windows
             IsEnabledSmartMenuCheckBox.IsChecked = MySettings.Settings.SmartMenuIsEnabled;
             IsAutorunCheckBox.IsChecked = DispatcherControls.Autorun(DispatcherControls.TypeAutoRunOperation.CheckStatus);
             EmailTextBox.Text = MySettings.Settings.Email;
+            switch(MySettings.Settings.TypeColorScheme)
+            {
+                case (TypeColorScheme.dark):
+                    DarkColorSchemeRadioButton.IsChecked = true; break;
+                case (TypeColorScheme.light):
+                    LightColorSchemeRadioButton.IsChecked = true; break;
+            }    
             if (!String.IsNullOrEmpty(EmailTextBox.Text))
                 EmailTextBox.IsEnabled = false;
             return Task.CompletedTask;
@@ -109,6 +117,14 @@ namespace Dagorlad_7.Windows
             MySettings.Settings.SmartMenuIsEnabled = IsEnabledSmartMenuCheckBox.IsChecked.Value;
             if (!String.IsNullOrEmpty(EmailTextBox.Text))
                 MySettings.Settings.Email = EmailTextBox.Text.Trim();
+            if (DarkColorSchemeRadioButton.IsChecked == true)
+            {
+                MySettings.Settings.TypeColorScheme = TypeColorScheme.dark;
+                    }
+            else if(LightColorSchemeRadioButton.IsChecked==true)
+            {
+                MySettings.Settings.TypeColorScheme = TypeColorScheme.light;
+            }
             await MySettings.Save();
         }
         private async void SaveButton_Click(object sender, RoutedEventArgs e)

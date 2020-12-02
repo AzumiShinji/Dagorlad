@@ -17,7 +17,6 @@ D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csproj.CopyComplete
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad.exe
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad.pdb
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\GeneratedInternalTypeHelper.g.cs
-D:\VS\Dagorlad\Dagorlad_7\bin\Debug\Newtonsoft.Json.dll
 D:\VS\Dagorlad\Dagorlad_7\bin\Debug\Newtonsoft.Json.xml
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\SmartMenuWindow.g.cs
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\SmartMenuWindow.baml
@@ -32,8 +31,6 @@ D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyDialogWindow.g.cs
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyNotifyWindow.g.cs
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyDialogWindow.baml
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\MyNotifyWindow.baml
-D:\VS\Dagorlad\Dagorlad_7\bin\Debug\HtmlAgilityPack.dll
-D:\VS\Dagorlad\Dagorlad_7\bin\Debug\HtmlAgilityPack.pdb
 D:\VS\Dagorlad\Dagorlad_7\bin\Debug\HtmlAgilityPack.xml
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\ChatWindow.g.cs
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\ChatWindow.baml
@@ -75,3 +72,5 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csproj.CopyComplete
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad.exe
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad.pdb
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csprojAssemblyReference.cache
+D:\VS\Dagorlad\Dagorlad_7\bin\Debug\WpfAnimatedGif.xml
+D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csproj.Fody.CopyLocal.cache

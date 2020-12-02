@@ -33,26 +33,26 @@ namespace Dagorlad_7
                 //do the work on a different thread
                 await Task.Factory.StartNew(() =>
                 {
-                //simulate some work being done
+                    //simulate some work being done
 #if (!DEBUG)
                 System.Threading.Thread.Sleep(3000);
 #endif
-                //since we're not on the UI thread
-                //once we're done we need to use the Dispatcher
-                //to create and show the main window
-                this.Dispatcher.Invoke(() =>
-                    {
-                    //initialize the main window, set it as the application main window
-                    //and close the splash screen
-                    var mainWindow = new MainWindow();
-                        this.MainWindow = mainWindow;
+                    //since we're not on the UI thread
+                    //once we're done we need to use the Dispatcher
+                    //to create and show the main window
+                    this.Dispatcher.Invoke(() =>
+                        {
+                        //initialize the main window, set it as the application main window
+                        //and close the splash screen
+                        var mainWindow = new MainWindow();
+                            this.MainWindow = mainWindow;
 #if (DEBUG)
-                    //mainWindow.Show();
+                        //mainWindow.Show();
 #endif
-                    splashScreen.Closing -= (qq, ee) => { ee.Cancel = true; };
-                        splashScreen.Closing += (qq, ee) => { ee.Cancel = false; };
-                        splashScreen.Close();
-                    });
+                        splashScreen.Closing -= (qq, ee) => { ee.Cancel = true; };
+                            splashScreen.Closing += (qq, ee) => { ee.Cancel = false; };
+                            splashScreen.Close();
+                        });
                 });
             }
         }
@@ -62,6 +62,7 @@ namespace Dagorlad_7
         private bool IsMutex = false;
         public App()
         {
+#if (!DEBUG)
             if (!Mutex.WaitOne(TimeSpan.Zero, true))
             {
                 IsMutex = true;
@@ -77,7 +78,7 @@ namespace Dagorlad_7
             {
                 //no instance running
             }
-
+#endif
         }
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {

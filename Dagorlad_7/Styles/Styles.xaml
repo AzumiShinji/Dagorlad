@@ -11,6 +11,8 @@
     <SolidColorBrush x:Key="Foreground" Color="WhiteSmoke"/>
     <SolidColorBrush x:Key="Foreground_Button" Color="LightGray"/>
     <SolidColorBrush x:Key="Foreground_Dark" Color="Gray"/>
+    <SolidColorBrush x:Key="ListViewMouseOverBackground" Color="#353c43"/>
+    <SolidColorBrush x:Key="ButtonMouseOverBackground" Color="#353c43"/>
     <Style TargetType="TextBox">
         <Setter Property="Foreground" Value="{StaticResource Foreground}"/>
         <Setter Property="Background" Value="{StaticResource Background_Inside_TextBox}"/>
@@ -35,7 +37,7 @@
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Button.Foreground" Value="White"/>
-                <Setter Property="Background" Value="#353c43"/>
+                <Setter Property="Background" Value="{StaticResource ButtonMouseOverBackground}"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="Background" TargetName="border" Value="{StaticResource Background_Green}"/>
@@ -71,7 +73,7 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.MouseOver.Background}"/>
+                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource ListViewMouseOverBackground}"/>
                             <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.MouseOver.Border}"/>
                         </MultiTrigger>
                         <MultiTrigger>

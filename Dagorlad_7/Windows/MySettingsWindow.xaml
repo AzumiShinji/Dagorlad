@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Dagorlad_7.Windows"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanResizeWithGrip"
+        ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
         Background="{StaticResource Background_Inside}"
         Foreground="{StaticResource Foreground}" PreviewKeyUp="Window_PreviewKeyUp"
@@ -55,12 +55,23 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <CheckBox x:Name="IsAutorunCheckBox" Grid.Row="0" IsChecked="False" Content="Автозапуск приложения" Foreground="{StaticResource Foreground}" VerticalContentAlignment="Center"
                       FontWeight="Medium" FontSize="14"/>
                 <CheckBox x:Name="IsEnabledSmartMenuCheckBox" Grid.Row="1" IsChecked="False" Content="Смарт-меню" Foreground="{StaticResource Foreground}" VerticalContentAlignment="Center"
                       FontWeight="Medium" FontSize="14"/>
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="2" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Grid.Column="0" Content="Темная" GroupName="TypeScheme" x:Name="DarkColorSchemeRadioButton"
+                                 Foreground="{StaticResource Foreground}" FontSize="14" FontWeight="Medium"/>
+                    <RadioButton Grid.Column="1" Content="Светлая" GroupName="TypeScheme" Margin="10,0,0,0" x:Name="LightColorSchemeRadioButton"
+                                 Foreground="{StaticResource Foreground}" FontSize="14" FontWeight="Medium"/>
+                </Grid>
+                <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition/>
@@ -68,7 +79,7 @@
                     <Label Content="Адреc почты (Email, *@fsfk.local):" Foreground="{StaticResource Foreground}"/>
                     <TextBox Grid.Column="1" x:Name="EmailTextBox" Foreground="{StaticResource Foreground}" MinWidth="100" SelectionBrush="{StaticResource Background_Green}"/>
                 </Grid>
-                <Grid Grid.Row="3">
+                <Grid Grid.Row="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -86,7 +97,7 @@
                     <PasswordBox x:Name="NSD_PasswordTextBox" Foreground="{StaticResource Foreground}" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1"
                              Background="{StaticResource Background_Inside_TextBox}" SelectionBrush="{StaticResource Background_Green}"/>-->
                 </Grid>
-                <Button Grid.Row="4" Template="{StaticResource ButtonStandart}" Content="Открыть локальную папку программы" Height="40" Click="OpenLogsFolder_Click"/>
+                <Button Grid.Row="5" Template="{StaticResource ButtonStandart}" Content="Открыть локальную папку программы" Height="40" Click="OpenLogsFolder_Click"/>
             </Grid>
         </Grid>
         <Grid Tag="Bottom" Grid.Row="2">
