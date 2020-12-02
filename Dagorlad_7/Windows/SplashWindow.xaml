@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight"
         WindowStyle="None"
         Topmost="True" >
-    <Grid Background="{StaticResource Background_Inside}" Margin="-1">
+    <Grid Background="{DynamicResource Background_Inside}" Margin="-1">
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -24,10 +24,10 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" x:Name="AppNameLabel" Foreground="{StaticResource Foreground_Button}" 
+                <Label Grid.Row="0" x:Name="AppNameLabel" Foreground="{DynamicResource Foreground_Button}" 
                        HorizontalContentAlignment="Center"
                        Content="%APPINFO%" FontWeight="Medium" FontSize="14"/>
-                <Label Grid.Row="1" x:Name="AppVersionLabel" Foreground="{StaticResource Foreground_Button}"
+                <Label Grid.Row="1" x:Name="AppVersionLabel" Foreground="{DynamicResource Foreground_Button}"
                        HorizontalContentAlignment="Center" Padding="0"
                        Content="%APPVERSION" FontWeight="Medium" FontSize="8"/>
             </Grid>

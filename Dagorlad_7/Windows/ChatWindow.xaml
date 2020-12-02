@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:gif="http://wpfanimatedgif.codeplex.com" 
         xmlns:local="clr-namespace:Dagorlad_7.Windows" xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        mc:Ignorable="d" Background="{StaticResource Background_Inside}"
+        mc:Ignorable="d" Background="{DynamicResource Background_Inside}"
         WindowStartupLocation="CenterScreen" Closing="Window_Closing"
         Icon="/chat.ico"
         Title="" Height="600" Width="900">
@@ -37,7 +37,7 @@
             <Label x:Name="InformationBlockLabel" FontWeight="Normal" HorizontalContentAlignment="Center"
                    HorizontalAlignment="Stretch" Height="auto"
                    FontSize="12" Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"
-                   Foreground="{StaticResource Foreground}" Background="{StaticResource Background_Green}"/>
+                   Foreground="{DynamicResource Foreground}" Background="{DynamicResource Background_Green}"/>
         </Grid>
         <Grid x:Name="AdditionalBlock" Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" Height="38">
             <Grid.RowDefinitions>
@@ -46,13 +46,13 @@
             </Grid.RowDefinitions>
             <Label x:Name="NameLabel" FontWeight="Medium" Grid.Row="0"
                    VerticalContentAlignment="Center" Padding="10,0,0,0"
-                   FontSize="13" Foreground="{StaticResource Foreground}" Background="{StaticResource Background_Outside}"/>
+                   FontSize="13" Foreground="{DynamicResource Foreground}" Background="{DynamicResource Background_Outside}"/>
             <Label x:Name="DirectionLabel" FontWeight="Medium" Grid.Row="1"
                    VerticalContentAlignment="Center" Padding="10,0,0,0"
-                   FontSize="10" Foreground="{StaticResource Foreground_Dark}" Background="{StaticResource Background_Outside}"/>
+                   FontSize="10" Foreground="{DynamicResource Foreground_Dark}" Background="{DynamicResource Background_Outside}"/>
         </Grid>
         <ListView x:Name="UsersListView" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3"
-                  Background="{StaticResource Background_Outside}" BorderThickness="0" ItemsSource="{Binding Source={StaticResource src}}">
+                  Background="{DynamicResource Background_Outside}" BorderThickness="0" ItemsSource="{Binding Source={StaticResource src}}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                     <EventSetter Event="Selected" Handler="UsersListViewItem_Selected"/>
@@ -93,16 +93,16 @@
                             </Border>
                             <TextBlock Grid.Column="1" Text="{Binding user.Name}" FontWeight="Normal"
                                        x:Name="NameTextBlock"
-                                       FontSize="14" Foreground="{StaticResource Foreground}" VerticalAlignment="Center"/>
+                                       FontSize="14" Foreground="{DynamicResource Foreground}" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="1" Grid.Row="1" TextTrimming="CharacterEllipsis"
                                        Width="120" HorizontalAlignment="Left"
-                                       FontSize="10" Foreground="{StaticResource Foreground_Button}"
+                                       FontSize="10" Foreground="{DynamicResource Foreground_Button}"
                                        Text="{Binding user.LastMessage}"/>
                             <Border Grid.Column="2" x:Name="UnreadedCountBorder" Grid.RowSpan="2" HorizontalAlignment="Right"
                                     Visibility="{Binding user.CountUnreaded,Converter={StaticResource NullableContentToHidden}}"
-                                    CornerRadius="100" Background="{StaticResource Background_Border}" Width="20" Height="20" Margin="5,0,0,0">
+                                    CornerRadius="100" Background="{DynamicResource Background_Border}" Width="20" Height="20" Margin="5,0,0,0">
                                 <TextBlock x:Name="UnreadedCountTextBlock"
-                                           Text="{Binding user.CountUnreaded}" Foreground="{StaticResource Foreground}"  FontWeight="Medium"
+                                           Text="{Binding user.CountUnreaded}" Foreground="{DynamicResource Foreground}"  FontWeight="Medium"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
@@ -150,21 +150,21 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Foreground="{StaticResource Foreground_Button}" Padding="0" FontSize="10"
+                                <Label Grid.Column="0" Foreground="{DynamicResource Foreground_Button}" Padding="0" FontSize="10"
                                    VerticalContentAlignment="Center" FontWeight="Medium"
                                    Content="{Binding SenderName}"/>
                                 <Label Grid.Column="1" Content="{Binding Time,StringFormat={}}" Language="RU" FontSize="8" Padding="0"
-                                     Background="Transparent" Foreground="{StaticResource Foreground_Button}"/>
+                                     Background="Transparent" Foreground="{DynamicResource Foreground_Button}"/>
                             </Grid>
                             <RichTextBox IsReadOnly="True" Grid.Row="1" Padding="0" BorderThickness="0" IsDocumentEnabled="True"
                                      Visibility="{Binding Converter={StaticResource BooleanVisibilityConverter},ConverterParameter=text}" 
                                          Tag="{Binding RelativeSource={RelativeSource Self},Converter={StaticResource FindHandlingLink}}" Margin="0,5,0,0"
-                                     Background="Transparent" Foreground="{StaticResource Foreground}" SelectionBrush="{StaticResource Background_Green}">
+                                     Background="Transparent" Foreground="{DynamicResource Foreground}" SelectionBrush="{DynamicResource Background_Green}">
                                 <RichTextBox.Resources>
                                     <Style TargetType="RichTextBox">
                                         <Style.Resources>
                                             <Style TargetType="Hyperlink">
-                                                <Setter Property="Foreground" Value="{StaticResource Background_Green}"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource Background_Green}"/>
                                             </Style>
                                         </Style.Resources>
                                     </Style>
@@ -197,7 +197,7 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Button Grid.Column="1" Template="{StaticResource ButtonStandart}" Padding="0"
-                                                    Foreground="{StaticResource Foreground_Button}" VerticalContentAlignment="Center"
+                                                    Foreground="{DynamicResource Foreground_Button}" VerticalContentAlignment="Center"
                                                 CommandParameter="{Binding Value}"  Click="OpenDownloadedFile_Click">
                                             <Button.Content>
                                                 <Border Padding="5">
@@ -220,7 +220,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid x:Name="MessageSendingGrid" Grid.Row="3" Grid.Column="1" Background="{StaticResource Background_Outside}">
+        <Grid x:Name="MessageSendingGrid" Grid.Row="3" Grid.Column="1" Background="{DynamicResource Background_Outside}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
@@ -231,7 +231,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label x:Name="TypingLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="{StaticResource Foreground}"
+            <Label x:Name="TypingLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="{DynamicResource Foreground}"
                    FontSize="10" FontWeight="Normal" FontStyle="Italic"
                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"/>
             <Button x:Name="StickersPopupChooseButton" Height="40" Width="40"
@@ -241,7 +241,7 @@
                     Template="{StaticResource ButtonStandart}"
                     Content="{StaticResource Canvas_Attachments}" Grid.Column="1" Click="AttachmentSendButton_Click" Grid.Row="1"/>
             <TextBox x:Name="MessageTextBox" Grid.Column="2" Height="40" VerticalContentAlignment="Center"
-                     SelectionBrush="{StaticResource Background_Green}"
+                     SelectionBrush="{DynamicResource Background_Green}"
                      PreviewKeyUp="MessageTextBox_PreviewKeyUp" Grid.Row="1" GotFocus="MessageTextBox_GotFocus"/>
             <Button x:Name="SendMessageButton" Height="40" Width="40"
                     Template="{StaticResource ButtonStandart}"
@@ -250,9 +250,9 @@
         <Canvas>
             <Popup x:Name="StickersPopup" StaysOpen="False" Width="650" Height="400" Visibility="Collapsed"
                    Placement="MousePoint" AllowsTransparency="True" PopupAnimation="Fade">
-                <Border Background="{StaticResource Background_Outside}" Padding="5" CornerRadius="5">
+                <Border Background="{DynamicResource Background_Outside}" Padding="5" CornerRadius="5">
                     <TabControl x:Name="StickersTabControl" ItemsSource="{Binding}" TabStripPlacement="Left" ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                Background="{StaticResource Background_Outside}" BorderThickness="0">
+                                Background="{DynamicResource Background_Outside}" BorderThickness="0">
                         <TabControl.ItemContainerStyle>
                             <Style TargetType="TabItem">
                                 <Setter Property="Background" Value="Transparent"/>
@@ -262,14 +262,14 @@
                                         <ControlTemplate TargetType="{x:Type TabItem}">
                                             <Grid>
                                                 <Border x:Name="border" BorderThickness="1" 
-                                                        BorderBrush="{StaticResource Background_Inside_TextBox}" Padding="0">
+                                                        BorderBrush="{DynamicResource Background_Inside_TextBox}" Padding="0">
                                                     <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center"
-                              ContentSource="Header" TextElement.Foreground="{StaticResource Foreground}" Margin="0" RecognizesAccessKey="True" />
+                              ContentSource="Header" TextElement.Foreground="{DynamicResource Foreground}" Margin="0" RecognizesAccessKey="True" />
                                                 </Border>
                                             </Grid>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsSelected" Value="True">
-                                                    <Setter Property="Panel.Background" Value="{StaticResource Background_Inside}" TargetName="border"/>
+                                                    <Setter Property="Panel.Background" Value="{DynamicResource Background_Inside}" TargetName="border"/>
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>

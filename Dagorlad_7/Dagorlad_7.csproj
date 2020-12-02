@@ -211,9 +211,6 @@
     <Resource Include="images\eye_16.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\plus_16.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\cancel_16.png" />
   </ItemGroup>
   <ItemGroup>

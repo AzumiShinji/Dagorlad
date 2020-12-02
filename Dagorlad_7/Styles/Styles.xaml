@@ -14,16 +14,16 @@
     <SolidColorBrush x:Key="ListViewMouseOverBackground" Color="#353c43"/>
     <SolidColorBrush x:Key="ButtonMouseOverBackground" Color="#353c43"/>
     <Style TargetType="TextBox">
-        <Setter Property="Foreground" Value="{StaticResource Foreground}"/>
-        <Setter Property="Background" Value="{StaticResource Background_Inside_TextBox}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
+        <Setter Property="Background" Value="{DynamicResource Background_Inside_TextBox}"/>
         <Setter Property="Padding" Value="5"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="CaretBrush" Value="{StaticResource Foreground}"/>
+        <Setter Property="CaretBrush" Value="{DynamicResource Foreground}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
     <Style TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{StaticResource Foreground_Button}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground_Button}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="5"/>
     </Style>
@@ -37,10 +37,10 @@
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Button.Foreground" Value="White"/>
-                <Setter Property="Background" Value="{StaticResource ButtonMouseOverBackground}"/>
+                <Setter Property="Background" Value="{DynamicResource ButtonMouseOverBackground}"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" TargetName="border" Value="{StaticResource Background_Green}"/>
+                <Setter Property="Background" TargetName="border" Value="{DynamicResource Background_Green}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
@@ -73,7 +73,7 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource ListViewMouseOverBackground}"/>
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource ListViewMouseOverBackground}"/>
                             <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.MouseOver.Border}"/>
                         </MultiTrigger>
                         <MultiTrigger>
@@ -81,7 +81,7 @@
                                 <Condition Property="Selector.IsSelectionActive" Value="False"/>
                                 <Condition Property="IsSelected" Value="True"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource Background_Green}"/>
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource Background_Green}"/>
                             <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Border}"/>
                         </MultiTrigger>
                         <MultiTrigger>
@@ -89,7 +89,7 @@
                                 <Condition Property="Selector.IsSelectionActive" Value="True"/>
                                 <Condition Property="IsSelected" Value="True"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="Background" TargetName="Bd" Value="{StaticResource Background_Green}"/>
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource Background_Green}"/>
                             <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Border}"/>
                         </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="False">

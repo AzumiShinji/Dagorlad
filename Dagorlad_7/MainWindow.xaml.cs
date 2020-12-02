@@ -40,8 +40,9 @@ namespace Dagorlad_7
 #if (!DEBUG)
             Updater.CheckUpdate().GetAwaiter();
 #endif
-            DispatcherControls.HideWindowToTaskMenu(this,null);
             MySettings.Load();
+            DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme);
+            DispatcherControls.HideWindowToTaskMenu(this,null);
             InitializeComponent();
             LoadEvents();
             // need to remove

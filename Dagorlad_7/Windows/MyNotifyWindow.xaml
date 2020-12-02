@@ -24,10 +24,10 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid x:Name="HideNotifiesListViewGrid" Grid.Row="0" Background="{StaticResource Background_Inside}">
+            <Grid x:Name="HideNotifiesListViewGrid" Grid.Row="0" Background="{DynamicResource Background_Inside}">
                 <Button Grid.Row="0" Content="Скрыть все" Padding="0" Margin="1,0,4,0"
                     Height="40" Click="HideNotifiesListView_Button"
-                    Foreground="{StaticResource Foreground_Button}" Template="{StaticResource ButtonStandart}"/>
+                    Foreground="{DynamicResource Foreground_Button}" Template="{StaticResource ButtonStandart}"/>
             </Grid>
             <ListView Background="Transparent" Grid.Row="1" x:Name="NotifiesListView" BorderThickness="0" VirtualizingPanel.ScrollUnit="Pixel"
                       MinHeight="100" MaxHeight="310" SizeChanged="NotifiesListView_SizeChanged" 
@@ -49,7 +49,7 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
                             <Grid x:Name="MainGrid" PreviewMouseLeftButtonUp="Grid_PreviewMouseLeftButtonDown"
-                            Background="{StaticResource Background_Inside}" Height="100">
+                            Background="{DynamicResource Background_Inside}" Height="100">
                                 <Grid.Style>
                                     <Style TargetType="Grid">
                                         <Style.Triggers>
@@ -82,19 +82,19 @@
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                         <TextBox x:Name="TitleBoxText" IsReadOnly="True" Grid.Row="0" Text="{Binding title}" Margin="5" FontSize="14" FontWeight="Medium"
-                                                 Background="{StaticResource Background_Inside}" VerticalContentAlignment="Center" Padding="0" CaretBrush="{StaticResource Background_Green}"
-                                               Foreground="{StaticResource Foreground}" VerticalAlignment="Center" TextWrapping="NoWrap"/>
-                                        <TextBox x:Name="TextBoxText" IsReadOnly="True" Grid.Row="1" Text="{Binding text}" Margin="5" CaretBrush="{StaticResource Background_Green}"
-                                                 Background="{StaticResource Background_Inside}" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch"
-                                               Foreground="{StaticResource Foreground}" TextWrapping="Wrap" Padding="0"/>
+                                                 Background="{DynamicResource Background_Inside}" VerticalContentAlignment="Center" Padding="0" CaretBrush="{DynamicResource Background_Green}"
+                                               Foreground="{DynamicResource Foreground}" VerticalAlignment="Center" TextWrapping="NoWrap"/>
+                                        <TextBox x:Name="TextBoxText" IsReadOnly="True" Grid.Row="1" Text="{Binding text}" Margin="5" CaretBrush="{DynamicResource Background_Green}"
+                                                 Background="{DynamicResource Background_Inside}" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch"
+                                               Foreground="{DynamicResource Foreground}" TextWrapping="Wrap" Padding="0"/>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid Grid.Column="1" Background="{StaticResource Background_Inside}">
+                            <Grid Grid.Column="1" Background="{DynamicResource Background_Inside}">
                                 <Button Grid.Column="1" Content="{StaticResource Canvas_Arrow_Right}"
                                     Width="40" Click="CloseButton" CommandParameter="{Binding ElementName=NotifiesListView}"
                                     Tag="{Binding ElementName=MainGrid}" HorizontalContentAlignment="Center"
-                                    Template="{StaticResource ButtonStandart}" Foreground="{StaticResource Foreground_Button}"/>
+                                    Template="{StaticResource ButtonStandart}" Foreground="{DynamicResource Foreground_Button}"/>
                             </Grid>
                         </Grid>
                     </DataTemplate>

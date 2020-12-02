@@ -38,7 +38,7 @@ namespace Dagorlad_7.Windows
         }
         public static void Load()
         {
-            string root = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +"\\"+ Assembly.GetExecutingAssembly().GetName().Name;
+            string root = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + Assembly.GetExecutingAssembly().GetName().Name;
             RoamingFolder = root;
             if (!Directory.Exists(root)) Directory.CreateDirectory(root);
             path = root + "\\Settings.json";
@@ -54,19 +54,59 @@ namespace Dagorlad_7.Windows
                 }
             }
         }
+        public class OldCustomExample {
+            public class Rootobject
+            {
+                public Example[] Examples { get; set; }
+            }
+
+            public class Example
+            {
+                public string Folder { get; set; }
+                public string Name { get; set; }
+                public string Text { get; set; }
+            }
+        }
         public static void LoadEmailFromOldDagorlad()
         {
-            var emailfile = AppDomain.CurrentDomain.BaseDirectory + String.Format("{0}.email", Environment.UserName);
-            if (File.Exists(emailfile))
+            try
             {
-                MySettings.Settings.Email = File.ReadAllText(emailfile);
-                try
+                var emailfile = AppDomain.CurrentDomain.BaseDirectory + String.Format("{0}.email", Environment.UserName);
+                if (File.Exists(emailfile))
                 {
-                    File.Delete(emailfile);
+                    MySettings.Settings.Email = File.ReadAllText(emailfile);
+                    try
+                    {
+                        File.Delete(emailfile);
+                    }
+                    catch { }
+                    MySettings.Save();
                 }
-                catch { }
-                MySettings.Save();
+                var customexamplefile = AppDomain.CurrentDomain.BaseDirectory + String.Format("CustomExample_{0}.json", Environment.UserName);
+                if (File.Exists(customexamplefile))
+                {
+                    if (MySettings.Settings.SmartMenuList.Count() == 0)
+                    {
+                        OldCustomExample.Example[] objs = null;
+                        using (StreamReader file = File.OpenText(customexamplefile))
+                        {
+                            objs = ((OldCustomExample.Rootobject)new JsonSerializer().Deserialize(file, typeof(OldCustomExample.Rootobject))).Examples;
+                        }
+                        var list = new List<SmartAnswersClass>();
+                        foreach (var s in objs.GroupBy(x => x.Folder).Select(x => x.First()).Select(x => x.Folder))
+                        {
+                            var name = s;
+                            var items = new List<SmartAnswers_SubClass>();
+                            foreach (var g in objs.Where(x => x.Folder == s))
+                            {
+                                items.Add(new SmartAnswers_SubClass { title = g.Name, text = g.Text });
+                            }
+                            MySettings.Settings.SmartMenuList.Add(new SmartAnswersClass { name = name, items = new ObservableCollection<SmartAnswers_SubClass>(items) });
+                        }
+                    }
+                }
             }
+            catch { }
         }
     }
     public partial class MySettingsWindow : Window
@@ -98,13 +138,13 @@ namespace Dagorlad_7.Windows
             IsEnabledSmartMenuCheckBox.IsChecked = MySettings.Settings.SmartMenuIsEnabled;
             IsAutorunCheckBox.IsChecked = DispatcherControls.Autorun(DispatcherControls.TypeAutoRunOperation.CheckStatus);
             EmailTextBox.Text = MySettings.Settings.Email;
-            switch(MySettings.Settings.TypeColorScheme)
+            switch (MySettings.Settings.TypeColorScheme)
             {
                 case (TypeColorScheme.dark):
                     DarkColorSchemeRadioButton.IsChecked = true; break;
                 case (TypeColorScheme.light):
                     LightColorSchemeRadioButton.IsChecked = true; break;
-            }    
+            }
             if (!String.IsNullOrEmpty(EmailTextBox.Text))
                 EmailTextBox.IsEnabled = false;
             return Task.CompletedTask;
@@ -120,8 +160,8 @@ namespace Dagorlad_7.Windows
             if (DarkColorSchemeRadioButton.IsChecked == true)
             {
                 MySettings.Settings.TypeColorScheme = TypeColorScheme.dark;
-                    }
-            else if(LightColorSchemeRadioButton.IsChecked==true)
+            }
+            else if (LightColorSchemeRadioButton.IsChecked == true)
             {
                 MySettings.Settings.TypeColorScheme = TypeColorScheme.light;
             }

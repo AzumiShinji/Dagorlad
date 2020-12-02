@@ -290,19 +290,34 @@ namespace Dagorlad_7.classes
                         Application.Current.Resources["Background_Green"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF3A6FD8"));
                         Application.Current.Resources["Background_Border"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFD8BB3A"));
                         Application.Current.Resources["Background_Green_Color"] = (Color)ColorConverter.ConvertFromString("#FF3A6FD8");
-                        Application.Current.Resources["ListViewMouseOverBackground"] = new SolidColorBrush(Colors.Gray);
-                        Application.Current.Resources["ButtonMouseOverBackground"] = new SolidColorBrush(Colors.LightGray);
                         Application.Current.Resources["Foreground"] = new SolidColorBrush(Colors.Black);
                         Application.Current.Resources["Foreground_Button"] = new SolidColorBrush(Colors.Black);
                         Application.Current.Resources["Foreground_Dark"] = new SolidColorBrush(Colors.Black);
-                        var styles = new Uri("pack://application:,,,/Dagorlad;component/Styles/Styles.xaml", UriKind.RelativeOrAbsolute);
-                        var canvas = new Uri("pack://application:,,,/Dagorlad;component/Styles/Canvases.xaml", UriKind.RelativeOrAbsolute);
-                        Application.Current.Resources.MergedDictionaries.Clear();
-                        Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = styles });
-                        Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = canvas });
+                        Application.Current.Resources["ListViewMouseOverBackground"] = new SolidColorBrush(Colors.Gray);
+                        Application.Current.Resources["ButtonMouseOverBackground"] = new SolidColorBrush(Colors.LightGray);
+                        break;
+                    }
+                case (TypeColorScheme.dark):
+                    {
+                        Application.Current.Resources["Background_Inside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#18191d"));
+                        Application.Current.Resources["Background_Outside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#282e33"));
+                        Application.Current.Resources["Background_Inside_TextBox"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#33393f"));
+                        Application.Current.Resources["Background_Green"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF3A6FD8"));
+                        Application.Current.Resources["Background_Border"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFD8BB3A"));
+                        Application.Current.Resources["Background_Green_Color"] = (Color)ColorConverter.ConvertFromString("#FF3A6FD8");
+                        Application.Current.Resources["Foreground"] = new SolidColorBrush(Colors.WhiteSmoke);
+                        Application.Current.Resources["Foreground_Button"] = new SolidColorBrush(Colors.LightGray);
+                        Application.Current.Resources["Foreground_Dark"] = new SolidColorBrush(Colors.Gray);
+                        Application.Current.Resources["ListViewMouseOverBackground"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#353c43"));
+                        Application.Current.Resources["ButtonMouseOverBackground"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#353c43"));
                         break;
                     }
             }
+            var styles = new Uri("pack://application:,,,/Dagorlad;component/Styles/Styles.xaml", UriKind.RelativeOrAbsolute);
+            var canvas = new Uri("pack://application:,,,/Dagorlad;component/Styles/Canvases.xaml", UriKind.RelativeOrAbsolute);
+            Application.Current.Resources.MergedDictionaries.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = styles });
+            Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = canvas });
         }
     }
     class CursorPosition

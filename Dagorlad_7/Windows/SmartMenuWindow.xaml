@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Dagorlad_7.Windows"
         mc:Ignorable="d"
         WindowStyle="None"
-        Background="{StaticResource Background_Outside}"
+        Background="{DynamicResource Background_Outside}"
         SizeToContent="WidthAndHeight"
         MinHeight="300" MinWidth="400"
         ResizeMode="NoResize" Closing="Window_Closing" PreviewKeyUp="Window_PreviewKeyUp"
@@ -21,13 +21,13 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Grid.ColumnSpan="2" PreviewMouseDown="DragablePanel_PreviewMouseDown"
-                    x:Name="DragablePanel" Background="{StaticResource Background_Outside}" Height="40" Margin="0">
+                    x:Name="DragablePanel" Background="{DynamicResource Background_Outside}" Height="40" Margin="0">
             <Grid HorizontalAlignment="Center">
                 <Label x:Name="HeaderLabel" Content="СМАРТ-МЕНЮ" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Medium"
-                   VerticalContentAlignment="Center" Foreground="{StaticResource Foreground}"/>
+                   VerticalContentAlignment="Center" Foreground="{DynamicResource Foreground}"/>
             </Grid>
         </Grid>
-        <Grid x:Name="SmartAnswersGrid" Background="{StaticResource Background_Inside}" Grid.Row="1">
+        <Grid x:Name="SmartAnswersGrid" Background="{DynamicResource Background_Inside}" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -37,7 +37,7 @@
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Grid Tag="LeftColumn" Grid.Row="1" Background="{StaticResource Background_Outside}">
+            <Grid Tag="LeftColumn" Grid.Row="1" Background="{DynamicResource Background_Outside}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
@@ -49,9 +49,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="NewItemTextBox" MinWidth="100" Margin="5" Height="36"/>
                     <Button x:Name="NewItemAddButton" Grid.Column="1" Width="36" MinHeight="36" Margin="0,5,5,5"
-                                Template="{StaticResource ButtonStandart}" Click="SmartAnswers_NewItemAddButton_Click">
-                        <Image Source="/images/plus_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-                    </Button>
+                                Template="{StaticResource ButtonStandart}" Click="SmartAnswers_NewItemAddButton_Click" Content="{StaticResource Canvas_Plus}"/>
                 </Grid>
                 <ListBox x:Name="SmartAnswersListBox" VirtualizingPanel.ScrollUnit="Pixel"
                          Grid.Row="1" ItemsSource="{Binding}" MinWidth="200"
@@ -75,7 +73,7 @@
                                     <TextBlock Text="{Binding name}" Padding="5" VerticalAlignment="Center"
                                        TextTrimming="WordEllipsis"
                                         TextWrapping="NoWrap"
-                                       Foreground="{StaticResource Foreground}"
+                                       Foreground="{DynamicResource Foreground}"
                                        Background="Transparent" />
                                 </Border>
                                 <Grid Tag="MoveItem" Grid.Column="1">
@@ -84,11 +82,11 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <Button Grid.Row="0" Click="MoveItem" CommandParameter="up"  ToolTip="Переместить вверх"  Content="{StaticResource Canvas_Arrow_Top}"
-                                            Template="{DynamicResource ButtonStandart}"/>
+                                            Template="{StaticResource ButtonStandart}"/>
                                     <Button Grid.Row="1" Click="MoveItem" CommandParameter="down"  ToolTip="Переместить вниз" Content="{StaticResource Canvas_Arrow_Down}"
-                                            Template="{DynamicResource ButtonStandart}"/>
+                                            Template="{StaticResource ButtonStandart}"/>
                                 </Grid>
-                                <Button x:Name="SwtichRemovePanelButton" Grid.Column="2" Template="{DynamicResource ButtonStandart}" Width="30" Height="30"
+                                <Button x:Name="SwtichRemovePanelButton" Grid.Column="2" Template="{StaticResource ButtonStandart}" Width="30" Height="30"
                                         ToolTip="Удалить" CommandParameter="{Binding ElementName=ControlMenuGrid}" Click="ShowControlMenu_Click">
                                     <Image Source="/images/remove_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                 </Button>
@@ -97,11 +95,11 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <Button Grid.Column="0" Template="{DynamicResource ButtonStandart}" Width="30" Height="30" ToolTip="Подтвердить удаление"
+                                    <Button Grid.Column="0" Template="{StaticResource ButtonStandart}" Width="30" Height="30" ToolTip="Подтвердить удаление"
                                             Click="RemoveRootItem_Click" Tag="remove">
                                         <Image Source="/images/ok_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                     </Button>
-                                    <Button Grid.Column="1" Template="{DynamicResource ButtonStandart}" Width="30" Height="30" ToolTip="Отменить удаление"
+                                    <Button Grid.Column="1" Template="{StaticResource ButtonStandart}" Width="30" Height="30" ToolTip="Отменить удаление"
                                             Click="CancelRemove_Click" CommandParameter="{Binding ElementName=ControlMenuGrid}">
                                         <Image Source="/images/cancel_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                     </Button>
@@ -123,13 +121,11 @@
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="NewItemSubTextBox" MinWidth="100" Margin="5" Height="36"/>
                     <Button x:Name="NewItemSubAddButton" Grid.Column="1" Width="36" MinHeight="36" Margin="0,5,0,5"
-                                Template="{StaticResource ButtonStandart}" Click="SmartAnswers_NewItemSubAddButton_Click">
-                        <Image Source="/images/plus_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-                    </Button>
+                                Template="{StaticResource ButtonStandart}" Click="SmartAnswers_NewItemSubAddButton_Click" Content="{StaticResource Canvas_Plus}"/>
                 </Grid>
                 <ListBox x:Name="SmartAnswers_Items_ListBox" 
                          VirtualizingPanel.ScrollUnit="Pixel" MinWidth="400"
-                     Grid.Row="1" Background="{StaticResource Background_Inside}" BorderThickness="0" SelectionMode="Single">
+                     Grid.Row="1" Background="{DynamicResource Background_Inside}" BorderThickness="0" SelectionMode="Single">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid ToolTip="{Binding title}" x:Name="ControlMenuGrid"
@@ -143,7 +139,7 @@
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Border Grid.Column="0" Height="auto">
-                                    <TextBlock Text="{Binding title}" Foreground="{StaticResource Foreground}"
+                                    <TextBlock Text="{Binding title}" Foreground="{DynamicResource Foreground}"
                                            VerticalAlignment="Center" TextWrapping="NoWrap" TextTrimming="WordEllipsis"
                                        Padding="5" Background="Transparent" />
                                 </Border>
@@ -153,21 +149,21 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <Button Grid.Row="0" Click="ControlContent_Click" CommandParameter="up"  ToolTip="Переместить вверх"
-                                            Template="{DynamicResource ButtonStandart}" Content="{StaticResource Canvas_Arrow_Top}"/>
+                                            Template="{StaticResource ButtonStandart}" Content="{StaticResource Canvas_Arrow_Top}"/>
                                     <Button Grid.Row="1" Click="ControlContent_Click" CommandParameter="down"  ToolTip="Переместить вниз"
-                                            Template="{DynamicResource ButtonStandart}" Content="{StaticResource Canvas_Arrow_Down}"/>
+                                            Template="{StaticResource ButtonStandart}" Content="{StaticResource Canvas_Arrow_Down}"/>
                                 </Grid>
-                                <Button Grid.Column="2" Template="{DynamicResource ButtonStandart}" ToolTip="Копировать содержание" 
+                                <Button Grid.Column="2" Template="{StaticResource ButtonStandart}" ToolTip="Копировать содержание" 
                                         Width="30" Height="30"
                                         Click="ControlContent_Click" Tag="copy">
                                     <Image Source="/images/copy_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                 </Button>
-                                <Button Grid.Column="3" Template="{DynamicResource ButtonStandart}" 
+                                <Button Grid.Column="3" Template="{StaticResource ButtonStandart}" 
                                         CommandParameter="{Binding ElementName=SmartAnswers_Items_ShowPopup}" Width="30" Height="30"
                                         ToolTip="Показать содержание" Click="ControlContent_Click" Tag="show">
                                     <Image Source="/images/eye_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                 </Button>
-                                <Button Grid.Column="4" Template="{DynamicResource ButtonStandart}" x:Name="SwtichRemovePanelButton"
+                                <Button Grid.Column="4" Template="{StaticResource ButtonStandart}" x:Name="SwtichRemovePanelButton"
                                         CommandParameter="{Binding ElementName=ControlMenuGrid}" Click="ShowControlMenu_Click"
                                          Width="30" Height="30"
                                         ToolTip="Удалить" Tag="remove">
@@ -179,10 +175,10 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <Button Grid.Column="0" Click="ControlContent_Click"  ToolTip="Подтвердить удаление"
-                                            Template="{DynamicResource ButtonStandart}" Width="30" Height="30" Tag="remove">
+                                            Template="{StaticResource ButtonStandart}" Width="30" Height="30" Tag="remove">
                                         <Image Source="/images/ok_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                     </Button>
-                                    <Button Grid.Column="1" Click="CancelRemove_Click" Template="{DynamicResource ButtonStandart}" Width="30" Height="30"
+                                    <Button Grid.Column="1" Click="CancelRemove_Click" Template="{StaticResource ButtonStandart}" Width="30" Height="30"
                                             ToolTip="Отменить удаление"
                                             CommandParameter="{Binding ElementName=ControlMenuGrid}">
                                         <Image Source="/images/cancel_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
@@ -190,36 +186,36 @@
                                 </Grid>
                                 <Popup x:Name="SmartAnswers_Items_ShowPopup" StaysOpen="False" Focusable="True"
                                        AllowsTransparency="True" Placement="MousePoint" PopupAnimation="Fade">
-                                    <Border MinHeight="400" MinWidth="500" Background="{StaticResource Background_Inside}">
+                                    <Border MinHeight="400" MinWidth="500" Background="{DynamicResource Background_Inside}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto"/>
                                                 <RowDefinition/>
                                                 <RowDefinition Height="auto"/>
                                             </Grid.RowDefinitions>
-                                            <Grid Grid.Row="0" Background="{StaticResource Background_Outside}" Height="40">
+                                            <Grid Grid.Row="0" Background="{DynamicResource Background_Outside}" Height="40">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition/>
                                                     <ColumnDefinition/>
                                                 </Grid.ColumnDefinitions>
-                                                <Label Content="{Binding title}" Foreground="{StaticResource Foreground}"
+                                                <Label Content="{Binding title}" Foreground="{DynamicResource Foreground}"
                                                    Height="30" VerticalContentAlignment="Center"  FontSize="14"
                                                    HorizontalContentAlignment="Center"/>
                                                 <CheckBox x:Name="IsEditCheckBox" Grid.Column="1" VerticalContentAlignment="Center"
-                                                          Padding="5" Foreground="{StaticResource Foreground}"  FontSize="14"
+                                                          Padding="5" Foreground="{DynamicResource Foreground}"  FontSize="14"
                                                           Content="Запретить изменение" IsChecked="True"/>
                                             </Grid>
                                             <Border Grid.Row="1" Padding="10" CornerRadius="5" Margin="10"
-                                                    Background="{StaticResource Background_Inside_TextBox}">
+                                                    Background="{DynamicResource Background_Inside_TextBox}">
                                                 <TextBox Text="{Binding text}" IsReadOnly="{Binding IsChecked,ElementName=IsEditCheckBox}"
                                                      TextWrapping="Wrap" MaxWidth="700" MaxHeight="500" 
                                                      VerticalScrollBarVisibility="Auto"
-                                                     Background="{StaticResource Background_Inside_TextBox}"
-                                                     SelectionBrush="{StaticResource Background_Green}"
+                                                     Background="{DynamicResource Background_Inside_TextBox}"
+                                                     SelectionBrush="{DynamicResource Background_Green}"
                                                      VerticalContentAlignment="Stretch"
                                                      AcceptsReturn="True"/>
                                             </Border>
-                                            <Button Content="Закрыть" Grid.Row="2" Click="ClosePopup_Click" Background="{StaticResource Background_Outside}"
+                                            <Button Content="Закрыть" Grid.Row="2" Click="ClosePopup_Click" Background="{DynamicResource Background_Outside}"
                                                     CommandParameter="{Binding ElementName=SmartAnswers_Items_ShowPopup}" FontSize="14"
                                                     VerticalContentAlignment="Center"
                                                     Padding="10" Template="{StaticResource ButtonStandart}"/>
@@ -232,7 +228,7 @@
                 </ListBox>
             </Grid>
         </Grid>
-        <Button x:Name="WindowHideButton" Grid.Row="2" Height="40" FontSize="14" Foreground="{StaticResource Foreground_Button}"
-                Content="Закрыть" Click="WindowHideButton_Click" Template="{DynamicResource ButtonStandart}"/>
+        <Button x:Name="WindowHideButton" Grid.Row="2" Height="40" FontSize="14" Foreground="{DynamicResource Foreground_Button}"
+                Content="Закрыть" Click="WindowHideButton_Click" Template="{StaticResource ButtonStandart}"/>
     </Grid>
 </Window>

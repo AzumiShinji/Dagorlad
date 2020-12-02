@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Dagorlad_7.Windows"
         mc:Ignorable="d"
         WindowStyle="None"
-        Background="{StaticResource Background_Outside}"
+        Background="{DynamicResource Background_Outside}"
         SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen"
         ShowInTaskbar="False"
         ResizeMode="NoResize" Closing="Window_Closing"
@@ -25,11 +25,11 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Label x:Name="TitleLabel" Content="title" FontSize="14" FontWeight="Medium"
-                       Foreground="{StaticResource Foreground}" HorizontalContentAlignment="Center"/>
+                       Foreground="{DynamicResource Foreground}" HorizontalContentAlignment="Center"/>
                 <TextBox x:Name="TextTextBox" IsReadOnly="True" Grid.Row="1" Text="text" Margin="10" FontSize="12" FontWeight="Normal"
                     MaxWidth="350"                         
-                Background="{StaticResource Background_Outside}" VerticalContentAlignment="Center" Padding="0" CaretBrush="{StaticResource Background_Green}"
-                Foreground="{StaticResource Foreground}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow"/>
+                Background="{DynamicResource Background_Outside}" VerticalContentAlignment="Center" Padding="0" CaretBrush="{DynamicResource Background_Green}"
+                Foreground="{DynamicResource Foreground}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow"/>
             </Grid>
             <Grid x:Name="GridButtons" Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -37,12 +37,12 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="OkButton" Grid.Column="0" Height="40" FontSize="14" Foreground="{StaticResource Foreground_Button}"
-                Content="Ок" Click="EventClick" CommandParameter="ok" Template="{DynamicResource ButtonStandart}"/>
-                <Button x:Name="YesButton" Grid.Column="1" Height="40" FontSize="14" Foreground="{StaticResource Foreground_Button}"
-                Content="Да" Click="EventClick" CommandParameter="yes" Template="{DynamicResource ButtonStandart}"/>
-                <Button x:Name="NoButton" Grid.Column="2" Height="40" FontSize="14" Foreground="{StaticResource Foreground_Button}"
-                Content="Нет" Click="EventClick" CommandParameter="no" Template="{DynamicResource ButtonStandart}"/>
+                <Button x:Name="OkButton" Grid.Column="0" Height="40" FontSize="14" Foreground="{DynamicResource Foreground_Button}"
+                Content="Ок" Click="EventClick" CommandParameter="ok" Template="{StaticResource ButtonStandart}"/>
+                <Button x:Name="YesButton" Grid.Column="1" Height="40" FontSize="14" Foreground="{DynamicResource Foreground_Button}"
+                Content="Да" Click="EventClick" CommandParameter="yes" Template="{StaticResource ButtonStandart}"/>
+                <Button x:Name="NoButton" Grid.Column="2" Height="40" FontSize="14" Foreground="{DynamicResource Foreground_Button}"
+                Content="Нет" Click="EventClick" CommandParameter="no" Template="{StaticResource ButtonStandart}"/>
             </Grid>
         </Grid>
     </Border>

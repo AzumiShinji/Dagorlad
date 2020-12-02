@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Dagorlad_7.Windows"
         mc:Ignorable="d"
         WindowStyle="None"
-        Background="{StaticResource Background_Outside}"
+        Background="{DynamicResource Background_Outside}"
         ResizeMode="NoResize"
         Topmost="True" Closing="Window_Closing"
         SizeToContent="Height"
