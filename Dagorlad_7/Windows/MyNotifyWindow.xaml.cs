@@ -31,12 +31,6 @@ namespace Dagorlad_7.Windows
         public TimeSpan timetoautoclose { get; set; }
         public bool IsLock { get; set; }
     }
-    public enum TypeImageNotify
-    {
-        standart = 0,
-        chat = 1,
-        buildings = 2,
-    }
     public partial class MyNotifyWindow : Window
     {
         public Window FromWindow;

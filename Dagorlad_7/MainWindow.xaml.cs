@@ -48,6 +48,7 @@ namespace Dagorlad_7
             // need to remove
             MySettings.LoadEmailFromOldDagorlad();
             //
+            if(MySettings.Settings.Email.ToLower()!="teterinanab@fsfk.local")
             new ChatWindow();
             CheckingUpdateApplicationStart();
         }
@@ -67,7 +68,8 @@ namespace Dagorlad_7
             await MySettings.Save();
             InitClipboardMonitor();
             UpdateLabelAboutUpdate();
-            DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name, "Программа запущена и работает в фоновом режиме.", 8, this, TypeImageNotify.standart);
+            DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name, 
+                "Программа работает в фоновом режиме.", 8, this, TypeImageNotify.standart);
         }
         private async void UpdateLabelAboutUpdate()
         {

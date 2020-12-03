@@ -19,6 +19,13 @@ using static Dagorlad_7.Windows.MyDialogWindow;
 
 namespace Dagorlad_7.classes
 {
+    public enum TypeImageNotify
+    {
+        standart = 0,
+        chat = 1,
+        buildings = 2,
+        sad = 3,
+    }
     public enum TypeColorScheme
     {
         dark = 0,
@@ -228,6 +235,12 @@ namespace Dagorlad_7.classes
                     case (TypeImageNotify.chat):
                         {
                             var SourceUri = new Uri("pack://application:,,,/Dagorlad;component/chat.ico", UriKind.Absolute);
+                            var thisIcon = new BitmapImage(SourceUri);
+                            return thisIcon;
+                        }
+                    case (TypeImageNotify.sad):
+                        {
+                            var SourceUri = new Uri("pack://application:,,,/Dagorlad;component/images/sad_64.png", UriKind.Absolute);
                             var thisIcon = new BitmapImage(SourceUri);
                             return thisIcon;
                         }

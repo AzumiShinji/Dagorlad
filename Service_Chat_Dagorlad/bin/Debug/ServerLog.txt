@@ -1,0 +1,15 @@
+03.12.2020 21:04:13: Disconnect "PyatkoBV@fsfk.local" successfully
+03.12.2020 21:04:15: Disconnect "EfimovMAn@fsfk.local" successfully
+03.12.2020 21:23:44: Disconnect "PyatkoBV@fsfk.local" successfully
+03.12.2020 21:23:49: Disconnect "EfimovMAn@fsfk.local" successfully
+03.12.2020 21:23:53: Disconnect "BalandinAI@fsfk.local" successfully
+03.12.2020 21:48:03: Client "BalandinAI@fsfk.local" already exist.
+03.12.2020 21:48:07: Disconnect "BalandinAI@fsfk.local" successfully
+03.12.2020 21:48:42: Client "BalandinAI@fsfk.local" already exist.
+03.12.2020 21:48:45: Disconnect "BalandinAI@fsfk.local" successfully
+03.12.2020 21:51:16: Client "BalandinAI@fsfk.local" already exist.
+03.12.2020 21:51:19: Disconnect "BalandinAI@fsfk.local" successfully
+03.12.2020 21:52:47: Client "BalandinAI@fsfk.local" already exist.
+03.12.2020 21:52:50: Disconnect "BalandinAI@fsfk.local" successfully
+03.12.2020 21:53:19: Client "BalandinAI@fsfk.local" already exist.
+03.12.2020 21:53:22: Disconnect "BalandinAI@fsfk.local" successfully

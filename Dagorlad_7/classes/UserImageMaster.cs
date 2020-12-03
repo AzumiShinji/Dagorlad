@@ -101,9 +101,19 @@ namespace Dagorla_7.classes
                 return bitmapImage;
             }
         }
-        private static Color GetReadableForeColor(Color c)
+        private static Color GetReadableForeColor(Color color)
         {
-            return (((c.R + c.B + c.G)) < 255*3) ? Color.Black : Color.WhiteSmoke;
+            int d = 0;
+
+            // Counting the perceptive luminance - human eye favors green color... 
+            double luminance = (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255;
+
+            if (luminance > 0.5)
+                d = 0; // bright colors - black font
+            else
+                d = 255; // dark colors - white font
+
+            return Color.FromArgb(d, d, d);
         }
         private static int PerceivedBrightness(Color c)
         {

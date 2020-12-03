@@ -18,7 +18,7 @@
         <CollectionViewSource x:Key='src' Source="{Binding}" IsLiveSortingRequested="True">
             <CollectionViewSource.SortDescriptions>
                 <componentModel:SortDescription PropertyName="user.CountUnreaded" Direction="Descending"/>
-                <!--<componentModel:SortDescription PropertyName="user.Email" Direction="Ascending"/>-->
+                <componentModel:SortDescription PropertyName="user.Email" Direction="Ascending"/>
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </Window.Resources>
@@ -95,7 +95,7 @@
                                        x:Name="NameTextBlock"
                                        FontSize="14" Foreground="{DynamicResource Foreground}" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="1" Grid.Row="1" TextTrimming="CharacterEllipsis"
-                                       Width="120" HorizontalAlignment="Left"
+                                       HorizontalAlignment="Left" MaxWidth="{Binding ActualWidth,ElementName=NameTextBlock}"
                                        FontSize="10" Foreground="{DynamicResource Foreground_Button}"
                                        Text="{Binding user.LastMessage}"/>
                             <Border Grid.Column="2" x:Name="UnreadedCountBorder" Grid.RowSpan="2" HorizontalAlignment="Right"
@@ -231,7 +231,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label x:Name="TypingLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="{DynamicResource Foreground}"
+            <Label x:Name="TypingLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Foreground="{DynamicResource Foreground}"
                    FontSize="10" FontWeight="Normal" FontStyle="Italic"
                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"/>
             <Button x:Name="StickersPopupChooseButton" Height="40" Width="40"

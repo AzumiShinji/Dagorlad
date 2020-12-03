@@ -47,11 +47,12 @@ namespace Dagorlad_7.classes
                     if (File.Exists(path_downloadedfile))
                         File.Delete(path_downloadedfile);
                     var wc = new WebClient();
-                    wc.DownloadFile(new Uri(PathToFile+ target), path_downloadedfile);
+                    wc.DownloadFile(new Uri(PathToFile + target), path_downloadedfile);
                     File.Move(AppDomain.CurrentDomain.BaseDirectory + target, path_bakfile);
                     File.Copy(path_downloadedfile, AppDomain.CurrentDomain.BaseDirectory + target);
                     System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
-                    ((MainWindow)Application.Current.MainWindow).ExitFromApplication();
+                    if (Application.Current.MainWindow != null && Application.Current.MainWindow.GetType() == typeof(MainWindow))
+                        ((MainWindow)Application.Current.MainWindow).ExitFromApplication();
                     Process.GetCurrentProcess().Kill();
                 }
             }
@@ -84,7 +85,8 @@ namespace Dagorlad_7.classes
                     startInfo.Verb = "runas";
                     process.StartInfo = startInfo;
                     process.Start();
-                    ((MainWindow)Application.Current.MainWindow).ExitFromApplication();
+                    if (Application.Current.MainWindow != null && Application.Current.MainWindow.GetType() == typeof(MainWindow))
+                        ((MainWindow)Application.Current.MainWindow).ExitFromApplication();
                     Process.GetCurrentProcess().Kill();
                 }
                 if (isElevated)

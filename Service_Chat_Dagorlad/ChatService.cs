@@ -269,9 +269,8 @@ namespace Service_Chat_Dagorlad
                         catch (Exception ex)
                         {
                             LogWrite(ex.ToString());
-                            LogWrite("Try disconnect \"" + client.Email + "\"");
-                            Disconnect(client);
-                            //clients.Remove(key);
+                            LogWrite("Try remove \"" + client.Email + "\"");
+                            clients.Remove(key);
                             return false;
                         }
                     }
@@ -282,12 +281,6 @@ namespace Service_Chat_Dagorlad
             else
             {
                 LogWrite("Client \""+ client.Email + "\" already exist.");
-                try
-                {
-                    LogWrite("Try disconnect \""+client.Email+"\"");
-                    Disconnect(client);
-                }
-                catch (Exception ex) { LogWrite("Trying disconnecting error: " + ex.ToString()); }
             }
             return false;
         }
@@ -377,7 +370,7 @@ namespace Service_Chat_Dagorlad
                                 callback.RefreshClients(this.clientList);
                                 callback.UserLeave(client);
                             }
-                            LogWrite("Disconnect \"" + client.Email + "\" successfully");
+                            LogWrite(client.Email+" - has been disconnected successfully.");
                         }
                         catch (Exception ex) { LogWrite("Trying disconnecting error: " + ex.ToString()); }
                     }

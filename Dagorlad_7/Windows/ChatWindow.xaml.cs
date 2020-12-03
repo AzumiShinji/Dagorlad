@@ -47,6 +47,12 @@ namespace Dagorlad_7.Windows
 
             base.OnStateChanged(e);
         }
+        ObservableCollection<ChatsClass> OCChats = new ObservableCollection<ChatsClass>();
+        public ObservableCollection<ChatsClass> ItemsOfChat
+        {
+            get { return OCChats; }
+            set { OCChats = value; }
+        }
         public class ChatsClass
         {
             public SVC.Client user { get; set; }
@@ -62,17 +68,20 @@ namespace Dagorlad_7.Windows
         public static SVC.ChatClient proxy = null;
         public static SVC.Client Me = null;
         public static SVC.Client SelectedUser = null;
-        ObservableCollection<ChatsClass> ListChats = new ObservableCollection<ChatsClass>();
-        string common_chat = "common@fsfk.local";
+        string common_chat = "_common@fsfk.local";
         public ChatWindow()
         {
+            DispatcherControls.NewMyNotifyWindow("Чат",
+               "Прошу набраться терпения, в скором времени работа программы будет налажена.", 60, this, TypeImageNotify.sad);
+            DispatcherControls.NewMyNotifyWindow("Чат",
+                "Привет!\nЯ понимаю, что я уже некоторых заебал с этим ебучим чатом.", 60, this, TypeImageNotify.sad);
             DispatcherControls.HideWindowToTaskMenu(this, "Чат");
             InitializeComponent();
             AdditionalBlock.Visibility = Visibility.Collapsed;
             MessageSendingGrid.Visibility = Visibility.Collapsed;
             StickersPopup.DataContext = list_stickers;
             Start();
-            DataContext = ListChats;
+            DataContext = ItemsOfChat;
         }
 
         public void IsWritingCallback(SVC.Client client)
@@ -92,7 +101,7 @@ namespace Dagorlad_7.Windows
 
         public async void Receive(SVC.Message msg)
         {
-            foreach (var s in ListChats)
+            foreach (var s in OCChats)
             {
                 if (s.user.Email == common_chat)
                 {
@@ -126,7 +135,7 @@ namespace Dagorlad_7.Windows
         }
         public async void ReceiveWhisper(SVC.Message msg, SVC.Client receiver)
         {
-            foreach (var s in ListChats)
+            foreach (var s in OCChats)
             {
                 if (s.user.Email == receiver.Email || s.user.Email == msg.Sender)
                 {
@@ -157,8 +166,8 @@ namespace Dagorlad_7.Windows
 
         public async void RefreshClients(SVC.Client[] clients)
         {
-            if (ListChats.Where(x => x.user.Email == common_chat).Count() == 0)
-                ListChats.Add(new ChatsClass
+            if (OCChats.Where(x => x.user.Email == common_chat).Count() == 0)
+                OCChats.Add(new ChatsClass
                 {
                     user = new SVC.Client
                     {
@@ -169,26 +178,22 @@ namespace Dagorlad_7.Windows
                 });
             foreach (var s in clients)
             {
-                if (ListChats.Where(x => x.user == s).Count() == 0)
+                if (OCChats.Where(x => x.user.Email == s.Email).Count() == 0)
                 {
-                    ListChats.Add(new ChatsClass { 
+                    OCChats.Add(new ChatsClass { 
                         user = s, 
                         image= UserImageMaster.CreateProfilePicture(s.Name, false),
                     });
                 }
                 else continue;
             }
-            var list = ListChats.ToList();
+            var list = OCChats.ToList();
             foreach (var s in list)
-                if (!clients.Contains(s.user))
-                    if (s.user.Email != common_chat)
-                        ListChats.Remove(s);
+                if (clients.Where(x=>x.Email==s.user.Email).Count()==0 && s.user.Email!=common_chat)
+                        OCChats.Remove(s);
             await HandleProxy();
         }
 
-        //string email = String.Format("Email {0}", new Random().Next(0, 200));
-        //string name = String.Format("Name {0}", new Random().Next(0, 200));
-        //string direction = "direction/dfgdfg/fg/f/gf/";
         public async Task Start()
         {
             Logger.Write(Logger.TypeLogs.chat, "Start Connection");
@@ -452,7 +457,7 @@ namespace Dagorlad_7.Windows
         {
             if (SelectedUser == null) return;
             bool IsFound = false;
-            foreach (var s in ListChats)
+            foreach (var s in OCChats)
             {
                 if (s.user.Email == SelectedUser.Email)
                 {
