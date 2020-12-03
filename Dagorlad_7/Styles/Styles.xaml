@@ -43,7 +43,7 @@
                 <Setter Property="Background" TargetName="border" Value="{DynamicResource Background_Green}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
+                <Setter Property="Background" TargetName="border" Value="DarkGray"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
                 <Setter Property="Foreground" Value="#FF838383"/>
             </Trigger>

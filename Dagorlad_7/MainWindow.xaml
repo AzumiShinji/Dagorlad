@@ -83,9 +83,20 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Border Grid.Row="0" Background="{Binding statusName,Converter={StaticResource statusNameBrushConverter}}" Padding="5">
-                                <TextBlock Text="{Binding statusName}" Foreground="{DynamicResource Foreground}" 
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding statusName}" Foreground="{DynamicResource Foreground}" 
                                                FontWeight="Medium" FontSize="14"
                                                HorizontalAlignment="Center"/>
+                                    <Label Grid.Column="1" x:Name="CopiedLabel" Foreground="{DynamicResource Foreground}" FontWeight="Medium"/>
+                                    <Button Grid.Column="2" Content="{DynamicResource Canvas_Copy}" Tag="{Binding ElementName=CopiedLabel}"
+                                            CommandParameter="{Binding}" Template="{StaticResource ButtonStandart}"
+                                            Click="CopyOrganizationInformation_Click"/>
+                                </Grid>
                             </Border>
                             <TextBox Grid.Row="1"
                                     IsReadOnly="True" Text="{Binding fullName}" TextWrapping="Wrap" Background="Transparent"

@@ -268,16 +268,27 @@ namespace Service_Chat_Dagorlad
                         }
                         catch (Exception ex)
                         {
-                            clients.Remove(key);
                             LogWrite(ex.ToString());
+                            LogWrite("Try disconnect \"" + client.Email + "\"");
+                            Disconnect(client);
+                            //clients.Remove(key);
                             return false;
                         }
-
                     }
 
                 }
                 return true;
-            } else { LogWrite("Client already exist.");  }
+            }
+            else
+            {
+                LogWrite("Client \""+ client.Email + "\" already exist.");
+                try
+                {
+                    LogWrite("Try disconnect \""+client.Email+"\"");
+                    Disconnect(client);
+                }
+                catch (Exception ex) { LogWrite("Trying disconnecting error: " + ex.ToString()); }
+            }
             return false;
         }
 
@@ -357,13 +368,18 @@ namespace Service_Chat_Dagorlad
                 {
                     lock (syncObj)
                     {
-                        this.clients.Remove(c);
-                        this.clientList.Remove(c);
-                        foreach (IChatCallback callback in clients.Values)
+                        try
                         {
-                            callback.RefreshClients(this.clientList);
-                            callback.UserLeave(client);
+                            this.clients.Remove(c);
+                            this.clientList.Remove(c);
+                            foreach (IChatCallback callback in clients.Values)
+                            {
+                                callback.RefreshClients(this.clientList);
+                                callback.UserLeave(client);
+                            }
+                            LogWrite("Disconnect \"" + client.Email + "\" successfully");
                         }
+                        catch (Exception ex) { LogWrite("Trying disconnecting error: " + ex.ToString()); }
                     }
                     return;
                 }
@@ -372,7 +388,7 @@ namespace Service_Chat_Dagorlad
 
         private void LogWrite(string text)
         {
-            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "logs.txt", String.Format("{0}: {1}\n", DateTime.Now, text));
+            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "ServerLog.txt", String.Format("{0}: {1}\n", DateTime.Now, text));
         }
         #endregion
     }

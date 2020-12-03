@@ -154,10 +154,8 @@
                                             Template="{StaticResource ButtonStandart}" Content="{StaticResource Canvas_Arrow_Down}"/>
                                 </Grid>
                                 <Button Grid.Column="2" Template="{StaticResource ButtonStandart}" ToolTip="Копировать содержание" 
-                                        Width="30" Height="30"
-                                        Click="ControlContent_Click" Tag="copy">
-                                    <Image Source="/images/copy_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-                                </Button>
+                                        Width="30" Height="30" Content="{DynamicResource Canvas_Copy}"
+                                        Click="ControlContent_Click" Tag="copy"/>
                                 <Button Grid.Column="3" Template="{StaticResource ButtonStandart}" 
                                         CommandParameter="{Binding ElementName=SmartAnswers_Items_ShowPopup}" Width="30" Height="30"
                                         ToolTip="Показать содержание" Click="ControlContent_Click" Tag="show">

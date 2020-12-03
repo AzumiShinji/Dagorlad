@@ -36,13 +36,13 @@ namespace Service_Chat_Dagorlad
 
                 NetTcpBinding binding_tcp = new NetTcpBinding(SecurityMode.Transport, true);
 
-                binding_tcp.MaxBufferPoolSize = (int)67108864;
-                binding_tcp.MaxBufferSize = 67108864;
-                binding_tcp.MaxReceivedMessageSize = (int)67108864;
+                binding_tcp.MaxBufferPoolSize = Int32.MaxValue;
+                binding_tcp.MaxBufferSize = Int32.MaxValue;
+                binding_tcp.MaxReceivedMessageSize = Int32.MaxValue;
                 binding_tcp.TransferMode = TransferMode.Buffered;
-                binding_tcp.ReaderQuotas.MaxArrayLength = 67108864;
-                binding_tcp.ReaderQuotas.MaxBytesPerRead = 67108864;
-                binding_tcp.ReaderQuotas.MaxStringContentLength = 67108864;
+                binding_tcp.ReaderQuotas.MaxArrayLength = 2147483647;
+                binding_tcp.ReaderQuotas.MaxBytesPerRead = 2147483647;
+                binding_tcp.ReaderQuotas.MaxStringContentLength = 2147483647;
 
                 //binding_tcp.MaxConnections = 1000;
 
@@ -62,9 +62,9 @@ namespace Service_Chat_Dagorlad
                 binding_tcp.Security.Transport.ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign;
 
                 //Enable reliable session and keep the connection alive for 20 hours.
-                binding_tcp.ReceiveTimeout = new TimeSpan(20, 0, 0);
+                binding_tcp.ReceiveTimeout = new TimeSpan(48, 0, 0);
                 binding_tcp.ReliableSession.Enabled = true;
-                binding_tcp.ReliableSession.InactivityTimeout = new TimeSpan(20, 0, 10);
+                binding_tcp.ReliableSession.InactivityTimeout = new TimeSpan(48, 0, 10);
 
                 service_host.AddServiceEndpoint(typeof(IChat), binding_tcp, address_TCP);
 
@@ -76,18 +76,42 @@ namespace Service_Chat_Dagorlad
                 if (service_host.State != CommunicationState.Opened)
                     service_host.Open();
 
+                service_host.Faulted += Service_host_Faulted;
+
                 File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "logs.txt", String.Format("{0}: Connected\n", DateTime.Now));
             }
-            catch (Exception ex) { File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "logs.txt", String.Format("{0}: Error: {1}\n", DateTime.Now,ex.ToString())); Environment.Exit(1); }
+            catch (Exception ex)
+            {
+                LogWrite(ex.ToString());
+                Environment.Exit(1);
+            }
+        }
+
+        private void Service_host_Faulted(object sender, EventArgs e)
+        {
+            OnStop();
+            OnStart(null);
         }
 
         protected override void OnStop()
         {
             if (service_host != null)
             {
-                service_host.Close();
+                try
+                {
+                    service_host.Close();
+                }
+                catch (Exception ex)
+                {
+                    LogWrite(ex.ToString());
+                }
+                service_host.Faulted -= Service_host_Faulted;
                 service_host = null;
             }
+        }
+        private void LogWrite(string text)
+        {
+            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "ServiceLog.txt", String.Format("{0}: {1}\n", DateTime.Now, text));
         }
     }
 }

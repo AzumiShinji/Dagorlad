@@ -275,7 +275,7 @@ namespace Dagorlad_7.classes
         }
         public static void CreateConfigFiles()
         {
-            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory+ "Dagorlad.exe.config", "<?xml version=\"1.0\" encoding=\"utf-8\"?> <configuration> <startup> <supportedRuntime version=\"v4.0\" sku=\".NETFramework,Version=v4.7.2\"/> </startup> <system.serviceModel> <bindings> <netTcpBinding> <binding name=\"NetTcpBinding_IChat\"> <reliableSession inactivityTimeout=\"20:00:10\" enabled=\"true\" /> <security> <transport sslProtocols=\"None\" /> </security> </binding> </netTcpBinding> </bindings> <client> <endpoint address=\"net.tcp://webservice:9002/Dagorlad_Chat\" binding=\"netTcpBinding\" bindingConfiguration=\"NetTcpBinding_IChat\" contract=\"SVC.IChat\" name=\"NetTcpBinding_IChat\" /> </client> </system.serviceModel> </configuration>");
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory+ "Dagorlad.exe.config", "<?xml version=\"1.0\" encoding=\"utf-8\"?> <configuration> <startup> <supportedRuntime version=\"v4.0\" sku=\".NETFramework,Version=v4.7.1\"/> </startup> <system.serviceModel> <bindings> <netTcpBinding> <binding name=\"NetTcpBinding_IChat\"> <reliableSession inactivityTimeout=\"20:00:10\" enabled=\"true\" /> <security> <transport sslProtocols=\"None\" /> </security> </binding> </netTcpBinding> </bindings> <client> <endpoint address=\"net.tcp://webservice:9002/Dagorlad_Chat\" binding=\"netTcpBinding\" bindingConfiguration=\"NetTcpBinding_IChat\" contract=\"SVC.IChat\" name=\"NetTcpBinding_IChat\" /> </client> </system.serviceModel> </configuration>");
         }
 
         public static void SetSchemeColor(TypeColorScheme type)

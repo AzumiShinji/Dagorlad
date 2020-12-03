@@ -247,6 +247,29 @@ namespace Dagorlad_7
                     }
             }
         }
+
+        private async void CopyOrganizationInformation_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.IsEnabled = false;
+            var cmd = (OrganizationsClass)btn.CommandParameter;
+            var label = (Label)btn.Tag;
+            if (cmd == null || label==null) return;
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(String.Format("ИНН:{0}",cmd.inn??""));
+            sb.AppendLine(String.Format("ОГРН:{0}", cmd.ogrn ?? ""));
+            sb.AppendLine(String.Format("КПП:{0}", cmd.kpp ?? ""));
+            sb.AppendLine(String.Format("СВР:{0}", cmd.code ?? ""));
+            try
+            {
+                Clipboard.SetText(sb.ToString());
+                label.Content = "Скопировано!";
+            }
+            catch { label.Content = "Попробуйте еще раз!"; }
+            await Task.Delay(2000);
+            label.Content = null;
+            btn.IsEnabled = true;
+        }
     }
     public class WidthFixedListViewConverter : IValueConverter
     {

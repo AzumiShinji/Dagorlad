@@ -35,7 +35,7 @@ namespace Dagorlad_7
                 {
                     //simulate some work being done
 #if (!DEBUG)
-                System.Threading.Thread.Sleep(3000);
+                System.Threading.Thread.Sleep(500);
 #endif
                     //since we're not on the UI thread
                     //once we're done we need to use the Dispatcher

@@ -103,10 +103,11 @@ namespace Dagorlad_7.Windows
                             }
                             MySettings.Settings.SmartMenuList.Add(new SmartAnswersClass { name = name, items = new ObservableCollection<SmartAnswers_SubClass>(items) });
                         }
+                        File.Delete(customexamplefile);
                     }
                 }
             }
-            catch { }
+            catch (Exception ex) { Logger.Write(Logger.TypeLogs.main,ex.ToString()); }
         }
     }
     public partial class MySettingsWindow : Window

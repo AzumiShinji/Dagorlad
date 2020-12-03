@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dagorlad_7.Windows;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -50,6 +51,7 @@ namespace Dagorlad_7.classes
                     File.Move(AppDomain.CurrentDomain.BaseDirectory + target, path_bakfile);
                     File.Copy(path_downloadedfile, AppDomain.CurrentDomain.BaseDirectory + target);
                     System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+                    ((MainWindow)Application.Current.MainWindow).ExitFromApplication();
                     Process.GetCurrentProcess().Kill();
                 }
             }
@@ -82,6 +84,7 @@ namespace Dagorlad_7.classes
                     startInfo.Verb = "runas";
                     process.StartInfo = startInfo;
                     process.Start();
+                    ((MainWindow)Application.Current.MainWindow).ExitFromApplication();
                     Process.GetCurrentProcess().Kill();
                 }
                 if (isElevated)

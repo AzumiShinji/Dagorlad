@@ -233,4 +233,10 @@
             <Path Fill="{DynamicResource Foreground}" Data="M 359.619 237.714 H 152.381 c -10.1 0 -18.286 8.186 -18.286 18.286 0 10.1 8.186 18.286 18.286 18.286 h 207.238 c 10.1 0 18.286 -8.186 18.286 -18.286 0 -10.1 -8.186 -18.286 -18.286 -18.286 z"/>
         </Canvas>
     </Viewbox>
+    <Viewbox x:Key="Canvas_Copy" Stretch="Uniform" Width="16" Height="16" x:Shared="False">
+        <Canvas Canvas.Left="0" Canvas.Top="0" Width="477.867" Height="477.867">
+            <Path Fill="{DynamicResource Foreground}" Data="M 341.333 85.333 H 51.2 c -28.277 0 -51.2 22.923 -51.2 51.2 v 290.133 c 0 28.277 22.923 51.2 51.2 51.2 h 290.133 c 28.277 0 51.2 -22.923 51.2 -51.2 V 136.533 c 0 -28.277 -22.923 -51.2 -51.2 -51.2 z"/>
+            <Path Fill="{DynamicResource Foreground}" Data="m 426.667 0 h -307.2 c -28.124 -0.001 -50.984 22.684 -51.2 50.807 0 0.137 0 0.256 0 0.393 h 273.067 c 47.105 0.056 85.277 38.228 85.333 85.333 V 409.6 c 0.137 0 0.256 0 0.393 0 28.124 -0.216 50.808 -23.076 50.807 -51.2 V 51.2 C 477.867 22.923 454.944 0 426.667 0 Z"/>
+        </Canvas>
+    </Viewbox>
 </ResourceDictionary>

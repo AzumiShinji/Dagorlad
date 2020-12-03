@@ -109,7 +109,7 @@ namespace Dagorlad_7.Windows
                     if (unreaded == 0)
                         s.user.CountUnreaded = null;
                     else s.user.CountUnreaded=unreaded;
-                    s.user.LastMessage= String.Format("{0}: {1}",msg.Sender==Me.Email?"Вы":msg.SenderName,msg.Content);
+                    s.user.LastMessage= String.Format("{0} {1}",msg.Sender==Me.Email?"Вы:":"",msg.Content);
                     if(msg.Sender!=Me.Email)
                     DispatcherControls.NewMyNotifyWindow(s.user.Name,String.Format("{0}: {1}",msg.SenderName,msg.Content),10,this,s.image);
                 }
@@ -145,7 +145,7 @@ namespace Dagorlad_7.Windows
                     if (unreaded == 0)
                         s.user.CountUnreaded = null;
                     else s.user.CountUnreaded = unreaded;
-                    s.user.LastMessage = String.Format("{0}: {1}", msg.Sender == Me.Email ? "Вы" : msg.SenderName, msg.Content);
+                    s.user.LastMessage = String.Format("{0} {1}", msg.Sender == Me.Email ? "Вы:" : "", msg.Content);
                     if (msg.Sender != Me.Email && s.user.Email!=Me.Email)
                     {
                         Console.WriteLine("{0}:{1}:{2}",msg.Sender,Me.Email,receiver.Email);
