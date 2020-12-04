@@ -27,7 +27,7 @@ namespace Dagorlad_7
     /// </summary>
 
     public partial class MainWindow : Window
-    {
+    {      
         protected override void OnStateChanged(EventArgs e)
         {
             if (WindowState == System.Windows.WindowState.Minimized)
@@ -37,18 +37,17 @@ namespace Dagorlad_7
         }
         public MainWindow()
         {
+            MySettings.Load();
 #if (!DEBUG)
             Updater.CheckUpdate().GetAwaiter();
 #endif
-            MySettings.Load();
             DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme);
-            DispatcherControls.HideWindowToTaskMenu(this,null);
+            DispatcherControls.HideWindowToTaskMenu(this, null);
             InitializeComponent();
             LoadEvents();
             // need to remove
             MySettings.LoadEmailFromOldDagorlad();
             //
-            if(MySettings.Settings.Email.ToLower()!="teterinanab@fsfk.local")
             new ChatWindow();
             CheckingUpdateApplicationStart();
         }
@@ -76,7 +75,13 @@ namespace Dagorlad_7
             DateUpdateDataBaseOfOrganizationsLabel.Content = "Загрузка...";
             var dtupdateorganization = await SearchOrganizations.GetUpdateDate();
             if (dtupdateorganization != null && dtupdateorganization.HasValue)
-                DateUpdateDataBaseOfOrganizationsLabel.Content = String.Format("База организаций была обновлена {0} дн. назад", Math.Round(((DateTime.Now - dtupdateorganization).Value.TotalDays), 0));
+            {
+                var result = Math.Round(((DateTime.Now - dtupdateorganization).Value.TotalDays), 0);
+                if (result == 0)
+                    DateUpdateDataBaseOfOrganizationsLabel.Content = String.Format("База организаций была обновлена сегодня.");
+                else
+                    DateUpdateDataBaseOfOrganizationsLabel.Content = String.Format("База организаций была обновлена {0} дн. назад", result);
+            }
             else DateUpdateDataBaseOfOrganizationsLabel.Content = "Неизвестно";
         }
         private void InitClipboardMonitor()

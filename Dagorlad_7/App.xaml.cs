@@ -21,40 +21,46 @@ namespace Dagorlad_7
     {
         protected async override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
-            if (!IsMutex)
+            try
             {
-                //initialize the splash screen and set it as the application main window
-                var splashScreen = new SplashWindow();
-                this.MainWindow = splashScreen;
-                splashScreen.Show();
-
-                //in order to ensure the UI stays responsive, we need to
-                //do the work on a different thread
-                await Task.Factory.StartNew(() =>
+                base.OnStartup(e);
+                if (!IsMutex)
                 {
+                    //initialize the splash screen and set it as the application main window
+                    var splashScreen = new SplashWindow();
+                    this.MainWindow = splashScreen;
+                    splashScreen.Show();
+
+                    //in order to ensure the UI stays responsive, we need to
+                    //do the work on a different thread
+                    await Task.Factory.StartNew(() =>
+                    {
                     //simulate some work being done
-#if (!DEBUG)
-                System.Threading.Thread.Sleep(500);
-#endif
+                    //System.Threading.Thread.Sleep(500);
+
                     //since we're not on the UI thread
                     //once we're done we need to use the Dispatcher
                     //to create and show the main window
                     this.Dispatcher.Invoke(() =>
-                        {
-                        //initialize the main window, set it as the application main window
-                        //and close the splash screen
-                        var mainWindow = new MainWindow();
-                            this.MainWindow = mainWindow;
+                            {
+                            //initialize the main window, set it as the application main window
+                            //and close the splash screen
+                            var mainWindow = new MainWindow();
+                                this.MainWindow = mainWindow;
+                                if (e.Args.Length > 0 && e.Args[0] == "{8E06A225-F9B4-48BA-A95A-FCE56D275B25}")
+                                    DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name + " обновился", "Текущая версия: \n" +
+                                        DispatcherControls.GetVersionApplication(DispatcherControls.TypeDisplayVersion.Fully), 8, mainWindow, TypeImageNotify.update);
 #if (DEBUG)
-                        //mainWindow.Show();
+                            //mainWindow.Show();
 #endif
-                        splashScreen.Closing -= (qq, ee) => { ee.Cancel = true; };
-                            splashScreen.Closing += (qq, ee) => { ee.Cancel = false; };
-                            splashScreen.Close();
-                        });
-                });
+                            splashScreen.Closing -= (qq, ee) => { ee.Cancel = true; };
+                                splashScreen.Closing += (qq, ee) => { ee.Cancel = false; };
+                                splashScreen.Close();
+                            });
+                    });
+                }
             }
+            catch (Exception ex) { Logger.Write(Logger.TypeLogs.main, ex.ToString()); }
         }
         private static string Guid = (Assembly.GetExecutingAssembly().GetCustomAttribute(typeof(AssemblyConfigurationAttribute)) as AssemblyConfigurationAttribute).Configuration;
         private static string User = Environment.UserName;
@@ -62,6 +68,8 @@ namespace Dagorlad_7
         private bool IsMutex = false;
         public App()
         {
+            try
+            {
 #if (!DEBUG)
             if (!Mutex.WaitOne(TimeSpan.Zero, true))
             {
@@ -79,6 +87,8 @@ namespace Dagorlad_7
                 //no instance running
             }
 #endif
+            }
+            catch (Exception ex) { Logger.Write(Logger.TypeLogs.main, ex.ToString()); }
         }
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {

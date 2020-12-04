@@ -13,3 +13,7 @@
 03.12.2020 21:52:50: Disconnect "BalandinAI@fsfk.local" successfully
 03.12.2020 21:53:19: Client "BalandinAI@fsfk.local" already exist.
 03.12.2020 21:53:22: Disconnect "BalandinAI@fsfk.local" successfully
+04.12.2020 14:29:07: Client "PyatkoBV@fsfk.local" already exist.
+04.12.2020 14:40:08: Client "PyatkoBV@fsfk.local" already exist.
+04.12.2020 14:40:11: PyatkoBV@fsfk.local - has been disconnected successfully.
+04.12.2020 14:41:06: PyatkoBV@fsfk.local - has been disconnected successfully.

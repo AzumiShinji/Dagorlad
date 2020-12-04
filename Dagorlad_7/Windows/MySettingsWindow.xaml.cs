@@ -184,6 +184,7 @@ namespace Dagorlad_7.Windows
             if ((Keyboard.Modifiers == ModifierKeys.Control) && e.Key == Key.Enter)
             {
                 EmailTextBox.IsEnabled = true;
+                OpenLogsFolderButton.Visibility = Visibility.Visible;
             }
         }
     }

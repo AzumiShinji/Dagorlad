@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // общие сведения об этой сборке.
 [assembly: AssemblyTitle("Service_Chat_Dagorlad")]
 [assembly: AssemblyDescription("Service of the Chat")]
-[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyConfiguration("{BD8410A6-08DF-4239-8DCB-B300D1A9428C}")]
 [assembly: AssemblyCompany("krislechy")]
 [assembly: AssemblyProduct("Service_Chat_Dagorlad")]
 [assembly: AssemblyCopyright("Copyright © krislechy 2020")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Можно задать все значения или принять номера сборки и редакции по умолчанию 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.7.*")]
+//[assembly: AssemblyFileVersion("1.0.0.0")]

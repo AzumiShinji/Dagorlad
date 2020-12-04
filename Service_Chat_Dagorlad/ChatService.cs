@@ -367,10 +367,14 @@ namespace Service_Chat_Dagorlad
                             this.clientList.Remove(c);
                             foreach (IChatCallback callback in clients.Values)
                             {
-                                callback.RefreshClients(this.clientList);
-                                callback.UserLeave(client);
+                                try
+                                {
+                                    callback.RefreshClients(this.clientList);
+                                    callback.UserLeave(client);
+                                }
+                                catch (Exception ex) { LogWrite("IChatCallback error: " + ex.ToString()); }
                             }
-                            LogWrite(client.Email+" - has been disconnected successfully.");
+                            LogWrite(client.Email + " - has been disconnected successfully.");
                         }
                         catch (Exception ex) { LogWrite("Trying disconnecting error: " + ex.ToString()); }
                     }

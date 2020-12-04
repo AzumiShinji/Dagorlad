@@ -50,9 +50,7 @@ namespace Dagorlad_7.classes
                     wc.DownloadFile(new Uri(PathToFile + target), path_downloadedfile);
                     File.Move(AppDomain.CurrentDomain.BaseDirectory + target, path_bakfile);
                     File.Copy(path_downloadedfile, AppDomain.CurrentDomain.BaseDirectory + target);
-                    System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
-                    if (Application.Current.MainWindow != null && Application.Current.MainWindow.GetType() == typeof(MainWindow))
-                        ((MainWindow)Application.Current.MainWindow).ExitFromApplication();
+                    System.Diagnostics.Process.Start(Application.ResourceAssembly.Location, "{8E06A225-F9B4-48BA-A95A-FCE56D275B25}");
                     Process.GetCurrentProcess().Kill();
                 }
             }
@@ -85,13 +83,13 @@ namespace Dagorlad_7.classes
                     startInfo.Verb = "runas";
                     process.StartInfo = startInfo;
                     process.Start();
-                    if (Application.Current.MainWindow != null && Application.Current.MainWindow.GetType() == typeof(MainWindow))
-                        ((MainWindow)Application.Current.MainWindow).ExitFromApplication();
                     Process.GetCurrentProcess().Kill();
                 }
                 if (isElevated)
                 {
+#if (!DEBUG)
                     DispatcherControls.CreateConfigFiles();
+#endif
                     Updater.Remote_Update_Local().GetAwaiter();
                 }
             }

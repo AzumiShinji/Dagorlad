@@ -25,6 +25,7 @@ namespace Dagorlad_7.classes
         chat = 1,
         buildings = 2,
         sad = 3,
+        update=4,
     }
     public enum TypeColorScheme
     {
@@ -244,6 +245,12 @@ namespace Dagorlad_7.classes
                             var thisIcon = new BitmapImage(SourceUri);
                             return thisIcon;
                         }
+                    case (TypeImageNotify.update):
+                        {
+                            var SourceUri = new Uri("pack://application:,,,/Dagorlad;component/images/update_64.png", UriKind.Absolute);
+                            var thisIcon = new BitmapImage(SourceUri);
+                            return thisIcon;
+                        }
                 }
             }
             else
@@ -312,7 +319,7 @@ namespace Dagorlad_7.classes
                     }
                 case (TypeColorScheme.dark):
                     {
-                        Application.Current.Resources["Background_Inside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#18191d"));
+                        Application.Current.Resources["Background_Inside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF181B1D"));
                         Application.Current.Resources["Background_Outside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#282e33"));
                         Application.Current.Resources["Background_Inside_TextBox"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#33393f"));
                         Application.Current.Resources["Background_Green"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF3A6FD8"));

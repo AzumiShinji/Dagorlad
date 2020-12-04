@@ -1,0 +1,1 @@
+[Dagorlad v.6.7.7641.31144, 02.12.2020 17:18:08 (Release)],[04.12.2020 9:03:26] - System.IO.FileNotFoundException: //WebService/SharedFolder/Dagorlad/Dagorlad.exe						   в System.Diagnostics.FileVersionInfo.GetVersionInfo(String fileName)						   в Dagorlad.Update.UpdateProcess() в C:\Main\Programs\VS\Dagorlad\Dagorlad\classes\Update.cs:строка 71

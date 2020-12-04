@@ -71,10 +71,6 @@ namespace Dagorlad_7.Windows
         string common_chat = "_common@fsfk.local";
         public ChatWindow()
         {
-            DispatcherControls.NewMyNotifyWindow("Чат",
-               "Прошу набраться терпения, в скором времени работа программы будет налажена.", 60, this, TypeImageNotify.sad);
-            DispatcherControls.NewMyNotifyWindow("Чат",
-                "Привет!\nЯ понимаю, что я уже некоторых заебал с этим ебучим чатом.", 60, this, TypeImageNotify.sad);
             DispatcherControls.HideWindowToTaskMenu(this, "Чат");
             InitializeComponent();
             AdditionalBlock.Visibility = Visibility.Collapsed;

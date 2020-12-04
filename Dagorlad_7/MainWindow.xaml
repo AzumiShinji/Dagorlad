@@ -71,7 +71,7 @@
                         Content="{StaticResource Canvas_Cancel}"/>
                 </Grid>
             </Grid>
-            <ListView x:Name="OrganizationsListView" BorderBrush="{DynamicResource Background_Green}" Grid.Row="1"
+            <ListView x:Name="OrganizationsListView" BorderBrush="{DynamicResource Background_Outside}" Grid.Row="1"
                       Background="Transparent" VirtualizingPanel.ScrollUnit="Item" SelectionMode="Single">
                 <ListView.ItemTemplate>
                     <DataTemplate>

@@ -57,7 +57,8 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <CheckBox x:Name="IsAutorunCheckBox" Grid.Row="0" IsChecked="False" Content="Автозапуск приложения" Foreground="{DynamicResource Foreground}" VerticalContentAlignment="Center"
+                <CheckBox x:Name="IsAutorunCheckBox" Grid.Row="0" IsEnabled="False"
+                          IsChecked="False" Content="Автозапуск приложения" Foreground="{DynamicResource Foreground}" VerticalContentAlignment="Center"
                       FontWeight="Medium" FontSize="14"/>
                 <CheckBox x:Name="IsEnabledSmartMenuCheckBox" Grid.Row="1" IsChecked="False" Content="Смарт-меню" Foreground="{DynamicResource Foreground}" VerticalContentAlignment="Center"
                       FontWeight="Medium" FontSize="14"/>
@@ -103,7 +104,8 @@
                     <PasswordBox x:Name="NSD_PasswordTextBox" Foreground="{DynamicResource Foreground}" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1"
                              Background="{DynamicResource Background_Inside_TextBox}" SelectionBrush="{DynamicResource Background_Green}"/>-->
                 </Grid>
-                <Button Grid.Row="5" Template="{StaticResource ButtonStandart}" Content="Открыть локальную папку программы" Height="40" Click="OpenLogsFolder_Click"/>
+                <Button Grid.Row="5" Template="{StaticResource ButtonStandart}" Visibility="Collapsed" x:Name="OpenLogsFolderButton"
+                        Content="Открыть локальную папку программы" Height="40" Click="OpenLogsFolder_Click"/>
             </Grid>
         </Grid>
         <Grid Tag="Bottom" Grid.Row="2">
