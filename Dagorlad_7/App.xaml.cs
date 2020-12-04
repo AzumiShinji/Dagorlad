@@ -19,6 +19,7 @@ namespace Dagorlad_7
     /// </summary>
     public partial class App : Application
     {
+        public static bool IsAfterUpdate = false;
         protected async override void OnStartup(StartupEventArgs e)
         {
             try
@@ -48,12 +49,15 @@ namespace Dagorlad_7
                             var mainWindow = new MainWindow();
                                 this.MainWindow = mainWindow;
                                 if (e.Args.Length > 0 && e.Args[0] == "{8E06A225-F9B4-48BA-A95A-FCE56D275B25}")
+                                {
                                     DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name + " обновился", "Текущая версия: \n" +
                                         DispatcherControls.GetVersionApplication(DispatcherControls.TypeDisplayVersion.Fully), 8, mainWindow, TypeImageNotify.update);
+                                    IsAfterUpdate = true;
+                                }
 #if (DEBUG)
                             //mainWindow.Show();
 #endif
-                            splashScreen.Closing -= (qq, ee) => { ee.Cancel = true; };
+                                splashScreen.Closing -= (qq, ee) => { ee.Cancel = true; };
                                 splashScreen.Closing += (qq, ee) => { ee.Cancel = false; };
                                 splashScreen.Close();
                             });

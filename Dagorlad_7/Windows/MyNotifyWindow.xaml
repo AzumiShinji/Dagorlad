@@ -81,11 +81,11 @@
                                             <RowDefinition Height="auto"/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
-                                        <TextBox x:Name="TitleBoxText" IsReadOnly="True" Grid.Row="0" Text="{Binding title}" Margin="5" FontSize="14" FontWeight="Medium"
-                                                 Background="{DynamicResource Background_Inside}" VerticalContentAlignment="Center" Padding="0" CaretBrush="{DynamicResource Background_Green}"
+                                        <TextBlock x:Name="TitleBoxText" Grid.Row="0" Text="{Binding title}" Margin="5" FontSize="14" FontWeight="Medium"
+                                                 Background="{DynamicResource Background_Inside}" Padding="0" 
                                                Foreground="{DynamicResource Foreground}" VerticalAlignment="Center" TextWrapping="NoWrap"/>
-                                        <TextBox x:Name="TextBoxText" IsReadOnly="True" Grid.Row="1" Text="{Binding text}" Margin="5" CaretBrush="{DynamicResource Background_Green}"
-                                                 Background="{DynamicResource Background_Inside}" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch"
+                                        <TextBlock x:Name="TextBoxText" Grid.Row="1" Text="{Binding text}" Margin="5"
+                                                 Background="{DynamicResource Background_Inside}" VerticalAlignment="Stretch"
                                                Foreground="{DynamicResource Foreground}" TextWrapping="Wrap" Padding="0"/>
                                     </Grid>
                                 </Grid>

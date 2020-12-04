@@ -141,9 +141,9 @@ namespace Dagorlad_7.Windows
         private void Grid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var item = sender as Grid;
-            var textbox = item.FindName("TextBoxText") as TextBox;
-            var titlebox = item.FindName("TitleBoxText") as TextBox;
-            if (textbox.IsFocused || titlebox.IsFocused) return;
+            //var textbox = item.FindName("TextBoxText") as TextBox;
+            //var titlebox = item.FindName("TitleBoxText") as TextBox;
+            //if (textbox.IsFocused || titlebox.IsFocused) return;
             if (item != null)
             {
                 if (FromWindow != null)

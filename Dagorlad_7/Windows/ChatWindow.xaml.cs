@@ -86,12 +86,14 @@ namespace Dagorlad_7.Windows
             {
                 if (SelectedUser != null && client.Email != Me.Email && SelectedUser.Email == client.Email)
                 {
-                    TypingLabel.Content = client.Name + " печатает...";
+                    DirectionLabelOrTypingLabel.Foreground = (Brush)Application.Current.Resources["Background_Green"];
+                    DirectionLabelOrTypingLabel.Content = "печатает...";
                 }
             }
             else
             {
-                TypingLabel.Content = null;
+                DirectionLabelOrTypingLabel.Foreground = (Brush)Application.Current.Resources["Foreground_Dark"];
+                DirectionLabelOrTypingLabel.Content = SelectedUser.Direction;
             }
         }
 
@@ -290,13 +292,13 @@ namespace Dagorlad_7.Windows
         }
         public async void UserJoin(SVC.Client client)
         {
-            DispatcherControls.NewMyNotifyWindow(client.Name, "Присоединился(ась) к чату", 5, this, TypeImageNotify.chat);
+            //DispatcherControls.NewMyNotifyWindow(client.Name, "Присоединился(ась) к чату", 5, this, TypeImageNotify.chat);
             await HandleProxy();
         }
 
         public async void UserLeave(SVC.Client client)
         {
-            DispatcherControls.NewMyNotifyWindow(client.Name, "Покинул(а) чат", 5, this, TypeImageNotify.chat);
+            //DispatcherControls.NewMyNotifyWindow(client.Name, "Покинул(а) чат", 5, this, TypeImageNotify.chat);
             await HandleProxy();
         }
 
@@ -371,7 +373,7 @@ namespace Dagorlad_7.Windows
                     DialogListView.ItemsSource = dc.msgs;
                     SelectedUser = dc.user;
                     NameLabel.Content = dc.user.Name;
-                    DirectionLabel.Content = dc.user.Direction;
+                    DirectionLabelOrTypingLabel.Content = dc.user.Direction;
                     MarkCurrentDialogLikeReaded();
                 }
             }
@@ -664,6 +666,13 @@ namespace Dagorlad_7.Windows
             sv.ScrollToEnd();
         }
 
+        private void Window_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.Modifiers == ModifierKeys.Control) && e.Key == Key.W)
+            {
+                this.WindowState = WindowState.Minimized;
+            }
+        }
     }
     public class NullableContentToHidden : IValueConverter
     {

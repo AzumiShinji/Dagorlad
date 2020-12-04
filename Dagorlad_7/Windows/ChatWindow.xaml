@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:Dagorlad_7.Windows" xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         mc:Ignorable="d" Background="{DynamicResource Background_Inside}"
         WindowStartupLocation="CenterScreen" Closing="Window_Closing"
+        PreviewKeyUp="Window_PreviewKeyUp"
         Icon="/chat.ico"
         Title="" Height="600" Width="900">
     <Window.Resources>
@@ -47,7 +48,7 @@
             <Label x:Name="NameLabel" FontWeight="Medium" Grid.Row="0"
                    VerticalContentAlignment="Center" Padding="10,0,0,0"
                    FontSize="13" Foreground="{DynamicResource Foreground}" Background="{DynamicResource Background_Outside}"/>
-            <Label x:Name="DirectionLabel" FontWeight="Medium" Grid.Row="1"
+            <Label x:Name="DirectionLabelOrTypingLabel" FontWeight="Medium" Grid.Row="1"
                    VerticalContentAlignment="Center" Padding="10,0,0,0"
                    FontSize="10" Foreground="{DynamicResource Foreground_Dark}" Background="{DynamicResource Background_Outside}"/>
         </Grid>
@@ -114,7 +115,7 @@
                   PreviewMouseMove="DialogListView_PreviewMouseMove" VirtualizingPanel.ScrollUnit="Pixel"
                   Background="Transparent" BorderThickness="0">
             <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemDialog}">
                     <EventSetter Event="Loaded" Handler="DialogListViewItem_Loaded"/>
                 </Style>
             </ListBox.ItemContainerStyle>
@@ -231,8 +232,8 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label x:Name="TypingLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Foreground="{DynamicResource Foreground}"
-                   FontSize="10" FontWeight="Normal" FontStyle="Italic"
+            <Label x:Name="TypingLabel1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Foreground="{DynamicResource Background_Green}"
+                   FontSize="14" FontWeight="Normal" Padding="15,5,5,5" HorizontalContentAlignment="Center"
                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"/>
             <Button x:Name="StickersPopupChooseButton" Height="40" Width="40"
                     Template="{StaticResource ButtonStandart}"

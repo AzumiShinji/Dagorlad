@@ -8,6 +8,7 @@
         WindowStyle="None"
         Background="{DynamicResource Background_Outside}"
         ResizeMode="NoResize"
+        ShowActivated="False"
         Topmost="True" Closing="Window_Closing"
         SizeToContent="Height"
         ShowInTaskbar="False"
