@@ -24,10 +24,10 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid x:Name="HideNotifiesListViewGrid" Grid.Row="0" Background="{DynamicResource Background_Inside}">
+            <Grid x:Name="HideNotifiesListViewGrid" Grid.Row="0" Background="{DynamicResource Background.Inside}">
                 <Button Grid.Row="0" Content="Скрыть все" Padding="0" Margin="1,0,4,0"
                     Height="40" Click="HideNotifiesListView_Button"
-                    Foreground="{DynamicResource Foreground_Button}" Template="{StaticResource ButtonStandart}"/>
+                    Foreground="{DynamicResource Foreground.History}" Template="{StaticResource ButtonStandart}"/>
             </Grid>
             <ListView Background="Transparent" Grid.Row="1" x:Name="NotifiesListView" BorderThickness="0" VirtualizingPanel.ScrollUnit="Pixel"
                       MinHeight="100" MaxHeight="310" SizeChanged="NotifiesListView_SizeChanged" 
@@ -49,7 +49,7 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
                             <Grid x:Name="MainGrid" PreviewMouseLeftButtonUp="Grid_PreviewMouseLeftButtonDown"
-                            Background="{DynamicResource Background_Inside}" Height="100">
+                            Background="{DynamicResource Background.Inside}" Height="100">
                                 <Grid.Style>
                                     <Style TargetType="Grid">
                                         <Style.Triggers>
@@ -82,19 +82,19 @@
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                         <TextBlock x:Name="TitleBoxText" Grid.Row="0" Text="{Binding title}" Margin="5" FontSize="14" FontWeight="Medium"
-                                                 Background="{DynamicResource Background_Inside}" Padding="0" 
+                                                 Background="{DynamicResource Background.Inside}" Padding="0" 
                                                Foreground="{DynamicResource Foreground}" VerticalAlignment="Center" TextWrapping="NoWrap"/>
                                         <TextBlock x:Name="TextBoxText" Grid.Row="1" Text="{Binding text}" Margin="5"
-                                                 Background="{DynamicResource Background_Inside}" VerticalAlignment="Stretch"
+                                                 Background="{DynamicResource Background.Inside}" VerticalAlignment="Stretch"
                                                Foreground="{DynamicResource Foreground}" TextWrapping="Wrap" Padding="0"/>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid Grid.Column="1" Background="{DynamicResource Background_Inside}">
+                            <Grid Grid.Column="1" Background="{DynamicResource Background.Inside}">
                                 <Button Grid.Column="1" Content="{StaticResource Canvas_Arrow_Right}"
                                     Width="40" Click="CloseButton" CommandParameter="{Binding ElementName=NotifiesListView}"
                                     Tag="{Binding ElementName=MainGrid}" HorizontalContentAlignment="Center"
-                                    Template="{StaticResource ButtonStandart}" Foreground="{DynamicResource Foreground_Button}"/>
+                                    Template="{StaticResource ButtonStandart}" Foreground="{DynamicResource Foreground.History}"/>
                             </Grid>
                         </Grid>
                     </DataTemplate>

@@ -304,32 +304,29 @@ namespace Dagorlad_7.classes
             {
                 case (TypeColorScheme.light):
                     {
-                        Application.Current.Resources["Background_Inside"] = new SolidColorBrush(Colors.White);
-                        Application.Current.Resources["Background_Outside"] = new SolidColorBrush(Colors.LightGray);
-                        Application.Current.Resources["Background_Inside_TextBox"] = new SolidColorBrush(Colors.WhiteSmoke);
-                        Application.Current.Resources["Background_Green"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF3A6FD8"));
-                        Application.Current.Resources["Background_Border"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFD8BB3A"));
-                        Application.Current.Resources["Background_Green_Color"] = (Color)ColorConverter.ConvertFromString("#FF3A6FD8");
+                        Application.Current.Resources["Background.Inside"] = new SolidColorBrush(Colors.White);
+                        Application.Current.Resources["Background.Outside"] = new SolidColorBrush(Colors.LightGray);
+                        Application.Current.Resources["Background.Inside.Blob"] = new SolidColorBrush(Colors.WhiteSmoke);
+                        Application.Current.Resources["Background.Highlight"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF3A6FD8"));
+                        Application.Current.Resources["Background.Highlight.Color"] = (Color)ColorConverter.ConvertFromString("#FF3A6FD8");
+                        Application.Current.Resources["Background.MouseOver"] = new SolidColorBrush(Colors.Gray);
                         Application.Current.Resources["Foreground"] = new SolidColorBrush(Colors.Black);
-                        Application.Current.Resources["Foreground_Button"] = new SolidColorBrush(Colors.Black);
-                        Application.Current.Resources["Foreground_Dark"] = new SolidColorBrush(Colors.Black);
-                        Application.Current.Resources["ListViewMouseOverBackground"] = new SolidColorBrush(Colors.Gray);
-                        Application.Current.Resources["ButtonMouseOverBackground"] = new SolidColorBrush(Colors.LightGray);
+                        Application.Current.Resources["Foreground.History"] = new SolidColorBrush(Colors.Black);
+                        Application.Current.Resources["Foreground.Pressed"] = new SolidColorBrush(Colors.Black);
                         break;
                     }
                 case (TypeColorScheme.dark):
                     {
-                        Application.Current.Resources["Background_Inside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF181B1D"));
-                        Application.Current.Resources["Background_Outside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#282e33"));
-                        Application.Current.Resources["Background_Inside_TextBox"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#33393f"));
-                        Application.Current.Resources["Background_Green"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF3A6FD8"));
-                        Application.Current.Resources["Background_Border"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFD8BB3A"));
-                        Application.Current.Resources["Background_Green_Color"] = (Color)ColorConverter.ConvertFromString("#FF3A6FD8");
-                        Application.Current.Resources["Foreground"] = new SolidColorBrush(Colors.WhiteSmoke);
-                        Application.Current.Resources["Foreground_Button"] = new SolidColorBrush(Colors.LightGray);
-                        Application.Current.Resources["Foreground_Dark"] = new SolidColorBrush(Colors.Gray);
-                        Application.Current.Resources["ListViewMouseOverBackground"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#353c43"));
-                        Application.Current.Resources["ButtonMouseOverBackground"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#353c43"));
+                        Application.Current.Resources["Background.Inside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#18191d"));
+                        Application.Current.Resources["Background.Inside.Blob"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#33393f"));
+                        Application.Current.Resources["Background.Outside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#282e33"));
+                        Application.Current.Resources["Background.HalfOutside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#20262b"));
+                        Application.Current.Resources["Background.Highlight"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#009687"));
+                        Application.Current.Resources["Background.Highlight.Color"] = (Color)ColorConverter.ConvertFromString("#009687");
+                        Application.Current.Resources["Background.MouseOver"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#43474d"));
+                        Application.Current.Resources["Foreground"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#f5f5f5"));
+                        Application.Current.Resources["Foreground.History"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#8d939e"));
+                        Application.Current.Resources["Foreground.Pressed"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#313b43"));
                         break;
                     }
             }

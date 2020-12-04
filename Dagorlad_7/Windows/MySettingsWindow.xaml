@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
-        Background="{DynamicResource Background_Inside}"
+        Background="{DynamicResource Background.Inside}"
         Foreground="{DynamicResource Foreground}" PreviewKeyUp="Window_PreviewKeyUp"
         Title="Настройки" Height="450" Width="800">
     <Grid>
@@ -33,11 +33,11 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Label Content="AppName" x:Name="AppNameLabel" Foreground="{DynamicResource Foreground_Button}" 
+                    <Label Content="AppName" x:Name="AppNameLabel" Foreground="{DynamicResource Foreground.History}" 
                    FontWeight="Medium" FontSize="14"
                    VerticalContentAlignment="Center"/>
                     <Label Content="AppVersion" Grid.Row="1" x:Name="AppVersionLabel" 
-                           Foreground="{DynamicResource Foreground_Button}" 
+                           Foreground="{DynamicResource Foreground.History}" 
                    FontWeight="Medium" FontSize="10"
                    VerticalContentAlignment="Center"/>
                 </Grid>
@@ -84,7 +84,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Адреc почты (Email, *@fsfk.local):" Foreground="{DynamicResource Foreground}"/>
-                    <TextBox Grid.Column="1" x:Name="EmailTextBox" Foreground="{DynamicResource Foreground}" MinWidth="100" SelectionBrush="{DynamicResource Background_Green}"/>
+                    <TextBox Grid.Column="1" x:Name="EmailTextBox" Foreground="{DynamicResource Foreground}" MinWidth="100" SelectionBrush="{DynamicResource Background.Highlight}"/>
                 </Grid>
                 <Grid Grid.Row="4">
                     <Grid.ColumnDefinitions>
@@ -99,10 +99,10 @@
                     <!--<Label Content="Авторизация NSD" Foreground="{DynamicResource Foreground}" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
                     <Label Foreground="{DynamicResource Foreground}" Content="Логин" HorizontalContentAlignment="Center" Grid.Column="0" Grid.Row="1"/>
                     <TextBox x:Name="NSD_LoginTextBox" Foreground="{DynamicResource Foreground}" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1"
-                             Background="{DynamicResource Background_Inside_TextBox}" SelectionBrush="{DynamicResource Background_Green}"/>
+                             Background="{DynamicResource Background.Inside.Blob}" SelectionBrush="{DynamicResource Background.Highlight}"/>
                     <Label Foreground="{DynamicResource Foreground}" Content="Пароль" HorizontalContentAlignment="Center" Grid.Column="0" Grid.Row="2"/>
                     <PasswordBox x:Name="NSD_PasswordTextBox" Foreground="{DynamicResource Foreground}" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1"
-                             Background="{DynamicResource Background_Inside_TextBox}" SelectionBrush="{DynamicResource Background_Green}"/>-->
+                             Background="{DynamicResource Background.Inside.Blob}" SelectionBrush="{DynamicResource Background.Highlight}"/>-->
                 </Grid>
                 <Button Grid.Row="5" Template="{StaticResource ButtonStandart}" Visibility="Collapsed" x:Name="OpenLogsFolderButton"
                         Content="Открыть локальную папку программы" Height="40" Click="OpenLogsFolder_Click"/>

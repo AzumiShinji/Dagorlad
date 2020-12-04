@@ -127,3 +127,14 @@ Exception rethrown at [0]:
 04.12.2020 17:45:20: BalandinAI@fsfk.local - has been disconnected successfully.
 04.12.2020 17:46:03: PyatkoBV@fsfk.local - has been disconnected successfully.
 04.12.2020 17:46:06: BalandinAI@fsfk.local - has been disconnected successfully.
+04.12.2020 20:41:27: Client "BalandinAI@fsfk.local" already exist.
+04.12.2020 20:41:30: BalandinAI@fsfk.local - has been disconnected successfully.
+04.12.2020 20:51:28: Client "BalandinAI@fsfk.local" already exist.
+04.12.2020 20:51:31: BalandinAI@fsfk.local - has been disconnected successfully.
+04.12.2020 20:52:26: Client "BalandinAI@fsfk.local" already exist.
+04.12.2020 20:52:29: BalandinAI@fsfk.local - has been disconnected successfully.
+04.12.2020 20:53:13: Client "BalandinAI@fsfk.local" already exist.
+04.12.2020 20:53:16: BalandinAI@fsfk.local - has been disconnected successfully.
+04.12.2020 20:53:51: Client "BalandinAI@fsfk.local" already exist.
+04.12.2020 20:53:54: BalandinAI@fsfk.local - has been disconnected successfully.
+04.12.2020 21:00:09: BalandinAI@fsfk.local - has been disconnected successfully.

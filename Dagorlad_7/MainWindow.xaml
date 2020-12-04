@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip" Closing="Window_Closing"
-        Background="{DynamicResource Background_Inside}"
+        Background="{DynamicResource Background.Inside}"
         Foreground="{DynamicResource Foreground}"
         Title="Dagorlad"
         Width="600" Height="600"
@@ -61,8 +61,8 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="SearchTextBox" SelectionBrush="{DynamicResource Background_Green}" PreviewKeyUp="SearchTextBox_PreviewKeyUp"
-                     Background="{DynamicResource Background_Inside_TextBox}" VerticalContentAlignment="Center"/>
+                    <TextBox x:Name="SearchTextBox" SelectionBrush="{DynamicResource Background.Highlight}" PreviewKeyUp="SearchTextBox_PreviewKeyUp"
+                     Background="{DynamicResource Background.Inside.Blob}" VerticalContentAlignment="Center"/>
                     <Button x:Name="SearchOrganizationFromListViewButton" Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="1"
                         Click="SearchOrganizationFromListView_Click"
                         Content="{StaticResource Canvas_Search}"/>
@@ -71,7 +71,7 @@
                         Content="{StaticResource Canvas_Cancel}"/>
                 </Grid>
             </Grid>
-            <ListView x:Name="OrganizationsListView" BorderBrush="{DynamicResource Background_Outside}" Grid.Row="1"
+            <ListView x:Name="OrganizationsListView" BorderBrush="{DynamicResource Background.Outside}" Grid.Row="1"
                       Background="Transparent" VirtualizingPanel.ScrollUnit="Item" SelectionMode="Single">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -101,7 +101,7 @@
                             <TextBox Grid.Row="1"
                                     IsReadOnly="True" Text="{Binding fullName}" TextWrapping="Wrap" Background="Transparent"
                                          FontWeight="Medium" FontSize="14"
-                                         Foreground="{DynamicResource Foreground}" SelectionBrush="{DynamicResource Background_Green}"/>
+                                         Foreground="{DynamicResource Foreground}" SelectionBrush="{DynamicResource Background.Highlight}"/>
                             <Grid Grid.Row="2" Tag="Codes">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -113,17 +113,17 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <TextBox Grid.Column="0" Grid.Row="0" IsReadOnly="True" Text="{Binding inn,StringFormat={}ИНН: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground_Button}" SelectionBrush="{DynamicResource Background_Green}"/>
+                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
                                 <TextBox Grid.Column="1" Grid.Row="0" IsReadOnly="True" Text="{Binding code,StringFormat={}Код по сводному реестру: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground_Button}" SelectionBrush="{DynamicResource Background_Green}"/>
+                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
                                 <TextBox Grid.Column="2" Grid.Row="0" IsReadOnly="True" Text="{Binding ogrn,StringFormat={}ОГРН: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground_Button}" SelectionBrush="{DynamicResource Background_Green}"/>
+                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
                                 <TextBox Grid.Column="0" Grid.Row="1" IsReadOnly="True" Text="{Binding kpp,StringFormat={}КПП: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground_Button}" SelectionBrush="{DynamicResource Background_Green}"/>
+                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
                                 <TextBox Grid.Column="1" Grid.Row="1" IsReadOnly="True" Text="{Binding okpoCode,StringFormat={}ОКПО: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground_Button}" SelectionBrush="{DynamicResource Background_Green}"/>
+                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
                                 <TextBox Grid.Column="2" Grid.Row="1" IsReadOnly="True" Text="{Binding pgmu,StringFormat={}ПГМУ: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground_Button}" SelectionBrush="{DynamicResource Background_Green}"/>
+                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
                             </Grid>
                             <Grid Grid.Row="3" Tag="AdditionalInformations">
                                 <Grid.RowDefinitions>
@@ -137,21 +137,21 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <TextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" IsReadOnly="True" Text="{Binding fio,StringFormat={}Руководитель: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground_Button}" SelectionBrush="{DynamicResource Background_Green}"/>
+                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
                                 <TextBox Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" IsReadOnly="True" Text="{Binding recordNum,StringFormat={}Регистрационный номер: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground_Button}" SelectionBrush="{DynamicResource Background_Green}"/>
+                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
 
                                 <TextBox Grid.Column="0" Grid.Row="1" IsReadOnly="True" Text="{Binding cityName,StringFormat={}Регион: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground_Button}" SelectionBrush="{DynamicResource Background_Green}"/>
+                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
                                 <TextBox Grid.Column="1" Grid.Row="1" IsReadOnly="True" Text="{Binding phone,StringFormat={}Телефон: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground_Button}" SelectionBrush="{DynamicResource Background_Green}"/>
+                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
                                 <TextBox Grid.Column="2" Grid.Row="1" IsReadOnly="True" Text="{Binding mail,StringFormat={}Почта: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground_Button}" SelectionBrush="{DynamicResource Background_Green}"/>
+                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
 
                                 <TextBox Grid.Column="0" Grid.Row="2" IsReadOnly="True" Text="{Binding orfkCode,StringFormat={}Код УФК: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground_Button}" SelectionBrush="{DynamicResource Background_Green}"/>
+                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
                                 <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" IsReadOnly="True" Text="{Binding orfkName,StringFormat={}УФК: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground_Button}" SelectionBrush="{DynamicResource Background_Green}"/>
+                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
                             </Grid>
                         </Grid>
                     </DataTemplate>

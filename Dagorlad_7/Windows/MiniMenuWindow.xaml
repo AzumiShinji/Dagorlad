@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Dagorlad_7.Windows"
         mc:Ignorable="d"
         WindowStyle="None"
-        Background="{DynamicResource Background_Outside}"
+        Background="{DynamicResource Background.Outside}"
         ResizeMode="NoResize"
         ShowActivated="False"
         Topmost="True" Closing="Window_Closing"
@@ -19,14 +19,14 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" PreviewMouseDown="Head_PreviewMouseDown" Height="12" 
-                    Background="{StaticResource Background_Inside_TextBox}">
+                    Background="{StaticResource Background.Inside.Blob}">
             <StackPanel.Style>
                 <Style TargetType="StackPanel">
                     <Style.Triggers>
                         <EventTrigger RoutedEvent="StackPanel.MouseEnter">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ColorAnimation To="{StaticResource Background_Green_Color}" 
+                                    <ColorAnimation To="{StaticResource Background.Highlight.Color}" 
                                     Storyboard.TargetProperty="(StackPanel.Background).(SolidColorBrush.Color)" 
                                     Duration="0:0:0.15"/>
                                 </Storyboard>

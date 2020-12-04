@@ -86,13 +86,13 @@ namespace Dagorlad_7.Windows
             {
                 if (SelectedUser != null && client.Email != Me.Email && SelectedUser.Email == client.Email)
                 {
-                    DirectionLabelOrTypingLabel.Foreground = (Brush)Application.Current.Resources["Background_Green"];
+                    DirectionLabelOrTypingLabel.Foreground = (Brush)Application.Current.Resources["Background.Highlight"];
                     DirectionLabelOrTypingLabel.Content = "печатает...";
                 }
             }
             else
             {
-                DirectionLabelOrTypingLabel.Foreground = (Brush)Application.Current.Resources["Foreground_Dark"];
+                DirectionLabelOrTypingLabel.Foreground = (Brush)Application.Current.Resources["Foreground.Pressed"];
                 DirectionLabelOrTypingLabel.Content = SelectedUser.Direction;
             }
         }
@@ -694,12 +694,12 @@ namespace Dagorlad_7.Windows
             var issticker = System.Convert.ToBoolean(value);
             if (issticker)
                 return Brushes.Transparent;
-            else return Application.Current.FindResource("Background_Outside");
+            else return Application.Current.FindResource("Background.Inside.Blob");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return Application.Current.FindResource("Background_Outside");
+            return Application.Current.FindResource("Background.Inside.Blob");
         }
     }
     public class FindHandlingLink : IValueConverter

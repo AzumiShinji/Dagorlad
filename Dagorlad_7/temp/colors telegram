@@ -1,0 +1,8 @@
+Color theme Telegram:
+Background.Inside: #18191d
+Background.Inside.Blob: #33393f
+Background.Outside: #282e33
+Background.HalfOutside: #20262b
+Foreground.Highlight: #009687
+Foreground: #f5f5f5
+Foreground.History: #8d939e
