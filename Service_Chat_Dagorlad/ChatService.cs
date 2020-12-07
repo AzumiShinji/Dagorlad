@@ -4,6 +4,7 @@ using System.ServiceModel;
 using System.Runtime.Serialization;
 using System.IO;
 using System.Windows.Media.Imaging;
+using System.Collections.Concurrent;
 
 namespace Service_Chat_Dagorlad
 {
@@ -11,6 +12,7 @@ namespace Service_Chat_Dagorlad
     [DataContract]
     public class Client
     {
+        private string _status;
         private string _email;
         private string _name;
         private string _direction;
@@ -18,6 +20,12 @@ namespace Service_Chat_Dagorlad
         private int? _countunreaded;
         private string _lastmessage;
 
+        [DataMember]
+        public string Status
+        {
+            get { return _status; }
+            set { _status = value; }
+        }
         [DataMember]
         public string Email
         {
@@ -189,7 +197,7 @@ namespace Service_Chat_Dagorlad
     public interface IChatCallback
     {
         [OperationContract(IsOneWay = true)]
-        void RefreshClients(List<Client> clients);
+        void RefreshClients(ICollection<Client> clients);
 
         [OperationContract(IsOneWay = true)]
         void Receive(Message msg);
@@ -218,9 +226,7 @@ namespace Service_Chat_Dagorlad
     ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false)]
     public class ChatService : IChat
     {
-        Dictionary<Client, IChatCallback> clients = new Dictionary<Client, IChatCallback>();
-
-        List<Client> clientList = new List<Client>();
+        ConcurrentDictionary<Client, IChatCallback> clients = new ConcurrentDictionary<Client, IChatCallback>();
 
         public IChatCallback CurrentCallback
         {
@@ -233,56 +239,53 @@ namespace Service_Chat_Dagorlad
 
         object syncObj = new object();
 
-        private bool IsUniqueClient(string Email)
-        {
-            foreach (Client c in clients.Keys)
-            {
-                if (c.Email == Email)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-
 
         #region IChat Members
 
         public bool Connect(Client client)
         {
-            if (!clients.ContainsValue(CurrentCallback) && IsUniqueClient(client.Email))
+            var IsAdded = clients.TryAdd(client, CurrentCallback);
+            if (IsAdded)
             {
-                lock (syncObj)
+                LogWrite("\"" + client.Email + "\" has been added to clients list...");
+                foreach (Client key in clients.Keys)
                 {
-                    clients.Add(client, CurrentCallback);
-                    clientList.Add(client);
-
-                    foreach (Client key in clients.Keys)
+                    IChatCallback callback = clients[key];
+                    try
                     {
-                        IChatCallback callback = clients[key];
-                        try
-                        {
-                            callback.RefreshClients(clientList);
-                            callback.UserJoin(client);
-                        }
-                        catch (Exception ex)
-                        {
-                            LogWrite(ex.ToString());
-                            LogWrite("Try remove \"" + client.Email + "\"");
-                            clients.Remove(key);
-                            return false;
-                        }
+                        callback.RefreshClients(clients.Keys);
+                        callback.UserJoin(client);
                     }
-
+                    catch (Exception ex)
+                    {
+                        LogWrite(ex.ToString());
+                        var IsRemoved = clients.TryRemove(key, out IChatCallback value);
+                        if (IsRemoved)
+                            LogWrite("Client \"" + key.Email + "\" removed.");
+                        return false;
+                    }
                 }
-                return true;
             }
             else
             {
-                LogWrite("Client \""+ client.Email + "\" already exist.");
+                if(clients.ContainsKey(client))
+                {
+                    //try update
+                    clients.TryGetValue(client, out IChatCallback _value);
+                    var IsUpdate = clients.TryUpdate(client, CurrentCallback,_value);
+                    if (IsUpdate)
+                        LogWrite("Was exist and then client \"" + client.Email + "\" updated.");
+                    else
+                    {
+                        //try delete
+                        var IsRemoved = clients.TryRemove(client, out IChatCallback value);
+                        if (IsRemoved)
+                            LogWrite("Was exist and then client \"" + client.Email + "\" removed.");
+                    }
+                }
+                return false;
             }
-            return false;
+            return true;
         }
 
         public void Say(Message msg)
@@ -363,18 +366,23 @@ namespace Service_Chat_Dagorlad
                     {
                         try
                         {
-                            this.clients.Remove(c);
-                            this.clientList.Remove(c);
-                            foreach (IChatCallback callback in clients.Values)
+                            var IsRemoved=this.clients.TryRemove(c,out IChatCallback value);
+                            if (IsRemoved)
                             {
-                                try
+                                foreach (IChatCallback callback in clients.Values)
                                 {
-                                    callback.RefreshClients(this.clientList);
-                                    callback.UserLeave(client);
+                                    try
+                                    {
+                                        callback.RefreshClients(this.clients.Keys);
+                                        callback.UserLeave(client);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        LogWrite("IChatCallback error: " + ex.ToString());
+                                    }
                                 }
-                                catch (Exception ex) { LogWrite("IChatCallback error: " + ex.ToString()); }
+                                LogWrite(client.Email + " - has been disconnected successfully.");
                             }
-                            LogWrite(client.Email + " - has been disconnected successfully.");
                         }
                         catch (Exception ex) { LogWrite("Trying disconnecting error: " + ex.ToString()); }
                     }

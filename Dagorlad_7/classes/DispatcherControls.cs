@@ -305,14 +305,15 @@ namespace Dagorlad_7.classes
                 case (TypeColorScheme.light):
                     {
                         Application.Current.Resources["Background.Inside"] = new SolidColorBrush(Colors.White);
-                        Application.Current.Resources["Background.Outside"] = new SolidColorBrush(Colors.LightGray);
-                        Application.Current.Resources["Background.Inside.Blob"] = new SolidColorBrush(Colors.WhiteSmoke);
-                        Application.Current.Resources["Background.Highlight"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF3A6FD8"));
-                        Application.Current.Resources["Background.Highlight.Color"] = (Color)ColorConverter.ConvertFromString("#FF3A6FD8");
+                        Application.Current.Resources["Background.Inside.Blob"] = new SolidColorBrush(Colors.LightGray);
+                        Application.Current.Resources["Background.Outside"] = new SolidColorBrush(Colors.WhiteSmoke);
+                        Application.Current.Resources["Background.HalfOutside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#20262b"));
+                        Application.Current.Resources["Background.Highlight"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#009687"));
+                        Application.Current.Resources["Background.Highlight.Color"] = (Color)ColorConverter.ConvertFromString("#009687");
                         Application.Current.Resources["Background.MouseOver"] = new SolidColorBrush(Colors.Gray);
                         Application.Current.Resources["Foreground"] = new SolidColorBrush(Colors.Black);
-                        Application.Current.Resources["Foreground.History"] = new SolidColorBrush(Colors.Black);
-                        Application.Current.Resources["Foreground.Pressed"] = new SolidColorBrush(Colors.Black);
+                        Application.Current.Resources["Foreground.History"] = new SolidColorBrush(Colors.Gray);
+                        Application.Current.Resources["Foreground.Pressed"] = new SolidColorBrush(Colors.White);
                         break;
                     }
                 case (TypeColorScheme.dark):

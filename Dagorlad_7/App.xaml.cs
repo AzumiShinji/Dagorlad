@@ -19,7 +19,6 @@ namespace Dagorlad_7
     /// </summary>
     public partial class App : Application
     {
-        public static bool IsAfterUpdate = false;
         protected async override void OnStartup(StartupEventArgs e)
         {
             try
@@ -27,32 +26,20 @@ namespace Dagorlad_7
                 base.OnStartup(e);
                 if (!IsMutex)
                 {
-                    //initialize the splash screen and set it as the application main window
                     var splashScreen = new SplashWindow();
                     this.MainWindow = splashScreen;
                     splashScreen.Show();
-
-                    //in order to ensure the UI stays responsive, we need to
-                    //do the work on a different thread
                     await Task.Factory.StartNew(() =>
                     {
-                    //simulate some work being done
                     //System.Threading.Thread.Sleep(500);
-
-                    //since we're not on the UI thread
-                    //once we're done we need to use the Dispatcher
-                    //to create and show the main window
                     this.Dispatcher.Invoke(() =>
                             {
-                            //initialize the main window, set it as the application main window
-                            //and close the splash screen
                             var mainWindow = new MainWindow();
                                 this.MainWindow = mainWindow;
                                 if (e.Args.Length > 0 && e.Args[0] == "{8E06A225-F9B4-48BA-A95A-FCE56D275B25}")
                                 {
                                     DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name + " обновился", "Текущая версия: \n" +
                                         DispatcherControls.GetVersionApplication(DispatcherControls.TypeDisplayVersion.Fully), 8, mainWindow, TypeImageNotify.update);
-                                    IsAfterUpdate = true;
                                 }
 #if (DEBUG)
                             //mainWindow.Show();

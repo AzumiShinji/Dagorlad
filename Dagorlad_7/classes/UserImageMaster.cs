@@ -85,7 +85,7 @@ namespace Dagorla_7.classes
             var color = ((SolidBrush)pickedbrush).Color;
             var forecolor = GetReadableForeColor(color);
             var image = DrawUserCircle(new System.Drawing.Size(64, 64), pickedbrush, ConvertText(text),
-                new System.Drawing.Font("Arial", 19, System.Drawing.FontStyle.Bold), System.Drawing.Color.Transparent,
+                new System.Drawing.Font("Arial", 18, System.Drawing.FontStyle.Bold), System.Drawing.Color.Transparent,
                 forecolor, isgroup);
             using (var ms = new MemoryStream())
             {

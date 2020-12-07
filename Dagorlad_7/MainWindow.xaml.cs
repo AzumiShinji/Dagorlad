@@ -67,9 +67,6 @@ namespace Dagorlad_7
             await MySettings.Save();
             InitClipboardMonitor();
             UpdateLabelAboutUpdate();
-            if (!App.IsAfterUpdate)
-                DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name,
-                    "Привет! Отличного дня и настроения!\nПрограмма работает в фоновом режиме.", 8, this, TypeImageNotify.standart);
         }
         private async void UpdateLabelAboutUpdate()
         {

@@ -47,6 +47,7 @@ namespace Dagorlad_7.Windows
 
             base.OnStateChanged(e);
         }
+
         ObservableCollection<ChatsClass> OCChats = new ObservableCollection<ChatsClass>();
         public ObservableCollection<ChatsClass> ItemsOfChat
         {
@@ -82,6 +83,7 @@ namespace Dagorlad_7.Windows
 
         public void IsWritingCallback(SVC.Client client)
         {
+            if (SelectedUser == null) return;
             if (client != null)
             {
                 if (SelectedUser != null && client.Email != Me.Email && SelectedUser.Email == client.Email)
@@ -92,7 +94,7 @@ namespace Dagorlad_7.Windows
             }
             else
             {
-                DirectionLabelOrTypingLabel.Foreground = (Brush)Application.Current.Resources["Foreground.Pressed"];
+                DirectionLabelOrTypingLabel.Foreground = (Brush)Application.Current.Resources["Foreground.History"];
                 DirectionLabelOrTypingLabel.Content = SelectedUser.Direction;
             }
         }
@@ -185,10 +187,18 @@ namespace Dagorlad_7.Windows
                 }
                 else continue;
             }
-            var list = OCChats.ToList();
-            foreach (var s in list)
-                if (clients.Where(x=>x.Email==s.user.Email).Count()==0 && s.user.Email!=common_chat)
-                        OCChats.Remove(s);
+            foreach (var s in OCChats)
+            {
+                if (s.user.Email != common_chat)
+                {
+                    if (clients.Where(x => x.Email == s.user.Email).Count() == 0)
+                    {
+                        s.user.Status = "(Offline) ";
+                    }
+                    else s.user.Status = null;
+                }
+            }
+            //OCChats.Remove(s);
             await HandleProxy();
         }
 
@@ -278,6 +288,7 @@ namespace Dagorlad_7.Windows
         int reconnect_Timeout_sec = 3;
         private async void Reconnect()
         {
+            proxy.Abort();
             proxy = null;
             InformationBlockLabel.Content = String.Format("Подключение...", reconnect_Timeout_sec);
             await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));
@@ -375,6 +386,11 @@ namespace Dagorlad_7.Windows
                     NameLabel.Content = dc.user.Name;
                     DirectionLabelOrTypingLabel.Content = dc.user.Direction;
                     MarkCurrentDialogLikeReaded();
+                    Dispatcher.BeginInvoke(DispatcherPriority.Input,
+    new Action(delegate ()
+    {
+        MessageTextBox.Focus();
+    }));
                 }
             }
         }

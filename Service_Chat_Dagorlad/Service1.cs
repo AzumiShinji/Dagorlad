@@ -62,9 +62,9 @@ namespace Service_Chat_Dagorlad
                 binding_tcp.Security.Transport.ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign;
 
                 //Enable reliable session and keep the connection alive for 20 hours.
-                //binding_tcp.ReceiveTimeout = new TimeSpan(48, 0, 0);
-                //binding_tcp.ReliableSession.Enabled = true;
-                //binding_tcp.ReliableSession.InactivityTimeout = new TimeSpan(48, 0, 10);
+                binding_tcp.ReceiveTimeout = new TimeSpan(48, 0, 0);
+                binding_tcp.ReliableSession.Enabled = true;
+                binding_tcp.ReliableSession.InactivityTimeout = new TimeSpan(48, 0, 10);
 
                 service_host.AddServiceEndpoint(typeof(IChat), binding_tcp, address_TCP);
 

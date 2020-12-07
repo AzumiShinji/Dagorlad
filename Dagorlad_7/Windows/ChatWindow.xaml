@@ -50,7 +50,7 @@
                    FontSize="13" Foreground="{DynamicResource Foreground}" Background="{DynamicResource Background.Outside}"/>
             <Label x:Name="DirectionLabelOrTypingLabel" FontWeight="Medium" Grid.Row="1"
                    VerticalContentAlignment="Center" Padding="10,0,0,0"
-                   FontSize="10" Foreground="{DynamicResource Foreground.Pressed}" Background="{DynamicResource Background.Outside}"/>
+                   FontSize="10" Foreground="{DynamicResource Foreground.History}" Background="{DynamicResource Background.Outside}"/>
         </Grid>
         <ListView x:Name="UsersListView" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3"
                   Background="{DynamicResource Background.Outside}" BorderThickness="0" ItemsSource="{Binding Source={StaticResource src}}">
@@ -92,9 +92,17 @@
                             <Border Margin="0,0,5,0" Height="30" Width="30" Grid.RowSpan="2">
                                 <Image x:Name="UserLogoImage" Source="{Binding image}"/>
                             </Border>
-                            <TextBlock Grid.Column="1" Text="{Binding user.Name}" FontWeight="Medium"
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding user.Status}" FontWeight="Medium" Foreground="Red"
+                                       FontSize="10" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Text="{Binding user.Name}" FontWeight="Medium"
                                        x:Name="NameTextBlock"
                                        FontSize="14" Foreground="{DynamicResource Foreground}" VerticalAlignment="Center"/>
+                            </Grid>
                             <TextBlock Grid.Column="1" Grid.Row="1" TextTrimming="CharacterEllipsis"
                                        HorizontalAlignment="Left" Width="{Binding ActualWidth,ElementName=Border}" MaxWidth="220"
                                        FontSize="10" Foreground="{DynamicResource Foreground.History}"
@@ -228,13 +236,6 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Label x:Name="TypingLabel1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Foreground="{DynamicResource Background.Highlight}"
-                   FontSize="14" FontWeight="Normal" Padding="15,5,5,5" HorizontalContentAlignment="Center"
-                   Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"/>
             <Button x:Name="StickersPopupChooseButton" Height="40" Width="40"
                     Template="{StaticResource ButtonStandart}"
                     Content="{StaticResource Canvas_Stickers}" Grid.Column="0" Click="StickersPopupChooseButton_Click" Grid.Row="1"/>
