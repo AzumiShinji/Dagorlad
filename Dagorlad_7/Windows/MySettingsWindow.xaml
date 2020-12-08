@@ -55,14 +55,22 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <CheckBox x:Name="IsAutorunCheckBox" Grid.Row="0" IsEnabled="False"
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="IsAutorunCheckBox" Grid.Row="0"
                           IsChecked="False" Content="Автозапуск приложения" Foreground="{DynamicResource Foreground}" VerticalContentAlignment="Center"
                       FontWeight="Medium" FontSize="14"/>
-                <CheckBox x:Name="IsEnabledSmartMenuCheckBox" Grid.Row="1" IsChecked="False" Content="Смарт-меню" Foreground="{DynamicResource Foreground}" VerticalContentAlignment="Center"
+                    <CheckBox x:Name="IsEnabledSmartMenuCheckBox" Grid.Row="1" IsChecked="False" Content="Смарт-меню" Foreground="{DynamicResource Foreground}" VerticalContentAlignment="Center"
                       FontWeight="Medium" FontSize="14"/>
-                <Grid Grid.Row="2" HorizontalAlignment="Center" Margin="5">
+                    <CheckBox x:Name="IsRegGlobalEventCheckBox" IsChecked="False" Grid.Row="2" FontWeight="Medium" FontSize="14"
+                              Content="Регистрировать глобальные клавишы" Foreground="{DynamicResource Foreground}"/>
+                </Grid>
+                <Grid Grid.Row="1" HorizontalAlignment="Center" Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -78,7 +86,7 @@
                     <RadioButton Grid.Column="1" Content="Светлая" GroupName="TypeScheme" Margin="10,0,0,0" x:Name="LightColorSchemeRadioButton" Grid.Row="1"
                                  Foreground="{DynamicResource Foreground}" FontSize="14" FontWeight="Medium"/>
                 </Grid>
-                <Grid Grid.Row="3">
+                <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition/>
@@ -86,7 +94,7 @@
                     <Label Content="Адреc почты (Email, *@fsfk.local):" Foreground="{DynamicResource Foreground}"/>
                     <TextBox Grid.Column="1" x:Name="EmailTextBox" Foreground="{DynamicResource Foreground}" MinWidth="100" SelectionBrush="{DynamicResource Background.Highlight}"/>
                 </Grid>
-                <Grid Grid.Row="4">
+                <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -104,7 +112,7 @@
                     <PasswordBox x:Name="NSD_PasswordTextBox" Foreground="{DynamicResource Foreground}" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1"
                              Background="{DynamicResource Background.Inside.Blob}" SelectionBrush="{DynamicResource Background.Highlight}"/>-->
                 </Grid>
-                <Button Grid.Row="5" Template="{StaticResource ButtonStandart}" Visibility="Collapsed" x:Name="OpenLogsFolderButton"
+                <Button Grid.Row="4" Template="{StaticResource ButtonStandart}" Visibility="Collapsed" x:Name="OpenLogsFolderButton"
                         Content="Открыть локальную папку программы" Height="40" Click="OpenLogsFolder_Click"/>
             </Grid>
         </Grid>

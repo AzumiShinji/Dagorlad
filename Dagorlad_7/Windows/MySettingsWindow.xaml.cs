@@ -54,61 +54,6 @@ namespace Dagorlad_7.Windows
                 }
             }
         }
-        public class OldCustomExample {
-            public class Rootobject
-            {
-                public Example[] Examples { get; set; }
-            }
-
-            public class Example
-            {
-                public string Folder { get; set; }
-                public string Name { get; set; }
-                public string Text { get; set; }
-            }
-        }
-        public static void LoadEmailFromOldDagorlad()
-        {
-            try
-            {
-                var emailfile = AppDomain.CurrentDomain.BaseDirectory + String.Format("{0}.email", Environment.UserName);
-                if (File.Exists(emailfile))
-                {
-                    MySettings.Settings.Email = File.ReadAllText(emailfile);
-                    try
-                    {
-                        File.Delete(emailfile);
-                    }
-                    catch { }
-                    MySettings.Save();
-                }
-                var customexamplefile = AppDomain.CurrentDomain.BaseDirectory + String.Format("CustomExample_{0}.json", Environment.UserName);
-                if (File.Exists(customexamplefile))
-                {
-                    if (MySettings.Settings.SmartMenuList.Count() == 0)
-                    {
-                        OldCustomExample.Example[] objs = null;
-                        using (StreamReader file = File.OpenText(customexamplefile))
-                        {
-                            objs = ((OldCustomExample.Rootobject)new JsonSerializer().Deserialize(file, typeof(OldCustomExample.Rootobject))).Examples;
-                        }
-                        var list = new List<SmartAnswersClass>();
-                        foreach (var s in objs.GroupBy(x => x.Folder).Select(x => x.First()).Select(x => x.Folder))
-                        {
-                            var name = s;
-                            var items = new List<SmartAnswers_SubClass>();
-                            foreach (var g in objs.Where(x => x.Folder == s))
-                            {
-                                items.Add(new SmartAnswers_SubClass { title = g.Name, text = g.Text });
-                            }
-                            MySettings.Settings.SmartMenuList.Add(new SmartAnswersClass { name = name, items = new ObservableCollection<SmartAnswers_SubClass>(items) });
-                        }
-                        File.Delete(customexamplefile);
-                    }
-                }
-            }
-            catch (Exception ex) { Logger.Write(Logger.TypeLogs.main,ex.ToString()); }
-        }
     }
     public partial class MySettingsWindow : Window
     {
@@ -119,9 +64,8 @@ namespace Dagorlad_7.Windows
             public ObservableCollection<SmartAnswersClass> SmartMenuList = new ObservableCollection<SmartAnswersClass>();
             public string Email { get; set; }
             public TypeColorScheme TypeColorScheme = TypeColorScheme.dark;
-            //public string NSD_Login { get; set; }
-            //public string NSD_Password { get; set; }
-            //public string NSD_Token { get; set; }
+            public bool IsRegGlobalHook = true;
+            public string ClearingFolder { get; set; }
         }
         public MySettingsWindow()
         {
@@ -148,6 +92,7 @@ namespace Dagorlad_7.Windows
             }
             if (!String.IsNullOrEmpty(EmailTextBox.Text))
                 EmailTextBox.IsEnabled = false;
+            IsRegGlobalEventCheckBox.IsChecked = MySettings.Settings.IsRegGlobalHook;
             return Task.CompletedTask;
         }
         private async Task SaveSettings()
@@ -166,6 +111,7 @@ namespace Dagorlad_7.Windows
             {
                 MySettings.Settings.TypeColorScheme = TypeColorScheme.light;
             }
+            MySettings.Settings.IsRegGlobalHook = IsRegGlobalEventCheckBox.IsChecked.Value;
             await MySettings.Save();
         }
         private async void SaveButton_Click(object sender, RoutedEventArgs e)

@@ -66,3 +66,4 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\ChatWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\ChatWindow.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Dagorlad_7.csproj.Fody.CopyLocal.cache
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Dagorlad_7.csprojAssemblyReference.cache
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\Microsoft.Win32.TaskScheduler.xml

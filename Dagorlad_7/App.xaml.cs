@@ -19,6 +19,7 @@ namespace Dagorlad_7
     /// </summary>
     public partial class App : Application
     {
+        private const string UpdateGuid = "{8E06A225-F9B4-48BA-A95A-FCE56D275B25}";
         protected async override void OnStartup(StartupEventArgs e)
         {
             try
@@ -26,28 +27,31 @@ namespace Dagorlad_7
                 base.OnStartup(e);
                 if (!IsMutex)
                 {
-                    var splashScreen = new SplashWindow();
-                    this.MainWindow = splashScreen;
-                    splashScreen.Show();
+                    SplashWindow splashScreen = null;
+                    if (e.Args.Length == 0)
+                    {
+                        splashScreen = new SplashWindow();
+                        this.MainWindow = splashScreen;
+                        splashScreen.Show();
+                    }
                     await Task.Factory.StartNew(() =>
                     {
-                    //System.Threading.Thread.Sleep(500);
-                    this.Dispatcher.Invoke(() =>
-                            {
-                            var mainWindow = new MainWindow();
-                                this.MainWindow = mainWindow;
-                                if (e.Args.Length > 0 && e.Args[0] == "{8E06A225-F9B4-48BA-A95A-FCE56D275B25}")
+                        this.Dispatcher.Invoke(() =>
                                 {
-                                    DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name + " обновился", "Текущая версия: \n" +
-                                        DispatcherControls.GetVersionApplication(DispatcherControls.TypeDisplayVersion.Fully), 8, mainWindow, TypeImageNotify.update);
-                                }
-#if (DEBUG)
-                            //mainWindow.Show();
-#endif
-                                splashScreen.Closing -= (qq, ee) => { ee.Cancel = true; };
-                                splashScreen.Closing += (qq, ee) => { ee.Cancel = false; };
-                                splashScreen.Close();
-                            });
+                                    var mainWindow = new MainWindow();
+                                    this.MainWindow = mainWindow;
+                                    if (e.Args.Length > 0 && e.Args[0] == UpdateGuid)
+                                    {
+                                        DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name + " обновился", "Текущая версия: \n" +
+                                            DispatcherControls.GetVersionApplication(DispatcherControls.TypeDisplayVersion.Fully), 8, mainWindow, TypeImageNotify.update);
+                                    }
+                                    if (splashScreen != null)
+                                    {
+                                        splashScreen.Closing -= (qq, ee) => { ee.Cancel = true; };
+                                        splashScreen.Closing += (qq, ee) => { ee.Cancel = false; };
+                                        splashScreen.Close();
+                                    }
+                                });
                     });
                 }
             }

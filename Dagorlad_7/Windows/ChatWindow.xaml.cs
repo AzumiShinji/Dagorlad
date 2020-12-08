@@ -288,7 +288,8 @@ namespace Dagorlad_7.Windows
         int reconnect_Timeout_sec = 3;
         private async void Reconnect()
         {
-            proxy.Abort();
+            if (proxy != null)
+                proxy.Abort();
             proxy = null;
             InformationBlockLabel.Content = String.Format("Подключение...", reconnect_Timeout_sec);
             await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));

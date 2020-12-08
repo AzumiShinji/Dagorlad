@@ -15,6 +15,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using UsBudget.classes;
 using static Dagorlad_7.Windows.MyDialogWindow;
 
 namespace Dagorlad_7.classes
@@ -25,7 +26,8 @@ namespace Dagorlad_7.classes
         chat = 1,
         buildings = 2,
         sad = 3,
-        update=4,
+        completed=4,
+        update =5,
     }
     public enum TypeColorScheme
     {
@@ -154,31 +156,58 @@ namespace Dagorlad_7.classes
                     win.Activate();
                 };
         }
-        public static bool? Autorun(TypeAutoRunOperation operation)
+        public static bool Autorun(TypeAutoRunOperation operation)
         {
-            var path_run = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
-            RegistryKey rkApp = Registry.CurrentUser.OpenSubKey(path_run, true);
-            bool IsExistKey = rkApp.GetValue(Assembly.GetEntryAssembly().GetName().Name) == null ? false : true;
-            switch (operation)
+            try
             {
-                case (TypeAutoRunOperation.On):
-                    {
-                        if (!IsExistKey)
-                            rkApp.SetValue(Assembly.GetEntryAssembly().GetName().Name, System.Windows.Forms.Application.ExecutablePath.ToString());
-                        break;
-                    }
-                case (TypeAutoRunOperation.Off):
-                    {
-                        if (IsExistKey)
-                            rkApp.DeleteValue(Assembly.GetEntryAssembly().GetName().Name, false);
-                        break;
-                    }
-                case (TypeAutoRunOperation.CheckStatus):
-                    {
-                        return IsExistKey;
-                    }
+                bool IsExistTask = false;
+                string application_name = Assembly.GetExecutingAssembly().GetName().Name;
+                using (Microsoft.Win32.TaskScheduler.TaskService ts = new Microsoft.Win32.TaskScheduler.TaskService())
+                {
+                    IsExistTask = ts.FindTask(application_name, true) == null ? false : true;
+                }
+                switch (operation)
+                {
+                    case (TypeAutoRunOperation.On):
+                        {
+                            using (Microsoft.Win32.TaskScheduler.TaskService ts = new Microsoft.Win32.TaskScheduler.TaskService())
+                            {
+                                var userid = System.Security.Principal.WindowsIdentity.GetCurrent().User.Value;
+                                var xml = Properties.Resources.startup
+                                    .Replace("%name%", application_name)
+                                    .Replace("%userid%", userid)
+                                    .Replace("%user%", Environment.MachineName + @"\" + Environment.UserName)
+                                    .Replace("%path%", AppDomain.CurrentDomain.BaseDirectory + application_name + ".exe")
+                                    .Replace("%path_wd%", AppDomain.CurrentDomain.BaseDirectory);
+                                var new_task = ts.NewTask();
+                                new_task.XmlText = xml;
+                                ts.RootFolder.RegisterTaskDefinition(
+                                    application_name,
+                                    new_task,
+                                    Microsoft.Win32.TaskScheduler.TaskCreation.CreateOrUpdate,
+                                    userid,
+                                    null,
+                                    Microsoft.Win32.TaskScheduler.TaskLogonType.InteractiveToken);
+                            }
+                            return true;
+                        }
+                    case (TypeAutoRunOperation.Off):
+                        {
+                            if (IsExistTask)
+                                using (Microsoft.Win32.TaskScheduler.TaskService ts = new Microsoft.Win32.TaskScheduler.TaskService())
+                                {
+                                    ts.RootFolder.DeleteTask(application_name);
+                                }
+                            return false;
+                        }
+                    case (TypeAutoRunOperation.CheckStatus):
+                        {
+                            return IsExistTask;
+                        }
+                }
+                return IsExistTask;
             }
-            return null;
+            catch (Exception ex){ Logger.Write(Logger.TypeLogs.main,ex.ToString()); return false; }
         }
         public static ResultMyDialog ShowMyDialog(string title,string text, TypeMyDialog type,Window win)
         {
@@ -245,6 +274,12 @@ namespace Dagorlad_7.classes
                             var thisIcon = new BitmapImage(SourceUri);
                             return thisIcon;
                         }
+                    case (TypeImageNotify.completed):
+                        {
+                            var SourceUri = new Uri("pack://application:,,,/Dagorlad;component/images/completed_64.png", UriKind.Absolute);
+                            var thisIcon = new BitmapImage(SourceUri);
+                            return thisIcon;
+                        }
                     case (TypeImageNotify.update):
                         {
                             var SourceUri = new Uri("pack://application:,,,/Dagorlad;component/images/update_64.png", UriKind.Absolute);
@@ -298,7 +333,7 @@ namespace Dagorlad_7.classes
             File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory+ "Dagorlad.exe.config", "<?xml version=\"1.0\" encoding=\"utf-8\"?> <configuration> <startup> <supportedRuntime version=\"v4.0\" sku=\".NETFramework,Version=v4.7.1\"/> </startup> <system.serviceModel> <bindings> <netTcpBinding> <binding name=\"NetTcpBinding_IChat\"> <reliableSession inactivityTimeout=\"20:00:10\" enabled=\"true\" /> <security> <transport sslProtocols=\"None\" /> </security> </binding> </netTcpBinding> </bindings> <client> <endpoint address=\"net.tcp://webservice:9002/Dagorlad_Chat\" binding=\"netTcpBinding\" bindingConfiguration=\"NetTcpBinding_IChat\" contract=\"SVC.IChat\" name=\"NetTcpBinding_IChat\" /> </client> </system.serviceModel> </configuration>");
         }
 
-        public static void SetSchemeColor(TypeColorScheme type)
+        public static void SetSchemeColor(TypeColorScheme type,bool IsFirstExecute)
         {
             switch(type)
             {
@@ -312,12 +347,13 @@ namespace Dagorlad_7.classes
                         Application.Current.Resources["Background.Highlight.Color"] = (Color)ColorConverter.ConvertFromString("#009687");
                         Application.Current.Resources["Background.MouseOver"] = new SolidColorBrush(Colors.Gray);
                         Application.Current.Resources["Foreground"] = new SolidColorBrush(Colors.Black);
-                        Application.Current.Resources["Foreground.History"] = new SolidColorBrush(Colors.Gray);
+                        Application.Current.Resources["Foreground.History"] = new SolidColorBrush(Colors.DimGray);
                         Application.Current.Resources["Foreground.Pressed"] = new SolidColorBrush(Colors.White);
                         break;
                     }
                 case (TypeColorScheme.dark):
                     {
+                        if (IsFirstExecute) return;
                         Application.Current.Resources["Background.Inside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#18191d"));
                         Application.Current.Resources["Background.Inside.Blob"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#33393f"));
                         Application.Current.Resources["Background.Outside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#282e33"));
@@ -336,6 +372,34 @@ namespace Dagorlad_7.classes
             Application.Current.Resources.MergedDictionaries.Clear();
             Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = styles });
             Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = canvas });
+        }
+        public static Task ClearDirectory(string dir)
+        {
+            if (String.IsNullOrEmpty(dir)) return Task.CompletedTask;
+            bool _error = false;
+            try
+            {
+                foreach (FileInfo d in (new DirectoryInfo(@dir).GetFiles()))
+                {
+                    d.Delete();
+                }
+
+                foreach (DirectoryInfo d in (new DirectoryInfo(@dir).GetDirectories()))
+                {
+                    d.Delete(true);
+                }
+            }
+            catch (Exception g)
+            {
+                _error = true;
+                NewMyNotifyWindow("Не удалось очистить директорию", g.Message, 5, Application.Current.MainWindow, TypeImageNotify.sad);
+            }
+            finally
+            {
+                if (!_error)
+                    NewMyNotifyWindow("Директория очищена", dir, 5, Application.Current.MainWindow, TypeImageNotify.completed);
+            }
+            return Task.CompletedTask;
         }
     }
     class CursorPosition

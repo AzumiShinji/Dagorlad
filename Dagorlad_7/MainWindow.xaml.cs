@@ -38,16 +38,16 @@ namespace Dagorlad_7
         public MainWindow()
         {
             MySettings.Load();
+            /////////////////////////////////////////////////////////////////////////
+            MySettings.Settings.IsFirstTimeLanuched = true; 
+            // need to delete to next cycle
 #if (!DEBUG)
             Updater.CheckUpdate().GetAwaiter();
 #endif
-            DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme);
+            DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme,true);
             DispatcherControls.HideWindowToTaskMenu(this, null);
             InitializeComponent();
             LoadEvents();
-            // need to remove
-            MySettings.LoadEmailFromOldDagorlad();
-            //
             new ChatWindow();
             CheckingUpdateApplicationStart();
         }
@@ -67,6 +67,12 @@ namespace Dagorlad_7
             await MySettings.Save();
             InitClipboardMonitor();
             UpdateLabelAboutUpdate();
+            if (!String.IsNullOrEmpty(MySettings.Settings.ClearingFolder))
+                FolderToBeClearedTextBlock.Text = MySettings.Settings.ClearingFolder;
+            GlobalHookEventGrid.IsEnabled = MySettings.Settings.IsRegGlobalHook;
+            if (MySettings.Settings.IsRegGlobalHook)
+                GlobalHook.StartHooking();
+            else GlobalHook.StopHooking();
         }
         private async void UpdateLabelAboutUpdate()
         {
@@ -154,7 +160,11 @@ namespace Dagorlad_7
             if (g.ShowDialog() == true)
             {
                 ShowMiniMenu();
-                DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme);
+                DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme,false);
+                    GlobalHookEventGrid.IsEnabled = MySettings.Settings.IsRegGlobalHook;
+                if (MySettings.Settings.IsRegGlobalHook)
+                    GlobalHook.StartHooking();
+                else GlobalHook.StopHooking();
             }
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -274,6 +284,17 @@ namespace Dagorlad_7
             await Task.Delay(2000);
             label.Content = null;
             btn.IsEnabled = true;
+        }
+
+        private void FolderToBeClearedButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MySettings.Settings.ClearingFolder = dialog.SelectedPath;
+                MySettings.Save();
+                FolderToBeClearedTextBlock.Text = MySettings.Settings.ClearingFolder;
+            }
         }
     }
     public class WidthFixedListViewConverter : IValueConverter

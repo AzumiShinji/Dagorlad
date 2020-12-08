@@ -69,5 +69,30 @@ namespace Dagorlad_7.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-16&quot;?&gt;
+        ///&lt;Task version=&quot;1.2&quot; xmlns=&quot;http://schemas.microsoft.com/windows/2004/02/mit/task&quot;&gt;
+        ///  &lt;RegistrationInfo&gt;
+        ///    &lt;Date&gt;2020-03-06T11:33:33.4233558&lt;/Date&gt;
+        ///    &lt;Author&gt;krislechy&lt;/Author&gt;
+        ///    &lt;URI&gt;\%name%&lt;/URI&gt;
+        ///  &lt;/RegistrationInfo&gt;
+        ///  &lt;Triggers&gt;
+        ///    &lt;LogonTrigger&gt;
+        ///      &lt;Enabled&gt;true&lt;/Enabled&gt;
+        ///      &lt;UserId&gt;%user%&lt;/UserId&gt;
+        ///    &lt;/LogonTrigger&gt;
+        ///  &lt;/Triggers&gt;
+        ///  &lt;Principals&gt;
+        ///    &lt;Principal id=&quot;Author&quot;&gt;
+        ///      &lt;UserId&gt;%userid%&lt;/UserId&gt;
+        ///      &lt;LogonType&gt;InteractiveTo [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string startup {
+            get {
+                return ResourceManager.GetString("startup", resourceCulture);
+            }
+        }
     }
 }
