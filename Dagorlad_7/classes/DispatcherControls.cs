@@ -214,7 +214,7 @@ namespace Dagorlad_7.classes
             var g = new MyDialogWindow(title,text,type);
             if(win != null && win.IsLoaded)
             g.Owner = win;
-            if(g.ShowDialog()==true)
+            if(g.result!=ResultMyDialog.Undefined && g.ShowDialog().HasValue && g.ShowDialog()==true)
             {
                 return g.result;
             }

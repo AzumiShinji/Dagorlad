@@ -21,10 +21,11 @@ namespace Dagorlad_7.Windows
     {
         public enum ResultMyDialog
         {
-            Cancel = 0,
-            Ok = 1,
-            Yes = 2,
-            No = 3,
+            Undefined,
+            Cancel = 1,
+            Ok = 2,
+            Yes = 3,
+            No = 4,
         }
         public enum TypeMyDialog
         {
@@ -65,7 +66,7 @@ namespace Dagorlad_7.Windows
         {
             e.Cancel = false;
         }
-        public ResultMyDialog result;
+        public ResultMyDialog result=ResultMyDialog.Undefined;
         private void EventClick(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
