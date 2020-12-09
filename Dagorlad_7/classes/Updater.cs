@@ -54,7 +54,10 @@ namespace Dagorlad_7.classes
                         File.Move(AppDomain.CurrentDomain.BaseDirectory + target, path_bakfile);
                         File.Copy(path_downloadedfile, AppDomain.CurrentDomain.BaseDirectory + target);
                         System.Diagnostics.Process.Start(Application.ResourceAssembly.Location, "{8E06A225-F9B4-48BA-A95A-FCE56D275B25}");
-                        Process.GetCurrentProcess().Kill();
+                        Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            ((MainWindow)Application.Current.MainWindow).ExitFromApplication();
+                        }));
                     }
                     else { Logger.Write(Logger.TypeLogs.updater, "Not found new version."); }
                 }

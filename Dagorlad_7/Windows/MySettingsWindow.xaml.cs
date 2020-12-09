@@ -83,7 +83,6 @@ namespace Dagorlad_7.Windows
             if (on_server_version > current_version)
                 HandUpdateButton.Visibility = Visibility.Visible;
             else HandUpdateButton.Visibility = Visibility.Collapsed;
-
         }
         private Task LoadSettings()
         {

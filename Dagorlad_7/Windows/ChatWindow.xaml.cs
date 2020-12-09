@@ -72,7 +72,6 @@ namespace Dagorlad_7.Windows
         string common_chat = "_common@fsfk.local";
         public ChatWindow()
         {
-            DispatcherControls.HideWindowToTaskMenu(this, "Чат");
             InitializeComponent();
             AdditionalBlock.Visibility = Visibility.Collapsed;
             MessageSendingGrid.Visibility = Visibility.Collapsed;

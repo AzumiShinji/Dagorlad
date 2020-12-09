@@ -57,7 +57,11 @@ namespace Dagorlad_7
 
                 Thread t = new Thread(new ParameterizedThreadStart(x =>
                 {
-                    Application.Run(new ClipboardWatcher());
+                    try
+                    {
+                        Application.Run(new ClipboardWatcher());
+                    }
+                    catch (Exception ex) { Logger.Write(Logger.TypeLogs.clipboard, ex.ToString()); }
                 }));
                 t.SetApartmentState(ApartmentState.STA); // give the [STAThread] attribute
                 t.Start();

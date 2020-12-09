@@ -106,7 +106,8 @@ namespace Dagorlad_7.Windows
                     {
                         if (!String.IsNullOrEmpty(datacontext.text))
                         {
-                            bool IsSomeError = false;
+                            bool AllowToNullable = true;
+                            bool IsSuccessCopied = false;
                             try
                             {
                                 string text = datacontext.text;
@@ -115,27 +116,35 @@ namespace Dagorlad_7.Windows
                                     if (!String.IsNullOrEmpty(DispatcherControls.LastNumberOfHandling))
                                     {
                                         text = text.Replace("{N}", DispatcherControls.LastNumberOfHandling);
+                                        IsSuccessCopied = true;
                                     }
                                     else
                                     {
-                                        lbl.Content = "Отсутствует аттрибут!";
+                                        lbl.Content = "Отсутствует параметр!";
                                         await Task.Delay(2000);
                                         lbl.Content = null;
-                                        IsSomeError = true;
+                                        AllowToNullable = false;
                                         break;
                                     }
                                 }
+                                else
+                                {
+                                    AllowToNullable = false;
+                                }
                                 Clipboard.SetText(text);
+                                IsSuccessCopied = true;
                             }
                             catch
                             {
                                 lbl.Content = "Попробуйте еще раз!";
+                                AllowToNullable = false;
                             }
                             finally
                             {
-                                if (lbl != null && !IsSomeError)
-                                {
+                                if (IsSuccessCopied)
                                     lbl.Content = "Скопировано!";
+                                if (AllowToNullable)
+                                {
                                     TemporaryNumberOfHandlingLabel.Content = null;
                                     DispatcherControls.LastNumberOfHandling = null;
                                 }
@@ -271,6 +280,22 @@ namespace Dagorlad_7.Windows
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             return 0;
+        }
+    }
+    public class ImageEditShowConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var obj = value as string;
+            if (String.IsNullOrEmpty(obj))
+                return "/images/pencil_16.png";
+            else
+                return "/images/eye_16.png";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
         }
     }
 }

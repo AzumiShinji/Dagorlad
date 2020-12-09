@@ -3,6 +3,7 @@ using Dagorlad_7.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -46,7 +47,6 @@ namespace Dagorlad_7
             DispatcherControls.HideWindowToTaskMenu(this, null);
             InitializeComponent();
             LoadEvents();
-            new ChatWindow();
 #if (!DEBUG)
             CheckingUpdateApplicationStart();
 #endif
@@ -80,6 +80,7 @@ namespace Dagorlad_7
             if (MySettings.Settings.IsRegGlobalHook)
                 GlobalHook.StartHooking();
             else GlobalHook.StopHooking();
+            DispatcherControls.HideWindowToTaskMenu(new ChatWindow(), "Чат");
         }
         private async void UpdateLabelAboutUpdate()
         {
@@ -121,35 +122,38 @@ namespace Dagorlad_7
                         {
                             await Dispatcher.BeginInvoke(new Action(async () =>
                             {
-                                var code = SearchOrganizations.CheckIfStringAsNumberOfOrganizations(text);
-                                if (code != 0)
+                                if (IsNumberHandling(text))
                                 {
-                                    var list = await SearchOrganizations.TryFindOrganizations(code);
-                                    if (list != null && list.Count() > 0)
+                                    var number = text.Trim().ToUpper();
+                                    DispatcherControls.LastNumberOfHandling = number;
+                                    foreach (var window in App.Current.Windows)
                                     {
-                                        DispatcherControls.NewMyNotifyWindow(text, String.Format("Найдено {0} орг. по данному коду", list.Count()), 15, this, TypeImageNotify.buildings);
-                                        OrganizationsListMain = list;
-                                        OrganizationsListView.ItemsSource = OrganizationsListMain;
-                                        UpdateLabelAboutUpdate();
+                                        if (window.GetType() == typeof(SmartMenuWindow))
+                                        {
+                                            var wnd = ((SmartMenuWindow)window);
+                                            if (wnd.IsLoaded)
+                                            {
+                                                wnd.TemporaryNumberOfHandlingLabel.Content =
+                                                DispatcherControls.LastNumberOfHandling;
+                                                break;
+                                            }
+                                        }
                                     }
+                                    DispatcherControls.NewMyNotifyWindow(number, "Номер запомнен программой.\nМожно использовать \"СМАРТ-МЕНЮ\".", 15, this, TypeImageNotify.number_handling);
                                 }
                                 else
                                 {
-                                    if (IsNumberHandling(text))
+                                    var code = SearchOrganizations.CheckIfStringAsNumberOfOrganizations(text);
+                                    if (code != 0)
                                     {
-                                        var number = text.Trim();
-                                        DispatcherControls.LastNumberOfHandling = number;
-                                        foreach (var window in App.Current.Windows)
+                                        var list = await SearchOrganizations.TryFindOrganizations(code);
+                                        if (list != null && list.Count() > 0)
                                         {
-                                            if (window.GetType() == typeof(SmartMenuWindow))
-                                            {
-                                                var wnd = ((SmartMenuWindow)window);
-                                                if (wnd.IsLoaded)
-                                                    wnd.TemporaryNumberOfHandlingLabel.Content = 
-                                                    DispatcherControls.LastNumberOfHandling;
-                                            }
+                                            DispatcherControls.NewMyNotifyWindow(text, String.Format("Найдено {0} орг. по данному коду", list.Count()), 15, this, TypeImageNotify.buildings);
+                                            OrganizationsListMain = list;
+                                            OrganizationsListView.ItemsSource = OrganizationsListMain;
+                                            UpdateLabelAboutUpdate();
                                         }
-                                        DispatcherControls.NewMyNotifyWindow(number, "Номер запомнен программой.\nМожно использовать \"СМАРТ-МЕНЮ\".", 15, this, TypeImageNotify.number_handling);
                                     }
                                 }
                             }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
@@ -167,25 +171,22 @@ namespace Dagorlad_7
                 IsAlreadyLaunched = false;
             }
         }
-        public bool IsNumberHandling(string text)
+        public bool IsNumberHandling(string _text)
         {
             try
             {
-                if (text.Length >= 8)
+                var text = _text.Trim().ToUpper();
+                if (text.StartsWith("SD") || text.StartsWith("IM") && text.Length >= 8)
                 {
                     int count_prefix = 2;
-                    var FirstTwoLetter = text.Trim().Substring(0, count_prefix);
-                    if (FirstTwoLetter == "SD" || FirstTwoLetter == "IM")
-                    {
-                        var RemainingLetter = text.Trim();
-                        var WithoutPrefix = RemainingLetter.Skip(count_prefix);
-                        RemainingLetter = String.Concat(WithoutPrefix);
-                        if (!IsDigit(RemainingLetter)) return false;
-
-                        var number = FirstTwoLetter + RemainingLetter;
-                        Console.WriteLine("Number: {0}", number);
-                        return true;
-                    }
+                    var FirstTwoLetter = text.Substring(0, count_prefix);
+                    var RemainingLetter = text;
+                    var WithoutPrefix = RemainingLetter.Skip(count_prefix);
+                    RemainingLetter = String.Concat(WithoutPrefix);
+                    if (!IsDigit(RemainingLetter)) return false;
+                    var number = FirstTwoLetter + RemainingLetter;
+                    Console.WriteLine("Number: {0}", number);
+                    return true;
                 }
                 return false;
             }
@@ -258,14 +259,23 @@ namespace Dagorlad_7
         }
         public async void ExitFromApplication()
         {
-            ClipboardMonitor.Stop();
+            try
+            {
+                ClipboardMonitor.Stop();
+            }
+            catch (Exception ex) { Logger.Write(Logger.TypeLogs.chat, "Exit ClipboardMonitor Exception: " + ex.ToString()); }
             try
             {
                 if (ChatWindow.Me != null)
+                {
                     await ChatWindow.proxy.DisconnectAsync(ChatWindow.Me);
+                    Logger.Write(Logger.TypeLogs.chat, "Disconnected: "+ ChatWindow.Me.Email);
+                }
             }
-            catch (Exception ex) { Logger.Write(Logger.TypeLogs.chat, ex.ToString()); }
+            catch (Exception ex) { Logger.Write(Logger.TypeLogs.chat, "Exit ChatWindow Exception: " + ex.ToString()); }
+            DispatcherControls.CloseAllNotifyIcon();
             Application.Current.Shutdown();
+            Process.GetCurrentProcess().Kill();
         }
         List<OrganizationsClass> OrganizationsListMain;
         private Task SearchOrganizationFromListView()

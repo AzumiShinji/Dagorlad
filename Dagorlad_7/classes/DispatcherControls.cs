@@ -117,7 +117,10 @@ namespace Dagorlad_7.classes
                     }
                 }
             if (!IsExistWindow)
+            {
                 cmc = new SmartMenuWindow();
+                cmc.TemporaryNumberOfHandlingLabel.Content = DispatcherControls.LastNumberOfHandling;
+            }
             cmc.Topmost = true;
             cmc.WindowStartupLocation = WindowStartupLocation.Manual;
             Point mousePositionInApp = CursorPosition.GetCursorPosition();
@@ -134,28 +137,53 @@ namespace Dagorlad_7.classes
             };
             cmc.BeginAnimation(Window.OpacityProperty, da);
         }
+        public static System.Windows.Forms.NotifyIcon Install_Notify_Main;
+        public static System.Windows.Forms.NotifyIcon Install_Notify_Dialog;
         public static void HideWindowToTaskMenu(Window win,string name)
         {
-            System.Windows.Forms.NotifyIcon Install_Notify = new System.Windows.Forms.NotifyIcon();
             if (win.GetType() == typeof(MainWindow))
             {
-                Install_Notify.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                Install_Notify.Text = Assembly.GetExecutingAssembly().GetName().Name;
+                Install_Notify_Main = new System.Windows.Forms.NotifyIcon();
+                Install_Notify_Main.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                Install_Notify_Main.Text = Assembly.GetExecutingAssembly().GetName().Name;
+                Install_Notify_Main.Visible = true;
+                Install_Notify_Main.Click +=
+                    (object sender, EventArgs args) =>
+                    {
+                        win.Show();
+                        win.WindowState = WindowState.Normal;
+                        win.Activate();
+                    };
             }
-            else if (win.GetType() == typeof(ChatWindow))
+            if (win.GetType() == typeof(ChatWindow))
             {
-                Install_Notify.Icon = Dagorlad_7.Properties.Resources.chat;
-                Install_Notify.Text = Assembly.GetExecutingAssembly().GetName().Name + " - " + name;
+                Install_Notify_Dialog = new System.Windows.Forms.NotifyIcon();
+                Install_Notify_Dialog.Icon = Dagorlad_7.Properties.Resources.chat;
+                Install_Notify_Dialog.Text = Assembly.GetExecutingAssembly().GetName().Name + " - " + name;
+                Install_Notify_Dialog.Visible = true;
+                Install_Notify_Dialog.Click +=
+                    (object sender, EventArgs args) =>
+                    {
+                        win.Show();
+                        win.WindowState = WindowState.Normal;
+                        win.Activate();
+                    };
             }
-            else return;
-            Install_Notify.Visible = true;
-            Install_Notify.Click +=
-                (object sender, EventArgs args) =>
-                {
-                    win.Show();
-                    win.WindowState = WindowState.Normal;
-                    win.Activate();
-                };
+        }
+        public static void CloseAllNotifyIcon()
+        {
+            if (Install_Notify_Main != null)
+            {
+                Install_Notify_Main.Visible = false;
+                Install_Notify_Main.Icon = null;
+                Install_Notify_Main.Dispose();
+            }
+            if (Install_Notify_Dialog != null)
+            {
+                Install_Notify_Dialog.Visible = false;
+                Install_Notify_Dialog.Icon = null;
+                Install_Notify_Dialog.Dispose();
+            }
         }
         public static bool Autorun(TypeAutoRunOperation operation)
         {
@@ -411,7 +439,7 @@ namespace Dagorlad_7.classes
             }
             return Task.CompletedTask;
         }
-        public static string LastNumberOfHandling = "";
+        public static string LastNumberOfHandling = null;
     }
     class CursorPosition
     {

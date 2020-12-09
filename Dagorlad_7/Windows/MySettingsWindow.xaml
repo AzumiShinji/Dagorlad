@@ -71,7 +71,7 @@
                     <CheckBox x:Name="IsEnabledSmartMenuCheckBox" Grid.Row="1" IsChecked="False" Content="Смарт-меню" Foreground="{DynamicResource Foreground}" VerticalContentAlignment="Center"
                       FontWeight="Medium" FontSize="14"/>
                     <CheckBox x:Name="IsRegGlobalEventCheckBox" IsChecked="False" Grid.Row="2" FontWeight="Medium" FontSize="14"
-                              Content="Регистрировать глобальные клавишы" Foreground="{DynamicResource Foreground}"/>
+                              Content="Регистрировать глобальные события" Foreground="{DynamicResource Foreground}"/>
                 </Grid>
                 <Grid Grid.Row="1" HorizontalAlignment="Center" Margin="5">
                     <Grid.ColumnDefinitions>
