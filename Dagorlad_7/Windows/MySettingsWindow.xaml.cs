@@ -76,7 +76,14 @@ namespace Dagorlad_7.Windows
         {
             await LoadSettings();
             AppNameLabel.Content = Assembly.GetExecutingAssembly().GetName().Name.ToUpper();
-            AppVersionLabel.Content = DispatcherControls.GetVersionApplication(DispatcherControls.TypeDisplayVersion.Fully);
+            var current_version = Assembly.GetExecutingAssembly().GetName().Version;
+            var on_server_version = Updater.GetVersionOnServer();
+            AppVersionLabel.Content = DispatcherControls.GetVersionApplication(DispatcherControls.TypeDisplayVersion.Fully) + 
+                "\nВерсия на сервере: "+ (on_server_version==null?"Нет данных": ("v."+on_server_version));
+            if (on_server_version > current_version)
+                HandUpdateButton.Visibility = Visibility.Visible;
+            else HandUpdateButton.Visibility = Visibility.Collapsed;
+
         }
         private Task LoadSettings()
         {
@@ -132,6 +139,13 @@ namespace Dagorlad_7.Windows
                 EmailTextBox.IsEnabled = true;
                 OpenLogsFolderButton.Visibility = Visibility.Visible;
             }
+        }
+
+        private void HandUpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            button.IsEnabled = false;
+            Updater.UpdateNowHandMade();
         }
     }
 }

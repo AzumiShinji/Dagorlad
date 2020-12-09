@@ -49,7 +49,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <Label Content="Очищать директорию (Pause)" Foreground="{DynamicResource Foreground}" FontWeight="Medium" FontSize="14"/>
+                    <Label Content="Очищать папку (Pause)" Foreground="{DynamicResource Foreground}" FontWeight="Medium" FontSize="14"/>
                     <Button x:Name="FolderToBeClearedButton" Foreground="{DynamicResource Foreground}"
                                 Grid.Row="1" Click="FolderToBeClearedButton_Click"
                             ToolTip="{Binding Text, ElementName=FolderToBeClearedTextBlock}"

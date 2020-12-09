@@ -64,7 +64,7 @@
                 <DataTemplate>
                     <Border Height="auto" Margin="5,2,10,2" x:Name="Border">
                         <Grid VerticalAlignment="Center">
-                            <Grid.Style>
+                            <!--<Grid.Style>
                             <Style TargetType="Grid">
                                 <Style.Triggers>
                                     <EventTrigger RoutedEvent="Loaded">
@@ -79,7 +79,7 @@
                                     </EventTrigger>
                                 </Style.Triggers>
                             </Style>
-                            </Grid.Style>
+                            </Grid.Style>-->
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition/>
@@ -90,7 +90,7 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <Border Margin="0,0,5,0" Height="30" Width="30" Grid.RowSpan="2">
-                                <Image x:Name="UserLogoImage" Source="{Binding image}"/>
+                                <Image x:Name="UserLogoImage" Source="{Binding image}" RenderOptions.BitmapScalingMode="HighQuality"/>
                             </Border>
                             <Grid Grid.Column="1">
                                 <Grid.ColumnDefinitions>
@@ -180,7 +180,7 @@
                                 </RichTextBox.Resources>
                             </RichTextBox>
                             <Image gif:ImageBehavior.AnimatedSource="{Binding LinkSticker,TargetNullValue={x:Null}}" Margin="5"
-                                   Stretch="Uniform" MaxWidth="256" MaxHeight="192" Loaded="StickerIsLoaded" gif:ImageBehavior.RepeatBehavior="Forever"
+                                   Stretch="None" MaxWidth="256" MaxHeight="192" Loaded="StickerIsLoaded" gif:ImageBehavior.RepeatBehavior="Forever"
                                    Grid.Row="2" Visibility="{Binding Converter={StaticResource BooleanVisibilityConverter},ConverterParameter=sticker}"/>
                             <ListView Grid.Row="3" ItemsSource="{Binding FileLinks}" Loaded="AttachmentIsLoadedListView"
                                       Background="Transparent" BorderThickness="0" SelectionMode="Single"
@@ -254,6 +254,7 @@
                    Placement="MousePoint" AllowsTransparency="True" PopupAnimation="Fade">
                 <Border Background="{DynamicResource Background.Outside}" Padding="5" CornerRadius="5">
                     <TabControl x:Name="StickersTabControl" ItemsSource="{Binding}" TabStripPlacement="Left" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                SelectionChanged="StickersTabControl_SelectionChanged"
                                 Background="{DynamicResource Background.Outside}" BorderThickness="0">
                         <TabControl.ItemContainerStyle>
                             <Style TargetType="TabItem">

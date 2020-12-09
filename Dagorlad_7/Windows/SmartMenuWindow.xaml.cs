@@ -62,6 +62,7 @@ namespace Dagorlad_7.Windows
                     items = new ObservableCollection<SmartAnswers_SubClass>(),
                 });
                 NewItemTextBox.Text = null;
+                SmartAnswersListBox.SelectedItem = MySettings.Settings.SmartMenuList.LastOrDefault();
             }
         }
 
@@ -74,8 +75,10 @@ namespace Dagorlad_7.Windows
                 {
                     var selected = obj as SmartAnswersClass;
                     var items = selected.items;
-                    items.Add(new SmartAnswers_SubClass { title = NewItemSubTextBox.Text });
+                    var new_sub_item = new SmartAnswers_SubClass { title = NewItemSubTextBox.Text };
+                    items.Add(new_sub_item);
                     NewItemSubTextBox.Text = null;
+                    SmartAnswers_Items_ListBox.SelectedItem = new_sub_item;
                 }
             }
         }
@@ -91,23 +94,64 @@ namespace Dagorlad_7.Windows
                 this.DragMove();
         }
 
-        private void ControlContent_Click(object sender, RoutedEventArgs e)
+        private async void ControlContent_Click(object sender, RoutedEventArgs e)
         {
             var obj = (Button)sender;
-            var tag = (string)obj.Tag;
+            var lbl = obj.Tag as Label;
             var cmd = obj.CommandParameter as string;
             var datacontext = obj.DataContext as SmartAnswers_SubClass;
-            switch (tag)
+            switch (cmd)
             {
                 case ("copy"):
                     {
                         if (!String.IsNullOrEmpty(datacontext.text))
-                            try { Clipboard.SetText(datacontext.text); } catch { }
+                        {
+                            bool IsSomeError = false;
+                            try
+                            {
+                                string text = datacontext.text;
+                                if (text.Contains("{N}"))
+                                {
+                                    if (!String.IsNullOrEmpty(DispatcherControls.LastNumberOfHandling))
+                                    {
+                                        text = text.Replace("{N}", DispatcherControls.LastNumberOfHandling);
+                                    }
+                                    else
+                                    {
+                                        lbl.Content = "Отсутствует аттрибут!";
+                                        await Task.Delay(2000);
+                                        lbl.Content = null;
+                                        IsSomeError = true;
+                                        break;
+                                    }
+                                }
+                                Clipboard.SetText(text);
+                            }
+                            catch
+                            {
+                                lbl.Content = "Попробуйте еще раз!";
+                            }
+                            finally
+                            {
+                                if (lbl != null && !IsSomeError)
+                                {
+                                    lbl.Content = "Скопировано!";
+                                    TemporaryNumberOfHandlingLabel.Content = null;
+                                    DispatcherControls.LastNumberOfHandling = null;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            lbl.Content = "Нечего копировать!";
+                        }
+                        await Task.Delay(2000);
+                        lbl.Content = null;
                         break;
                     }
                 case ("show"):
                     {
-                        var popup = obj.CommandParameter as Popup;
+                        var popup = obj.Tag as Popup;
                         popup.IsOpen = true;
                         break;
                     }
@@ -117,21 +161,17 @@ namespace Dagorlad_7.Windows
                         items.Remove(datacontext);
                         break;
                     }
+                case ("up"):
+                    {
+                        SmartAnswers_Items_ListBox.SelectedIndex = SmartMenuContent.MoveItemSub(-1, datacontext);
+                        break;
+                    }
+                case ("down"):
+                    {
+                        SmartAnswers_Items_ListBox.SelectedIndex = SmartMenuContent.MoveItemSub(1, datacontext);
+                        break;
+                    }
             }
-            if (cmd != null)
-                switch (cmd)
-                {
-                    case ("up"):
-                        {
-                            SmartAnswers_Items_ListBox.SelectedIndex= SmartMenuContent.MoveItemSub(-1, datacontext);
-                            break;
-                        }
-                    case ("down"):
-                        {
-                            SmartAnswers_Items_ListBox.SelectedIndex = SmartMenuContent.MoveItemSub(1, datacontext);
-                            break;
-                        }
-                }
         }
         private void ClosePopup_Click(object sender, RoutedEventArgs e)
         {
@@ -158,7 +198,7 @@ namespace Dagorlad_7.Windows
         private void ShowRemovePanel(object sender, bool show)
         {
             var button = (Button)sender;
-            var grid = (Grid)button.CommandParameter;
+            var grid = (Grid)button.Tag;
             Grid panel = (Grid)grid.FindName("RemovePanelGrid");
             Button removebutton = (Button)grid.FindName("SwtichRemovePanelButton");
             if (show)

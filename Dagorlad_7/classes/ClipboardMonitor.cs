@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Threading;
+using UsBudget.classes;
 
 namespace Dagorlad_7
 {
@@ -21,8 +22,12 @@ namespace Dagorlad_7
             ClipboardWatcher.Start();
             ClipboardWatcher.OnClipboardChange += (ClipboardFormat format, object data) =>
             {
-                if (OnClipboardChange != null)
-                    OnClipboardChange(format, data);
+                try
+                {
+                    if (OnClipboardChange != null)
+                        OnClipboardChange(format, data);
+                }
+                catch (Exception ex) { Logger.Write(Logger.TypeLogs.clipboard, ex.ToString()); }
             };
         }
 
@@ -75,13 +80,17 @@ namespace Dagorlad_7
             // on load: (hide this window)
             protected override void SetVisibleCore(bool value)
             {
-                CreateHandle();
+                try
+                {
+                    CreateHandle();
 
-                mInstance = this;
+                    mInstance = this;
 
-                nextClipboardViewer = SetClipboardViewer(mInstance.Handle);
+                    nextClipboardViewer = SetClipboardViewer(mInstance.Handle);
 
-                base.SetVisibleCore(false);
+                    base.SetVisibleCore(false);
+                }
+                catch (Exception ex) { Logger.Write(Logger.TypeLogs.clipboard, ex.ToString()); }
             }
 
             [DllImport("User32.dll", CharSet = CharSet.Ansi)]
@@ -99,24 +108,28 @@ namespace Dagorlad_7
 
             protected override void WndProc(ref Message m)
             {
-                switch (m.Msg)
+                try
                 {
-                    case WM_DRAWCLIPBOARD:
-                        ClipChanged();
-                        SendMessage(nextClipboardViewer, m.Msg, m.WParam, m.LParam);
-                        break;
-
-                    case WM_CHANGECBCHAIN:
-                        if (m.WParam == nextClipboardViewer)
-                            nextClipboardViewer = m.LParam;
-                        else
+                    switch (m.Msg)
+                    {
+                        case WM_DRAWCLIPBOARD:
+                            ClipChanged();
                             SendMessage(nextClipboardViewer, m.Msg, m.WParam, m.LParam);
-                        break;
+                            break;
 
-                    default:
-                        base.WndProc(ref m);
-                        break;
+                        case WM_CHANGECBCHAIN:
+                            if (m.WParam == nextClipboardViewer)
+                                nextClipboardViewer = m.LParam;
+                            else
+                                SendMessage(nextClipboardViewer, m.Msg, m.WParam, m.LParam);
+                            break;
+
+                        default:
+                            base.WndProc(ref m);
+                            break;
+                    }
                 }
+                catch (Exception ex) { Logger.Write(Logger.TypeLogs.clipboard,ex.ToString()); }
             }
 
             static readonly string[] formats = Enum.GetNames(typeof(ClipboardFormat));
@@ -146,13 +159,7 @@ namespace Dagorlad_7
                     if (OnClipboardChange != null)
                         OnClipboardChange((ClipboardFormat)format, data);
                 }
-                catch (Exception ex)
-                {
-                    System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                    {
-                        DispatcherControls.ShowMyDialog("Буфер обмена", ex.Message, Windows.MyDialogWindow.TypeMyDialog.Ok, System.Windows.Application.Current.MainWindow);
-                    }));
-                }
+                catch (Exception ex) { Logger.Write(Logger.TypeLogs.clipboard, ex.ToString()); }
             }
         }
     }

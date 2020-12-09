@@ -32,6 +32,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Label Content="AppName" x:Name="AppNameLabel" Foreground="{DynamicResource Foreground.History}" 
                    FontWeight="Medium" FontSize="14"
@@ -40,6 +41,8 @@
                            Foreground="{DynamicResource Foreground.History}" 
                    FontWeight="Medium" FontSize="10"
                    VerticalContentAlignment="Center"/>
+                    <Button x:Name="HandUpdateButton" Content="Доступна новая версия" Click="HandUpdateButton_Click" Visibility="Visible" Foreground="{DynamicResource Background.Highlight}"
+                            Grid.Row="2" Template="{StaticResource ButtonStandart}"/>
                 </Grid>
             </Grid>
         </Grid>
@@ -92,7 +95,20 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Адреc почты (Email, *@fsfk.local):" Foreground="{DynamicResource Foreground}"/>
-                    <TextBox Grid.Column="1" x:Name="EmailTextBox" Foreground="{DynamicResource Foreground}" MinWidth="100" SelectionBrush="{DynamicResource Background.Highlight}"/>
+                    <TextBox Grid.Column="1" x:Name="EmailTextBox" IsEnabled="False"
+                             Foreground="{DynamicResource Foreground}" MinWidth="100" SelectionBrush="{DynamicResource Background.Highlight}">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="Background" Value="{DynamicResource Foreground.History}"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
                 </Grid>
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>

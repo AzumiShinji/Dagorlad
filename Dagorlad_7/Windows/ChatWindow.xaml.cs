@@ -174,7 +174,7 @@ namespace Dagorlad_7.Windows
                         Name = "Общий",
                         Email = common_chat,
                     },
-                    image= UserImageMaster.CreateProfilePicture("Общий", true),
+                    image= UserImageMaster.CreateProfilePicture("=)", true),
                 });
             foreach (var s in clients)
             {
@@ -595,38 +595,61 @@ namespace Dagorlad_7.Windows
             public ImageSource image { get; set; }
         }
         public ObservableCollection<StickerClass> list_stickers = new ObservableCollection<StickerClass>();
-        private async void StickersPopupChooseButton_Click(object sender, RoutedEventArgs e)
+        private void StickersPopupChooseButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                list_stickers.Clear();
                 StickersPopup.IsOpen = true;
-                if (list_stickers.Count() == 0)
+                foreach (var s in Directory.GetDirectories(directory_Stickers))
                 {
-                    foreach (var s in Directory.GetDirectories(directory_Stickers))
+                    string fullPath = System.IO.Path.GetFullPath(s).TrimEnd(System.IO.Path.DirectorySeparatorChar);
+                    string name = System.IO.Path.GetFileName(fullPath);
+                    var items = new StickerClass { name = name, items = new ObservableCollection<StickerItemClass>() };
+                    list_stickers.Add(items);
+                }
+                StickersTabControl.SelectedIndex = 0;
+            }
+            catch (Exception ex) { DispatcherControls.ShowMyDialog("Ошибка", ex.Message, MyDialogWindow.TypeMyDialog.Ok, this); }
+        }
+
+        private async void StickersTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (sender != null && sender.GetType() == typeof(TabControl))
+                {
+                    var tc = sender as TabControl;
+                    if (tc != null)
                     {
-                        string fullPath = System.IO.Path.GetFullPath(s).TrimEnd(System.IO.Path.DirectorySeparatorChar);
-                        string name = System.IO.Path.GetFileName(fullPath);
-                        var items = new StickerClass { name = name };
-                        var items_items = new ObservableCollection<StickerItemClass>();
-                        foreach (var inner in Directory.GetFiles(s, "*.*", SearchOption.AllDirectories))
+                        var obj = tc.SelectedItem as StickerClass;
+                        if (obj != null)
                         {
-                            var wc = new WebClient();
-                            var dwnld = await wc.DownloadDataTaskAsync(new Uri(inner));
-                            if (dwnld == null || dwnld.Count() == 0)
+                            var sticker_directory = Directory.GetDirectories(directory_Stickers).Where(x => x.EndsWith(obj.name));
+                            if (sticker_directory.Count() > 0)
                             {
-                                await Task.Delay(1500);
-                                dwnld = await wc.DownloadDataTaskAsync(new Uri(inner));
+                                foreach (var inner in Directory.GetFiles(sticker_directory.First(), "*.*", SearchOption.AllDirectories))
+                                {
+                                    if (obj.items.Where(x => x.link == inner).Count() == 0)
+                                    {
+                                        var wc = new WebClient();
+                                        var dwnld = await wc.DownloadDataTaskAsync(new Uri(inner));
+                                        if (dwnld == null || dwnld.Count() == 0)
+                                        {
+                                            await Task.Delay(1500);
+                                            dwnld = await wc.DownloadDataTaskAsync(new Uri(inner));
+                                        }
+                                        obj.items.Add(new StickerItemClass { link = inner, image = await ByteToImage(dwnld) });
+                                    }
+                                }
                             }
-                            items_items.Add(new StickerItemClass { link = inner, image = await ByteToImage(dwnld) });
                         }
-                        items.items = items_items;
-                        list_stickers.Add(items);
                     }
-                    StickersTabControl.SelectedIndex = 0;
                 }
             }
             catch (Exception ex) { DispatcherControls.ShowMyDialog("Ошибка", ex.Message, MyDialogWindow.TypeMyDialog.Ok, this); }
         }
+
         public Task<ImageSource> ByteToImage(byte[] imageData)
         {
             try

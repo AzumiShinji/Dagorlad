@@ -37,22 +37,28 @@ namespace Dagorlad_7.classes
             {
                 PathToRoaming = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + Assembly.GetExecutingAssembly().GetName().Name+"\\";
                 var target = Assembly.GetEntryAssembly().GetName().Name+".exe";
-                var RemoteVersionFile = new Version(FileVersionInfo.GetVersionInfo(PathToFile+ target).FileVersion);
-                if (RemoteVersionFile > Assembly.GetExecutingAssembly().GetName().Version)
+                if (File.Exists(PathToFile + target))
                 {
-                    var path_bakfile = PathToRoaming + Path.GetFileName(target) + ".bak.remote";
-                    var path_downloadedfile = PathToRoaming + target + "_";
-                    if (File.Exists(path_bakfile))
-                        File.Delete(path_bakfile);
-                    if (File.Exists(path_downloadedfile))
-                        File.Delete(path_downloadedfile);
-                    var wc = new WebClient();
-                    wc.DownloadFile(new Uri(PathToFile + target), path_downloadedfile);
-                    File.Move(AppDomain.CurrentDomain.BaseDirectory + target, path_bakfile);
-                    File.Copy(path_downloadedfile, AppDomain.CurrentDomain.BaseDirectory + target);
-                    System.Diagnostics.Process.Start(Application.ResourceAssembly.Location, "{8E06A225-F9B4-48BA-A95A-FCE56D275B25}");
-                    Process.GetCurrentProcess().Kill();
+                    var RemoteVersionFile = new Version(FileVersionInfo.GetVersionInfo(PathToFile + target).FileVersion);
+                    if (RemoteVersionFile > Assembly.GetExecutingAssembly().GetName().Version)
+                    {
+                        Logger.Write(Logger.TypeLogs.updater, "Founded a new version of application, trying update...");
+                        var path_bakfile = PathToRoaming + Path.GetFileName(target) + ".bak.remote";
+                        var path_downloadedfile = PathToRoaming + target + "_";
+                        if (File.Exists(path_bakfile))
+                            File.Delete(path_bakfile);
+                        if (File.Exists(path_downloadedfile))
+                            File.Delete(path_downloadedfile);
+                        var wc = new WebClient();
+                        wc.DownloadFile(new Uri(PathToFile + target), path_downloadedfile);
+                        File.Move(AppDomain.CurrentDomain.BaseDirectory + target, path_bakfile);
+                        File.Copy(path_downloadedfile, AppDomain.CurrentDomain.BaseDirectory + target);
+                        System.Diagnostics.Process.Start(Application.ResourceAssembly.Location, "{8E06A225-F9B4-48BA-A95A-FCE56D275B25}");
+                        Process.GetCurrentProcess().Kill();
+                    }
+                    else { Logger.Write(Logger.TypeLogs.updater, "Not found new version."); }
                 }
+                else { Logger.Write(Logger.TypeLogs.updater, "File not exist on server!"); }
             }
             catch (Exception ex)
             {
@@ -61,9 +67,23 @@ namespace Dagorlad_7.classes
             }
             return Task.CompletedTask;
         }
-
+        public static Version GetVersionOnServer()
+        {
+            var target = Assembly.GetEntryAssembly().GetName().Name + ".exe";
+            if (File.Exists(PathToFile + target))
+            {
+                return new Version(FileVersionInfo.GetVersionInfo(PathToFile + target).FileVersion);
+            }
+            else { Logger.Write(Logger.TypeLogs.updater, "File not exist on server!"); return null; }
+        }
+        public static void UpdateNowHandMade()
+        {
+            Logger.Write(Logger.TypeLogs.updater, "Hand Event Update.");
+            CheckUpdate().GetAwaiter();
+        }
         public static Task CheckUpdate()
         {
+            Logger.Write(Logger.TypeLogs.updater, "Trying find new version of application...");
             try
             {
                 bool isElevated;
@@ -73,18 +93,8 @@ namespace Dagorlad_7.classes
                     isElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
                 }
 
-                var isnew = CheckNewVersion();
-                if (isnew && !isElevated)
-                {
-                    System.Diagnostics.Process process = new System.Diagnostics.Process();
-                    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                    startInfo.FileName = Application.ResourceAssembly.Location;
-                    startInfo.Verb = "runas";
-                    process.StartInfo = startInfo;
-                    process.Start();
-                    Process.GetCurrentProcess().Kill();
-                }
+                Logger.Write(Logger.TypeLogs.updater, String.Format("IsElevated: {0}",isElevated));
+
                 if (isElevated)
                 {
 #if (!DEBUG)

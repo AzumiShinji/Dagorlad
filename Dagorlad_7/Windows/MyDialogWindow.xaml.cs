@@ -21,8 +21,7 @@ namespace Dagorlad_7.Windows
     {
         public enum ResultMyDialog
         {
-            Undefined,
-            Cancel = 1,
+            Cancel,
             Ok = 2,
             Yes = 3,
             No = 4,
@@ -66,7 +65,7 @@ namespace Dagorlad_7.Windows
         {
             e.Cancel = false;
         }
-        public ResultMyDialog result=ResultMyDialog.Undefined;
+        public ResultMyDialog result=ResultMyDialog.Cancel;
         private void EventClick(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;

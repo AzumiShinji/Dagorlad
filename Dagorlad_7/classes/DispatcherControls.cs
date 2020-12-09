@@ -28,6 +28,7 @@ namespace Dagorlad_7.classes
         sad = 3,
         completed=4,
         update =5,
+        number_handling=6,
     }
     public enum TypeColorScheme
     {
@@ -214,8 +215,11 @@ namespace Dagorlad_7.classes
             var g = new MyDialogWindow(title,text,type);
             if(win != null && win.IsLoaded)
             g.Owner = win;
-            if(g.result!=ResultMyDialog.Undefined && g.ShowDialog().HasValue && g.ShowDialog()==true)
+            var result = g.ShowDialog();
+            Console.WriteLine("Dialog closed: {0}",g.DialogResult);
+            if (result.HasValue && result.Value==true)
             {
+                Console.WriteLine("Dialog result: {0}", g.result);
                 return g.result;
             }
             return ResultMyDialog.Cancel;
@@ -283,6 +287,12 @@ namespace Dagorlad_7.classes
                     case (TypeImageNotify.update):
                         {
                             var SourceUri = new Uri("pack://application:,,,/Dagorlad;component/images/update_64.png", UriKind.Absolute);
+                            var thisIcon = new BitmapImage(SourceUri);
+                            return thisIcon;
+                        }
+                    case (TypeImageNotify.number_handling):
+                        {
+                            var SourceUri = new Uri("pack://application:,,,/Dagorlad;component/images/number_handling_64.png", UriKind.Absolute);
                             var thisIcon = new BitmapImage(SourceUri);
                             return thisIcon;
                         }
@@ -401,6 +411,7 @@ namespace Dagorlad_7.classes
             }
             return Task.CompletedTask;
         }
+        public static string LastNumberOfHandling = "";
     }
     class CursorPosition
     {

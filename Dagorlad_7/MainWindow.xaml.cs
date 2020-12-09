@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using UsBudget.classes;
 
 namespace Dagorlad_7
@@ -38,23 +39,29 @@ namespace Dagorlad_7
         public MainWindow()
         {
             MySettings.Load();
-            /////////////////////////////////////////////////////////////////////////
-            MySettings.Settings.IsFirstTimeLanuched = true; 
-            // need to delete to next cycle
 #if (!DEBUG)
             Updater.CheckUpdate().GetAwaiter();
 #endif
-            DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme,true);
+            DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme, true);
             DispatcherControls.HideWindowToTaskMenu(this, null);
             InitializeComponent();
             LoadEvents();
             new ChatWindow();
+#if (!DEBUG)
             CheckingUpdateApplicationStart();
+#endif
         }
-        private async void CheckingUpdateApplicationStart()
+        private DispatcherTimer timerToUpdate = new DispatcherTimer();
+        private void CheckingUpdateApplicationStart()
         {
-            await Task.Delay(TimeSpan.FromMinutes(new Random().Next(5,15)));
-            await Updater.CheckUpdate();
+            var time = new Random().Next(5, 15);
+            timerToUpdate.Interval = TimeSpan.FromMinutes(time);
+            Logger.Write(Logger.TypeLogs.updater, "Started checking update, next update attempt in " + time + " minutes.");
+            timerToUpdate.Tick += async (q, e) =>
+            {
+                await Updater.CheckUpdate();
+            };
+            timerToUpdate.Start();
         }
         private async void LoadEvents()
         {
@@ -94,38 +101,107 @@ namespace Dagorlad_7
             {
                 Clipboard.Clear();
             }
-            catch { }
+            catch (Exception ex) { Logger.Write(Logger.TypeLogs.clipboard, ex.ToString()); }
             ClipboardMonitor.OnClipboardChange += new ClipboardMonitor.OnClipboardChangeEventHandler(ClipboardMonitor_OnClipboardChange);
             ClipboardMonitor.Start();
         }
+
         bool IsAlreadyLaunched = false;
         public async void ClipboardMonitor_OnClipboardChange(ClipboardFormat format, object data)
         {
-            if (!IsAlreadyLaunched)
-                if (format == ClipboardFormat.Text)
+            try
+            {
+                if (!IsAlreadyLaunched)
                 {
-                    IsAlreadyLaunched = true;
-                    string text = data as string;
-                    if (!String.IsNullOrEmpty(text))
+                    if (format == ClipboardFormat.Text)
                     {
-                        await Dispatcher.BeginInvoke(new Action(async () =>
+                        IsAlreadyLaunched = true;
+                        string text = data as string;
+                        if (!String.IsNullOrEmpty(text) && text.Length < 20)
                         {
-                            var code = SearchOrganizations.CheckIfStringAsNumberOfOrganizations(text);
-                            if (code != 0)
+                            await Dispatcher.BeginInvoke(new Action(async () =>
                             {
-                                var list = await SearchOrganizations.TryFindOrganizations(code);
-                                if (list != null && list.Count() > 0)
+                                var code = SearchOrganizations.CheckIfStringAsNumberOfOrganizations(text);
+                                if (code != 0)
                                 {
-                                    DispatcherControls.NewMyNotifyWindow(text, String.Format("Найдено {0} орг. по данному коду", list.Count()), 15, this, TypeImageNotify.buildings);
-                                    OrganizationsListMain = list;
-                                    OrganizationsListView.ItemsSource = OrganizationsListMain;
-                                    UpdateLabelAboutUpdate();
+                                    var list = await SearchOrganizations.TryFindOrganizations(code);
+                                    if (list != null && list.Count() > 0)
+                                    {
+                                        DispatcherControls.NewMyNotifyWindow(text, String.Format("Найдено {0} орг. по данному коду", list.Count()), 15, this, TypeImageNotify.buildings);
+                                        OrganizationsListMain = list;
+                                        OrganizationsListView.ItemsSource = OrganizationsListMain;
+                                        UpdateLabelAboutUpdate();
+                                    }
                                 }
-                            }
-                        }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+                                else
+                                {
+                                    if (IsNumberHandling(text))
+                                    {
+                                        var number = text.Trim();
+                                        DispatcherControls.LastNumberOfHandling = number;
+                                        foreach (var window in App.Current.Windows)
+                                        {
+                                            if (window.GetType() == typeof(SmartMenuWindow))
+                                            {
+                                                var wnd = ((SmartMenuWindow)window);
+                                                if (wnd.IsLoaded)
+                                                    wnd.TemporaryNumberOfHandlingLabel.Content = 
+                                                    DispatcherControls.LastNumberOfHandling;
+                                            }
+                                        }
+                                        DispatcherControls.NewMyNotifyWindow(number, "Номер запомнен программой.\nМожно использовать \"СМАРТ-МЕНЮ\".", 15, this, TypeImageNotify.number_handling);
+                                    }
+                                }
+                            }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+                        }
                     }
                 }
-            IsAlreadyLaunched = false;
+            }
+            catch (Exception ex)
+            {
+                Logger.Write(Logger.TypeLogs.clipboard, ex.ToString());
+                IsAlreadyLaunched = false;
+            }
+            finally
+            {
+                IsAlreadyLaunched = false;
+            }
+        }
+        public bool IsNumberHandling(string text)
+        {
+            try
+            {
+                if (text.Length >= 8)
+                {
+                    int count_prefix = 2;
+                    var FirstTwoLetter = text.Trim().Substring(0, count_prefix);
+                    if (FirstTwoLetter == "SD" || FirstTwoLetter == "IM")
+                    {
+                        var RemainingLetter = text.Trim();
+                        var WithoutPrefix = RemainingLetter.Skip(count_prefix);
+                        RemainingLetter = String.Concat(WithoutPrefix);
+                        if (!IsDigit(RemainingLetter)) return false;
+
+                        var number = FirstTwoLetter + RemainingLetter;
+                        Console.WriteLine("Number: {0}", number);
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Logger.Write(Logger.TypeLogs.main, ex.ToString());
+                return false;
+            }
+        }
+        private bool IsDigit(string text)
+        {
+            if (String.IsNullOrEmpty(text)) return false;
+            var IsDigit = Int64.TryParse(text, out long result);
+            if (IsDigit)
+                return true;
+            else return false;
         }
         MiniMenuWindow minimenu;
         private void ShowMiniMenu()

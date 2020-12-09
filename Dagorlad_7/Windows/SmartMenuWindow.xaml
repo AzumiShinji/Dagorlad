@@ -13,6 +13,7 @@
         Title="Смарт-меню" MaxHeight="700" MaxWidth="900">
     <Window.Resources>
         <local:WidthFixedListViewConverter x:Key="WidthFixedListViewConverter"/>
+        <local:NullableContentToHidden x:Key="NullableContentToHidden"/>
     </Window.Resources>
     <Grid Margin="0">
         <Grid.RowDefinitions>
@@ -23,8 +24,16 @@
         <Grid Grid.Row="0" Grid.ColumnSpan="2" PreviewMouseDown="DragablePanel_PreviewMouseDown"
                     x:Name="DragablePanel" Background="{DynamicResource Background.Outside}" Height="40" Margin="0">
             <Grid HorizontalAlignment="Center">
-                <Label x:Name="HeaderLabel" Content="СМАРТ-МЕНЮ" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Medium"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="HeaderLabel" Content="СМАРТ-МЕНЮ" Grid.Column="0" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Medium"
                    VerticalContentAlignment="Center" Foreground="{DynamicResource Foreground}"/>
+                <Label x:Name="TemporaryNumberOfHandlingLabel" Grid.Column="1" Visibility="{Binding Content,RelativeSource={RelativeSource Self},Converter={StaticResource NullableContentToHidden}}" 
+                       ContentStringFormat="{}Номер: {0}"
+                       HorizontalContentAlignment="Center" FontSize="14" FontWeight="Medium"
+                   VerticalContentAlignment="Center" Foreground="{DynamicResource Background.Highlight}"/>
             </Grid>
         </Grid>
         <Grid x:Name="SmartAnswersGrid" Background="{DynamicResource Background.Inside}" Grid.Row="1">
@@ -81,13 +90,13 @@
                                         <RowDefinition/>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
-                                    <Button Grid.Row="0" Click="MoveItem" CommandParameter="up"  ToolTip="Переместить вверх"  Content="{StaticResource Canvas_Arrow_Top}"
+                                    <Button Grid.Row="0" Click="MoveItem" CommandParameter="up" ToolTip="Переместить вверх"  Content="{StaticResource Canvas_Arrow_Top}"
                                             Template="{StaticResource ButtonStandart}"/>
-                                    <Button Grid.Row="1" Click="MoveItem" CommandParameter="down"  ToolTip="Переместить вниз" Content="{StaticResource Canvas_Arrow_Down}"
+                                    <Button Grid.Row="1" Click="MoveItem" CommandParameter="down" ToolTip="Переместить вниз" Content="{StaticResource Canvas_Arrow_Down}"
                                             Template="{StaticResource ButtonStandart}"/>
                                 </Grid>
                                 <Button x:Name="SwtichRemovePanelButton" Grid.Column="2" Template="{StaticResource ButtonStandart}" Width="30" Height="30"
-                                        ToolTip="Удалить" CommandParameter="{Binding ElementName=ControlMenuGrid}" Click="ShowControlMenu_Click">
+                                        ToolTip="Удалить" Tag="{Binding ElementName=ControlMenuGrid}" Click="ShowControlMenu_Click">
                                     <Image Source="/images/remove_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                 </Button>
                                 <Grid Grid.Column="3" x:Name="RemovePanelGrid" Visibility="Collapsed">
@@ -96,11 +105,11 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <Button Grid.Column="0" Template="{StaticResource ButtonStandart}" Width="30" Height="30" ToolTip="Подтвердить удаление"
-                                            Click="RemoveRootItem_Click" Tag="remove">
+                                            Click="RemoveRootItem_Click" CommandParameter="remove">
                                         <Image Source="/images/ok_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                     </Button>
                                     <Button Grid.Column="1" Template="{StaticResource ButtonStandart}" Width="30" Height="30" ToolTip="Отменить удаление"
-                                            Click="CancelRemove_Click" CommandParameter="{Binding ElementName=ControlMenuGrid}">
+                                            Click="CancelRemove_Click" Tag="{Binding ElementName=ControlMenuGrid}">
                                         <Image Source="/images/cancel_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                     </Button>
                                 </Grid>
@@ -137,6 +146,7 @@
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Border Grid.Column="0" Height="auto">
                                     <TextBlock Text="{Binding title}" Foreground="{DynamicResource Foreground}"
@@ -148,37 +158,38 @@
                                         <RowDefinition/>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
-                                    <Button Grid.Row="0" Click="ControlContent_Click" CommandParameter="up"  ToolTip="Переместить вверх"
+                                    <Button Grid.Row="0" Click="ControlContent_Click" CommandParameter="up" ToolTip="Переместить вверх"
                                             Template="{StaticResource ButtonStandart}" Content="{StaticResource Canvas_Arrow_Top}"/>
-                                    <Button Grid.Row="1" Click="ControlContent_Click" CommandParameter="down"  ToolTip="Переместить вниз"
+                                    <Button Grid.Row="1" Click="ControlContent_Click" CommandParameter="down" ToolTip="Переместить вниз"
                                             Template="{StaticResource ButtonStandart}" Content="{StaticResource Canvas_Arrow_Down}"/>
                                 </Grid>
-                                <Button Grid.Column="2" Template="{StaticResource ButtonStandart}" ToolTip="Копировать содержание" 
+                                <Label Grid.Column="2" x:Name="CopiedLabel" Foreground="{DynamicResource Foreground}" FontWeight="Medium" VerticalContentAlignment="Center"/>
+                                <Button Grid.Column="3" Template="{StaticResource ButtonStandart}" ToolTip="Копировать содержание" 
                                         Width="30" Height="30" Content="{DynamicResource Canvas_Copy}"
-                                        Click="ControlContent_Click" Tag="copy"/>
-                                <Button Grid.Column="3" Template="{StaticResource ButtonStandart}" 
-                                        CommandParameter="{Binding ElementName=SmartAnswers_Items_ShowPopup}" Width="30" Height="30"
-                                        ToolTip="Показать содержание" Click="ControlContent_Click" Tag="show">
+                                        Click="ControlContent_Click" CommandParameter="copy" Tag="{Binding ElementName=CopiedLabel}"/>
+                                <Button Grid.Column="4" Template="{StaticResource ButtonStandart}" 
+                                        Tag="{Binding ElementName=SmartAnswers_Items_ShowPopup}" Width="30" Height="30"
+                                        ToolTip="Показать содержание" Click="ControlContent_Click" CommandParameter="show">
                                     <Image Source="/images/eye_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                 </Button>
-                                <Button Grid.Column="4" Template="{StaticResource ButtonStandart}" x:Name="SwtichRemovePanelButton"
-                                        CommandParameter="{Binding ElementName=ControlMenuGrid}" Click="ShowControlMenu_Click"
+                                <Button Grid.Column="5" Template="{StaticResource ButtonStandart}" x:Name="SwtichRemovePanelButton"
+                                        Tag="{Binding ElementName=ControlMenuGrid}" Click="ShowControlMenu_Click"
                                          Width="30" Height="30"
-                                        ToolTip="Удалить" Tag="remove">
+                                        ToolTip="Удалить" CommandParameter="remove">
                                     <Image Source="/images/remove_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                 </Button>
-                                <Grid Grid.Column="5" x:Name="RemovePanelGrid" Visibility="Collapsed">
+                                <Grid Grid.Column="6" x:Name="RemovePanelGrid" Visibility="Collapsed">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <Button Grid.Column="0" Click="ControlContent_Click"  ToolTip="Подтвердить удаление"
-                                            Template="{StaticResource ButtonStandart}" Width="30" Height="30" Tag="remove">
+                                            Template="{StaticResource ButtonStandart}" Width="30" Height="30" CommandParameter="remove">
                                         <Image Source="/images/ok_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                     </Button>
                                     <Button Grid.Column="1" Click="CancelRemove_Click" Template="{StaticResource ButtonStandart}" Width="30" Height="30"
                                             ToolTip="Отменить удаление"
-                                            CommandParameter="{Binding ElementName=ControlMenuGrid}">
+                                            Tag="{Binding ElementName=ControlMenuGrid}">
                                         <Image Source="/images/cancel_16.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                     </Button>
                                 </Grid>
@@ -190,14 +201,16 @@
                                                 <RowDefinition Height="auto"/>
                                                 <RowDefinition/>
                                                 <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
                                             </Grid.RowDefinitions>
                                             <Grid Grid.Row="0" Background="{DynamicResource Background.Outside}" Height="40">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition/>
                                                     <ColumnDefinition/>
                                                 </Grid.ColumnDefinitions>
-                                                <TextBlock Text="{Binding title}" Foreground="{DynamicResource Foreground}"
-                                                   Height="30" VerticalAlignment="Center"  FontSize="14" Padding="5" TextTrimming="CharacterEllipsis"
+                                                <TextBox Text="{Binding title}" Foreground="{DynamicResource Foreground}"
+                                                         Background="{DynamicResource Background.Inside.Blob}"
+                                                   Height="30" VerticalAlignment="Center" FontSize="14" Padding="5"  SelectionBrush="{DynamicResource Background.Highlight}"
                                                            MaxWidth="200"
                                                    HorizontalAlignment="Center"/>
                                                 <CheckBox x:Name="IsEditCheckBox" Grid.Column="1" VerticalContentAlignment="Center"
@@ -214,7 +227,16 @@
                                                      VerticalContentAlignment="Stretch"
                                                      AcceptsReturn="True"/>
                                             </Border>
-                                            <Button Content="Закрыть" Grid.Row="2" Click="ClosePopup_Click" Background="{DynamicResource Background.Outside}"
+                                            <Border Grid.Row="2" Padding="10" CornerRadius="5" Margin="10,0,10,10"
+                                                    Background="{DynamicResource Background.HalfOutside}">
+                                                <TextBlock Padding="0" Margin="0" TextWrapping="Wrap"
+                                                       Foreground="{DynamicResource Foreground}">
+                                                        Здесь можно указать номер запроса в формате {N}, тогда при копировании он автоматически подставиться.
+                                                    <LineBreak/>
+                                                    Например: Консультация по запросу {N}.
+                                                </TextBlock>
+                                            </Border>
+                                            <Button Content="Закрыть" Grid.Row="3" Click="ClosePopup_Click" Background="{DynamicResource Background.Outside}"
                                                     CommandParameter="{Binding ElementName=SmartAnswers_Items_ShowPopup}" FontSize="14"
                                                     VerticalContentAlignment="Center"
                                                     Padding="10" Template="{StaticResource ButtonStandart}"/>
