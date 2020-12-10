@@ -547,6 +547,7 @@ namespace Dagorlad_7.Windows
                                 var result_path_upload = directory_string + "\\" + new_name;
 
                                 wu.UploadFile(result_path_upload, path);
+                                Logger.Write(Logger.TypeLogs.transferfiles, String.Format("File {0} has been uploaded from {2} to {1}",new_name,result_path_upload,path));
 
                                 list_files.Add(filename + ext, result_path_upload);
                             }
@@ -570,14 +571,18 @@ namespace Dagorlad_7.Windows
                     }
                 }
             }
-            catch (Exception ex) { DispatcherControls.ShowMyDialog("Ошибка отправки файлов",ex.Message,MyDialogWindow.TypeMyDialog.Ok,this); }
+            catch (Exception ex) 
+            {
+                Logger.Write(Logger.TypeLogs.transferfiles, ex.ToString());
+                DispatcherControls.ShowMyDialog("Ошибка отправки файлов",ex.Message,MyDialogWindow.TypeMyDialog.Ok,this);
+            }
         }
 
         private void OpenDownloadedFile_Click(object sender, RoutedEventArgs e)
         {
             var btn = (Button)sender;
             var cmd = btn.CommandParameter;
-            if (btn.Content != null)
+            if (btn.Content != null && !String.IsNullOrEmpty(cmd as string))
             {
                 Process.Start((string)cmd);
             }

@@ -44,8 +44,12 @@ namespace Dagorlad_7
             Updater.CheckUpdate().GetAwaiter();
 #endif
             DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme, true);
+            var chat = new ChatWindow();
+            DispatcherControls.HideWindowToTaskMenu(chat, "Чат");
             DispatcherControls.HideWindowToTaskMenu(this, null);
+            //////////////////////////////////////////////
             InitializeComponent();
+            //////////////////////////////////////////////
             LoadEvents();
 #if (!DEBUG)
             CheckingUpdateApplicationStart();
@@ -80,7 +84,7 @@ namespace Dagorlad_7
             if (MySettings.Settings.IsRegGlobalHook)
                 GlobalHook.StartHooking();
             else GlobalHook.StopHooking();
-            DispatcherControls.HideWindowToTaskMenu(new ChatWindow(), "Чат");
+            
         }
         private async void UpdateLabelAboutUpdate()
         {

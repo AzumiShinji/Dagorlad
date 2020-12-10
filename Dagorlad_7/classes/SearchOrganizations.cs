@@ -18,6 +18,7 @@ namespace Dagorlad_7.classes
         public string okpoCode { get; set; }
         public string pgmu { get; set; }
         public string fullName { get; set; }
+        public string shortName { get; set; }
         public string fio { get; set; }
         public string recordNum { get; set; }
         public string cityName { get; set; }
@@ -66,6 +67,7 @@ namespace Dagorlad_7.classes
                                 okpoCode = (string)reader["okpoCode"],
                                 pgmu = (string)reader["pgmu"],
                                 fullName = (string)reader["fullName"],
+                                shortName = (string)reader["shortName"],
                                 fio = ((string)reader["fio"]).FirstWordToUpper(),
                                 recordNum = (string)reader["recordNum"],
                                 cityName = ((string)reader["cityName"]).FirstWordToUpper(),

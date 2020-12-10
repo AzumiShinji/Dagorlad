@@ -334,9 +334,14 @@ namespace Dagorlad_7.classes
         }
         public class Employees
         {
+            public string Code { get; set; }
             public string Name { get; set; }
             public string Email { get; set; }
             public string Direction { get; set; }
+            public string Position { get; set; }
+            public string Phone { get; set; }
+            public DateTime BirthDate { get; set; }
+            public string Rest { get; set; }
         }
         public static async Task<Employees> FindEmployees(string Email)
         {
@@ -353,11 +358,24 @@ namespace Dagorlad_7.classes
                     {
                         while (await reader.ReadAsync())
                         {
-                            employees= new Employees
+                            DateTime? birthdate = null;
+                            var string_dt = reader["BirthDate"] == DBNull.Value ? "" : (string)reader["BirthDate"];
+                            if(!String.IsNullOrEmpty(string_dt))
                             {
-                                Email = reader["Email"] == DBNull.Value ? "" : (string)reader["Email"],
+                                var isdt = DateTime.TryParse(string_dt, out DateTime result);
+                                if (isdt)
+                                    birthdate = result;
+                            }
+                            employees = new Employees
+                            {
+                                Code = reader["Code"] == DBNull.Value ? "" : (string)reader["Code"],
                                 Name = reader["FIO"] == DBNull.Value ? "" : (string)reader["FIO"],
+                                Email = reader["Email"] == DBNull.Value ? "" : (string)reader["Email"],
                                 Direction = reader["Direction"] == DBNull.Value ? "" : (string)reader["Direction"],
+                                Position = reader["Position"] == DBNull.Value ? "" : (string)reader["Position"],
+                                Phone = reader["Phone"] == DBNull.Value ? "" : (string)reader["Phone"],
+                                BirthDate = birthdate.Value,
+                                Rest = reader["Rest"] == DBNull.Value ? "" : (string)reader["Rest"],
                             };
                         }
                     }

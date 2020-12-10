@@ -17,6 +17,7 @@ namespace UsBudget.classes
             chat = 1,
             updater = 2,
             clipboard=3,
+            transferfiles = 4,
         }
         private static string root = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + Assembly.GetExecutingAssembly().GetName().Name;
         private static string extenstion = ".log";

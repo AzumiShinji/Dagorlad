@@ -19,6 +19,7 @@ namespace Service_Chat_Dagorlad
         private DateTime _time;
         private int? _countunreaded;
         private string _lastmessage;
+        private string _informations;
 
         [DataMember]
         public string Status
@@ -61,6 +62,12 @@ namespace Service_Chat_Dagorlad
         {
             get { return _lastmessage; }
             set { _lastmessage = value; }
+        }
+        [DataMember]
+        public string Informations
+        {
+            get { return _informations; }
+            set { _informations = value; }
         }
     }
 

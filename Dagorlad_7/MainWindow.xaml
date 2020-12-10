@@ -122,10 +122,20 @@
                                             Click="CopyOrganizationInformation_Click"/>
                                 </Grid>
                             </Border>
-                            <TextBox Grid.Row="1"
+                            <Grid Tag="Names" Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBox Grid.Row="0"
                                     IsReadOnly="True" Text="{Binding fullName}" TextWrapping="Wrap" Background="Transparent"
                                          FontWeight="Medium" FontSize="14"
                                          Foreground="{DynamicResource Foreground}" SelectionBrush="{DynamicResource Background.Highlight}"/>
+                                <TextBox Grid.Row="1"
+                                    IsReadOnly="True" Text="{Binding shortName,StringFormat={}Сокр. наименование: {0}}" TextWrapping="Wrap" Background="Transparent"
+                                         FontWeight="Normal" FontSize="12"
+                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
+                            </Grid>
                             <Grid Grid.Row="2" Tag="Codes">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
