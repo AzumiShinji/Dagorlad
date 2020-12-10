@@ -41,6 +41,9 @@ namespace Dagorlad_7.SVC {
         private string StatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SystemInformationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime TimeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -127,6 +130,19 @@ namespace Dagorlad_7.SVC {
                 if ((object.ReferenceEquals(this.StatusField, value) != true)) {
                     this.StatusField = value;
                     this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SystemInformation {
+            get {
+                return this.SystemInformationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SystemInformationField, value) != true)) {
+                    this.SystemInformationField = value;
+                    this.RaisePropertyChanged("SystemInformation");
                 }
             }
         }

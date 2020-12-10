@@ -217,6 +217,7 @@ namespace Dagorlad_7.Windows
                         string email = result_info.Email;
                         string name = result_info.Name;
                         string direction = result_info.Direction;
+                        var system_info = DispatcherControls.GetMySystemInformation();
                         if (proxy == null)
                         {
                             Me = new SVC.Client();
@@ -224,6 +225,7 @@ namespace Dagorlad_7.Windows
                             Me.Name = name;
                             Me.Direction = direction;
                             Me.Time = DateTime.Now;
+                            Me.SystemInformation = system_info;
                             this.Title = String.Format("{0}: {1}", "Dagorlad - Чат", Me.Name);
                             InstanceContext context = new InstanceContext(this);
                             proxy = new SVC.ChatClient(context);
@@ -383,14 +385,17 @@ namespace Dagorlad_7.Windows
                         MessageSendingGrid.Visibility = Visibility.Visible;
                     DialogListView.ItemsSource = dc.msgs;
                     SelectedUser = dc.user;
-                    NameLabel.Content = dc.user.Name;
-                    DirectionLabelOrTypingLabel.Content = dc.user.Direction;
+                    InformationAboutClientImage.Source = dc.image;
+                    AdditionalBlock.DataContext = dc.user;
+                    if (dc.user.Email == common_chat)
+                        ShowPopupInfoAboutClientButton.Visibility = Visibility.Collapsed;
+                    else ShowPopupInfoAboutClientButton.Visibility = Visibility.Visible;
                     MarkCurrentDialogLikeReaded();
                     Dispatcher.BeginInvoke(DispatcherPriority.Input,
-    new Action(delegate ()
-    {
-        MessageTextBox.Focus();
-    }));
+                    new Action(delegate ()
+                    {
+                        MessageTextBox.Focus();
+                    }));
                 }
             }
         }
@@ -716,6 +721,12 @@ namespace Dagorlad_7.Windows
             {
                 this.WindowState = WindowState.Minimized;
             }
+        }
+
+        private async void ShowPopupInfoAboutClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            InformationAboutClientTextBox.Text = await DispatcherControls.GetClientInformation(SelectedUser.Email);
+            PopupInfoAboutClient.IsOpen = true;
         }
     }
     public class NullableContentToHidden : IValueConverter

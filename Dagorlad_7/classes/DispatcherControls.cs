@@ -332,7 +332,7 @@ namespace Dagorlad_7.classes
             }
             return null;
         }
-        public class Employees
+        public class EmployeesClass
         {
             public string Code { get; set; }
             public string Name { get; set; }
@@ -343,9 +343,9 @@ namespace Dagorlad_7.classes
             public DateTime BirthDate { get; set; }
             public string Rest { get; set; }
         }
-        public static async Task<Employees> FindEmployees(string Email)
+        public static async Task<EmployeesClass> FindEmployees(string Email)
         {
-            Employees employees=null;
+            EmployeesClass employees =null;
             try
             {
                 SqlConnection con = new SqlConnection();
@@ -366,7 +366,7 @@ namespace Dagorlad_7.classes
                                 if (isdt)
                                     birthdate = result;
                             }
-                            employees = new Employees
+                            employees = new EmployeesClass
                             {
                                 Code = reader["Code"] == DBNull.Value ? "" : (string)reader["Code"],
                                 Name = reader["FIO"] == DBNull.Value ? "" : (string)reader["FIO"],
@@ -458,6 +458,45 @@ namespace Dagorlad_7.classes
             return Task.CompletedTask;
         }
         public static string LastNumberOfHandling = null;
+        public static string GetMySystemInformation()
+        {
+            var username = Environment.UserName;
+            var MachineName = Environment.MachineName;
+            var os = Environment.OSVersion;
+            var userdomainname = Environment.UserDomainName;
+            var versionapp = GetVersionApplication(TypeDisplayVersion.Fully);
+            var result = String.Format(
+                "UserName: {0}\n"+
+                "MachineName: {1}\n" +
+                "OS: {2}\n" +
+                "UserDomainName: {3}\n"+
+                "Version Application: {4}\n",
+                username,
+                MachineName,
+                os,
+                userdomainname,
+                versionapp
+                );
+            return result;
+        }
+        public static async Task<string> GetClientInformation(string email)
+        {
+            var result_info = await FindEmployees(email);
+            if (result_info == null) return "Нет данных";
+            string rest = null;
+            if (!String.IsNullOrEmpty(result_info.Rest))
+                rest = result_info.Rest.Replace("|", "\n");
+            var client_info = new StringBuilder();
+            client_info.AppendLine("Код: " + result_info.Code);
+            client_info.AppendLine("Email: " + result_info.Email);
+            client_info.AppendLine("ФИО: " + result_info.Name);
+            client_info.AppendLine("Направление: " + result_info.Direction);
+            client_info.AppendLine("День рождения: " + result_info.BirthDate.ToString("dd MMMM"));
+            client_info.AppendLine("Телефон: " + result_info.Phone);
+            client_info.AppendLine("Должность: " + result_info.Position);
+            client_info.AppendLine("Отпуска:\n" + rest);
+            return client_info.ToString();
+        }
     }
     class CursorPosition
     {

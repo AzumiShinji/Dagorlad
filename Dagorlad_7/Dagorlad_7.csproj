@@ -52,8 +52,8 @@
     <Reference Include="HtmlAgilityPack, Version=1.11.28.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.11.28\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.8.21.0, Culture=neutral, PublicKeyToken=c416bc1b32d97233, processorArchitecture=MSIL">
-      <HintPath>..\packages\TaskScheduler.2.8.21\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
+    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.9.0.0, Culture=neutral, PublicKeyToken=e25603a88b3aa7da, processorArchitecture=MSIL">
+      <HintPath>..\packages\TaskScheduler.2.9.0\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -196,6 +196,9 @@
     <None Include="Connected Services\SVC\Arrays2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\SVC\Arrays3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\SVC\service.wsdl" />
     <None Include="Connected Services\SVC\service.xsd">
       <SubType>Designer</SubType>
@@ -204,16 +207,26 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\SVC\service2.wsdl" />
+    <None Include="Connected Services\SVC\service3.wsdl" />
     <None Include="Connected Services\SVC\service3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\SVC\service4.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\SVC\service5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SVC\service6.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\SVC\Service_Chat_Dagorlad.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\SVC\Service_Chat_Dagorlad2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SVC\Service_Chat_Dagorlad3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
@@ -290,12 +303,12 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Fody.6.0.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.0\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Fody.6.0.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.0.0\build\Fody.targets'))" />
     <Error Condition="!Exists('..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props'))" />
+    <Error Condition="!Exists('..\packages\Fody.6.3.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.3.0\build\Fody.targets'))" />
   </Target>
+  <Import Project="..\packages\Fody.6.3.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.3.0\build\Fody.targets')" />
 </Project>

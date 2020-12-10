@@ -1,6 +1,0 @@
-D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Updater\bin\x64\Release\Updater.exe.config
-D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Updater\bin\x64\Release\Updater.exe
-D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Updater\bin\x64\Release\Updater.pdb
-D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Updater\obj\x64\Release\Updater.csproj.CoreCompileInputs.cache
-D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Updater\obj\x64\Release\Updater.exe
-D:\programs\Google Drive\Make up\Visual Studio C#\Dagorlad\Updater\obj\x64\Release\Updater.pdb

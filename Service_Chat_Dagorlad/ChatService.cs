@@ -19,8 +19,7 @@ namespace Service_Chat_Dagorlad
         private DateTime _time;
         private int? _countunreaded;
         private string _lastmessage;
-        private string _informations;
-
+        private string _systeninformation;
         [DataMember]
         public string Status
         {
@@ -64,10 +63,10 @@ namespace Service_Chat_Dagorlad
             set { _lastmessage = value; }
         }
         [DataMember]
-        public string Informations
+        public string SystemInformation
         {
-            get { return _informations; }
-            set { _informations = value; }
+            get { return _systeninformation; }
+            set { _systeninformation = value; }
         }
     }
 
@@ -254,7 +253,7 @@ namespace Service_Chat_Dagorlad
             var IsAdded = clients.TryAdd(client, CurrentCallback);
             if (IsAdded)
             {
-                LogWrite("\"" + client.Email + "\" has been added to clients list...");
+                LogWrite("\"" + client.Email + "\""+":\n"+ client.SystemInformation+ "***has been added to clients list...");
                 foreach (Client key in clients.Keys)
                 {
                     IChatCallback callback = clients[key];
@@ -400,7 +399,7 @@ namespace Service_Chat_Dagorlad
 
         private void LogWrite(string text)
         {
-            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "ServerLog.txt", String.Format("{0}: {1}\n", DateTime.Now, text));
+            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "ServerLog.txt", String.Format("[{0}]: {1}\n", DateTime.Now, text));
         }
         #endregion
     }
