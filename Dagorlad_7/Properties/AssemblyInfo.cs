@@ -54,6 +54,6 @@ using System.Windows;
 #if(DEBUG)
 [assembly: AssemblyVersion("0.0.*")]
 #else
-[assembly: AssemblyVersion("7.12.*")]
+[assembly: AssemblyVersion("7.13.*")]
 #endif
 //[assembly: AssemblyFileVersion("1.0.0.0")]

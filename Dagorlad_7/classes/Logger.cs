@@ -25,8 +25,24 @@ namespace UsBudget.classes
         {
             if (!Directory.Exists(root)) Directory.CreateDirectory(root);
             string path = root + @"\";
+            string file = path + type.ToString() + extenstion;
+            CheckLimitSizeLog(file);
             string log_text = String.Format("[{0}]: {1}\n", DateTime.Now, text);
-            File.AppendAllText(path + type.ToString() + extenstion, log_text);
+            File.AppendAllText(file, log_text);
+        }
+        private static void CheckLimitSizeLog(string path)
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    var filesize = new FileInfo(path);
+                    var size = (double)filesize.Length / 1000000;
+                    if (size > 1)
+                        File.Delete(path);
+                }
+            }
+            catch { }
         }
         public static void Open()
         {

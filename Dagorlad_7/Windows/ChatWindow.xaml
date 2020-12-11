@@ -58,11 +58,11 @@
                    VerticalContentAlignment="Center" Padding="10,0,0,0" Content="{Binding Direction}"
                    FontSize="10" Foreground="{DynamicResource Foreground.History}"/>
             </Grid>
-            <Grid Grid.Column="1" HorizontalAlignment="Left" x:Name="InformationClientGrid">
+            <Grid Grid.Column="1" HorizontalAlignment="Left" x:Name="InformationClientGrid" DataContext="{Binding client_employee_info}">
                 <Button Content="{StaticResource Canvas_Info}" x:Name="ShowPopupInfoAboutClientButton" Margin="10,0,0,0"
                         Click="ShowPopupInfoAboutClientButton_Click" Width="{Binding ActualHeight,RelativeSource={RelativeSource Self}}"
                     Template="{StaticResource ButtonStandart}"/>
-                <Popup x:Name="PopupInfoAboutClient"
+                <Popup x:Name="PopupInfoAboutClient" 
                        Placement="MousePoint" AllowsTransparency="True" PopupAnimation="Fade" StaysOpen="False">
                     <Border Background="{DynamicResource Background.HalfOutside}" Padding="10" CornerRadius="5" 
                             BorderThickness="3" BorderBrush="{DynamicResource Background.Inside.Blob}">
@@ -70,10 +70,46 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Image x:Name="InformationAboutClientImage" Stretch="None"/>
-                            <TextBox x:Name="InformationAboutClientTextBox" Foreground="{DynamicResource Foreground}" 
+                            <TextBox Foreground="{DynamicResource Foreground}"
+                                     Text="{Binding Code,StringFormat={}Код: {0}}"
                                       Margin="0" Padding="5" Grid.Row="1" Background="{DynamicResource Background.HalfOutside}"
+                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
+                            <TextBox Foreground="{DynamicResource Foreground}"
+                                     Text="{Binding Email,StringFormat={}Email: {0}}"
+                                      Margin="0" Padding="5" Grid.Row="2" Background="{DynamicResource Background.HalfOutside}"
+                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
+                            <TextBox Foreground="{DynamicResource Foreground}"
+                                     Text="{Binding Name,StringFormat={}ФИО: {0}}"
+                                      Margin="0" Padding="5" Grid.Row="3" Background="{DynamicResource Background.HalfOutside}"
+                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
+                            <TextBox Foreground="{DynamicResource Foreground}"
+                                     Text="{Binding Direction,StringFormat={}Направление: {0}}"
+                                      Margin="0" Padding="5" Grid.Row="4" Background="{DynamicResource Background.HalfOutside}"
+                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
+                            <TextBox Foreground="{DynamicResource Foreground}"
+                                     Text="{Binding BirthDate,StringFormat={}День рождения: {0:dd MMMM}}" Language="RU"
+                                      Margin="0" Padding="5" Grid.Row="5" Background="{DynamicResource Background.HalfOutside}"
+                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
+                            <TextBox Foreground="{DynamicResource Foreground}"
+                                     Text="{Binding Phone,StringFormat={}Телефон: {0}}"
+                                      Margin="0" Padding="5" Grid.Row="6" Background="{DynamicResource Background.HalfOutside}"
+                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
+                            <TextBox Foreground="{DynamicResource Foreground}"
+                                     Text="{Binding Position,StringFormat={}Должность: {0}}"
+                                      Margin="0" Padding="5" Grid.Row="7" Background="{DynamicResource Background.HalfOutside}"
+                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
+                            <TextBox Foreground="{DynamicResource Foreground}"
+                                     Text="{Binding Rest,StringFormat={}Отпуска: {0}}"
+                                      Margin="0" Padding="5" Grid.Row="8" Background="{DynamicResource Background.HalfOutside}"
                                      IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
                         </Grid>
                     </Border>

@@ -19,7 +19,7 @@ namespace Dagorlad_7
     /// </summary>
     public partial class App : Application
     {
-        private const string UpdateGuid = "{8E06A225-F9B4-48BA-A95A-FCE56D275B25}";
+        public const string UpdateGuid = "{8E06A225-F9B4-48BA-A95A-FCE56D275B25}";
         protected async override void OnStartup(StartupEventArgs e)
         {
             try

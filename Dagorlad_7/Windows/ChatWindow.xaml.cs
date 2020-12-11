@@ -725,8 +725,12 @@ namespace Dagorlad_7.Windows
 
         private async void ShowPopupInfoAboutClientButton_Click(object sender, RoutedEventArgs e)
         {
-            InformationAboutClientTextBox.Text = await DispatcherControls.GetClientInformation(SelectedUser.Email);
-            PopupInfoAboutClient.IsOpen = true;
+            if (SelectedUser != null && !String.IsNullOrEmpty(SelectedUser.Email))
+            {
+                PopupInfoAboutClient.DataContext = await DispatcherControls.FindEmployees(SelectedUser.Email);
+                //   InformationAboutClientTextBox.Text = await DispatcherControls.GetClientInformation(SelectedUser.Email);
+                PopupInfoAboutClient.IsOpen = true;
+            }
         }
     }
     public class NullableContentToHidden : IValueConverter

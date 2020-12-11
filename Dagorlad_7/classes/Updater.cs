@@ -42,7 +42,13 @@ namespace Dagorlad_7.classes
                     var RemoteVersionFile = new Version(FileVersionInfo.GetVersionInfo(PathToFile + target).FileVersion);
                     if (RemoteVersionFile > Assembly.GetExecutingAssembly().GetName().Version)
                     {
-                        Logger.Write(Logger.TypeLogs.updater, "Founded a new version of application, trying update...");
+                        Logger.Write(Logger.TypeLogs.updater, "Founded a new version of application!");
+                        Logger.Write(Logger.TypeLogs.updater, "Trying update...");
+                        Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            ((MainWindow)Application.Current.MainWindow).ExitFromApplication(true);
+                        }));
+                        Logger.Write(Logger.TypeLogs.updater, "All Events has been disposed...");
                         var path_bakfile = PathToRoaming + Path.GetFileName(target) + ".bak.remote";
                         var path_downloadedfile = PathToRoaming + target + "_";
                         if (File.Exists(path_bakfile))
@@ -53,11 +59,9 @@ namespace Dagorlad_7.classes
                         wc.DownloadFile(new Uri(PathToFile + target), path_downloadedfile);
                         File.Move(AppDomain.CurrentDomain.BaseDirectory + target, path_bakfile);
                         File.Copy(path_downloadedfile, AppDomain.CurrentDomain.BaseDirectory + target);
-                        System.Diagnostics.Process.Start(Application.ResourceAssembly.Location, "{8E06A225-F9B4-48BA-A95A-FCE56D275B25}");
-                        Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                        {
-                            ((MainWindow)Application.Current.MainWindow).ExitFromApplication();
-                        }));
+                        Logger.Write(Logger.TypeLogs.updater, "The Update was successfull...");
+                        System.Diagnostics.Process.Start(Application.ResourceAssembly.Location, App.UpdateGuid);
+                        System.Diagnostics.Process.GetCurrentProcess().Kill();
                     }
                     else { Logger.Write(Logger.TypeLogs.updater, "Not found new version."); }
                 }

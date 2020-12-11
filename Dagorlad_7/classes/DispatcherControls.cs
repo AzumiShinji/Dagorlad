@@ -366,6 +366,12 @@ namespace Dagorlad_7.classes
                                 if (isdt)
                                     birthdate = result;
                             }
+                            string rest = null;
+                            var _Rest = reader["Rest"] == DBNull.Value ? "" : (string)reader["Rest"];
+                            if(!String.IsNullOrEmpty(_Rest))
+                            {
+                                rest = "\n"+String.Join("\n", _Rest.Split('|'));
+                            }
                             employees = new EmployeesClass
                             {
                                 Code = reader["Code"] == DBNull.Value ? "" : (string)reader["Code"],
@@ -375,7 +381,7 @@ namespace Dagorlad_7.classes
                                 Position = reader["Position"] == DBNull.Value ? "" : (string)reader["Position"],
                                 Phone = reader["Phone"] == DBNull.Value ? "" : (string)reader["Phone"],
                                 BirthDate = birthdate.Value,
-                                Rest = reader["Rest"] == DBNull.Value ? "" : (string)reader["Rest"],
+                                Rest = rest,
                             };
                         }
                     }
@@ -398,7 +404,7 @@ namespace Dagorlad_7.classes
                         Application.Current.Resources["Background.Inside"] = new SolidColorBrush(Colors.White);
                         Application.Current.Resources["Background.Inside.Blob"] = new SolidColorBrush(Colors.LightGray);
                         Application.Current.Resources["Background.Outside"] = new SolidColorBrush(Colors.WhiteSmoke);
-                        Application.Current.Resources["Background.HalfOutside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#20262b"));
+                        Application.Current.Resources["Background.HalfOutside"] = new SolidColorBrush(Colors.GhostWhite);
                         Application.Current.Resources["Background.Highlight"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#009687"));
                         Application.Current.Resources["Background.Highlight.Color"] = (Color)ColorConverter.ConvertFromString("#009687");
                         Application.Current.Resources["Background.MouseOver"] = new SolidColorBrush(Colors.Gray);
@@ -479,24 +485,24 @@ namespace Dagorlad_7.classes
                 );
             return result;
         }
-        public static async Task<string> GetClientInformation(string email)
-        {
-            var result_info = await FindEmployees(email);
-            if (result_info == null) return "Нет данных";
-            string rest = null;
-            if (!String.IsNullOrEmpty(result_info.Rest))
-                rest = result_info.Rest.Replace("|", "\n");
-            var client_info = new StringBuilder();
-            client_info.AppendLine("Код: " + result_info.Code);
-            client_info.AppendLine("Email: " + result_info.Email);
-            client_info.AppendLine("ФИО: " + result_info.Name);
-            client_info.AppendLine("Направление: " + result_info.Direction);
-            client_info.AppendLine("День рождения: " + result_info.BirthDate.ToString("dd MMMM"));
-            client_info.AppendLine("Телефон: " + result_info.Phone);
-            client_info.AppendLine("Должность: " + result_info.Position);
-            client_info.AppendLine("Отпуска:\n" + rest);
-            return client_info.ToString();
-        }
+        //public static async Task<string> GetClientInformation(string email)
+        //{
+        //    var result_info = await FindEmployees(email);
+        //    if (result_info == null) return "Нет данных";
+        //    string rest = null;
+        //    if (!String.IsNullOrEmpty(result_info.Rest))
+        //        rest = result_info.Rest.Replace("|", "\n");
+        //    var client_info = new StringBuilder();
+        //    client_info.AppendLine("Код: " + result_info.Code);
+        //    client_info.AppendLine("Email: " + result_info.Email);
+        //    client_info.AppendLine("ФИО: " + result_info.Name);
+        //    client_info.AppendLine("Направление: " + result_info.Direction);
+        //    client_info.AppendLine("День рождения: " + result_info.BirthDate.ToString("dd MMMM"));
+        //    client_info.AppendLine("Телефон: " + result_info.Phone);
+        //    client_info.AppendLine("Должность: " + result_info.Position);
+        //    client_info.AppendLine("Отпуска:\n" + rest);
+        //    return client_info.ToString();
+        //}
     }
     class CursorPosition
     {

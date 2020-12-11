@@ -258,10 +258,10 @@ namespace Dagorlad_7
             var g = DispatcherControls.ShowMyDialog("Выход", "Вы уверены, что хотите выйти?", MyDialogWindow.TypeMyDialog.YesNo, this);
             if (g == MyDialogWindow.ResultMyDialog.Yes)
             {
-                ExitFromApplication();
+                ExitFromApplication(false);
             }
         }
-        public async void ExitFromApplication()
+        public async void ExitFromApplication(bool OnlyEvent)
         {
             try
             {
@@ -273,13 +273,16 @@ namespace Dagorlad_7
                 if (ChatWindow.Me != null)
                 {
                     await ChatWindow.proxy.DisconnectAsync(ChatWindow.Me);
-                    Logger.Write(Logger.TypeLogs.chat, "Disconnected: "+ ChatWindow.Me.Email);
+                    Logger.Write(Logger.TypeLogs.chat, "Disconnected: " + ChatWindow.Me.Email);
                 }
             }
             catch (Exception ex) { Logger.Write(Logger.TypeLogs.chat, "Exit ChatWindow Exception: " + ex.ToString()); }
             DispatcherControls.CloseAllNotifyIcon();
-            Application.Current.Shutdown();
-            Process.GetCurrentProcess().Kill();
+            if (!OnlyEvent)
+            {
+                Application.Current.Shutdown();
+                Process.GetCurrentProcess().Kill();
+            }
         }
         List<OrganizationsClass> OrganizationsListMain;
         private Task SearchOrganizationFromListView()
