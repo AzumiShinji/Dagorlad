@@ -675,3 +675,11 @@ UserDomainName: KRISLECHY
 Version Application: v.0.0.7650.19840, [11.12.2020 11:01:20] (Debug)
 ***has been added to clients list...
 [14.12.2020 15:20:52]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[15.12.2020 16:38:42]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7650.19840, [11.12.2020 11:01:20] (Debug)
+***has been added to clients list...
+[15.12.2020 16:39:41]: PyatkoBV@fsfk.local - has been disconnected successfully.
