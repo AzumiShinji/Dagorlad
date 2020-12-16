@@ -66,6 +66,7 @@ namespace Dagorlad_7.Windows
             public TypeColorScheme TypeColorScheme = TypeColorScheme.dark;
             public bool IsRegGlobalHook = true;
             public string ClearingFolder { get; set; }
+            public bool IsSearchOrganizations = true;
         }
         public MySettingsWindow()
         {
@@ -99,6 +100,7 @@ namespace Dagorlad_7.Windows
             if (!String.IsNullOrEmpty(EmailTextBox.Text))
                 EmailTextBox.IsEnabled = false;
             IsRegGlobalEventCheckBox.IsChecked = MySettings.Settings.IsRegGlobalHook;
+            IsSearchOrganizationsCheckBox.IsChecked = MySettings.Settings.IsSearchOrganizations;
             return Task.CompletedTask;
         }
         private async Task SaveSettings()
@@ -118,6 +120,7 @@ namespace Dagorlad_7.Windows
                 MySettings.Settings.TypeColorScheme = TypeColorScheme.light;
             }
             MySettings.Settings.IsRegGlobalHook = IsRegGlobalEventCheckBox.IsChecked.Value;
+            MySettings.Settings.IsSearchOrganizations = IsSearchOrganizationsCheckBox.IsChecked.Value;
             await MySettings.Save();
         }
         private async void SaveButton_Click(object sender, RoutedEventArgs e)

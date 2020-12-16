@@ -207,7 +207,6 @@ namespace Dagorlad_7.Windows
             try
             {
                 var login = MySettings.Settings.Email;
-                Logger.Write(Logger.TypeLogs.chat,"Try Connecting: "+ login);
                 if (!String.IsNullOrEmpty(login))
                 {
                     Logger.Write(Logger.TypeLogs.chat, "Try Connecting: " + login);
@@ -277,6 +276,7 @@ namespace Dagorlad_7.Windows
                 }
                 else
                 {
+                    Logger.Write(Logger.TypeLogs.chat, "Login name doesn't exist!");
                     Reconnect();
                 }
             }

@@ -683,3 +683,192 @@ UserDomainName: KRISLECHY
 Version Application: v.0.0.7650.19840, [11.12.2020 11:01:20] (Debug)
 ***has been added to clients list...
 [15.12.2020 16:39:41]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[16.12.2020 9:17:03]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7655.16705, [16.12.2020 9:16:50] (Debug)
+***has been added to clients list...
+[16.12.2020 9:18:04]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7655.16738, [16.12.2020 9:17:56] (Debug)
+***has been added to clients list...
+[16.12.2020 9:18:05]: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(ICollection`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 262
+[16.12.2020 9:18:05]: Client "PyatkoBV@fsfk.local" removed.
+[16.12.2020 9:18:08]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[16.12.2020 9:18:08]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7655.16738, [16.12.2020 9:17:56] (Debug)
+***has been added to clients list...
+[16.12.2020 9:20:03]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7655.16798, [16.12.2020 9:19:56] (Debug)
+***has been added to clients list...
+[16.12.2020 9:20:03]: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(ICollection`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 262
+[16.12.2020 9:20:03]: Client "PyatkoBV@fsfk.local" removed.
+[16.12.2020 9:20:06]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[16.12.2020 9:20:06]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7655.16798, [16.12.2020 9:19:56] (Debug)
+***has been added to clients list...
+[16.12.2020 9:28:34]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7655.17053, [16.12.2020 9:28:26] (Debug)
+***has been added to clients list...
+[16.12.2020 9:28:34]: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(ICollection`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 262
+[16.12.2020 9:28:34]: Client "PyatkoBV@fsfk.local" removed.
+[16.12.2020 9:28:37]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[16.12.2020 9:28:37]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7655.17053, [16.12.2020 9:28:26] (Debug)
+***has been added to clients list...
+[16.12.2020 9:44:26]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7655.17528, [16.12.2020 9:44:16] (Debug)
+***has been added to clients list...
+[16.12.2020 9:44:26]: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(ICollection`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 262
+[16.12.2020 9:44:26]: Client "PyatkoBV@fsfk.local" removed.
+[16.12.2020 9:44:29]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[16.12.2020 9:44:29]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7655.17528, [16.12.2020 9:44:16] (Debug)
+***has been added to clients list...
+[16.12.2020 10:13:10]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7655.18391, [16.12.2020 10:13:02] (Debug)
+***has been added to clients list...
+[16.12.2020 10:13:11]: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(ICollection`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 262
+[16.12.2020 10:13:11]: Client "PyatkoBV@fsfk.local" removed.
+[16.12.2020 10:13:14]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[16.12.2020 10:13:14]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7655.18391, [16.12.2020 10:13:02] (Debug)
+***has been added to clients list...
+[16.12.2020 10:14:30]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[16.12.2020 10:25:39]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7655.18766, [16.12.2020 10:25:32] (Debug)
+***has been added to clients list...
+[16.12.2020 10:31:41]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7655.18947, [16.12.2020 10:31:34] (Debug)
+***has been added to clients list...
+[16.12.2020 10:31:41]: System.ServiceModel.CommunicationObjectAbortedException: Коммуникационный объект System.ServiceModel.Channels.ServiceChannel нельзя использовать для связи, так как его работа прервана.
+
+Server stack trace: 
+   в System.ServiceModel.Channels.CommunicationObject.ThrowIfDisposedOrNotOpen()
+   в System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   в System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   в System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   в System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в Service_Chat_Dagorlad.IChatCallback.RefreshClients(ICollection`1 clients)
+   в Service_Chat_Dagorlad.ChatService.Connect(Client client) в D:\VS\Dagorlad\Service_Chat_Dagorlad\ChatService.cs:строка 262
+[16.12.2020 10:31:41]: Client "PyatkoBV@fsfk.local" removed.
+[16.12.2020 10:31:44]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[16.12.2020 10:31:44]: "PyatkoBV@fsfk.local":
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7655.18947, [16.12.2020 10:31:34] (Debug)
+***has been added to clients list...

@@ -77,7 +77,7 @@ namespace Dagorlad_7
             }
             await MySettings.Save();
             InitClipboardMonitor();
-            UpdateLabelAboutUpdate();
+            UpdateLabelAboutUpdate().GetAwaiter();
             if (!String.IsNullOrEmpty(MySettings.Settings.ClearingFolder))
                 FolderToBeClearedTextBlock.Text = MySettings.Settings.ClearingFolder;
             GlobalHookEventGrid.IsEnabled = MySettings.Settings.IsRegGlobalHook;
@@ -86,7 +86,7 @@ namespace Dagorlad_7
             else GlobalHook.StopHooking();
             
         }
-        private async void UpdateLabelAboutUpdate()
+        private async Task UpdateLabelAboutUpdate()
         {
             DateUpdateDataBaseOfOrganizationsLabel.Content = "Загрузка...";
             var dtupdateorganization = await SearchOrganizations.GetUpdateDate();
@@ -126,7 +126,7 @@ namespace Dagorlad_7
                         {
                             await Dispatcher.BeginInvoke(new Action(async () =>
                             {
-                                if (IsNumberHandling(text))
+                                if (MySettings.Settings.SmartMenuIsEnabled && IsNumberHandling(text))
                                 {
                                     var number = text.Trim().ToUpper();
                                     DispatcherControls.LastNumberOfHandling = number;
@@ -145,7 +145,7 @@ namespace Dagorlad_7
                                     }
                                     DispatcherControls.NewMyNotifyWindow(number, "Номер запомнен программой.\nМожно использовать \"СМАРТ-МЕНЮ\".", 15, this, TypeImageNotify.number_handling);
                                 }
-                                else
+                                else if(MySettings.Settings.IsSearchOrganizations)
                                 {
                                     var code = SearchOrganizations.CheckIfStringAsNumberOfOrganizations(text);
                                     if (code != 0)
@@ -156,7 +156,7 @@ namespace Dagorlad_7
                                             DispatcherControls.NewMyNotifyWindow(text, String.Format("Найдено {0} орг. по данному коду", list.Count()), 15, this, TypeImageNotify.buildings);
                                             OrganizationsListMain = list;
                                             OrganizationsListView.ItemsSource = OrganizationsListMain;
-                                            UpdateLabelAboutUpdate();
+                                            await UpdateLabelAboutUpdate();
                                         }
                                     }
                                 }

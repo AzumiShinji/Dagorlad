@@ -265,6 +265,23 @@ namespace Dagorlad_7.Windows
                 HideAndSave();
             }
         }
+
+        private void Window_Deactivated(object sender, EventArgs e)
+        {
+            Console.WriteLine("{0} has been deactivated.",this.ToString());
+            HideAndSave();
+            Console.WriteLine("{0} has been hidden.",this.ToString());
+        }
+
+        private void StaysOpenCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Deactivated -= Window_Deactivated;
+        }
+
+        private void StaysOpenCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Deactivated += Window_Deactivated;
+        }
     }
     public class WidthFixedListViewConverter : IValueConverter
     {

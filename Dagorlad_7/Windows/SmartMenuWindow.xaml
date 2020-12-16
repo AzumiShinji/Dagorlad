@@ -8,7 +8,7 @@
         WindowStyle="None"
         Background="{DynamicResource Background.Outside}"
         SizeToContent="WidthAndHeight"
-        MinHeight="300" MinWidth="400"
+        MinHeight="300" MinWidth="400" Deactivated="Window_Deactivated"
         ResizeMode="NoResize" Closing="Window_Closing" PreviewKeyUp="Window_PreviewKeyUp"
         Title="Смарт-меню" MaxHeight="700" MaxWidth="900">
     <Window.Resources>
@@ -37,6 +37,11 @@
                    VerticalContentAlignment="Center" Foreground="{DynamicResource Background.Highlight}"/>
             </Grid>
         </Grid>
+        <CheckBox Content="Закрепить окно" Foreground="{DynamicResource Foreground}" 
+                      x:Name="StaysOpenCheckBox" IsChecked="False" FontSize="14" FontWeight="Medium"
+                        Margin="10,0,0,0"
+                      Checked="StaysOpenCheckBox_Checked" Unchecked="StaysOpenCheckBox_Unchecked"
+                      HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
         <Grid x:Name="SmartAnswersGrid" Background="{DynamicResource Background.Inside}" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
