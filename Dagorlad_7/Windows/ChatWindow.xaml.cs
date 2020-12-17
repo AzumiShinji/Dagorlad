@@ -250,7 +250,7 @@ namespace Dagorlad_7.Windows
                             proxy.ClientCredentials.Windows.ClientCredential.UserName = "sql";
                             proxy.ClientCredentials.Windows.ClientCredential.Password = "4815162342";
 #endif
-                            proxy.Endpoint.Binding.OpenTimeout = new TimeSpan(0, 5, 0);
+                            proxy.Endpoint.Binding.OpenTimeout = new TimeSpan(0, 1, 0);
                             Logger.Write(Logger.TypeLogs.chat, "Try Connecting: " + host+":"+serviceListenPort+servicePath);
                             proxy.Open();
                             Logger.Write(Logger.TypeLogs.chat, "Try connecting: "+ proxy.State.ToString());
@@ -268,6 +268,7 @@ namespace Dagorlad_7.Windows
                             else InformationBlockLabel.Content = null;
                             Logger.Write(Logger.TypeLogs.chat, "Result connection: "+ result);
                         }
+                        else { Reconnect(); }
                     }
                     else
                     {

@@ -253,7 +253,7 @@ namespace Service_Chat_Dagorlad
             var IsAdded = clients.TryAdd(client, CurrentCallback);
             if (IsAdded)
             {
-                LogWrite("\"" + client.Email + "\""+":\n"+ client.SystemInformation+ "***has been added to clients list...");
+                LogWrite("\"" + client.Email + "\" has been added to clients list." + "\n"+ client.SystemInformation);
                 foreach (Client key in clients.Keys)
                 {
                     IChatCallback callback = clients[key];
@@ -264,7 +264,7 @@ namespace Service_Chat_Dagorlad
                     }
                     catch (Exception ex)
                     {
-                        LogWrite(ex.ToString());
+                        LogWrite("Cannot send CallBack to all clients. 267, " + key.Email);
                         var IsRemoved = clients.TryRemove(key, out IChatCallback value);
                         if (IsRemoved)
                             LogWrite("Client \"" + key.Email + "\" removed.");
@@ -364,6 +364,7 @@ namespace Service_Chat_Dagorlad
 
         public void Disconnect(Client client)
         {
+            //bool IsRemoved = false;
             foreach (Client c in clients.Keys)
             {
                 if (client.Email == c.Email)
@@ -372,11 +373,13 @@ namespace Service_Chat_Dagorlad
                     {
                         try
                         {
-                            var IsRemoved=this.clients.TryRemove(c,out IChatCallback value);
+                            var IsRemoved = this.clients.TryRemove(c, out IChatCallback value);
                             if (IsRemoved)
                             {
-                                foreach (IChatCallback callback in clients.Values)
+                                LogWrite(client.Email + " - has been disconnected successfully.");
+                                foreach (Client key in clients.Keys)
                                 {
+                                    IChatCallback callback = clients[key];
                                     try
                                     {
                                         callback.RefreshClients(this.clients.Keys);
@@ -384,10 +387,9 @@ namespace Service_Chat_Dagorlad
                                     }
                                     catch (Exception ex)
                                     {
-                                        LogWrite("IChatCallback error: " + ex.ToString());
+                                        LogWrite("Cannot be user for communication because it has been Aborted. 384, "+ client.Email);
                                     }
                                 }
-                                LogWrite(client.Email + " - has been disconnected successfully.");
                             }
                         }
                         catch (Exception ex) { LogWrite("Trying disconnecting error: " + ex.ToString()); }
@@ -395,6 +397,16 @@ namespace Service_Chat_Dagorlad
                     return;
                 }
             }
+            //if (IsRemoved)
+            //{
+            //    foreach (IChatCallback callback in clients.Values)
+            //    {
+            //        lock (syncObj)
+            //        {
+                       
+            //        }
+            //    }
+            //}
         }
 
         private void LogWrite(string text)

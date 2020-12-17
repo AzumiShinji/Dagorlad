@@ -65,13 +65,11 @@ namespace Dagorlad_7
                 }));
                 t.SetApartmentState(ApartmentState.STA); // give the [STAThread] attribute
                 t.Start();
-                CheckingIfDisposed(true);
             }
 
             // stop listening (dispose form)
             public static void Stop()
             {
-                CheckingIfDisposed(false);
                 mInstance.Invoke(new MethodInvoker(() =>
                 {
                     ChangeClipboardChain(mInstance.Handle, nextClipboardViewer);
@@ -82,40 +80,7 @@ namespace Dagorlad_7
 
                 mInstance = null;
             }
-            private static DispatcherTimer dt=new DispatcherTimer();
-            private static void CheckingIfDisposed(bool state)
-            {
-                var interval= TimeSpan.FromSeconds(15);
-                if (state == false)
-                {
-                    Console.WriteLine("Turn off timer for checking ClipboardMonitor.");
-                    Logger.Write(Logger.TypeLogs.clipboard, "Turn off timer for checking ClipboardMonitor.");
-                    if (dt.IsEnabled)
-                        dt.Stop();
-                }
-                else
-                {
-                    dt.Interval = interval;
-                    dt.Tick += (q, e) =>
-                    {
-                        if (mInstance.IsDisposed)
-                        {
-                            Console.WriteLine("ClipboardMonitor is disposed. Restarting...");
-                            Logger.Write(Logger.TypeLogs.clipboard, "ClipboardMonitor is disposed. Restarting...");
-                            Stop();
-                            Start();
-                        }
-                        else
-                        {
-                            Console.WriteLine("ClipboardMonitor is NOT disposed.");
-                            Logger.Write(Logger.TypeLogs.clipboard, "ClipboardMonitor is NOT disposed.");
-                        }
-                    };
-                    dt.Start();
-                    Logger.Write(Logger.TypeLogs.clipboard, String.Format("Timer for checking ClipboardMonitor has been started every {0} sec.",interval));
-                    Console.WriteLine("Timer for checking ClipboardMonitor has been started every {0} sec.", interval);
-                }
-            }
+
             // on load: (hide this window)
             protected override void SetVisibleCore(bool value)
             {
