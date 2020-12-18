@@ -131,6 +131,27 @@ namespace Dagorlad_7.Windows
                                 {
                                     AllowToNullable = false;
                                 }
+                                if(text.Contains("{S}"))
+                                {
+                                    try
+                                    {
+                                        var sometext = Clipboard.GetText();
+                                        if (!String.IsNullOrEmpty(sometext))
+                                        {
+                                            text = text.Replace("{S}", sometext.Trim());
+                                        }
+                                        else
+                                        {
+                                            lbl.Content = "Буфер пустой!";
+                                            break;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        lbl.Content = "Попробуйте еще раз!";
+                                        AllowToNullable = false;
+                                    }
+                                }
                                 Clipboard.SetText(text);
                                 IsSuccessCopied = true;
                             }
@@ -148,6 +169,8 @@ namespace Dagorlad_7.Windows
                                     TemporaryNumberOfHandlingLabel.Content = null;
                                     DispatcherControls.LastNumberOfHandling = null;
                                 }
+                                await Task.Delay(2000);
+                                lbl.Content = null;
                             }
                         }
                         else
@@ -281,6 +304,29 @@ namespace Dagorlad_7.Windows
         private void StaysOpenCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             this.Deactivated += Window_Deactivated;
+        }
+
+        private void StateEditNameButton_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = (Button)sender;
+            var textblock = btn.Tag as TextBlock;
+            var textbox = btn.CommandParameter as TextBox;
+            if (textblock.Visibility == Visibility.Visible)
+            { 
+                textblock.Visibility = Visibility.Collapsed;
+                textbox.Visibility = Visibility.Visible;
+                (btn.FindName("StateEditNameButtonImage") as Image).Source= 
+                    new BitmapImage(new Uri("pack://application:,,,/Dagorlad;component/images/ok_16.png", UriKind.Absolute));
+                return;
+            }
+            if (textbox.Visibility == Visibility.Visible)
+            {
+                textbox.Visibility = Visibility.Collapsed;
+                textblock.Visibility = Visibility.Visible;
+                (btn.FindName("StateEditNameButtonImage") as Image).Source = 
+                    new BitmapImage(new Uri("pack://application:,,,/Dagorlad;component/images/edit_16.png", UriKind.Absolute));
+                return;
+            }
         }
     }
     public class WidthFixedListViewConverter : IValueConverter

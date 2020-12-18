@@ -203,6 +203,7 @@ namespace Dagorlad_7.Windows
 
         public async Task Start()
         {
+            MessageSendingGrid.IsEnabled = false;
             Logger.Write(Logger.TypeLogs.chat, "Start Connection");
             try
             {
@@ -286,6 +287,7 @@ namespace Dagorlad_7.Windows
                 Logger.Write(Logger.TypeLogs.chat, ex.ToString());
                 Reconnect();
             }
+            MessageSendingGrid.IsEnabled = true;
         }
         int reconnect_Timeout_sec = 3;
         private async void Reconnect()
