@@ -41,6 +41,7 @@
                       x:Name="StaysOpenCheckBox" IsChecked="False" FontSize="14" FontWeight="Medium"
                         Margin="10,0,0,0"
                       Checked="StaysOpenCheckBox_Checked" Unchecked="StaysOpenCheckBox_Unchecked"
+                        VerticalAlignment="Center"
                       HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
         <Grid x:Name="SmartAnswersGrid" Background="{DynamicResource Background.Inside}" Grid.Row="1">
             <Grid.ColumnDefinitions>
