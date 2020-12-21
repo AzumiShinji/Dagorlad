@@ -238,7 +238,7 @@
                                                    Height="30" VerticalAlignment="Center" FontSize="14" Padding="5"  SelectionBrush="{DynamicResource Background.Highlight}"
                                                            MaxWidth="200"
                                                    HorizontalAlignment="Center"/>
-                                                <CheckBox x:Name="IsEditCheckBox" Grid.Column="1" VerticalContentAlignment="Center"
+                                                <CheckBox x:Name="IsEditCheckBox" Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Center"
                                                           Padding="5" Foreground="{DynamicResource Foreground}"  FontSize="14"
                                                           Content="Запретить изменение" IsChecked="True"/>
                                             </Grid>

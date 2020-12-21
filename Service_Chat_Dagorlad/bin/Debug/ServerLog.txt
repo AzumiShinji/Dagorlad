@@ -1213,3 +1213,1129 @@ OS: Microsoft Windows NT 6.2.9200.0
 UserDomainName: KRISLECHY
 Version Application: v.0.0.7657.31640, [18.12.2020 17:34:40] (Debug)
 ***has been added to clients list...
+[21.12.2020 15:30:26]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:30:42]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:30:42]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:30:42]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:30:45]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:30:45]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:30:55]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:30:55]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:30:55]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:30:58]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:30:59]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:31:16]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:31:16]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:31:16]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:31:19]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:31:19]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:31:29]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:31:29]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:31:29]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:31:32]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:31:32]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:31:42]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:31:42]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:31:42]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:31:45]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:31:45]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:31:55]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:31:55]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:31:55]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:31:58]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:31:58]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:32:08]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:32:08]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:32:08]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:32:11]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:32:11]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:32:21]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:32:21]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:32:21]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:32:24]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:32:24]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:32:34]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:32:34]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:32:34]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:32:37]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:32:37]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:32:48]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:32:48]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:32:48]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:32:51]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:32:51]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:33:01]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:33:01]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:33:01]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:33:04]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:33:04]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:33:14]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:33:14]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:33:14]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:33:17]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:33:17]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:33:27]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:33:27]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:33:27]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:33:30]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:33:30]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:33:40]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:33:40]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:33:40]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:33:43]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:33:43]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:33:53]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:33:53]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:33:53]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:33:56]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:33:56]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:34:06]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:34:06]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:34:06]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:34:09]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:34:09]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:34:19]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:34:19]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:34:19]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:34:22]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:34:22]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:34:32]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:34:32]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:34:32]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:34:35]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:34:35]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:34:45]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:34:45]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:34:45]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:34:49]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:34:49]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:34:59]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:34:59]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:34:59]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:35:02]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:35:02]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:35:12]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:35:12]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:35:12]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:35:15]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:35:15]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:35:25]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:35:25]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:35:25]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:35:28]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:35:28]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:35:38]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:35:38]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:35:38]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:35:41]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:35:41]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:35:51]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:35:51]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:35:51]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:35:54]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:35:54]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:36:04]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:36:04]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:36:04]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:36:07]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:36:07]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:36:17]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:36:17]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:36:17]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:36:20]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:36:20]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:36:30]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:36:30]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:36:30]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:36:33]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:36:33]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:36:43]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:36:43]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:36:43]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:36:46]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:36:47]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:36:57]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:36:57]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:36:57]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:37:00]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:37:00]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:37:10]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:37:10]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:37:10]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:37:13]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:37:13]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:37:23]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:37:23]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:37:23]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:37:26]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:37:26]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:37:36]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:37:36]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:37:36]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:37:39]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:37:39]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:37:49]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:37:49]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:37:49]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:37:52]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:37:52]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:38:02]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:38:02]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:38:02]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:38:05]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:38:05]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:38:15]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:38:15]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:38:15]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:38:18]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:38:18]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:38:28]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:38:28]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:38:28]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:38:31]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:38:31]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:38:41]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:38:41]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:38:41]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:38:44]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:38:44]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:38:54]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:38:54]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:38:55]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:38:58]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:38:58]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:39:08]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:39:08]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:39:08]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:39:11]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:39:11]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:39:21]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:39:21]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:39:21]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:39:24]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:39:24]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:39:34]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:39:34]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:39:34]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:39:37]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:39:37]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:39:47]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:39:47]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:39:47]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:39:50]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:39:50]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:40:18]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:40:18]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:40:18]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:40:21]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:40:21]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:41:02]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:41:02]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:41:02]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:41:05]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:41:05]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:41:15]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:41:15]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:41:15]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:41:18]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:41:18]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:41:38]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:41:38]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:41:38]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:41:41]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:41:41]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:41:51]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:41:51]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:41:51]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:41:54]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:41:54]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:42:04]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:42:04]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:42:04]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:42:07]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:42:07]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:42:17]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:42:17]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:42:17]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:42:20]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:42:20]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:42:30]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:42:30]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:42:30]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:42:33]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:42:33]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:42:43]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:42:43]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:42:43]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:42:46]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:42:46]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:42:56]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:42:56]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:42:56]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:42:59]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:42:59]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:43:09]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:43:09]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:43:09]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:43:12]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:43:12]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:43:22]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:43:22]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:43:22]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:43:25]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:43:25]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:43:35]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:43:35]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:43:35]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:43:38]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:43:39]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:43:49]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:43:49]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:43:49]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:43:52]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:43:52]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:44:02]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:44:02]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:44:02]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:44:05]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:44:05]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:44:15]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:44:15]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:44:15]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:44:18]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:44:18]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:44:28]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:44:28]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:44:28]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:44:31]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:44:31]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:44:41]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:44:41]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:44:41]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:44:44]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:44:44]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:44:54]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:44:54]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:44:54]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:44:57]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:44:57]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:45:07]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:45:07]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:45:07]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:45:10]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:45:10]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.27864, [21.12.2020 15:28:48] (Debug)
+
+[21.12.2020 15:52:15]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.28563, [21.12.2020 15:52:06] (Debug)
+
+[21.12.2020 15:52:25]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.28563, [21.12.2020 15:52:06] (Debug)
+
+[21.12.2020 15:52:25]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:52:25]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:52:28]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:52:29]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.28563, [21.12.2020 15:52:06] (Debug)
+
+[21.12.2020 15:52:39]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.28563, [21.12.2020 15:52:06] (Debug)
+
+[21.12.2020 15:52:39]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:52:39]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:52:42]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:52:43]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.28563, [21.12.2020 15:52:06] (Debug)
+
+[21.12.2020 15:52:48]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.28563, [21.12.2020 15:52:06] (Debug)
+
+[21.12.2020 15:52:48]: Cannot send CallBack to all clients. 267, PyatkoBV@fsfk.local
+[21.12.2020 15:52:48]: Client "PyatkoBV@fsfk.local" removed.
+[21.12.2020 15:52:51]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[21.12.2020 15:52:51]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.28563, [21.12.2020 15:52:06] (Debug)
+
+[21.12.2020 16:02:27]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7660.28870, [21.12.2020 16:02:20] (Debug)
+

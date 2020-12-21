@@ -234,14 +234,14 @@ namespace Dagorlad_7.Windows
 
                             EndpointIdentity identity = EndpointIdentity.CreateDnsIdentity(host);
 
-                            var binding = new NetTcpBinding(SecurityMode.Transport,true);
+                            var binding = new NetTcpBinding(SecurityMode.Transport, true);
                             binding.Security.Message.ClientCredentialType = MessageCredentialType.Windows;
                             binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
                             binding.Security.Transport.ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign;
                             binding.TransferMode = TransferMode.Buffered;
 
                             var endpointaddress = new Uri(host + ":" + serviceListenPort + servicePath);
-                            EndpointAddress endpoint = new EndpointAddress(endpointaddress,identity);
+                            EndpointAddress endpoint = new EndpointAddress(endpointaddress, identity);
 
                             proxy.ClientCredentials.Windows.ClientCredential.Domain = "";
 #if (DEBUG)
@@ -252,24 +252,28 @@ namespace Dagorlad_7.Windows
                             proxy.ClientCredentials.Windows.ClientCredential.Password = "4815162342";
 #endif
                             proxy.Endpoint.Binding.OpenTimeout = new TimeSpan(0, 1, 0);
-                            Logger.Write(Logger.TypeLogs.chat, "Try Connecting: " + host+":"+serviceListenPort+servicePath);
+                            Logger.Write(Logger.TypeLogs.chat, "Parameters Endpoint: " + host + ":" + serviceListenPort + servicePath);
                             proxy.Open();
-                            Logger.Write(Logger.TypeLogs.chat, "Try connecting: "+ proxy.State.ToString());
+                            Logger.Write(Logger.TypeLogs.chat, "State connection: " + proxy.State.ToString());
+
+                            proxy.InnerDuplexChannel.Faulted -= new EventHandler(InnerDuplexChannel_Event);
+                            proxy.InnerDuplexChannel.Opened -=  new EventHandler(InnerDuplexChannel_Event);
+                            proxy.InnerDuplexChannel.Closed -= new EventHandler(InnerDuplexChannel_Event);
+
                             proxy.InnerDuplexChannel.Faulted += new EventHandler(InnerDuplexChannel_Event);
                             proxy.InnerDuplexChannel.Opened += new EventHandler(InnerDuplexChannel_Event);
                             proxy.InnerDuplexChannel.Closed += new EventHandler(InnerDuplexChannel_Event);
                             var result = await proxy.ConnectAsync(Me);
+                            Logger.Write(Logger.TypeLogs.chat, "Result connection: " + result);
                             if (!result)
-                            {
-                                InformationBlockLabel.Content = String.Format("Подключение...", reconnect_Timeout_sec);
-                                await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));
-                                await proxy.DisconnectAsync(Me);
-                                await HandleProxy();
-                            }
-                            else InformationBlockLabel.Content = null;
-                            Logger.Write(Logger.TypeLogs.chat, "Result connection: "+ result);
+                                Reconnect();
+                            else 
+                                InformationBlockLabel.Content = null;
                         }
-                        else { Reconnect(); }
+                        else
+                        {
+                            Reconnect();
+                        }
                     }
                     else
                     {
@@ -289,15 +293,35 @@ namespace Dagorlad_7.Windows
             }
             MessageSendingGrid.IsEnabled = true;
         }
-        int reconnect_Timeout_sec = 3;
+        int reconnect_Timeout_sec = 10;
         private async void Reconnect()
         {
-            if (proxy != null)
-                proxy.Abort();
-            proxy = null;
-            InformationBlockLabel.Content = String.Format("Подключение...", reconnect_Timeout_sec);
-            await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));
-            await Start();
+            try
+            {
+                if (proxy != null)
+                {
+                    if (Me != null)
+                    {
+                        try
+                        {
+                            await proxy.DisconnectAsync(Me);
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Write(Logger.TypeLogs.chat, ex.ToString());
+                        }
+                    }
+                    proxy.Abort();
+                }
+                proxy = null;
+                InformationBlockLabel.Content = String.Format("Подключение через {0} сек...", reconnect_Timeout_sec);
+                await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));
+                await Start();
+            }
+            catch (Exception ex)
+            {
+                Logger.Write(Logger.TypeLogs.chat, ex.ToString());
+            }
         }
         async void InnerDuplexChannel_Event(object sender, EventArgs e)
         {
