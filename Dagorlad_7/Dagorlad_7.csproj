@@ -90,6 +90,7 @@
     <Compile Include="classes\ClipboardMonitor.cs" />
     <Compile Include="classes\DispatcherControls.cs" />
     <Compile Include="classes\GlobalHook.cs" />
+    <Compile Include="classes\Hash.cs" />
     <Compile Include="classes\Updater.cs" />
     <Compile Include="classes\UserImageMaster.cs" />
     <Compile Include="classes\Logger.cs" />
@@ -99,6 +100,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AuthenticationWebServiceWindow.xaml.cs">
+      <DependentUpon>AuthenticationWebServiceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ChatWindow.xaml.cs">
       <DependentUpon>ChatWindow.xaml</DependentUpon>
@@ -138,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AuthenticationWebServiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

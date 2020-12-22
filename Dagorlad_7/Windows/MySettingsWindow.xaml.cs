@@ -97,8 +97,6 @@ namespace Dagorlad_7.Windows
                 case (TypeColorScheme.light):
                     LightColorSchemeRadioButton.IsChecked = true; break;
             }
-            if (!String.IsNullOrEmpty(EmailTextBox.Text))
-                EmailTextBox.IsEnabled = false;
             IsRegGlobalEventCheckBox.IsChecked = MySettings.Settings.IsRegGlobalHook;
             IsSearchOrganizationsCheckBox.IsChecked = MySettings.Settings.IsSearchOrganizations;
             return Task.CompletedTask;
@@ -138,7 +136,6 @@ namespace Dagorlad_7.Windows
         {
             if ((Keyboard.Modifiers == ModifierKeys.Control) && e.Key == Key.Enter)
             {
-                EmailTextBox.IsEnabled = true;
                 OpenLogsFolderButton.Visibility = Visibility.Visible;
             }
         }
@@ -148,6 +145,19 @@ namespace Dagorlad_7.Windows
             var button = (Button)sender;
             button.IsEnabled = false;
             Updater.UpdateNowHandMade();
+        }
+
+        private void AllowingEditEmailButton_Click(object sender, RoutedEventArgs e)
+        {
+            var wnd = new AuthenticationWebServiceWindow();
+            wnd.Owner = this;
+            var result=wnd.ShowDialog();
+            if(result.HasValue && result.Value==true)
+            {
+                EmailTextBox.IsReadOnly = false;
+                EmailTextBox.SelectAll();
+                EmailTextBox.Focus();
+            } else EmailTextBox.IsReadOnly = true;
         }
     }
 }

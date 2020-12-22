@@ -97,22 +97,14 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Адреc почты (Email, *@fsfk.local):" Foreground="{DynamicResource Foreground}"/>
-                    <TextBox Grid.Column="1" x:Name="EmailTextBox" IsEnabled="False"
-                             Foreground="{DynamicResource Foreground}" MinWidth="100" SelectionBrush="{DynamicResource Background.Highlight}">
-                        <TextBox.Style>
-                            <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
-                                <Style.Triggers>
-                                    <Trigger Property="IsEnabled" Value="False">
-                                        <Setter Property="BorderThickness" Value="0"/>
-                                        <Setter Property="Background" Value="{DynamicResource Foreground.History}"/>
-                                        <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
+                    <Label Content="Адреc локальной почты:" Foreground="{DynamicResource Foreground}"/>
+                    <TextBox Grid.Column="1" x:Name="EmailTextBox" IsReadOnly="True"
+                             Foreground="{DynamicResource Foreground}" Width="150" SelectionBrush="{DynamicResource Background.Highlight}"/>
+                    <Button Grid.Column="2" x:Name="AllowingEditEmailButton" Click="AllowingEditEmailButton_Click" Template="{StaticResource ButtonStandart}">
+                        <Image Source="/images/pencil_16.png" Width="16" Height="16"/>
+                    </Button>
                 </Grid>
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>

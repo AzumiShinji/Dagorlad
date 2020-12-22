@@ -1,0 +1,42 @@
+﻿<Window x:Class="Dagorlad_7.Windows.AuthenticationWebServiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dagorlad_7.Windows"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Width="250" WindowStyle="None" Deactivated="Window_Deactivated"
+        mc:Ignorable="d" SizeToContent="Height" KeyUp="Window_KeyUp"
+        Background="{DynamicResource Background.Outside}"
+        Title="Авторизация">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="10,10,10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="Логин" Foreground="{DynamicResource Foreground}" Grid.Row="0"/>
+            <TextBox x:Name="LoginTextBox"  Grid.Row="0" Grid.Column="1"/>
+            <Label Content="Пароль" Foreground="{DynamicResource Foreground}" Grid.Row="1" Margin="0,5,0,0"/>
+            <PasswordBox Foreground="{DynamicResource Foreground}" Background="{DynamicResource Background.Inside.Blob}"
+                     VerticalContentAlignment="Center" BorderThickness="0" Margin="0,4,0,0" SelectionBrush="{DynamicResource Background.Highlight}"
+                         Padding="5"
+                     x:Name="PasswordPasswordBox" Grid.Row="1" Grid.Column="1"/>
+            <Label x:Name="StatusLabel" Grid.Row="2" Grid.ColumnSpan="2" Padding="5"
+                   Foreground="OrangeRed" 
+                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        </Grid>
+         <Button x:Name="AcceptButton" Template="{StaticResource ButtonStandart}" 
+                 Grid.Row="1" Content="ОК" Height="40" Click="AcceptButton_Click" IsDefault="True"/>
+    </Grid>
+</Window>

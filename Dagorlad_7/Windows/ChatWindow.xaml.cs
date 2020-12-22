@@ -311,7 +311,8 @@ namespace Dagorlad_7.Windows
                             Logger.Write(Logger.TypeLogs.chat, ex.ToString());
                         }
                     }
-                    proxy.Abort();
+                    if (proxy != null)
+                        proxy.Abort();
                 }
                 proxy = null;
                 InformationBlockLabel.Content = String.Format("Подключение через {0} сек...", reconnect_Timeout_sec);

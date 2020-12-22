@@ -17,6 +17,7 @@
         <Setter Property="Padding" Value="5"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="CaretBrush" Value="{DynamicResource Foreground}"/>
+        <Setter Property="SelectionBrush" Value="{DynamicResource Background.Highlight}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
     <Style TargetType="Button">
