@@ -235,12 +235,13 @@
                                                 </Grid.ColumnDefinitions>
                                                 <TextBox Text="{Binding title}" Foreground="{DynamicResource Foreground}"
                                                          Background="{DynamicResource Background.Inside.Blob}"
-                                                   Height="30" VerticalAlignment="Center" FontSize="14" Padding="5"  SelectionBrush="{DynamicResource Background.Highlight}"
+                                                   Height="30" VerticalAlignment="Center" FontSize="14" Padding="5" 
+                                                         SelectionBrush="{DynamicResource Background.Highlight}"
                                                            MaxWidth="200"
                                                    HorizontalAlignment="Center"/>
                                                 <CheckBox x:Name="IsEditCheckBox" Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Center"
-                                                          Padding="5" Foreground="{DynamicResource Foreground}"  FontSize="14"
-                                                          Content="Запретить изменение" IsChecked="True"/>
+                                                          Margin="10,0,0,0" Foreground="{DynamicResource Foreground}" FontSize="14" FontWeight="Medium"
+                                                          Content="Запретить редактирование" IsChecked="True"/>
                                             </Grid>
                                             <Border Grid.Row="1" Padding="10" CornerRadius="5" Margin="10"
                                                     Background="{DynamicResource Background.Inside.Blob}">
