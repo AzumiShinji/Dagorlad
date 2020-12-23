@@ -210,7 +210,6 @@ namespace Dagorlad_7.Windows
                 var login = MySettings.Settings.Email;
                 if (!String.IsNullOrEmpty(login))
                 {
-
                     Logger.Write(Logger.TypeLogs.chat, "Try Connecting: " + login);
                     var result_info = await DispatcherControls.FindEmployees(login);
                     if (result_info != null)
