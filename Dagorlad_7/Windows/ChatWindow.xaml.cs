@@ -210,69 +210,77 @@ namespace Dagorlad_7.Windows
                 var login = MySettings.Settings.Email;
                 if (!String.IsNullOrEmpty(login))
                 {
+
                     Logger.Write(Logger.TypeLogs.chat, "Try Connecting: " + login);
                     var result_info = await DispatcherControls.FindEmployees(login);
                     if (result_info != null)
                     {
-                        string email = result_info.Email;
-                        string name = result_info.Name;
-                        string direction = result_info.Direction;
-                        var system_info = DispatcherControls.GetMySystemInformation();
-                        if (proxy == null)
+                        if (await Hash.CheckAllowingEmail(login))
                         {
-                            Me = new SVC.Client();
-                            Me.Email = email;
-                            Me.Name = name;
-                            Me.Direction = direction;
-                            Me.Time = DateTime.Now;
-                            Me.SystemInformation = system_info;
-                            this.Title = String.Format("{0}: {1}", "Dagorlad - Чат", Me.Name);
-                            InstanceContext context = new InstanceContext(this);
-                            proxy = new SVC.ChatClient(context);
-                            string servicePath = proxy.Endpoint.ListenUri.AbsolutePath;
-                            string serviceListenPort = proxy.Endpoint.Address.Uri.Port.ToString();
+                            string email = result_info.Email;
+                            string name = result_info.Name;
+                            string direction = result_info.Direction;
+                            var system_info = DispatcherControls.GetMySystemInformation();
+                            if (proxy == null)
+                            {
+                                Me = new SVC.Client();
+                                Me.Email = email;
+                                Me.Name = name;
+                                Me.Direction = direction;
+                                Me.Time = DateTime.Now;
+                                Me.SystemInformation = system_info;
+                                this.Title = String.Format("{0}: {1}", "Dagorlad - Чат", Me.Name);
+                                InstanceContext context = new InstanceContext(this);
+                                proxy = new SVC.ChatClient(context);
+                                string servicePath = proxy.Endpoint.ListenUri.AbsolutePath;
+                                string serviceListenPort = proxy.Endpoint.Address.Uri.Port.ToString();
 
-                            EndpointIdentity identity = EndpointIdentity.CreateDnsIdentity(host);
+                                EndpointIdentity identity = EndpointIdentity.CreateDnsIdentity(host);
 
-                            var binding = new NetTcpBinding(SecurityMode.Transport, true);
-                            binding.Security.Message.ClientCredentialType = MessageCredentialType.Windows;
-                            binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
-                            binding.Security.Transport.ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign;
-                            binding.TransferMode = TransferMode.Buffered;
+                                var binding = new NetTcpBinding(SecurityMode.Transport, true);
+                                binding.Security.Message.ClientCredentialType = MessageCredentialType.Windows;
+                                binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
+                                binding.Security.Transport.ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign;
+                                binding.TransferMode = TransferMode.Buffered;
 
-                            var endpointaddress = new Uri(host + ":" + serviceListenPort + servicePath);
-                            EndpointAddress endpoint = new EndpointAddress(endpointaddress, identity);
+                                var endpointaddress = new Uri(host + ":" + serviceListenPort + servicePath);
+                                EndpointAddress endpoint = new EndpointAddress(endpointaddress, identity);
 
-                            proxy.ClientCredentials.Windows.ClientCredential.Domain = "";
+                                proxy.ClientCredentials.Windows.ClientCredential.Domain = "";
 #if (DEBUG)
-                            proxy.ClientCredentials.Windows.ClientCredential.UserName = "krislechy";
-                            proxy.ClientCredentials.Windows.ClientCredential.Password = "SeriX45*";
+                                proxy.ClientCredentials.Windows.ClientCredential.UserName = "krislechy";
+                                proxy.ClientCredentials.Windows.ClientCredential.Password = "SeriX45*";
 #else
                             proxy.ClientCredentials.Windows.ClientCredential.UserName = "sql";
                             proxy.ClientCredentials.Windows.ClientCredential.Password = "4815162342";
 #endif
-                            proxy.Endpoint.Binding.OpenTimeout = new TimeSpan(0, 1, 0);
-                            Logger.Write(Logger.TypeLogs.chat, "Parameters Endpoint: " + host + ":" + serviceListenPort + servicePath);
-                            proxy.Open();
-                            Logger.Write(Logger.TypeLogs.chat, "State connection: " + proxy.State.ToString());
+                                proxy.Endpoint.Binding.OpenTimeout = new TimeSpan(0, 1, 0);
+                                Logger.Write(Logger.TypeLogs.chat, "Parameters Endpoint: " + host + ":" + serviceListenPort + servicePath);
+                                proxy.Open();
+                                Logger.Write(Logger.TypeLogs.chat, "State connection: " + proxy.State.ToString());
 
-                            proxy.InnerDuplexChannel.Faulted -= new EventHandler(InnerDuplexChannel_Event);
-                            proxy.InnerDuplexChannel.Opened -=  new EventHandler(InnerDuplexChannel_Event);
-                            proxy.InnerDuplexChannel.Closed -= new EventHandler(InnerDuplexChannel_Event);
+                                proxy.InnerDuplexChannel.Faulted -= new EventHandler(InnerDuplexChannel_Event);
+                                proxy.InnerDuplexChannel.Opened -= new EventHandler(InnerDuplexChannel_Event);
+                                proxy.InnerDuplexChannel.Closed -= new EventHandler(InnerDuplexChannel_Event);
 
-                            proxy.InnerDuplexChannel.Faulted += new EventHandler(InnerDuplexChannel_Event);
-                            proxy.InnerDuplexChannel.Opened += new EventHandler(InnerDuplexChannel_Event);
-                            proxy.InnerDuplexChannel.Closed += new EventHandler(InnerDuplexChannel_Event);
-                            var result = await proxy.ConnectAsync(Me);
-                            Logger.Write(Logger.TypeLogs.chat, "Result connection: " + result);
-                            if (!result)
+                                proxy.InnerDuplexChannel.Faulted += new EventHandler(InnerDuplexChannel_Event);
+                                proxy.InnerDuplexChannel.Opened += new EventHandler(InnerDuplexChannel_Event);
+                                proxy.InnerDuplexChannel.Closed += new EventHandler(InnerDuplexChannel_Event);
+                                var result = await proxy.ConnectAsync(Me);
+                                Logger.Write(Logger.TypeLogs.chat, "Result connection: " + result);
+                                if (!result)
+                                    Reconnect();
+                                else
+                                    InformationBlockLabel.Content = null;
+                            }
+                            else
+                            {
                                 Reconnect();
-                            else 
-                                InformationBlockLabel.Content = null;
+                            }
                         }
                         else
                         {
-                            Reconnect();
+                            DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "Не удалось присоединиться к чату, ошибка доступа.", 10, this, TypeImageNotify.chat);
                         }
                     }
                     else
@@ -293,7 +301,7 @@ namespace Dagorlad_7.Windows
             }
             MessageSendingGrid.IsEnabled = true;
         }
-        int reconnect_Timeout_sec = 10;
+        int reconnect_Timeout_sec = 3;
         private async void Reconnect()
         {
             try

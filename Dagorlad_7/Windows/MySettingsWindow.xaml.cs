@@ -108,7 +108,13 @@ namespace Dagorlad_7.Windows
             else DispatcherControls.Autorun(DispatcherControls.TypeAutoRunOperation.Off);
             MySettings.Settings.SmartMenuIsEnabled = IsEnabledSmartMenuCheckBox.IsChecked.Value;
             if (!String.IsNullOrEmpty(EmailTextBox.Text))
-                MySettings.Settings.Email = EmailTextBox.Text.Trim();
+            {
+                if (IsAllowAccessEditEmail)
+                {
+                    MySettings.Settings.Email = EmailTextBox.Text.Trim();
+                    await Hash.SetHashFromWebServiceEmployees(EmailTextBox.Text.Trim());
+                }
+            }
             if (DarkColorSchemeRadioButton.IsChecked == true)
             {
                 MySettings.Settings.TypeColorScheme = TypeColorScheme.dark;
@@ -147,17 +153,24 @@ namespace Dagorlad_7.Windows
             Updater.UpdateNowHandMade();
         }
 
+        bool IsAllowAccessEditEmail = false;
         private void AllowingEditEmailButton_Click(object sender, RoutedEventArgs e)
         {
             var wnd = new AuthenticationWebServiceWindow();
             wnd.Owner = this;
             var result=wnd.ShowDialog();
-            if(result.HasValue && result.Value==true)
+            if (result.HasValue && result.Value == true)
             {
                 EmailTextBox.IsReadOnly = false;
                 EmailTextBox.SelectAll();
                 EmailTextBox.Focus();
-            } else EmailTextBox.IsReadOnly = true;
+                IsAllowAccessEditEmail = true;
+            }
+            else
+            {
+                EmailTextBox.IsReadOnly = true;
+                IsAllowAccessEditEmail = false;
+            }
         }
     }
 }

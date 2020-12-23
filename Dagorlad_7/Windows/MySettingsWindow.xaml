@@ -10,7 +10,7 @@
         SizeToContent="WidthAndHeight"
         Background="{DynamicResource Background.Inside}"
         Foreground="{DynamicResource Foreground}" PreviewKeyUp="Window_PreviewKeyUp"
-        Title="Настройки" Height="450" Width="800">
+        Title="Настройки">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
