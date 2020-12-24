@@ -10,7 +10,6 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using UsBudget.classes;
 
 namespace Dagorlad_7.classes
 {

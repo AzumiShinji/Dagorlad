@@ -8,12 +8,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Windows.Media.Imaging;
 
-namespace Dagorla_7.classes
+namespace Dagorlad_7.classes
 {
-    class UserImageMaster
+    public class UserPictureProfileCreator
     {
         private static System.Drawing.Image DrawUserCircle(System.Drawing.Size PicSize, System.Drawing.Brush Brush,
                 string Texto, System.Drawing.Font Fuente, System.Drawing.Color BackColor, System.Drawing.Color Foreground,
@@ -74,7 +73,7 @@ namespace Dagorla_7.classes
             return result;
         }
         private static List<Brush> SelectedBrushesList = new List<Brush>();
-        public static BitmapImage CreateProfilePicture(string text, bool isgroup)
+        public static BitmapImage CreateUserPictureProfile(string text, bool isgroup)
         {
             Brush pickedbrush = PickBrush();
             while (SelectedBrushesList.Contains(pickedbrush))
@@ -84,8 +83,10 @@ namespace Dagorla_7.classes
             SelectedBrushesList.Add(pickedbrush);
             var color = ((SolidBrush)pickedbrush).Color;
             var forecolor = GetReadableForeColor(color);
+            int fontsize = 20;
+            if (isgroup) fontsize = 42;
             var image = DrawUserCircle(new System.Drawing.Size(64, 64), pickedbrush, ConvertText(text),
-                new System.Drawing.Font("Arial", 20, System.Drawing.FontStyle.Bold,GraphicsUnit.Pixel,1,true), System.Drawing.Color.Transparent,
+                new System.Drawing.Font("Arial", fontsize, System.Drawing.FontStyle.Bold,GraphicsUnit.Pixel,1,true), System.Drawing.Color.Transparent,
                 forecolor, isgroup);
             using (var ms = new MemoryStream())
             {

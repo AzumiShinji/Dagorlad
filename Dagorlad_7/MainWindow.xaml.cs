@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +21,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using UsBudget.classes;
 
 namespace Dagorlad_7
 {
@@ -143,7 +143,7 @@ namespace Dagorlad_7
                                             }
                                         }
                                     }
-                                    DispatcherControls.NewMyNotifyWindow(number, "Номер запомнен программой.\nМожно использовать \"СМАРТ-МЕНЮ\".", 15, this, TypeImageNotify.number_handling);
+                                    DispatcherControls.NewMyNotifyWindow(number, "Номер запомнен программой.\nМожно использовать \"СМАРТ-МЕНЮ\".", TimeSpan.FromSeconds(15), this, TypeImageNotify.number_handling);
                                 }
                                 else if(MySettings.Settings.IsSearchOrganizations)
                                 {
@@ -153,7 +153,7 @@ namespace Dagorlad_7
                                         var list = await SearchOrganizations.TryFindOrganizations(code);
                                         if (list != null && list.Count() > 0)
                                         {
-                                            DispatcherControls.NewMyNotifyWindow(text, String.Format("Найдено {0} орг. по данному коду", list.Count()), 15, this, TypeImageNotify.buildings);
+                                            DispatcherControls.NewMyNotifyWindow(text, String.Format("Найдено {0} орг. по данному коду", list.Count()), TimeSpan.FromSeconds(15), this, TypeImageNotify.buildings);
                                             OrganizationsListMain = list;
                                             OrganizationsListView.ItemsSource = OrganizationsListMain;
                                             await UpdateLabelAboutUpdate();
@@ -272,7 +272,7 @@ namespace Dagorlad_7
             {
                 if (ChatWindow.Me != null)
                 {
-                    await ChatWindow.proxy.DisconnectAsync(ChatWindow.Me);
+                    await ChatWindow.Proxy.DisconnectAsync(ChatWindow.Me);
                     Logger.Write(Logger.TypeLogs.chat, "Disconnected: " + ChatWindow.Me.Email);
                 }
             }

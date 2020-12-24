@@ -250,46 +250,85 @@ namespace Service_Chat_Dagorlad
 
         public bool Connect(Client client)
         {
-            var IsAdded = clients.TryAdd(client, CurrentCallback);
-            if (IsAdded)
+            bool IsExistClient = false;
+            Client ObjectExistingClient=null;
+            foreach (var s in clients)
             {
-                LogWrite("\"" + client.Email + "\" has been added to clients list." + "\n"+ client.SystemInformation);
-                foreach (Client key in clients.Keys)
+                if (s.Key.Email == client.Email)
                 {
-                    IChatCallback callback = clients[key];
-                    try
+                    lock (syncObj)
                     {
-                        callback.RefreshClients(clients.Keys);
-                        callback.UserJoin(client);
+                        IsExistClient = true;
+                        ObjectExistingClient = s.Key;
+                        LogWrite("Client is already exist: \"" + client.Email + "\"");
+                        break;
                     }
-                    catch (Exception ex)
+                }
+            }
+            if (!IsExistClient)
+            {
+                var IsAdded = clients.TryAdd(client, CurrentCallback);
+                if (IsAdded)
+                {
+                    LogWrite("\"" + client.Email + "\" has been added to clients list." + "\n" + client.SystemInformation);
+                    foreach (Client key in clients.Keys)
                     {
-                        LogWrite("Cannot send CallBack to all clients. 267, " + key.Email);
-                        var IsRemoved = clients.TryRemove(key, out IChatCallback value);
-                        if (IsRemoved)
-                            LogWrite("Client \"" + key.Email + "\" removed.");
-                        return false;
+                        IChatCallback callback = clients[key];
+                        try
+                        {
+                            callback.RefreshClients(clients.Keys);
+                            callback.UserJoin(client);
+                        }
+                        catch (Exception ex)
+                        {
+                            LogWrite("Cannot send CallBack to all clients. 284, " + key.Email);
+                            var IsRemoved = clients.TryRemove(key, out IChatCallback value);
+                            if (IsRemoved)
+                                LogWrite("Client \"" + key.Email + "\" removed.");
+                            return false;
+                        }
                     }
+                }
+                else
+                {
+                    LogWrite("Cannot add the new client: \"" + client.Email + "\"");
+                    return false;
                 }
             }
             else
             {
-                if(clients.ContainsKey(client))
+                clients.TryGetValue(ObjectExistingClient, out IChatCallback _value);
+                var IsUpdate = clients.TryUpdate(ObjectExistingClient, CurrentCallback, _value);
+                if (IsUpdate)
                 {
-                    //try update
-                    clients.TryGetValue(client, out IChatCallback _value);
-                    var IsUpdate = clients.TryUpdate(client, CurrentCallback,_value);
-                    if (IsUpdate)
-                        LogWrite("Was exist and then client \"" + client.Email + "\" updated.");
-                    else
+                    LogWrite("Client \"" + ObjectExistingClient.Email + "\" updated.");
+                    foreach (Client key in clients.Keys)
                     {
-                        //try delete
-                        var IsRemoved = clients.TryRemove(client, out IChatCallback value);
-                        if (IsRemoved)
-                            LogWrite("Was exist and then client \"" + client.Email + "\" removed.");
+                        IChatCallback callback = clients[key];
+                        try
+                        {
+                            callback.RefreshClients(clients.Keys);
+                        }
+                        catch (Exception ex)
+                        {
+                            LogWrite("Cannot send CallBack to all clients. 315, " + key.Email);
+                            var IsRemoved = clients.TryRemove(key, out IChatCallback value);
+                            if (IsRemoved)
+                                LogWrite("Client \"" + key.Email + "\" removed.");
+                            return false;
+                        }
                     }
                 }
-                return false;
+                else
+                {
+                    LogWrite("Cannot update client \"" + ObjectExistingClient.Email + "\"");
+                    //try delete
+                    var IsRemoved = clients.TryRemove(ObjectExistingClient, out IChatCallback value);
+                    if (IsRemoved)
+                        LogWrite("Client \"" + ObjectExistingClient.Email + "\" removed.");
+                    else LogWrite("Cannot remove client \"" + ObjectExistingClient.Email + "\"");
+                    return false;
+                }
             }
             return true;
         }
@@ -364,7 +403,6 @@ namespace Service_Chat_Dagorlad
 
         public void Disconnect(Client client)
         {
-            //bool IsRemoved = false;
             foreach (Client c in clients.Keys)
             {
                 if (client.Email == c.Email)
@@ -387,7 +425,7 @@ namespace Service_Chat_Dagorlad
                                     }
                                     catch (Exception ex)
                                     {
-                                        LogWrite("Cannot be user for communication because it has been Aborted. 384, "+ client.Email);
+                                        LogWrite("Cannot be user for communication because it has been Aborted. 429, "+ client.Email);
                                     }
                                 }
                             }
@@ -397,16 +435,6 @@ namespace Service_Chat_Dagorlad
                     return;
                 }
             }
-            //if (IsRemoved)
-            //{
-            //    foreach (IChatCallback callback in clients.Values)
-            //    {
-            //        lock (syncObj)
-            //        {
-                       
-            //        }
-            //    }
-            //}
         }
 
         private void LogWrite(string text)

@@ -10,7 +10,6 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using UsBudget.classes;
 
 namespace Dagorlad_7
 {
@@ -45,7 +44,7 @@ namespace Dagorlad_7
                                         var new_version = DispatcherControls.GetVersionApplication(DispatcherControls.TypeDisplayVersion.Fully);
                                         Logger.Write(Logger.TypeLogs.updater, "Application has been updated to "+ new_version);
                                         DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name + " обновился", "Текущая версия: \n" +
-                                            new_version, 8, mainWindow, TypeImageNotify.update);
+                                            new_version, TimeSpan.FromSeconds(8), mainWindow, TypeImageNotify.update);
                                     }
                                     if (splashScreen != null)
                                     {

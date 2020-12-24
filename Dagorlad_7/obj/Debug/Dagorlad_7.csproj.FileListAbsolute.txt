@@ -75,8 +75,8 @@ D:\VS\Dagorlad\Dagorlad_7\bin\Debug\WpfAnimatedGif.xml
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csproj.Fody.CopyLocal.cache
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Debug\Microsoft.Win32.TaskScheduler.xml
 D:\VS\Dagorlad\Dagorlad_7\bin\Debug\Microsoft.Win32.TaskScheduler.xml
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csprojAssemblyReference.cache
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\AuthenticationWebServiceWindow.g.cs
 D:\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\AuthenticationWebServiceWindow.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\AuthenticationWebServiceWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Windows\AuthenticationWebServiceWindow.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csprojAssemblyReference.cache

@@ -92,7 +92,7 @@
     <Compile Include="classes\GlobalHook.cs" />
     <Compile Include="classes\Hash.cs" />
     <Compile Include="classes\Updater.cs" />
-    <Compile Include="classes\UserImageMaster.cs" />
+    <Compile Include="classes\UserPictureProfileCreator.cs" />
     <Compile Include="classes\Logger.cs" />
     <Compile Include="classes\SearchOrganizations.cs" />
     <Compile Include="classes\SmartMenuContent.cs" />

@@ -106,7 +106,7 @@ namespace Dagorlad_7.Windows
                 var list = obj.ToList();
                 foreach (var s in list)
                 {
-                    await Task.Delay(150);
+                    await Task.Delay(35);
                     obj.Remove(s);
                 }
                 obj.Clear();
@@ -127,8 +127,9 @@ namespace Dagorlad_7.Windows
                 var list = DispatcherControls.MyNotifyList.ToList();
                 foreach (var t in list)
                 {
-                    if (t.IsLock) { t.timetoautoclose = TimeSpan.FromSeconds(2); continue; }
-                    if ((DateTime.Now - t.dt).TotalSeconds > t.timetoautoclose.TotalSeconds)
+                    if (t.IsLock) { t.timetoautoclose = TimeSpan.FromSeconds(1.2); continue; }
+                    if (t.timetoautoclose.TotalSeconds > 0 && 
+                        (DateTime.Now - t.dt).TotalSeconds > t.timetoautoclose.TotalSeconds)
                     {
                         DispatcherControls.MyNotifyList.Remove(t);
                     }

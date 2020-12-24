@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen" Closing="Window_Closing"
         PreviewKeyUp="Window_PreviewKeyUp"
         Icon="/chat.ico"
-        Title="" Height="600" Width="900">
+        Title="" Height="600" Width="1000">
     <Window.Resources>
         <local:NullableContentToHidden x:Key="NullableContentToHidden"/>
         <local:WidthFixedListViewConverter x:Key="WidthFixedListViewConverter"/>
@@ -25,6 +25,7 @@
     </Window.Resources>
     <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" MinWidth="310" MaxWidth="450"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -34,13 +35,13 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Grid Tag="InformationBlock" Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Stretch" Height="auto">
+        <Grid Tag="InformationBlock" Grid.ColumnSpan="3" Grid.Row="0" VerticalAlignment="Stretch" Height="auto">
             <Label x:Name="InformationBlockLabel" FontWeight="Normal" HorizontalContentAlignment="Center"
                    HorizontalAlignment="Stretch" Height="auto"
                    FontSize="12" Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"
                    Foreground="{DynamicResource Foreground}" Background="{DynamicResource Background.Highlight}"/>
         </Grid>
-        <Grid x:Name="AdditionalBlock" Grid.Column="1" Grid.Row="1" Background="{DynamicResource Background.Outside}"
+        <Grid x:Name="AdditionalBlock" Grid.Column="2" Grid.Row="1" Background="{DynamicResource Background.Outside}"
               VerticalAlignment="Stretch" Height="38">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -121,6 +122,7 @@
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                     <EventSetter Event="Selected" Handler="UsersListViewItem_Selected"/>
+                    <EventSetter Event="Unselected" Handler="UsersListViewItem_Unselected"/>
                     <EventSetter Event="Loaded" Handler="UsersListViewItem_Loaded"/>
                 </Style>
             </ListBox.ItemContainerStyle>
@@ -128,22 +130,6 @@
                 <DataTemplate>
                     <Border Height="auto" Margin="5,2,10,2" x:Name="Border">
                         <Grid VerticalAlignment="Center">
-                            <!--<Grid.Style>
-                            <Style TargetType="Grid">
-                                <Style.Triggers>
-                                    <EventTrigger RoutedEvent="Loaded">
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation
-                             Storyboard.TargetProperty="Opacity"
-                                 Duration="0:0:0.2"
-                             From="0.0" To="1.0"/>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger>
-                                </Style.Triggers>
-                            </Style>
-                            </Grid.Style>-->
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition/>
@@ -161,15 +147,15 @@
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{Binding user.Status}" FontWeight="Medium" Foreground="Red"
+                                <TextBlock Grid.Column="0" Text="{Binding user.Status}" FontWeight="Medium" Foreground="OrangeRed"
                                        FontSize="10" VerticalAlignment="Center"/>
                                 <TextBlock Grid.Column="1" Text="{Binding user.Name}" FontWeight="Medium"
                                        x:Name="NameTextBlock"
                                        FontSize="14" Foreground="{DynamicResource Foreground}" VerticalAlignment="Center"/>
                             </Grid>
-                            <TextBlock Grid.Column="1" Grid.Row="1" TextTrimming="CharacterEllipsis"
+                            <TextBlock Grid.Column="1" Grid.Row="1" TextTrimming="CharacterEllipsis" x:Name="LastMessageTextBlock"
                                        HorizontalAlignment="Left" Width="{Binding ActualWidth,ElementName=Border}" MaxWidth="220"
-                                       FontSize="10" Foreground="{DynamicResource Foreground.History}"
+                                       FontSize="11" Foreground="{DynamicResource Foreground.History}"
                                        Text="{Binding user.LastMessage}"/>
                             <Border Grid.Column="2" x:Name="UnreadedCountBorder" Grid.RowSpan="2" HorizontalAlignment="Right"
                                     Visibility="{Binding user.CountUnreaded,Converter={StaticResource NullableContentToHidden}}"
@@ -183,8 +169,11 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ListView x:Name="DialogListView" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding msgs}"
+        <GridSplitter Grid.Column="1" Width="1" HorizontalAlignment="Stretch" Grid.Row="0" Focusable="False"
+                      Grid.RowSpan="4" Background="{DynamicResource Background.Outside}" BorderThickness="0"/>
+        <ListView x:Name="DialogListView" Grid.Column="2" Grid.Row="2" ItemsSource="{Binding msgs}"
                   PreviewMouseMove="DialogListView_PreviewMouseMove" VirtualizingPanel.ScrollUnit="Pixel"
+                  Loaded="DialogListView_Loaded"
                   Background="Transparent" BorderThickness="0">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemDialog}">
@@ -244,9 +233,9 @@
                                 </RichTextBox.Resources>
                             </RichTextBox>
                             <Image gif:ImageBehavior.AnimatedSource="{Binding LinkSticker,TargetNullValue={x:Null}}" Margin="5"
-                                   Stretch="None" MaxWidth="256" MaxHeight="192" Loaded="StickerIsLoaded" gif:ImageBehavior.RepeatBehavior="Forever"
+                                   Stretch="None" MaxWidth="256" MaxHeight="192" gif:ImageBehavior.RepeatBehavior="Forever"
                                    Grid.Row="2" Visibility="{Binding Converter={StaticResource BooleanVisibilityConverter},ConverterParameter=sticker}"/>
-                            <ListView Grid.Row="3" ItemsSource="{Binding FileLinks}" Loaded="AttachmentIsLoadedListView"
+                            <ListView Grid.Row="3" ItemsSource="{Binding FileLinks}"
                                       Background="Transparent" BorderThickness="0" SelectionMode="Single"
                                       Visibility="{Binding Converter={StaticResource BooleanVisibilityConverter},ConverterParameter=file}">
                                 <ListBox.ItemContainerStyle>
@@ -293,7 +282,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid x:Name="MessageSendingGrid" Grid.Row="3" Grid.Column="1" Background="{DynamicResource Background.Outside}">
+        <Grid x:Name="MessageSendingGrid" Grid.Row="3" Grid.Column="2" Background="{DynamicResource Background.Outside}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>

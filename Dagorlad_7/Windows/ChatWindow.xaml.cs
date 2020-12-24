@@ -14,8 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Dagorlad_7.classes;
-using UsBudget.classes;
-using Dagorla_7.classes;
 using System.Windows.Threading;
 using System.IO;
 using Microsoft.Win32;
@@ -23,6 +21,7 @@ using Dagorlad_7.SVC;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Net;
+using System.Threading;
 
 namespace Dagorlad_7.Windows
 {
@@ -66,7 +65,7 @@ namespace Dagorlad_7.Windows
             public BitmapImage image { get; set; }
         }
 
-        public static SVC.ChatClient proxy = null;
+        public static SVC.ChatClient Proxy = null;
         public static SVC.Client Me = null;
         public static SVC.Client SelectedUser = null;
         string common_chat = "_common@fsfk.local";
@@ -76,7 +75,7 @@ namespace Dagorlad_7.Windows
             AdditionalBlock.Visibility = Visibility.Collapsed;
             MessageSendingGrid.Visibility = Visibility.Collapsed;
             StickersPopup.DataContext = list_stickers;
-            Start();
+            RunConnection();
             DataContext = ItemsOfChat;
         }
 
@@ -105,7 +104,7 @@ namespace Dagorlad_7.Windows
                 if (s.user.Email == common_chat)
                 {
                     s.msgs.Add(msg);
-                    await HandleProxy();
+                    await HandleChatClient();
                     if (SelectedUser != null)
                     {
                         if (SelectedUser.Email == common_chat && this.IsActive)
@@ -116,14 +115,14 @@ namespace Dagorlad_7.Windows
                     var unreaded = s.msgs.Where(x => x.IsReaded == false).Count();
                     if (unreaded == 0)
                         s.user.CountUnreaded = null;
-                    else s.user.CountUnreaded=unreaded;
-                    s.user.LastMessage= String.Format("{0} {1}",msg.Sender==Me.Email?"Вы:":"",msg.Content);
-                    if(msg.Sender!=Me.Email)
-                    DispatcherControls.NewMyNotifyWindow(s.user.Name,String.Format("{0}: {1}",msg.SenderName,msg.Content),10,this,s.image);
+                    else s.user.CountUnreaded = unreaded;
+                    s.user.LastMessage = String.Format("{0} {1}", msg.Sender == Me.Email ? "Вы:" : "", msg.Content);
+                    if (msg.Sender != Me.Email)
+                        DispatcherControls.NewMyNotifyWindow(s.user.Name, String.Format("{0}: {1}", msg.SenderName, msg.Content), Timeout.InfiniteTimeSpan, this, s.image);
                 }
             }
         }
- 
+
         public void ReceiverFile(SVC.FileMessage fileMsg)
         {
             throw new NotImplementedException();
@@ -139,12 +138,12 @@ namespace Dagorlad_7.Windows
                 if (s.user.Email == receiver.Email || s.user.Email == msg.Sender)
                 {
                     s.msgs.Add(msg);
-                    await HandleProxy();
+                    await HandleChatClient();
                     if (SelectedUser != null)
                     {
                         if (receiver.Email == SelectedUser.Email && this.IsActive)
                             foreach (var m in s.msgs)
-                            { 
+                            {
                                 m.IsReaded = true;
                             }
                         ScrollDialogToEnd();
@@ -154,10 +153,10 @@ namespace Dagorlad_7.Windows
                         s.user.CountUnreaded = null;
                     else s.user.CountUnreaded = unreaded;
                     s.user.LastMessage = String.Format("{0} {1}", msg.Sender == Me.Email ? "Вы:" : "", msg.Content);
-                    if (msg.Sender != Me.Email && s.user.Email!=Me.Email)
+                    if (msg.Sender != Me.Email && s.user.Email != Me.Email)
                     {
-                        Console.WriteLine("{0}:{1}:{2}",msg.Sender,Me.Email,receiver.Email);
-                        DispatcherControls.NewMyNotifyWindow(s.user.Name, msg.Content, 10, this, s.image);
+                        Console.WriteLine("{0}:{1}:{2}", msg.Sender, Me.Email, receiver.Email);
+                        DispatcherControls.NewMyNotifyWindow(s.user.Name, msg.Content, Timeout.InfiniteTimeSpan, this, s.image);
                     }
                 }
             }
@@ -173,15 +172,15 @@ namespace Dagorlad_7.Windows
                         Name = "Общий",
                         Email = common_chat,
                     },
-                    image= UserImageMaster.CreateProfilePicture("=)", true),
+                    image = UserPictureProfileCreator.CreateUserPictureProfile("♥", true),
                 });
             foreach (var s in clients)
             {
                 if (OCChats.Where(x => x.user.Email == s.Email).Count() == 0)
                 {
-                    OCChats.Add(new ChatsClass { 
-                        user = s, 
-                        image= UserImageMaster.CreateProfilePicture(s.Name, false),
+                    OCChats.Add(new ChatsClass {
+                        user = s,
+                        image = UserPictureProfileCreator.CreateUserPictureProfile(s.Name, false),
                     });
                 }
                 else continue;
@@ -192,17 +191,18 @@ namespace Dagorlad_7.Windows
                 {
                     if (clients.Where(x => x.Email == s.user.Email).Count() == 0)
                     {
-                        s.user.Status = "(Offline) ";
+                        s.user.Status = "(Не в сети) ";
                     }
                     else s.user.Status = null;
                 }
             }
             //OCChats.Remove(s);
-            await HandleProxy();
+            await HandleChatClient();
         }
 
-        public async Task Start()
+        public async Task RunConnection()
         {
+            InformationBlockLabel.Content = "Подключение...";
             MessageSendingGrid.IsEnabled = false;
             Logger.Write(Logger.TypeLogs.chat, "Start Connection");
             try
@@ -212,7 +212,7 @@ namespace Dagorlad_7.Windows
                 {
                     Logger.Write(Logger.TypeLogs.chat, "Try Connecting: " + login);
                     var result_info = await DispatcherControls.FindEmployees(login);
-                    if (result_info != null)
+                    if (result_info != null && !String.IsNullOrEmpty(result_info.Email))
                     {
                         if (await Hash.CheckAllowingEmail(login))
                         {
@@ -220,7 +220,7 @@ namespace Dagorlad_7.Windows
                             string name = result_info.Name;
                             string direction = result_info.Direction;
                             var system_info = DispatcherControls.GetMySystemInformation();
-                            if (proxy == null)
+                            if (Proxy == null)
                             {
                                 Me = new SVC.Client();
                                 Me.Email = email;
@@ -230,9 +230,9 @@ namespace Dagorlad_7.Windows
                                 Me.SystemInformation = system_info;
                                 this.Title = String.Format("{0}: {1}", "Dagorlad - Чат", Me.Name);
                                 InstanceContext context = new InstanceContext(this);
-                                proxy = new SVC.ChatClient(context);
-                                string servicePath = proxy.Endpoint.ListenUri.AbsolutePath;
-                                string serviceListenPort = proxy.Endpoint.Address.Uri.Port.ToString();
+                                Proxy = new SVC.ChatClient(context);
+                                string servicePath = Proxy.Endpoint.ListenUri.AbsolutePath;
+                                string serviceListenPort = Proxy.Endpoint.Address.Uri.Port.ToString();
 
                                 EndpointIdentity identity = EndpointIdentity.CreateDnsIdentity(host);
 
@@ -245,86 +245,78 @@ namespace Dagorlad_7.Windows
                                 var endpointaddress = new Uri(host + ":" + serviceListenPort + servicePath);
                                 EndpointAddress endpoint = new EndpointAddress(endpointaddress, identity);
 
-                                proxy.ClientCredentials.Windows.ClientCredential.Domain = "";
+                                Proxy.ClientCredentials.Windows.ClientCredential.Domain = "";
 #if (DEBUG)
-                                proxy.ClientCredentials.Windows.ClientCredential.UserName = "krislechy";
-                                proxy.ClientCredentials.Windows.ClientCredential.Password = "SeriX45*";
+                                Proxy.ClientCredentials.Windows.ClientCredential.UserName = "krislechy";
+                                Proxy.ClientCredentials.Windows.ClientCredential.Password = "SeriX45*";
 #else
-                            proxy.ClientCredentials.Windows.ClientCredential.UserName = "sql";
-                            proxy.ClientCredentials.Windows.ClientCredential.Password = "4815162342";
+                                Proxy.ClientCredentials.Windows.ClientCredential.UserName = "sql";
+                                Proxy.ClientCredentials.Windows.ClientCredential.Password = "4815162342";
 #endif
-                                proxy.Endpoint.Binding.OpenTimeout = new TimeSpan(0, 1, 0);
+                                Proxy.Endpoint.Binding.OpenTimeout = new TimeSpan(0, 1, 0);
                                 Logger.Write(Logger.TypeLogs.chat, "Parameters Endpoint: " + host + ":" + serviceListenPort + servicePath);
-                                proxy.Open();
-                                Logger.Write(Logger.TypeLogs.chat, "State connection: " + proxy.State.ToString());
+                                Proxy.Open();
+                                Logger.Write(Logger.TypeLogs.chat, "State connection: " + Proxy.State.ToString());
 
-                                proxy.InnerDuplexChannel.Faulted -= new EventHandler(InnerDuplexChannel_Event);
-                                proxy.InnerDuplexChannel.Opened -= new EventHandler(InnerDuplexChannel_Event);
-                                proxy.InnerDuplexChannel.Closed -= new EventHandler(InnerDuplexChannel_Event);
+                                Proxy.InnerDuplexChannel.Faulted -= new EventHandler(InnerDuplexChannel_Event);
+                                Proxy.InnerDuplexChannel.Opened -= new EventHandler(InnerDuplexChannel_Event);
+                                Proxy.InnerDuplexChannel.Closed -= new EventHandler(InnerDuplexChannel_Event);
 
-                                proxy.InnerDuplexChannel.Faulted += new EventHandler(InnerDuplexChannel_Event);
-                                proxy.InnerDuplexChannel.Opened += new EventHandler(InnerDuplexChannel_Event);
-                                proxy.InnerDuplexChannel.Closed += new EventHandler(InnerDuplexChannel_Event);
-                                var result = await proxy.ConnectAsync(Me);
+                                Proxy.InnerDuplexChannel.Faulted += new EventHandler(InnerDuplexChannel_Event);
+                                Proxy.InnerDuplexChannel.Opened += new EventHandler(InnerDuplexChannel_Event);
+                                Proxy.InnerDuplexChannel.Closed += new EventHandler(InnerDuplexChannel_Event);
+                                var result = await Proxy.ConnectAsync(Me);
                                 Logger.Write(Logger.TypeLogs.chat, "Result connection: " + result);
                                 if (!result)
-                                    Reconnect();
+                                {
+                                    //  await Proxy.DisconnectAsync(Me);
+                                    RestartConnection();
+                                    return;
+                                }
                                 else
                                     InformationBlockLabel.Content = null;
                             }
                             else
                             {
-                                Reconnect();
+                                RestartConnection();
                             }
                         }
                         else
                         {
-                            DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "Не удалось присоединиться к чату, ошибка доступа.", 10, this, TypeImageNotify.chat);
+                            Logger.Write(Logger.TypeLogs.chat, "The login was registered under a different name!");
+                            DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "Не удалось присоединиться к чату, ошибка доступа.", TimeSpan.FromSeconds(10), this, TypeImageNotify.chat);
                         }
                     }
                     else
                     {
-                        DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "Сотрудник не найден в веб-сервисе", 10, this, TypeImageNotify.chat);
+                        Logger.Write(Logger.TypeLogs.chat, "Login not found in the database!");
+                        DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "Сотрудник не найден в веб-сервисе", TimeSpan.FromSeconds(10), this, TypeImageNotify.chat);
                     }
                 }
                 else
                 {
-                    Logger.Write(Logger.TypeLogs.chat, "Login name doesn't exist!");
-                    Reconnect();
+                    Logger.Write(Logger.TypeLogs.chat, "Login is not specified in the settings!");
+                    DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "В настройках не указан почта для подключения к чату.", TimeSpan.FromSeconds(10), this, TypeImageNotify.chat);
                 }
             }
             catch (Exception ex)
             {
                 Logger.Write(Logger.TypeLogs.chat, ex.ToString());
-                Reconnect();
+                RestartConnection();
             }
             MessageSendingGrid.IsEnabled = true;
         }
-        int reconnect_Timeout_sec = 3;
-        private async void Reconnect()
+        int reconnect_Timeout_sec = 5;
+        private async void RestartConnection()
         {
             try
             {
-                if (proxy != null)
-                {
-                    if (Me != null)
-                    {
-                        try
-                        {
-                            await proxy.DisconnectAsync(Me);
-                        }
-                        catch (Exception ex)
-                        {
-                            Logger.Write(Logger.TypeLogs.chat, ex.ToString());
-                        }
-                    }
-                    if (proxy != null)
-                        proxy.Abort();
-                }
-                proxy = null;
-                InformationBlockLabel.Content = String.Format("Подключение через {0} сек...", reconnect_Timeout_sec);
+                if (Proxy != null)
+                    Proxy.Abort();
+                Proxy = null;
+                InformationBlockLabel.Content = String.Format("Переподключение через {0} сек...", reconnect_Timeout_sec);
                 await Task.Delay(TimeSpan.FromSeconds(reconnect_Timeout_sec));
-                await Start();
+                await RunConnection();
             }
             catch (Exception ex)
             {
@@ -335,39 +327,39 @@ namespace Dagorlad_7.Windows
         {
             await Dispatcher.BeginInvoke(new Action(async () =>
             {
-                await HandleProxy();
+                await HandleChatClient();
             }));
         }
         public async void UserJoin(SVC.Client client)
         {
             //DispatcherControls.NewMyNotifyWindow(client.Name, "Присоединился(ась) к чату", 5, this, TypeImageNotify.chat);
-            await HandleProxy();
+            await HandleChatClient();
         }
 
         public async void UserLeave(SVC.Client client)
         {
             //DispatcherControls.NewMyNotifyWindow(client.Name, "Покинул(а) чат", 5, this, TypeImageNotify.chat);
-            await HandleProxy();
+            await HandleChatClient();
         }
 
-        private async Task HandleProxy()
+        private async Task HandleChatClient()
         {
-            if (proxy != null)
+            if (Proxy != null)
             {
-                switch (proxy.State)
+                switch (Proxy.State)
                 {
                     case CommunicationState.Closed:
-                        proxy = null;
-                        await Start();
+                        Proxy = null;
+                        await RunConnection();
                         break;
                     case CommunicationState.Closing:
                         break;
                     case CommunicationState.Created:
                         break;
                     case CommunicationState.Faulted:
-                        proxy.Abort();
-                        proxy = null;
-                        await Start();
+                        Proxy.Abort();
+                        Proxy = null;
+                        await RunConnection();
                         break;
                     case CommunicationState.Opened:
                         break;
@@ -381,29 +373,7 @@ namespace Dagorlad_7.Windows
 
         private async void SendMessageButton_Click(object sender, RoutedEventArgs e)
         {
-            await SendMessage();
-        }
-        private async Task SendMessage()
-        {
-            var text = MessageTextBox.Text;
-            if (!String.IsNullOrEmpty(text) && SelectedUser!=null)
-            {
-                SVC.Message msg = new SVC.Message();
-                msg.Sender = Me.Email;
-                msg.SenderName = Me.Name;
-                msg.Content = text;
-                msg.Time = DateTime.Now;
-                await HandleProxy();
-                if (proxy != null)
-                {
-                    if (SelectedUser.Email == common_chat)
-                        await proxy.SayAsync(msg);
-                    else
-                        await proxy.WhisperAsync(msg, SelectedUser);
-                    await proxy.IsWritingAsync(null);
-                    MessageTextBox.Text = null;
-                }
-            }
+            await SendText();
         }
 
         private void UsersListViewItem_Selected(object sender, RoutedEventArgs e)
@@ -414,6 +384,9 @@ namespace Dagorlad_7.Windows
                 var dc = obj.DataContext as ChatsClass;
                 if (dc != null)
                 {
+                    var LastMessageTextBlock = obj.FindChild<TextBlock>("LastMessageTextBlock");
+                    LastMessageTextBlock.Foreground = Application.Current.FindResource("Foreground") as SolidColorBrush;
+
                     if (AdditionalBlock.Visibility == Visibility.Collapsed)
                         AdditionalBlock.Visibility = Visibility.Visible;
                     if (MessageSendingGrid.Visibility == Visibility.Collapsed)
@@ -431,10 +404,16 @@ namespace Dagorlad_7.Windows
                     {
                         MessageTextBox.Focus();
                     }));
+                    ScrollDialogToEnd();
                 }
             }
         }
-
+        private void UsersListViewItem_Unselected(object sender, RoutedEventArgs e)
+        {
+            var obj = (ListBoxItem)sender;
+            var LastMessageTextBlock = obj.FindChild<TextBlock>("LastMessageTextBlock");
+            LastMessageTextBlock.Foreground = Application.Current.FindResource("Foreground.History") as SolidColorBrush;
+        }
         private void UsersListViewItem_Loaded(object sender, RoutedEventArgs e)
         {
             var obj = (ListBoxItem)sender;
@@ -458,7 +437,7 @@ namespace Dagorlad_7.Windows
                 {
                     if (dc.Sender == Me.Email)
                         obj.HorizontalContentAlignment = HorizontalAlignment.Right;
-                    ScrollDialogToEnd();
+                    //ScrollDialogToEnd();
                 }
             }
         }
@@ -469,23 +448,24 @@ namespace Dagorlad_7.Windows
             {
                 var s = Task.Factory.StartNew(new Action(async () =>
                   {
-                      if (SelectedUser != null && SelectedUser.Email!=common_chat)
+                      if (SelectedUser != null && SelectedUser.Email != common_chat)
                       {
-                          await HandleProxy();
+                          await HandleChatClient();
                           IsTyping = true;
-                          await proxy.IsWritingAsync(Me);
+                          await Proxy.IsWritingAsync(Me);
                           await Task.Delay(2000);
-                          if (proxy.State == CommunicationState.Opened)
-                              await proxy.IsWritingAsync(null);
+                          if (Proxy.State == CommunicationState.Opened)
+                              await Proxy.IsWritingAsync(null);
                           IsTyping = false;
                       }
                   }));
             }
             if (e.Key == Key.Enter)
             {
-                await SendMessage();
+                await SendText();
             }
         }
+
         private ScrollViewer FindVisualChild(DependencyObject obj)
         {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
@@ -506,7 +486,7 @@ namespace Dagorlad_7.Windows
             }
             return null;
         }
- 
+
         private void MarkCurrentDialogLikeReaded()
         {
             if (SelectedUser == null) return;
@@ -542,82 +522,149 @@ namespace Dagorlad_7.Windows
             e.Cancel = true;
             this.WindowState = WindowState.Minimized;
         }
-
-        private async void AttachmentSendButton_Click(object sender, RoutedEventArgs e)
+        enum TypeMessage
         {
-            try
+            Text = 0,
+            Sticker = 1,
+            Attachments = 2,
+        }
+        private async Task SendMessage(TypeMessage type, object sender)
+        {
+            switch (type)
             {
-                await HandleProxy();
-                if (proxy != null)
-                {
-                    if (SelectedUser != null)
+                case TypeMessage.Text:
+                    var text = MessageTextBox.Text;
+                    if (!String.IsNullOrEmpty(text) && SelectedUser != null)
                     {
-                        OpenFileDialog fileDialog = new OpenFileDialog();
-                        fileDialog.Multiselect = true;
-
-                        if (fileDialog.ShowDialog() == DialogResult.HasValue)
+                        SVC.Message msg = new SVC.Message();
+                        msg.Sender = Me.Email;
+                        msg.SenderName = Me.Name;
+                        msg.Content = text;
+                        msg.Time = DateTime.Now;
+                        await HandleChatClient();
+                        if (Proxy != null)
                         {
-                            return;
+                            if (SelectedUser.Email == common_chat)
+                                await Proxy.SayAsync(msg);
+                            else
+                                await Proxy.WhisperAsync(msg, SelectedUser);
+                            await Proxy.IsWritingAsync(null);
+                            MessageTextBox.Text = null;
+                            ScrollDialogToEnd();
                         }
-
-                        var filenames = fileDialog.FileNames;
-                        if (filenames != null)
+                    }
+                    break;
+                case TypeMessage.Sticker:
+                    var btn = (Button)sender;
+                    var cmd = btn.CommandParameter as string;
+                    if (btn.Content != null)
+                    {
+                        SVC.Message msg = new Message();
+                        msg.IsSticker = true;
+                        msg.Sender = Me.Email;
+                        msg.SenderName = Me.Name;
+                        msg.LinkSticker = cmd;
+                        msg.Content = String.Format("[Стикер]");
+                        msg.Time = DateTime.Now;
+                        if (SelectedUser.Email == common_chat)
+                            await Proxy.SayAsync(msg);
+                        else
+                            await Proxy.WhisperAsync(msg, SelectedUser);
+                        ScrollDialogToEnd();
+                    }
+                    StickersPopup.IsOpen = false;
+                    break;
+                case TypeMessage.Attachments:
+                    try
+                    {
+                        await HandleChatClient();
+                        if (Proxy != null)
                         {
-                            //UploadFiles
-                            var list_files = new Dictionary<string, string>();
-                            foreach (var s in filenames)
+                            if (SelectedUser != null)
                             {
-                                var path = s;
-                                var filename = System.IO.Path.GetFileNameWithoutExtension(s);
-                                var ext = System.IO.Path.GetExtension(s);
-                                var directory_email = Me.Email;
-                                var new_name = Guid.NewGuid() + ext;
+                                OpenFileDialog fileDialog = new OpenFileDialog();
+                                fileDialog.Multiselect = true;
 
-                                var directory_string = directory_FTD + directory_email;
-
-                                var wu = new System.Net.WebClient();
-                                if (!Directory.Exists(directory_string))
+                                if (fileDialog.ShowDialog() == DialogResult.HasValue)
                                 {
-                                    Directory.CreateDirectory(directory_string);
+                                    return;
                                 }
 
-                                while(File.Exists(directory_string + "\\" + new_name))
-                                    new_name= Guid.NewGuid() + ext;
-
-                                var result_path_upload = directory_string + "\\" + new_name;
-
-                                wu.UploadFile(result_path_upload, path);
-                                Logger.Write(Logger.TypeLogs.transferfiles, String.Format("File {0} has been uploaded from {2} to {1}",new_name,result_path_upload,path));
-
-                                list_files.Add(filename + ext, result_path_upload);
-                            }
-                            //
-                            SVC.Message msg = new Message();
-                            msg.FileLinks = list_files;
-                            msg.Sender = Me.Email;
-                            msg.SenderName = Me.Name;
-                            msg.IsFile = true;
-                            msg.Content = String.Format("Отправлены файлы ({0})", list_files.Count());
-                            msg.Time = DateTime.Now;
-                            if (SelectedUser.Email == common_chat)
-                            {
-                                await proxy.SayAsync(msg);
-                            }
-                            else
-                            {
-                                await proxy.WhisperAsync(msg, SelectedUser);
+                                var filenames = fileDialog.FileNames;
+                                if (filenames != null)
+                                {
+                                    var list_files = await UploadFileToServer(filenames);
+                                    SVC.Message msg = new Message();
+                                    msg.FileLinks = list_files;
+                                    msg.Sender = Me.Email;
+                                    msg.SenderName = Me.Name;
+                                    msg.IsFile = true;
+                                    msg.Content = String.Format("Отправлены файлы ({0})", list_files.Count());
+                                    msg.Time = DateTime.Now;
+                                    if (SelectedUser.Email == common_chat)
+                                    {
+                                        await Proxy.SayAsync(msg);
+                                    }
+                                    else
+                                    {
+                                        await Proxy.WhisperAsync(msg, SelectedUser);
+                                    }
+                                    ScrollDialogToEnd();
+                                }
                             }
                         }
                     }
-                }
-            }
-            catch (Exception ex) 
-            {
-                Logger.Write(Logger.TypeLogs.transferfiles, ex.ToString());
-                DispatcherControls.ShowMyDialog("Ошибка отправки файлов",ex.Message,MyDialogWindow.TypeMyDialog.Ok,this);
+                    catch (Exception ex)
+                    {
+                        Logger.Write(Logger.TypeLogs.transferfiles, ex.ToString());
+                        DispatcherControls.ShowMyDialog("Ошибка отправки файлов", ex.Message, MyDialogWindow.TypeMyDialog.Ok, this);
+                    }
+                    break;
             }
         }
+        private async Task SendText()
+        {
+            await SendMessage(TypeMessage.Text, null);
+        }
+        private async void SendStickerButton_Click(object sender, RoutedEventArgs e)
+        {
+            await SendMessage(TypeMessage.Sticker, sender);
+        }
+        private async void AttachmentSendButton_Click(object sender, RoutedEventArgs e)
+        {
+            await SendMessage(TypeMessage.Attachments, sender);
+        }
+        private Task<Dictionary<string, string>> UploadFileToServer(string[] filenames)
+        {
+            var list_files = new Dictionary<string, string>();
+            foreach (var s in filenames)
+            {
+                var path = s;
+                var filename = System.IO.Path.GetFileNameWithoutExtension(s);
+                var ext = System.IO.Path.GetExtension(s);
+                var directory_email = Me.Email;
+                var new_name = Guid.NewGuid() + ext;
 
+                var directory_string = directory_FTD + directory_email;
+
+                var wu = new System.Net.WebClient();
+                if (!Directory.Exists(directory_string))
+                {
+                    Directory.CreateDirectory(directory_string);
+                }
+
+                while (File.Exists(directory_string + "\\" + new_name))
+                    new_name = Guid.NewGuid() + ext;
+
+                var result_path_upload = directory_string + "\\" + new_name;
+
+                wu.UploadFile(result_path_upload, path);
+                Logger.Write(Logger.TypeLogs.transferfiles, String.Format("File {0} has been uploaded from {2} to {1}", new_name, result_path_upload, path));
+
+                list_files.Add(filename + ext, result_path_upload);
+            }
+            return Task.FromResult(list_files);
+        }
         private void OpenDownloadedFile_Click(object sender, RoutedEventArgs e)
         {
             var btn = (Button)sender;
@@ -709,40 +756,6 @@ namespace Dagorlad_7.Windows
             catch { return null; }
         }
 
-        private async void SendStickerButton_Click(object sender, RoutedEventArgs e)
-        {
-            var btn = (Button)sender;
-            var cmd = btn.CommandParameter as string;
-            if (btn.Content != null)
-            {
-                SVC.Message msg = new Message();
-                msg.IsSticker = true;
-                msg.Sender = Me.Email;
-                msg.SenderName = Me.Name;
-                msg.LinkSticker = cmd;
-                msg.Content = String.Format("[Стикер]");
-                msg.Time = DateTime.Now;
-                if (SelectedUser.Email == common_chat)
-                {
-                    await proxy.SayAsync(msg);
-                }
-                else
-                {
-                    await proxy.WhisperAsync(msg, SelectedUser);
-                }
-            }
-            StickersPopup.IsOpen = false;
-        }
-
-        private void StickerIsLoaded(object sender, RoutedEventArgs e)
-        {
-            ScrollDialogToEnd();
-        }
-
-        private void AttachmentIsLoadedListView(object sender, RoutedEventArgs e)
-        {
-            ScrollDialogToEnd();
-        }
         private void ScrollDialogToEnd()
         {
             ScrollViewer sv = FindVisualChild(DialogListView);
@@ -766,6 +779,11 @@ namespace Dagorlad_7.Windows
                 //   InformationAboutClientTextBox.Text = await DispatcherControls.GetClientInformation(SelectedUser.Email);
                 PopupInfoAboutClient.IsOpen = true;
             }
+        }
+
+        private void DialogListView_Loaded(object sender, RoutedEventArgs e)
+        {
+            ScrollDialogToEnd();
         }
     }
     public class NullableContentToHidden : IValueConverter
@@ -800,7 +818,7 @@ namespace Dagorlad_7.Windows
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if(value!=null)
+            if (value != null)
             {
                 var rtb = (RichTextBox)value;
                 rtb.Document.Blocks.Clear();
@@ -823,12 +841,12 @@ namespace Dagorlad_7.Windows
                                 var link = new Hyperlink();
                                 link.IsEnabled = true;
                                 link.Inlines.Add(number);
-                               // link.NavigateUri = new Uri(String.Format("http://sm-sue.fsfk.local/sd/operator/#esearch:full:serviceCall:ACTIVE_OBJECTS_ONLY!%7B%22query%22:%22{0}%22%7D", number));
+                                // link.NavigateUri = new Uri(String.Format("http://sm-sue.fsfk.local/sd/operator/#esearch:full:serviceCall:ACTIVE_OBJECTS_ONLY!%7B%22query%22:%22{0}%22%7D", number));
                                 link.Click += (sender, args) =>
                                 {
                                     Console.WriteLine(link.NavigateUri);
                                     //Process.Start(link.NavigateUri.ToString());
-                                    Process.Start("http://sm-sue.fsfk.local/sd/operator/#esearch:full:serviceCall:ACTIVE_OBJECTS_ONLY!%7B%22query%22:%22"+ number + "%22%7D");
+                                    Process.Start("http://sm-sue.fsfk.local/sd/operator/#esearch:full:serviceCall:ACTIVE_OBJECTS_ONLY!%7B%22query%22:%22" + number + "%22%7D");
                                 };
                                 paragraph.Inlines.Add(link);
                             }
@@ -868,13 +886,13 @@ namespace Dagorlad_7.Windows
         {
             if (value != null)
             {
-                if (value.GetType()!= typeof(SVC.Message))
+                if (value.GetType() != typeof(SVC.Message))
                 {
-                    return Visibility.Collapsed;                   
+                    return Visibility.Collapsed;
                 }
                 var obj = (SVC.Message)value;
                 var _parameter = (string)parameter;
-                switch(_parameter)
+                switch (_parameter)
                 {
                     case ("text"):
                         {
@@ -903,6 +921,61 @@ namespace Dagorlad_7.Windows
             System.Globalization.CultureInfo culture)
         {
             return Visibility.Collapsed;
+        }
+    }
+    public static class Extenstions
+    {
+        public static T FindChild<T>(this DependencyObject parent, string childName) where T : DependencyObject
+        {
+            // Confirm parent and childName are valid. 
+            if (parent == null)
+            {
+                return null;
+            }
+
+            T foundChild = null;
+
+            int childrenCount = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < childrenCount; i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+                // If the child is not of the request child type child
+                var childType = child as T;
+                if (childType == null)
+                {
+                    // recursively drill down the tree
+                    foundChild = FindChild<T>(child, childName);
+
+                    // If the child is found, break so we do not overwrite the found child. 
+                    if (foundChild != null)
+                    {
+                        break;
+                    }
+                }
+                else if (!string.IsNullOrEmpty(childName))
+                {
+                    var frameworkElement = child as FrameworkElement;
+                    // If the child's name is set for search
+                    if (frameworkElement != null && frameworkElement.Name == childName)
+                    {
+                        // if the child's name is of the request name
+                        foundChild = (T)child;
+                        break;
+                    }
+
+                    // Need this in case the element we want is nested
+                    // in another element of the same type
+                    foundChild = FindChild<T>(child, childName);
+                }
+                else
+                {
+                    // child element found.
+                    foundChild = (T)child;
+                    break;
+                }
+            }
+
+            return foundChild;
         }
     }
 }

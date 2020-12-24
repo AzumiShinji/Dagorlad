@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UsBudget.classes
+namespace Dagorlad_7.classes
 {
     class Logger
     {

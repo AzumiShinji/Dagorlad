@@ -10,11 +10,11 @@ none
 false
 TRACE
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\App.xaml
-10904370696
+111534099386
 
-22-1542402835
+24-183809545
 24-584258428
-MainWindow.xaml;Styles\Canvases.xaml;Styles\Styles.xaml;Windows\ChatWindow.xaml;Windows\MiniMenuWindow.xaml;Windows\MyDialogWindow.xaml;Windows\MyNotifyWindow.xaml;Windows\MySettingsWindow.xaml;Windows\SmartMenuWindow.xaml;Windows\SplashWindow.xaml;
+MainWindow.xaml;Styles\Canvases.xaml;Styles\Styles.xaml;Windows\AuthenticationWebServiceWindow.xaml;Windows\ChatWindow.xaml;Windows\MiniMenuWindow.xaml;Windows\MyDialogWindow.xaml;Windows\MyNotifyWindow.xaml;Windows\MySettingsWindow.xaml;Windows\SmartMenuWindow.xaml;Windows\SplashWindow.xaml;
 
-False
+True
 

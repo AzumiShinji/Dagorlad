@@ -15,8 +15,6 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using UsBudget.classes;
-using static Dagorlad_7.Windows.MyDialogWindow;
 
 namespace Dagorlad_7.classes
 {
@@ -238,7 +236,7 @@ namespace Dagorlad_7.classes
             }
             catch (Exception ex){ Logger.Write(Logger.TypeLogs.main,ex.ToString()); return false; }
         }
-        public static ResultMyDialog ShowMyDialog(string title,string text, TypeMyDialog type,Window win)
+        public static MyDialogWindow.ResultMyDialog ShowMyDialog(string title,string text, MyDialogWindow.TypeMyDialog type,Window win)
         {
             var g = new MyDialogWindow(title,text,type);
             if(win != null && win.IsLoaded)
@@ -250,11 +248,11 @@ namespace Dagorlad_7.classes
                 Console.WriteLine("Dialog result: {0}", g.result);
                 return g.result;
             }
-            return ResultMyDialog.Cancel;
+            return MyDialogWindow.ResultMyDialog.Cancel;
         }
         public static ObservableCollection<MyNotifyClass> MyNotifyList = new ObservableCollection<MyNotifyClass>();
         public static MyNotifyWindow _MyNotifyWindow;
-        public static void NewMyNotifyWindow(string title, string text, int closeafterseconds, Window win, object image)
+        public static void NewMyNotifyWindow(string title, string text, TimeSpan closeafterseconds, Window win, object image)
         {
             var obj = new MyNotifyClass()
             {
@@ -262,7 +260,7 @@ namespace Dagorlad_7.classes
                 title = title,
                 text = text,
                 image = SetImageNotify(image),
-                timetoautoclose = TimeSpan.FromSeconds(closeafterseconds),
+                timetoautoclose = closeafterseconds,
             };
             MyNotifyList.Add(obj);
             if (_MyNotifyWindow == null)
@@ -454,12 +452,12 @@ namespace Dagorlad_7.classes
             catch (Exception g)
             {
                 _error = true;
-                NewMyNotifyWindow("Не удалось очистить директорию", g.Message, 5, Application.Current.MainWindow, TypeImageNotify.sad);
+                NewMyNotifyWindow("Не удалось очистить директорию", g.Message, TimeSpan.FromSeconds(5), Application.Current.MainWindow, TypeImageNotify.sad);
             }
             finally
             {
                 if (!_error)
-                    NewMyNotifyWindow("Директория очищена", dir, 5, Application.Current.MainWindow, TypeImageNotify.completed);
+                    NewMyNotifyWindow("Директория очищена", dir, TimeSpan.FromSeconds(5), Application.Current.MainWindow, TypeImageNotify.completed);
             }
             return Task.CompletedTask;
         }

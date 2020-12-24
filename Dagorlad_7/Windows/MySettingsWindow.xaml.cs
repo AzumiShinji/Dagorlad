@@ -16,7 +16,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using UsBudget.classes;
 
 namespace Dagorlad_7.Windows
 {
@@ -112,7 +111,7 @@ namespace Dagorlad_7.Windows
                 if (IsAllowAccessEditEmail)
                 {
                     MySettings.Settings.Email = EmailTextBox.Text.Trim();
-                    await Hash.SetHashFromWebServiceEmployees(EmailTextBox.Text.Trim());
+                    await Hash.SetHashToWebServiceEmployees(EmailTextBox.Text.Trim());
                 }
             }
             if (DarkColorSchemeRadioButton.IsChecked == true)

@@ -43,14 +43,13 @@ namespace Dagorlad_7.classes
             return comparer.Compare(hashOfInput, hash) == 0;
         }
 
-        public static async Task<KeyValuePair<bool,string>> GetHashFromWebServiceEmployees(string Email)
+        public static async Task<KeyValuePair<bool, string>> GetHashFromWebServiceEmployees(string Email)
         {
             object result = null;
             try
             {
                 using (SHA256 sha256Hash = SHA256.Create())
                 {
-                    var UniqueIdentity = GetUniqueIdentity(Email);
                     SqlConnection con = new SqlConnection();
                     con.ConnectionString = DispatcherControls.ConnectionString_SUE;
                     con.Open();
@@ -64,10 +63,9 @@ namespace Dagorlad_7.classes
                         return new KeyValuePair<bool, string>(true, null);
                     else
                     {
-                        if(VerifyHash(sha256Hash, UniqueIdentity, (string)result))
-                        {
+                        if (VerifyHash(sha256Hash, GetUniqueIdentityOfCurrentComputer(Email), (string)result))
                             return new KeyValuePair<bool, string>(true, (string)result);
-                        } return new KeyValuePair<bool, string>(false, null);
+                        return new KeyValuePair<bool, string>(false, null);
                     }
                 }
             }
@@ -77,13 +75,13 @@ namespace Dagorlad_7.classes
             }
             return new KeyValuePair<bool, string>(false, null);
         }
-        public static async Task SetHashFromWebServiceEmployees(string Email)
+        public static async Task SetHashToWebServiceEmployees(string Email)
         {
             try
             {
                 using (SHA256 sha256Hash = SHA256.Create())
                 {
-                    string Identityhashmap = Hash.GetHash(sha256Hash, GetUniqueIdentity(Email));
+                    string Identityhashmap = Hash.GetHash(sha256Hash, GetUniqueIdentityOfCurrentComputer(Email));
                     SqlConnection con = new SqlConnection();
                     con.ConnectionString = DispatcherControls.ConnectionString_SUE;
                     con.Open();
@@ -101,7 +99,7 @@ namespace Dagorlad_7.classes
                 Console.WriteLine(ex.ToString());
             }
         }
-        private static string GetUniqueIdentity(string Email)
+        private static string GetUniqueIdentityOfCurrentComputer(string Email)
         {
             var username = Environment.UserName;
             var WindowsIdentity = System.Security.Principal.WindowsIdentity.GetCurrent().User.Value;
@@ -111,20 +109,23 @@ namespace Dagorlad_7.classes
         }
         public async static Task<bool> CheckAllowingEmail(string Email)
         {
+#if(DEBUG)
+            return true;
+#endif
             var result = await Hash.GetHashFromWebServiceEmployees(Email);
             if (result.Key == true)
             {
-                if (!String.IsNullOrEmpty(result.Value))
+                var remote_hash = result.Value;
+                if (!String.IsNullOrEmpty(remote_hash))
                 {
-                    var remote_hash = result.Value;
                     using (SHA256 sha256Hash = SHA256.Create())
                     {
-                        return VerifyHash(sha256Hash, GetUniqueIdentity(Email), remote_hash);
+                        return VerifyHash(sha256Hash, GetUniqueIdentityOfCurrentComputer(Email), remote_hash);
                     }
                 }
                 else
                 {
-                    await SetHashFromWebServiceEmployees(Email);
+                    await SetHashToWebServiceEmployees(Email);
                     return true;
                 }
             }
