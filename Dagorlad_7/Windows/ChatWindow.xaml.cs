@@ -228,7 +228,6 @@ namespace Dagorlad_7.Windows
                                 Me.Direction = direction;
                                 Me.Time = DateTime.Now;
                                 Me.SystemInformation = system_info;
-                                Me.VersionOfClient = DispatcherControls.GetVersionApplication(DispatcherControls.TypeDisplayVersion.Fully);
                                 this.Title = String.Format("{0}: {1}", "Dagorlad - Чат", Me.Name);
                                 InstanceContext context = new InstanceContext(this);
                                 Proxy = new SVC.ChatClient(context);
@@ -780,7 +779,7 @@ namespace Dagorlad_7.Windows
             if (SelectedUser != null && !String.IsNullOrEmpty(SelectedUser.Email))
             {
                 PopupInfoAboutClient.DataContext = await DispatcherControls.FindEmployees(SelectedUser.Email);
-                VersionOfClientTextBox.Text = String.Format("Версия клиента:\n{0}",SelectedUser.VersionOfClient);
+                //VersionOfClientTextBox.Text = String.Format("Версия клиента:\n{0}",SelectedUser.VersionOfClient);
                 //   InformationAboutClientTextBox.Text = await DispatcherControls.GetClientInformation(SelectedUser.Email);
                 PopupInfoAboutClient.IsOpen = true;
             }

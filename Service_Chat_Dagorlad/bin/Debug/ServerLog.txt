@@ -172,3 +172,32 @@ Version Application: v.0.0.7664.18264, [25.12.2020 10:08:48] (Debug)
 [25.12.2020 10:11:16]: Client is already exist: "BalandinAI@fsfk.local"
 [25.12.2020 10:11:16]: Client "BalandinAI@fsfk.local" has been updated.
 [25.12.2020 10:12:33]: BalandinAI@fsfk.local - has been disconnected successfully.
+[25.12.2020 12:00:29]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.21608, [25.12.2020 12:00:16] (Debug)
+
+[25.12.2020 12:00:55]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 12:00:55]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 12:16:39]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 12:16:39]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 12:17:31]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 12:17:31]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 12:18:01]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 12:18:01]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 12:22:06]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 12:22:06]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 12:23:00]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 12:23:00]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 12:23:26]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 12:23:26]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 12:24:05]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 12:24:05]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 12:25:06]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 12:25:06]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 12:25:37]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 12:25:37]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 12:26:16]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 12:26:16]: Client "PyatkoBV@fsfk.local" has been updated.

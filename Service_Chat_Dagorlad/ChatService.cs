@@ -20,7 +20,6 @@ namespace Service_Chat_Dagorlad
         private int? _countunreaded;
         private string _lastmessage;
         private string _systeminformation;
-        private string _versionofclient;
         [DataMember]
         public string Status
         {
@@ -68,12 +67,6 @@ namespace Service_Chat_Dagorlad
         {
             get { return _systeminformation; }
             set { _systeminformation = value; }
-        }
-        [DataMember]
-        public string VersionOfClient
-        {
-            get { return _versionofclient; }
-            set { _versionofclient = value; }
         }
     }
 

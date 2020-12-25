@@ -51,8 +51,33 @@ namespace Dagorlad_7.classes
 
                 // Dibuja el Texto:
                 g.DrawString(Texto, Fuente, new System.Drawing.SolidBrush(Foreground), new System.Drawing.Point(posX, posY));
+
+                //christmas hat             
+                g.DrawImage(ConvertFromBitmapImageToBitmapData(new Uri(@"pack://application:,,,/Dagorlad;component/images/hat_40.png", UriKind.Absolute)), new Point(0,0));
             }
+            
             return Canvas;
+        }
+        private static Bitmap ConvertFromBitmapImageToBitmapData(Uri uri)
+        {
+            BitmapImage image = new BitmapImage(uri);
+            int stride = image.PixelWidth * 4;
+            byte[] buffer = new byte[stride * image.PixelHeight];
+            image.CopyPixels(buffer, stride, 0);
+            System.Drawing.Bitmap bitmap =
+                new System.Drawing.Bitmap(
+                    image.PixelWidth,
+                    image.PixelHeight,
+                    System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            System.Drawing.Imaging.BitmapData bitmapData =
+                bitmap.LockBits(
+                    new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                    System.Drawing.Imaging.ImageLockMode.WriteOnly,
+                    bitmap.PixelFormat);
+            System.Runtime.InteropServices.Marshal.Copy(
+                buffer, 0, bitmapData.Scan0, buffer.Length);
+            bitmap.UnlockBits(bitmapData);
+            return bitmap;
         }
         private static string ConvertText(string text)
         {

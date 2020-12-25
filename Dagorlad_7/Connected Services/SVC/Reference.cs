@@ -46,9 +46,6 @@ namespace Dagorlad_7.SVC {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime TimeField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string VersionOfClientField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -159,19 +156,6 @@ namespace Dagorlad_7.SVC {
                 if ((this.TimeField.Equals(value) != true)) {
                     this.TimeField = value;
                     this.RaisePropertyChanged("Time");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string VersionOfClient {
-            get {
-                return this.VersionOfClientField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.VersionOfClientField, value) != true)) {
-                    this.VersionOfClientField = value;
-                    this.RaisePropertyChanged("VersionOfClient");
                 }
             }
         }
