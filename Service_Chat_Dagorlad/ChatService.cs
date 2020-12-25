@@ -19,7 +19,8 @@ namespace Service_Chat_Dagorlad
         private DateTime _time;
         private int? _countunreaded;
         private string _lastmessage;
-        private string _systeninformation;
+        private string _systeminformation;
+        private string _versionofclient;
         [DataMember]
         public string Status
         {
@@ -65,8 +66,14 @@ namespace Service_Chat_Dagorlad
         [DataMember]
         public string SystemInformation
         {
-            get { return _systeninformation; }
-            set { _systeninformation = value; }
+            get { return _systeminformation; }
+            set { _systeminformation = value; }
+        }
+        [DataMember]
+        public string VersionOfClient
+        {
+            get { return _versionofclient; }
+            set { _versionofclient = value; }
         }
     }
 
@@ -251,7 +258,6 @@ namespace Service_Chat_Dagorlad
         public bool Connect(Client client)
         {
             bool IsExistClient = false;
-            Client ObjectExistingClient=null;
             foreach (var s in clients)
             {
                 if (s.Key.Email == client.Email)
@@ -259,9 +265,39 @@ namespace Service_Chat_Dagorlad
                     lock (syncObj)
                     {
                         IsExistClient = true;
-                        ObjectExistingClient = s.Key;
                         LogWrite("Client is already exist: \"" + client.Email + "\"");
-                        break;
+                        clients.TryGetValue(s.Key, out IChatCallback _value);
+                        var IsUpdate = clients.TryUpdate(s.Key, CurrentCallback, _value);
+                        if (IsUpdate)
+                        {
+                            LogWrite("Client \"" + s.Key.Email + "\" has been updated.");
+                            foreach (Client key in clients.Keys)
+                            {
+                                IChatCallback callback = clients[key];
+                                try
+                                {
+                                    callback.RefreshClients(clients.Keys);
+                                }
+                                catch (Exception ex)
+                                {
+                                    LogWrite("Cannot send CallBack to all clients. 276, " + key.Email);
+                                    var IsRemoved = clients.TryRemove(key, out IChatCallback value);
+                                    if (IsRemoved)
+                                        LogWrite("Client \"" + key.Email + "\" has been removed.");
+                                    return false;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            LogWrite("Cannot update client \"" + s.Key.Email + "\"");
+                            //try delete
+                            var IsRemoved = clients.TryRemove(s.Key, out IChatCallback value);
+                            if (IsRemoved)
+                                LogWrite("Client \"" + s.Key.Email + "\" has been removed.");
+                            else LogWrite("Cannot remove client \"" + s.Key.Email + "\"");
+                            return false;
+                        }
                     }
                 }
             }
@@ -281,7 +317,7 @@ namespace Service_Chat_Dagorlad
                         }
                         catch (Exception ex)
                         {
-                            LogWrite("Cannot send CallBack to all clients. 284, " + key.Email);
+                            LogWrite("Cannot send CallBack to all clients. 313, " + key.Email);
                             var IsRemoved = clients.TryRemove(key, out IChatCallback value);
                             if (IsRemoved)
                                 LogWrite("Client \"" + key.Email + "\" removed.");
@@ -292,41 +328,6 @@ namespace Service_Chat_Dagorlad
                 else
                 {
                     LogWrite("Cannot add the new client: \"" + client.Email + "\"");
-                    return false;
-                }
-            }
-            else
-            {
-                clients.TryGetValue(ObjectExistingClient, out IChatCallback _value);
-                var IsUpdate = clients.TryUpdate(ObjectExistingClient, CurrentCallback, _value);
-                if (IsUpdate)
-                {
-                    LogWrite("Client \"" + ObjectExistingClient.Email + "\" updated.");
-                    foreach (Client key in clients.Keys)
-                    {
-                        IChatCallback callback = clients[key];
-                        try
-                        {
-                            callback.RefreshClients(clients.Keys);
-                        }
-                        catch (Exception ex)
-                        {
-                            LogWrite("Cannot send CallBack to all clients. 315, " + key.Email);
-                            var IsRemoved = clients.TryRemove(key, out IChatCallback value);
-                            if (IsRemoved)
-                                LogWrite("Client \"" + key.Email + "\" removed.");
-                            return false;
-                        }
-                    }
-                }
-                else
-                {
-                    LogWrite("Cannot update client \"" + ObjectExistingClient.Email + "\"");
-                    //try delete
-                    var IsRemoved = clients.TryRemove(ObjectExistingClient, out IChatCallback value);
-                    if (IsRemoved)
-                        LogWrite("Client \"" + ObjectExistingClient.Email + "\" removed.");
-                    else LogWrite("Cannot remove client \"" + ObjectExistingClient.Email + "\"");
                     return false;
                 }
             }
@@ -425,7 +426,7 @@ namespace Service_Chat_Dagorlad
                                     }
                                     catch (Exception ex)
                                     {
-                                        LogWrite("Cannot be user for communication because it has been Aborted. 429, "+ client.Email);
+                                        LogWrite("Cannot be user for communication because it has been Aborted. 422, "+ client.Email);
                                     }
                                 }
                             }

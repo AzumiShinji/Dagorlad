@@ -978,6 +978,11 @@
             Gets the stream position of the area between the opening and closing tag of the node, relative to the start of the document.
             </summary>
         </member>
+        <member name="P:HtmlAgilityPack.HtmlNode.OuterStartIndex">
+            <summary>
+            Gets the stream position of the area of the beginning of the tag, relative to the start of the document.
+            </summary>
+        </member>
         <member name="P:HtmlAgilityPack.HtmlNode.InnerLength">
             <summary>
             Gets the length of the area between the opening and closing tag of the node.

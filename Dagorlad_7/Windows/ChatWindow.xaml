@@ -78,6 +78,7 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
+                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Image x:Name="InformationAboutClientImage" Stretch="None"/>
                             <TextBox Foreground="{DynamicResource Foreground}"
@@ -111,6 +112,10 @@
                             <TextBox Foreground="{DynamicResource Foreground}"
                                      Text="{Binding Rest,StringFormat={}Отпуска: {0}}"
                                       Margin="0" Padding="5" Grid.Row="8" Background="{DynamicResource Background.HalfOutside}"
+                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
+                            <TextBox Foreground="{DynamicResource Foreground.History}" x:Name="VersionOfClientTextBox"
+                                     FontSize="10"
+                                      Margin="0" Padding="5" Grid.Row="9" Background="{DynamicResource Background.HalfOutside}"
                                      IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
                         </Grid>
                     </Border>

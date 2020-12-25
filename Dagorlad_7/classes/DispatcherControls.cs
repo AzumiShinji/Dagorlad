@@ -483,24 +483,6 @@ namespace Dagorlad_7.classes
                 );
             return result;
         }
-        //public static async Task<string> GetClientInformation(string email)
-        //{
-        //    var result_info = await FindEmployees(email);
-        //    if (result_info == null) return "Нет данных";
-        //    string rest = null;
-        //    if (!String.IsNullOrEmpty(result_info.Rest))
-        //        rest = result_info.Rest.Replace("|", "\n");
-        //    var client_info = new StringBuilder();
-        //    client_info.AppendLine("Код: " + result_info.Code);
-        //    client_info.AppendLine("Email: " + result_info.Email);
-        //    client_info.AppendLine("ФИО: " + result_info.Name);
-        //    client_info.AppendLine("Направление: " + result_info.Direction);
-        //    client_info.AppendLine("День рождения: " + result_info.BirthDate.ToString("dd MMMM"));
-        //    client_info.AppendLine("Телефон: " + result_info.Phone);
-        //    client_info.AppendLine("Должность: " + result_info.Position);
-        //    client_info.AppendLine("Отпуска:\n" + rest);
-        //    return client_info.ToString();
-        //}
     }
     class CursorPosition
     {
