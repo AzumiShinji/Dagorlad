@@ -148,7 +148,7 @@ namespace Dagorlad_7
                                 else if(MySettings.Settings.IsSearchOrganizations)
                                 {
                                     var code = SearchOrganizations.CheckIfStringAsNumberOfOrganizations(text);
-                                    if (code != 0)
+                                    if (code != null)
                                     {
                                         var list = await SearchOrganizations.TryFindOrganizations(code);
                                         if (list != null && list.Count() > 0)

@@ -36,9 +36,10 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid Tag="InformationBlock" Grid.ColumnSpan="3" Grid.Row="0" VerticalAlignment="Stretch" Height="auto">
-            <Label x:Name="InformationBlockLabel" FontWeight="Normal" HorizontalContentAlignment="Center"
+            <Label x:Name="InformationBlockLabel" HorizontalContentAlignment="Center"
                    HorizontalAlignment="Stretch" Height="auto"
-                   FontSize="12" Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"
+                   FontSize="13" Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"
+                   FontWeight="Medium"
                    Foreground="{DynamicResource Foreground}" Background="{DynamicResource Background.Highlight}"/>
         </Grid>
         <Grid x:Name="AdditionalBlock" Grid.Column="2" Grid.Row="1" Background="{DynamicResource Background.Outside}"
@@ -173,7 +174,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <GridSplitter Grid.Column="1" Width="1" HorizontalAlignment="Stretch" Grid.Row="0" Focusable="False"
+        <GridSplitter Grid.Column="1" Width="1" HorizontalAlignment="Stretch" Grid.Row="1" Focusable="False"
                       Grid.RowSpan="4" Background="{DynamicResource Background.Outside}" BorderThickness="0"/>
         <ListView x:Name="DialogListView" Grid.Column="2" Grid.Row="2" ItemsSource="{Binding msgs}"
                   PreviewMouseMove="DialogListView_PreviewMouseMove" VirtualizingPanel.ScrollUnit="Pixel"

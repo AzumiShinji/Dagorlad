@@ -75,7 +75,7 @@ namespace Dagorlad_7.Windows
             AdditionalBlock.Visibility = Visibility.Collapsed;
             MessageSendingGrid.Visibility = Visibility.Collapsed;
             StickersPopup.DataContext = list_stickers;
-            RunConnection();
+            RunConnection().GetAwaiter();
             DataContext = ItemsOfChat;
         }
 
@@ -153,7 +153,7 @@ namespace Dagorlad_7.Windows
                         s.user.CountUnreaded = null;
                     else s.user.CountUnreaded = unreaded;
                     s.user.LastMessage = String.Format("{0} {1}", msg.Sender == Me.Email ? "Вы:" : "", msg.Content);
-                    if (msg.Sender != Me.Email && s.user.Email != Me.Email && ((SelectedUser != null && SelectedUser.Email != receiver.Email) || this.IsActive == false))
+                    if (msg.Sender != Me.Email && s.user.Email != Me.Email && ((SelectedUser != null && SelectedUser.Email != msg.Sender) || this.IsActive == false))
                     {
                         Console.WriteLine("{0}:{1}:{2}", msg.Sender, Me.Email, receiver.Email);
                         DispatcherControls.NewMyNotifyWindow(s.user.Name, msg.Content, Timeout.InfiniteTimeSpan, this, s.image,s);
@@ -200,7 +200,7 @@ namespace Dagorlad_7.Windows
             await HandleChatClient();
         }
 
-        public async Task RunConnection()
+        public async Task<bool> RunConnection()
         {
             InformationBlockLabel.Content = "Подключение...";
             MessageSendingGrid.IsEnabled = false;
@@ -269,16 +269,15 @@ namespace Dagorlad_7.Windows
                                 Logger.Write(Logger.TypeLogs.chat, "Result connection: " + result);
                                 if (!result)
                                 {
-                                    //  await Proxy.DisconnectAsync(Me);
                                     RestartConnection();
-                                    return;
+                                    return false;
                                 }
                                 else
+                                {
                                     InformationBlockLabel.Content = null;
-                            }
-                            else
-                            {
-                                RestartConnection();
+                                    MessageSendingGrid.IsEnabled = true;
+                                    return true;
+                                }
                             }
                         }
                         else
@@ -304,13 +303,15 @@ namespace Dagorlad_7.Windows
                 Logger.Write(Logger.TypeLogs.chat, ex.ToString());
                 RestartConnection();
             }
-            MessageSendingGrid.IsEnabled = true;
+            MessageSendingGrid.IsEnabled = false;
+            return false;
         }
-        int reconnect_Timeout_sec = 5;
+        int reconnect_Timeout_sec = 0;
         private async void RestartConnection()
         {
             try
             {
+                MessageSendingGrid.IsEnabled = false;
                 if (Proxy != null)
                     Proxy.Abort();
                 Proxy = null;
@@ -323,7 +324,7 @@ namespace Dagorlad_7.Windows
                 Logger.Write(Logger.TypeLogs.chat, ex.ToString());
             }
         }
-        async void InnerDuplexChannel_Event(object sender, EventArgs e)
+        private async void InnerDuplexChannel_Event(object sender, EventArgs e)
         {
             await Dispatcher.BeginInvoke(new Action(async () =>
             {
@@ -344,30 +345,42 @@ namespace Dagorlad_7.Windows
 
         private async Task HandleChatClient()
         {
-            if (Proxy != null)
+            try
             {
-                switch (Proxy.State)
+                if (Proxy != null)
                 {
-                    case CommunicationState.Closed:
-                        Proxy = null;
-                        await RunConnection();
-                        break;
-                    case CommunicationState.Closing:
-                        break;
-                    case CommunicationState.Created:
-                        break;
-                    case CommunicationState.Faulted:
-                        Proxy.Abort();
-                        Proxy = null;
-                        await RunConnection();
-                        break;
-                    case CommunicationState.Opened:
-                        break;
-                    case CommunicationState.Opening:
-                        break;
-                    default:
-                        break;
+                    switch (Proxy.State)
+                    {
+                        case CommunicationState.Closed:
+                            InformationBlockLabel.Content = "Восстановление подключения...";
+                            await Task.Delay(50);
+                            Proxy = null;
+                            await RunConnection();
+                            break;
+                        case CommunicationState.Closing:
+                            break;
+                        case CommunicationState.Created:
+                            break;
+                        case CommunicationState.Faulted:
+                            InformationBlockLabel.Content = "Восстановление подключения...";
+                            await Task.Delay(50);
+                            if (Proxy != null)
+                                Proxy.Abort();
+                            Proxy = null;
+                            await RunConnection();
+                            break;
+                        case CommunicationState.Opened:
+                            break;
+                        case CommunicationState.Opening:
+                            break;
+                        default:
+                            break;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Logger.Write(Logger.TypeLogs.chat, ex.ToString());
             }
         }
 
@@ -444,28 +457,36 @@ namespace Dagorlad_7.Windows
         bool IsTyping = false;
         private async void MessageTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
         {
-            if (IsTyping == false)
+            try
             {
-                //var s = Task.Factory.StartNew(new Action(async () =>
-                //  {
-                      if (SelectedUser != null && SelectedUser.Email != common_chat && Proxy != null)
+                if (IsTyping == false)
+                {
+                    var s = Task.Factory.StartNew(new Action(async () =>
                       {
-                          await HandleChatClient();
-                          if (Proxy != null)
+                          if (SelectedUser != null && SelectedUser.Email != common_chat && Proxy != null)
                           {
-                              IsTyping = true;
-                              await Proxy.IsWritingAsync(Me);
-                              await Task.Delay(2000);
-                              if (Proxy!=null && Proxy.State == CommunicationState.Opened)
-                                  await Proxy.IsWritingAsync(null);
-                              IsTyping = false;
+                              await HandleChatClient();
+                              if (Proxy != null)
+                              {
+                                  IsTyping = true;
+                                  if (Proxy != null)
+                                      await Proxy.IsWritingAsync(Me);
+                                  await Task.Delay(1000);
+                                  if (Proxy != null && Proxy.State == CommunicationState.Opened)
+                                      await Proxy.IsWritingAsync(null);
+                                  IsTyping = false;
+                              }
                           }
-                      }
-                  //}));
+                      }));
+                }
+                if (e.Key == Key.Enter)
+                {
+                    await SendText();
+                }
             }
-            if (e.Key == Key.Enter)
+            catch (Exception ex)
             {
-                await SendText();
+                Logger.Write(Logger.TypeLogs.chat, ex.ToString());
             }
         }
 
@@ -623,6 +644,7 @@ namespace Dagorlad_7.Windows
                     }
                     break;
             }
+            MessageTextBox.Focus();
         }
         private async Task SendText()
         {

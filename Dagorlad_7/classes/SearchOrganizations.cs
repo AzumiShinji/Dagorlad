@@ -29,7 +29,7 @@ namespace Dagorlad_7.classes
     }
     class SearchOrganizations
     {
-        public static long CheckIfStringAsNumberOfOrganizations(string text)
+        public static string CheckIfStringAsNumberOfOrganizations(string text)
         {
             if (text.Length < 20)
             {
@@ -37,12 +37,12 @@ namespace Dagorlad_7.classes
                 var isint = long.TryParse(_text, out long result);
                 if (isint)
                 {
-                    return result;
+                    return text;
                 }
             }
-            return 0;
+            return null;
         }
-        public async static Task<List<OrganizationsClass>> TryFindOrganizations(long code)
+        public async static Task<List<OrganizationsClass>> TryFindOrganizations(string code)
         {
             var list = new List<OrganizationsClass>();
             try
@@ -52,7 +52,7 @@ namespace Dagorlad_7.classes
                 con.Open();
                 using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM runbp WHERE @code = inn OR @code=code OR @code=ogrn OR @code=kpp OR @code=pgmu OR @code = okpoCode", con))
                 {
-                    sqlCommand.Parameters.AddWithValue("@code", code.ToString());
+                    sqlCommand.Parameters.AddWithValue("@code", code);
                     using (SqlDataReader reader = await sqlCommand.ExecuteReaderAsync())
                     {
                         while (await reader.ReadAsync())
