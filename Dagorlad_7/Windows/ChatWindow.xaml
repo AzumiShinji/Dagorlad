@@ -55,9 +55,13 @@
                 <Label x:Name="NameLabel" FontWeight="Medium" Grid.Row="0" Content="{Binding Name}"
                    VerticalContentAlignment="Center" Padding="10,0,0,0"
                    FontSize="13" Foreground="{DynamicResource Foreground}"/>
-                <Label x:Name="DirectionLabelOrTypingLabel" FontWeight="Medium" Grid.Row="1"
+                <Label x:Name="DirectionLabel" FontWeight="Medium" Grid.Row="1" Visibility="Visible"
                    VerticalContentAlignment="Center" Padding="10,0,0,0" Content="{Binding Direction}"
                    FontSize="10" Foreground="{DynamicResource Foreground.History}"/>
+                <Label x:Name="TypingLabel" FontWeight="Medium" Grid.Row="1" Visibility="Hidden"
+                       Content="печатает..."
+                   VerticalContentAlignment="Center" Padding="10,0,0,0"
+                   FontSize="10" Foreground="{DynamicResource Background.Highlight}"/>
             </Grid>
             <Grid Grid.Column="1" HorizontalAlignment="Left" x:Name="InformationClientGrid" DataContext="{Binding client_employee_info}">
                 <Button Content="{StaticResource Canvas_Info}" x:Name="ShowPopupInfoAboutClientButton" Margin="10,0,0,0"
@@ -159,7 +163,7 @@
                                        Text="{Binding user.LastMessage}"/>
                             <Border Grid.Column="2" x:Name="UnreadedCountBorder" Grid.RowSpan="2" HorizontalAlignment="Right"
                                     Visibility="{Binding user.CountUnreaded,Converter={StaticResource NullableContentToHidden}}"
-                                    CornerRadius="100" Background="{DynamicResource Background.Highlight}" Width="20" Height="20" Margin="5,0,0,0">
+                                    CornerRadius="100" Background="OrangeRed" Width="20" Height="20" Margin="5,0,0,0">
                                 <TextBlock x:Name="UnreadedCountTextBlock"
                                            Text="{Binding user.CountUnreaded}" Foreground="{DynamicResource Foreground}"  FontWeight="Medium"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>

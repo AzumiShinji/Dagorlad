@@ -252,7 +252,16 @@ namespace Dagorlad_7.classes
         }
         public static ObservableCollection<MyNotifyClass> MyNotifyList = new ObservableCollection<MyNotifyClass>();
         public static MyNotifyWindow _MyNotifyWindow;
-        public static void NewMyNotifyWindow(string title, string text, TimeSpan closeafterseconds, Window win, object image)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="title">Title</param>
+        /// <param name="text">Text</param>
+        /// <param name="closeafterseconds">After what notify will be closed, TimeSpan</param>
+        /// <param name="win">Шnitiator window, NULL</param>
+        /// <param name="image">TypeImageNotify</param>
+        /// <param name="LinkFocusObject">Link to what should be focused, NULL</param>
+        public static void NewMyNotifyWindow(string title, string text, TimeSpan closeafterseconds, Window win, object image,object LinkFocusObject)
         {
             var obj = new MyNotifyClass()
             {
@@ -265,7 +274,7 @@ namespace Dagorlad_7.classes
             MyNotifyList.Add(obj);
             if (_MyNotifyWindow == null)
             {
-                _MyNotifyWindow = new MyNotifyWindow(win);
+                _MyNotifyWindow = new MyNotifyWindow(win, LinkFocusObject);
                 _MyNotifyWindow.Show();
             }
             _MyNotifyWindow.FromWindow = win;
@@ -452,12 +461,12 @@ namespace Dagorlad_7.classes
             catch (Exception g)
             {
                 _error = true;
-                NewMyNotifyWindow("Не удалось очистить директорию", g.Message, TimeSpan.FromSeconds(5), Application.Current.MainWindow, TypeImageNotify.sad);
+                NewMyNotifyWindow("Не удалось очистить директорию", g.Message, TimeSpan.FromSeconds(5), Application.Current.MainWindow, TypeImageNotify.sad,null);
             }
             finally
             {
                 if (!_error)
-                    NewMyNotifyWindow("Директория очищена", dir, TimeSpan.FromSeconds(5), Application.Current.MainWindow, TypeImageNotify.completed);
+                    NewMyNotifyWindow("Директория очищена", dir, TimeSpan.FromSeconds(5), Application.Current.MainWindow, TypeImageNotify.completed,null);
             }
             return Task.CompletedTask;
         }

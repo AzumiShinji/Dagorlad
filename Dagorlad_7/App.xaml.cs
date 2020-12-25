@@ -44,7 +44,7 @@ namespace Dagorlad_7
                                         var new_version = DispatcherControls.GetVersionApplication(DispatcherControls.TypeDisplayVersion.Fully);
                                         Logger.Write(Logger.TypeLogs.updater, "Application has been updated to "+ new_version);
                                         DispatcherControls.NewMyNotifyWindow(Assembly.GetExecutingAssembly().GetName().Name + " обновился", "Текущая версия: \n" +
-                                            new_version, TimeSpan.FromSeconds(8), mainWindow, TypeImageNotify.update);
+                                            new_version, TimeSpan.FromSeconds(8), mainWindow, TypeImageNotify.update,null);
                                     }
                                     if (splashScreen != null)
                                     {

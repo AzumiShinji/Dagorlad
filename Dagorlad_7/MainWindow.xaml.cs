@@ -143,7 +143,7 @@ namespace Dagorlad_7
                                             }
                                         }
                                     }
-                                    DispatcherControls.NewMyNotifyWindow(number, "Номер запомнен программой.\nМожно использовать \"СМАРТ-МЕНЮ\".", TimeSpan.FromSeconds(15), this, TypeImageNotify.number_handling);
+                                    DispatcherControls.NewMyNotifyWindow(number, "Номер запомнен программой.\nМожно использовать \"СМАРТ-МЕНЮ\".", TimeSpan.FromSeconds(15), this, TypeImageNotify.number_handling,null);
                                 }
                                 else if(MySettings.Settings.IsSearchOrganizations)
                                 {
@@ -153,7 +153,7 @@ namespace Dagorlad_7
                                         var list = await SearchOrganizations.TryFindOrganizations(code);
                                         if (list != null && list.Count() > 0)
                                         {
-                                            DispatcherControls.NewMyNotifyWindow(text, String.Format("Найдено {0} орг. по данному коду", list.Count()), TimeSpan.FromSeconds(15), this, TypeImageNotify.buildings);
+                                            DispatcherControls.NewMyNotifyWindow(text, String.Format("Найдено {0} орг. по данному коду", list.Count()), TimeSpan.FromSeconds(15), this, TypeImageNotify.buildings,null);
                                             OrganizationsListMain = list;
                                             OrganizationsListView.ItemsSource = OrganizationsListMain;
                                             await UpdateLabelAboutUpdate();

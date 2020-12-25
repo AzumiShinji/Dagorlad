@@ -201,3 +201,332 @@ Version Application: v.0.0.7664.21608, [25.12.2020 12:00:16] (Debug)
 [25.12.2020 12:25:37]: Client "PyatkoBV@fsfk.local" has been updated.
 [25.12.2020 12:26:16]: Client is already exist: "PyatkoBV@fsfk.local"
 [25.12.2020 12:26:16]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 13:53:42]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25003, [25.12.2020 13:53:26] (Debug)
+
+[25.12.2020 13:54:18]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25003, [25.12.2020 13:53:26] (Debug)
+
+[25.12.2020 14:01:46]: BalandinAI@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:01:49]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:02:06]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25258, [25.12.2020 14:01:56] (Debug)
+
+[25.12.2020 14:02:21]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25258, [25.12.2020 14:01:56] (Debug)
+
+[25.12.2020 14:05:13]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:05:13]: Cannot be user for communication because it has been Aborted. 422, PyatkoBV@fsfk.local
+[25.12.2020 14:05:30]: "EfimovMAn@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25355, [25.12.2020 14:05:10] (Debug)
+
+[25.12.2020 14:05:31]: Cannot send CallBack to all clients. 313, BalandinAI@fsfk.local
+[25.12.2020 14:05:31]: Client "BalandinAI@fsfk.local" removed.
+[25.12.2020 14:05:37]: Client is already exist: "EfimovMAn@fsfk.local"
+[25.12.2020 14:05:37]: Client "EfimovMAn@fsfk.local" has been updated.
+[25.12.2020 14:05:47]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25355, [25.12.2020 14:05:10] (Debug)
+
+[25.12.2020 14:12:45]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:12:48]: EfimovMAn@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:12:59]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25585, [25.12.2020 14:12:50] (Debug)
+
+[25.12.2020 14:14:14]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 14:14:14]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 14:14:26]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25622, [25.12.2020 14:14:04] (Debug)
+
+[25.12.2020 14:14:55]: BalandinAI@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:14:55]: Cannot be user for communication because it has been Aborted. 422, BalandinAI@fsfk.local
+[25.12.2020 14:15:08]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25649, [25.12.2020 14:14:58] (Debug)
+
+[25.12.2020 14:15:08]: Cannot send CallBack to all clients. 313, PyatkoBV@fsfk.local
+[25.12.2020 14:15:08]: Client "PyatkoBV@fsfk.local" removed.
+[25.12.2020 14:15:13]: Client is already exist: "BalandinAI@fsfk.local"
+[25.12.2020 14:15:13]: Client "BalandinAI@fsfk.local" has been updated.
+[25.12.2020 14:15:19]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25649, [25.12.2020 14:14:58] (Debug)
+
+[25.12.2020 14:17:07]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:17:09]: BalandinAI@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:17:21]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25716, [25.12.2020 14:17:12] (Debug)
+
+[25.12.2020 14:17:28]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25716, [25.12.2020 14:17:12] (Debug)
+
+[25.12.2020 14:22:31]: BalandinAI@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:22:31]: Cannot be user for communication because it has been Aborted. 422, BalandinAI@fsfk.local
+[25.12.2020 14:22:45]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25878, [25.12.2020 14:22:36] (Debug)
+
+[25.12.2020 14:22:45]: Cannot send CallBack to all clients. 313, PyatkoBV@fsfk.local
+[25.12.2020 14:22:45]: Client "PyatkoBV@fsfk.local" removed.
+[25.12.2020 14:22:50]: Client is already exist: "BalandinAI@fsfk.local"
+[25.12.2020 14:22:50]: Client "BalandinAI@fsfk.local" has been updated.
+[25.12.2020 14:22:57]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25878, [25.12.2020 14:22:36] (Debug)
+
+[25.12.2020 14:23:26]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:23:26]: Cannot be user for communication because it has been Aborted. 422, PyatkoBV@fsfk.local
+[25.12.2020 14:23:35]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25903, [25.12.2020 14:23:26] (Debug)
+
+[25.12.2020 14:23:35]: Cannot send CallBack to all clients. 313, BalandinAI@fsfk.local
+[25.12.2020 14:23:35]: Client "BalandinAI@fsfk.local" removed.
+[25.12.2020 14:23:41]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 14:23:41]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 14:24:41]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 14:24:41]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 14:24:57]: "EfimovMAn@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.25936, [25.12.2020 14:24:32] (Debug)
+
+[25.12.2020 14:25:47]: EfimovMAn@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:25:47]: Cannot be user for communication because it has been Aborted. 422, EfimovMAn@fsfk.local
+[25.12.2020 14:33:10]: "EfimovMAn@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.26188, [25.12.2020 14:32:56] (Debug)
+
+[25.12.2020 14:33:11]: Cannot send CallBack to all clients. 313, PyatkoBV@fsfk.local
+[25.12.2020 14:33:11]: Client "PyatkoBV@fsfk.local" removed.
+[25.12.2020 14:33:16]: Client is already exist: "EfimovMAn@fsfk.local"
+[25.12.2020 14:33:16]: Client "EfimovMAn@fsfk.local" has been updated.
+[25.12.2020 14:33:20]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.26188, [25.12.2020 14:32:56] (Debug)
+
+[25.12.2020 14:35:08]: BalandinAI@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:35:08]: Cannot be user for communication because it has been Aborted. 422, BalandinAI@fsfk.local
+[25.12.2020 14:35:44]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.26268, [25.12.2020 14:35:36] (Debug)
+
+[25.12.2020 14:35:44]: Cannot send CallBack to all clients. 313, EfimovMAn@fsfk.local
+[25.12.2020 14:35:44]: Client "EfimovMAn@fsfk.local" removed.
+[25.12.2020 14:35:49]: Client is already exist: "BalandinAI@fsfk.local"
+[25.12.2020 14:35:49]: Client "BalandinAI@fsfk.local" has been updated.
+[25.12.2020 14:35:51]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.26268, [25.12.2020 14:35:36] (Debug)
+
+[25.12.2020 14:37:56]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:37:58]: BalandinAI@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:38:08]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.26340, [25.12.2020 14:38:00] (Debug)
+
+[25.12.2020 14:38:18]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.26340, [25.12.2020 14:38:00] (Debug)
+
+[25.12.2020 14:39:44]: BalandinAI@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:39:44]: Cannot be user for communication because it has been Aborted. 422, BalandinAI@fsfk.local
+[25.12.2020 14:39:56]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.26394, [25.12.2020 14:39:48] (Debug)
+
+[25.12.2020 14:39:56]: Cannot send CallBack to all clients. 313, PyatkoBV@fsfk.local
+[25.12.2020 14:39:56]: Client "PyatkoBV@fsfk.local" removed.
+[25.12.2020 14:40:01]: Client is already exist: "BalandinAI@fsfk.local"
+[25.12.2020 14:40:01]: Client "BalandinAI@fsfk.local" has been updated.
+[25.12.2020 14:40:05]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.26394, [25.12.2020 14:39:48] (Debug)
+
+[25.12.2020 14:40:40]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[25.12.2020 14:40:40]: Cannot be user for communication because it has been Aborted. 422, PyatkoBV@fsfk.local
+[25.12.2020 14:40:50]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.26394, [25.12.2020 14:39:48] (Debug)
+
+[25.12.2020 14:40:50]: Cannot send CallBack to all clients. 313, BalandinAI@fsfk.local
+[25.12.2020 14:40:50]: Client "BalandinAI@fsfk.local" removed.
+[25.12.2020 14:41:01]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 14:41:01]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 14:41:13]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.26427, [25.12.2020 14:40:54] (Debug)
+
+[25.12.2020 15:04:36]: BalandinAI@fsfk.local - has been disconnected successfully.
+[25.12.2020 15:04:36]: Cannot be user for communication because it has been Aborted. 422, BalandinAI@fsfk.local
+[25.12.2020 15:13:26]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.27398, [25.12.2020 15:13:16] (Debug)
+
+[25.12.2020 15:13:26]: Cannot send CallBack to all clients. 313, PyatkoBV@fsfk.local
+[25.12.2020 15:13:26]: Client "PyatkoBV@fsfk.local" removed.
+[25.12.2020 15:13:31]: Client is already exist: "BalandinAI@fsfk.local"
+[25.12.2020 15:13:31]: Client "BalandinAI@fsfk.local" has been updated.
+[25.12.2020 15:13:42]: "EfimovMAn@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.27398, [25.12.2020 15:13:16] (Debug)
+
+[25.12.2020 15:14:50]: EfimovMAn@fsfk.local - has been disconnected successfully.
+[25.12.2020 15:14:50]: Cannot be user for communication because it has been Aborted. 422, EfimovMAn@fsfk.local
+[25.12.2020 15:15:02]: "EfimovMAn@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.27447, [25.12.2020 15:14:54] (Debug)
+
+[25.12.2020 15:15:02]: Cannot send CallBack to all clients. 313, BalandinAI@fsfk.local
+[25.12.2020 15:15:02]: Client "BalandinAI@fsfk.local" removed.
+[25.12.2020 15:15:07]: Client is already exist: "EfimovMAn@fsfk.local"
+[25.12.2020 15:15:07]: Client "EfimovMAn@fsfk.local" has been updated.
+[25.12.2020 15:15:12]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.27447, [25.12.2020 15:14:54] (Debug)
+
+[25.12.2020 15:16:21]: PyatkoBV@fsfk.local - has been disconnected successfully.
+[25.12.2020 15:16:21]: Cannot be user for communication because it has been Aborted. 422, PyatkoBV@fsfk.local
+[25.12.2020 15:22:17]: "PyatkoBV@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7664.27664, [25.12.2020 15:22:08] (Debug)
+
+[25.12.2020 15:22:17]: Cannot send CallBack to all clients. 313, EfimovMAn@fsfk.local
+[25.12.2020 15:22:17]: Client "EfimovMAn@fsfk.local" removed.
+[25.12.2020 15:22:22]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:22:22]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:23:39]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:23:39]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:26:37]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:26:37]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:29:45]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:29:45]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:34:04]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:34:04]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:36:42]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:36:42]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:39:24]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:39:24]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:40:29]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:40:29]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:41:03]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:41:03]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:43:42]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:43:42]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:45:37]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:45:37]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:46:42]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:46:42]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:47:15]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:47:15]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:48:24]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:48:24]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:49:04]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:49:04]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:49:56]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:49:56]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 15:50:27]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 15:50:27]: Client "PyatkoBV@fsfk.local" has been updated.
+[25.12.2020 16:05:41]: Client is already exist: "PyatkoBV@fsfk.local"
+[25.12.2020 16:05:41]: Client "PyatkoBV@fsfk.local" has been updated.

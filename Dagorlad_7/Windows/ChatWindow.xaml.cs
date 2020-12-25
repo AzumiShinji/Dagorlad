@@ -86,14 +86,14 @@ namespace Dagorlad_7.Windows
             {
                 if (SelectedUser != null && client.Email != Me.Email && SelectedUser.Email == client.Email)
                 {
-                    DirectionLabelOrTypingLabel.Foreground = (Brush)Application.Current.Resources["Background.Highlight"];
-                    DirectionLabelOrTypingLabel.Content = "печатает...";
+                    DirectionLabel.Visibility = Visibility.Hidden;
+                    TypingLabel.Visibility = Visibility.Visible;
                 }
             }
             else
             {
-                DirectionLabelOrTypingLabel.Foreground = (Brush)Application.Current.Resources["Foreground.History"];
-                DirectionLabelOrTypingLabel.Content = SelectedUser.Direction;
+                DirectionLabel.Visibility = Visibility.Visible;
+                TypingLabel.Visibility = Visibility.Hidden;
             }
         }
 
@@ -117,8 +117,8 @@ namespace Dagorlad_7.Windows
                         s.user.CountUnreaded = null;
                     else s.user.CountUnreaded = unreaded;
                     s.user.LastMessage = String.Format("{0} {1}", msg.Sender == Me.Email ? "Вы:" : "", msg.Content);
-                    if (msg.Sender != Me.Email)
-                        DispatcherControls.NewMyNotifyWindow(s.user.Name, String.Format("{0}: {1}", msg.SenderName, msg.Content), Timeout.InfiniteTimeSpan, this, s.image);
+                    if (msg.Sender != Me.Email && ((SelectedUser !=null && SelectedUser.Email!= common_chat)||this.IsActive==false))
+                        DispatcherControls.NewMyNotifyWindow(s.user.Name, String.Format("{0}: {1}", msg.SenderName, msg.Content), Timeout.InfiniteTimeSpan, this, s.image,s);
                 }
             }
         }
@@ -153,10 +153,10 @@ namespace Dagorlad_7.Windows
                         s.user.CountUnreaded = null;
                     else s.user.CountUnreaded = unreaded;
                     s.user.LastMessage = String.Format("{0} {1}", msg.Sender == Me.Email ? "Вы:" : "", msg.Content);
-                    if (msg.Sender != Me.Email && s.user.Email != Me.Email)
+                    if (msg.Sender != Me.Email && s.user.Email != Me.Email && ((SelectedUser != null && SelectedUser.Email != receiver.Email) || this.IsActive == false))
                     {
                         Console.WriteLine("{0}:{1}:{2}", msg.Sender, Me.Email, receiver.Email);
-                        DispatcherControls.NewMyNotifyWindow(s.user.Name, msg.Content, Timeout.InfiniteTimeSpan, this, s.image);
+                        DispatcherControls.NewMyNotifyWindow(s.user.Name, msg.Content, Timeout.InfiniteTimeSpan, this, s.image,s);
                     }
                 }
             }
@@ -284,19 +284,19 @@ namespace Dagorlad_7.Windows
                         else
                         {
                             Logger.Write(Logger.TypeLogs.chat, "The login was registered under a different name!");
-                            DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "Не удалось присоединиться к чату, ошибка доступа.", TimeSpan.FromSeconds(10), this, TypeImageNotify.chat);
+                            DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "Не удалось присоединиться к чату, ошибка доступа.", TimeSpan.FromSeconds(10), this, TypeImageNotify.chat,null);
                         }
                     }
                     else
                     {
                         Logger.Write(Logger.TypeLogs.chat, "Login not found in the database!");
-                        DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "Сотрудник не найден в веб-сервисе", TimeSpan.FromSeconds(10), this, TypeImageNotify.chat);
+                        DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "Сотрудник не найден в веб-сервисе", TimeSpan.FromSeconds(10), this, TypeImageNotify.chat,null);
                     }
                 }
                 else
                 {
                     Logger.Write(Logger.TypeLogs.chat, "Login is not specified in the settings!");
-                    DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "В настройках не указан почта для подключения к чату.", TimeSpan.FromSeconds(10), this, TypeImageNotify.chat);
+                    DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "В настройках не указан почта для подключения к чату.", TimeSpan.FromSeconds(10), this, TypeImageNotify.chat,null);
                 }
             }
             catch (Exception ex)
@@ -446,8 +446,8 @@ namespace Dagorlad_7.Windows
         {
             if (IsTyping == false)
             {
-                var s = Task.Factory.StartNew(new Action(async () =>
-                  {
+                //var s = Task.Factory.StartNew(new Action(async () =>
+                //  {
                       if (SelectedUser != null && SelectedUser.Email != common_chat && Proxy != null)
                       {
                           await HandleChatClient();
@@ -461,7 +461,7 @@ namespace Dagorlad_7.Windows
                               IsTyping = false;
                           }
                       }
-                  }));
+                  //}));
             }
             if (e.Key == Key.Enter)
             {
@@ -496,7 +496,7 @@ namespace Dagorlad_7.Windows
             bool IsFound = false;
             foreach (var s in OCChats)
             {
-                if (s.user.Email == SelectedUser.Email)
+                if (s.user.Email == SelectedUser.Email && this.IsActive==true)
                 {
                     IsFound = true;
                     foreach (var m in s.msgs)
@@ -516,8 +516,7 @@ namespace Dagorlad_7.Windows
 
         private void DialogListView_PreviewMouseMove(object sender, MouseEventArgs e)
         {
-            if (this.IsActive)
-                MarkCurrentDialogLikeReaded();
+            MarkCurrentDialogLikeReaded();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

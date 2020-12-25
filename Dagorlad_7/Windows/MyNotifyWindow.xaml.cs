@@ -34,10 +34,12 @@ namespace Dagorlad_7.Windows
     public partial class MyNotifyWindow : Window
     {
         public Window FromWindow;
-        public MyNotifyWindow(Window win)
+        public object LinkFocusObject;
+        public MyNotifyWindow(Window win,object _LinkFocusObject)
         {
             InitializeComponent();
             FromWindow = win;
+            LinkFocusObject = _LinkFocusObject;
             LoadEvents();
         }
         private async void LoadEvents()
@@ -155,6 +157,16 @@ namespace Dagorlad_7.Windows
                     FromWindow.WindowState = WindowState.Normal;
                     FromWindow.Activate();
                     FromWindow.Focus();
+                    if(FromWindow.GetType()==typeof(ChatWindow))
+                    {
+                        var chatwindow = FromWindow as ChatWindow;
+                        if (LinkFocusObject != null && LinkFocusObject.GetType() == typeof(ChatWindow.ChatsClass))
+                        {
+                            var client = LinkFocusObject as ChatWindow.ChatsClass;
+                            if (chatwindow.UsersListView != null)
+                                chatwindow.UsersListView.SelectedItem = client;
+                        }
+                    }
                 }
                 DispatcherControls.MyNotifyList.Remove((MyNotifyClass)item.DataContext);
                 HideIfZero();

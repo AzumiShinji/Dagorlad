@@ -25,6 +25,7 @@ namespace Dagorlad_7
                 {
                     if (OnClipboardChange != null)
                         OnClipboardChange(format, data);
+                    else Logger.Write(Logger.TypeLogs.clipboard, "OnClipboardChange.OnClipboardChange is null");
                 }
                 catch (Exception ex) { Logger.Write(Logger.TypeLogs.clipboard, ex.ToString()); }
             };
@@ -50,6 +51,7 @@ namespace Dagorlad_7
             // start listening
             public static void Start()
             {
+                try { 
                 // we can only have one instance if this class
                 if (mInstance != null)
                     return;
@@ -64,11 +66,14 @@ namespace Dagorlad_7
                 }));
                 t.SetApartmentState(ApartmentState.STA); // give the [STAThread] attribute
                 t.Start();
+                }
+                catch (Exception ex) { Logger.Write(Logger.TypeLogs.clipboard, ex.ToString()); }
             }
 
             // stop listening (dispose form)
             public static void Stop()
             {
+                try { 
                 mInstance.Invoke(new MethodInvoker(() =>
                 {
                     ChangeClipboardChain(mInstance.Handle, nextClipboardViewer);
@@ -78,6 +83,8 @@ namespace Dagorlad_7
                 mInstance.Dispose();
 
                 mInstance = null;
+                }
+                catch (Exception ex) { Logger.Write(Logger.TypeLogs.clipboard, ex.ToString()); }
             }
 
             // on load: (hide this window)
@@ -161,6 +168,7 @@ namespace Dagorlad_7
 
                     if (OnClipboardChange != null)
                         OnClipboardChange((ClipboardFormat)format, data);
+                    else Logger.Write(Logger.TypeLogs.clipboard, "ClipChanged.OnClipboardChange is null");
                 }
                 catch (Exception ex) { Logger.Write(Logger.TypeLogs.clipboard, ex.ToString()); }
             }
