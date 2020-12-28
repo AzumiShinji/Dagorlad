@@ -304,6 +304,7 @@ namespace Dagorlad_7.Windows
                 RestartConnection();
             }
             MessageSendingGrid.IsEnabled = false;
+            HandeConnectButton.Visibility = Visibility.Visible;
             return false;
         }
         int reconnect_Timeout_sec = 0;
@@ -349,6 +350,7 @@ namespace Dagorlad_7.Windows
             {
                 if (Proxy != null)
                 {
+                    Console.WriteLine("Proxy:{0}", Proxy.State.ToString());
                     switch (Proxy.State)
                     {
                         case CommunicationState.Closed:
@@ -376,6 +378,10 @@ namespace Dagorlad_7.Windows
                         default:
                             break;
                     }
+                }
+                else
+                {
+                    Console.WriteLine("Proxy:{0}", "null");
                 }
             }
             catch (Exception ex)
@@ -810,6 +816,13 @@ namespace Dagorlad_7.Windows
         {
             ScrollDialogToEnd();
         }
+
+        private async void HandeConnectButton_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.Visibility = Visibility.Collapsed;
+            await RunConnection();
+        }
     }
     public class NullableContentToHidden : IValueConverter
     {
@@ -831,12 +844,12 @@ namespace Dagorlad_7.Windows
             var issticker = System.Convert.ToBoolean(value);
             if (issticker)
                 return Brushes.Transparent;
-            else return Application.Current.FindResource("Background.Inside.Blob");
+            else return Application.Current.Resources["Background.Inside.Blob"];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return Application.Current.FindResource("Background.Inside.Blob");
+            return null;
         }
     }
     public class FindHandlingLink : IValueConverter

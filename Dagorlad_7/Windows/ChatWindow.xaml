@@ -35,12 +35,21 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Grid Tag="InformationBlock" Grid.ColumnSpan="3" Grid.Row="0" VerticalAlignment="Stretch" Height="auto">
-            <Label x:Name="InformationBlockLabel" HorizontalContentAlignment="Center"
+        <Grid  Tag="InformationBlock" Grid.ColumnSpan="3" Grid.Row="0" VerticalAlignment="Stretch" Height="auto" Background="{DynamicResource Background.Highlight}">
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="InformationBlockLabel" HorizontalContentAlignment="Center"
                    HorizontalAlignment="Stretch" Height="auto"
                    FontSize="13" Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"
                    FontWeight="Medium"
-                   Foreground="{DynamicResource Foreground}" Background="{DynamicResource Background.Highlight}"/>
+                   Foreground="{DynamicResource Foreground}" />
+                <Button Content="Подключиться вручную" Template="{StaticResource ButtonStandart}" Click="HandeConnectButton_Click"
+                    x:Name="HandeConnectButton" Visibility="Collapsed"
+                    Grid.Column="1" Foreground="{DynamicResource Foreground}"/>
+            </Grid>
         </Grid>
         <Grid x:Name="AdditionalBlock" Grid.Column="2" Grid.Row="1" Background="{DynamicResource Background.Outside}"
               VerticalAlignment="Stretch" Height="38">
