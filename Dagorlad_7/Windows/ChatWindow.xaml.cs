@@ -779,6 +779,8 @@ namespace Dagorlad_7.Windows
                             {
                                 foreach (var inner in Directory.GetFiles(sticker_directory.First(), "*.*", SearchOption.AllDirectories))
                                 {
+                                    var ext = System.IO.Path.GetExtension(inner);
+                                    if (ext != ".jpg" && ext != ".gif" && ext != ".png") continue;
                                     if (obj.items.Where(x => x.link == inner).Count() == 0)
                                     {
                                         var wc = new WebClient();
