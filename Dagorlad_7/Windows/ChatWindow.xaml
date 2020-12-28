@@ -46,9 +46,11 @@
                    FontSize="13" Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Content, Converter={StaticResource NullableContentToHidden}}"
                    FontWeight="Medium"
                    Foreground="{DynamicResource Foreground}" />
-                <Button Content="Подключиться вручную" Template="{StaticResource ButtonStandart}" Click="HandeConnectButton_Click"
+                <Button Template="{StaticResource ButtonStandart}" Click="HandeConnectButton_Click"
                     x:Name="HandeConnectButton" Visibility="Collapsed"
-                    Grid.Column="1" Foreground="{DynamicResource Foreground}"/>
+                    Grid.Column="1" Foreground="{DynamicResource Foreground}">
+                    <TextBlock Text="Подключиться" TextDecorations="Underline"/>
+                </Button>
             </Grid>
         </Grid>
         <Grid x:Name="AdditionalBlock" Grid.Column="2" Grid.Row="1" Background="{DynamicResource Background.Outside}"
@@ -168,7 +170,7 @@
                                        FontSize="14" Foreground="{DynamicResource Foreground}" VerticalAlignment="Center"/>
                             </Grid>
                             <TextBlock Grid.Column="1" Grid.Row="1" TextTrimming="CharacterEllipsis" x:Name="LastMessageTextBlock"
-                                       HorizontalAlignment="Left" Width="{Binding ActualWidth,ElementName=Border}" MaxWidth="220"
+                                       HorizontalAlignment="Left" Width="{Binding ActualWidth,ElementName=Border}" MaxWidth="220" Height="16"
                                        FontSize="11" Foreground="{DynamicResource Foreground.History}"
                                        Text="{Binding user.LastMessage}"/>
                             <Border Grid.Column="2" x:Name="UnreadedCountBorder" Grid.RowSpan="2" HorizontalAlignment="Right"
@@ -192,12 +194,13 @@
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemDialog}">
                     <EventSetter Event="Loaded" Handler="DialogListViewItem_Loaded"/>
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
                 </Style>
             </ListBox.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Width="{Binding ActualWidth,ElementName=DialogListView,Converter={StaticResource WidthFixedListViewConverter},ConverterParameter=27}"
-                        Background="{Binding IsSticker,Converter={StaticResource TransparentIfSticker}}" CornerRadius="5,5,0,5" Padding="10,10,10,10" MaxWidth="300">
+                        Background="{Binding IsSticker,Converter={StaticResource TransparentIfSticker}}" CornerRadius="5,5,0,5" Padding="10,10,10,10" MaxWidth="350">
                         <Grid>
                             <Grid.Style>
                                 <Style TargetType="Grid">
@@ -304,16 +307,17 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="StickersPopupChooseButton" Height="40" Width="40"
-                    Template="{StaticResource ButtonStandart}"
+                    Template="{StaticResource ButtonStandart}" VerticalAlignment="Bottom"
                     Content="{StaticResource Canvas_Stickers}" Grid.Column="0" Click="StickersPopupChooseButton_Click" Grid.Row="1"/>
             <Button x:Name="AttachmentSendButton" Height="40" Width="40"
-                    Template="{StaticResource ButtonStandart}"
+                    Template="{StaticResource ButtonStandart}" VerticalAlignment="Bottom"
                     Content="{StaticResource Canvas_Attachments}" Grid.Column="1" Click="AttachmentSendButton_Click" Grid.Row="1"/>
-            <TextBox x:Name="MessageTextBox" Grid.Column="2" Height="40" VerticalContentAlignment="Center"
+            <TextBox x:Name="MessageTextBox" Grid.Column="2" Height="auto" MaxHeight="300" VerticalContentAlignment="Center"
+                     AcceptsReturn="True" PreviewKeyDown="MessageTextBox_PreviewKeyDown"
                      SelectionBrush="{DynamicResource Background.Highlight}"
                      PreviewKeyUp="MessageTextBox_PreviewKeyUp" Grid.Row="1" GotFocus="MessageTextBox_GotFocus"/>
             <Button x:Name="SendMessageButton" Height="40" Width="40"
-                    Template="{StaticResource ButtonStandart}"
+                    Template="{StaticResource ButtonStandart}" VerticalAlignment="Bottom"
                     Content="{StaticResource Canvas_Send}" Grid.Column="3" Click="SendMessageButton_Click" Grid.Row="1"/>
         </Grid>
         <Canvas>

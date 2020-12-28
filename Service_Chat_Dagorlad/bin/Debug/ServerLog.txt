@@ -237,3 +237,78 @@ OS: Microsoft Windows NT 6.2.9200.0
 UserDomainName: KRISLECHY
 Version Application: v.0.0.7667.23420, [28.12.2020 13:00:40] (Debug)
 
+[28.12.2020 15:14:10]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7667.27417, [28.12.2020 15:13:54] (Debug)
+
+[28.12.2020 15:15:20]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:15:20]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:16:32]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:16:32]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:19:13]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:19:13]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:21:16]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:21:16]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:21:53]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:21:53]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:23:21]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:23:21]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:29:09]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:29:09]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:29:31]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:29:31]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:32:58]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:32:58]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:35:04]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:35:04]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:37:12]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:37:12]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:37:28]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:37:28]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:40:58]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:40:58]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:41:55]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:41:55]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:42:41]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:42:41]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:44:06]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:44:06]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:47:29]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:47:29]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:48:13]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:48:13]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:49:25]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:49:25]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:50:33]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:50:33]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:51:40]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:51:40]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:53:07]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:53:07]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:54:31]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:54:31]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:55:43]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:55:43]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:56:45]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:56:45]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:57:13]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:57:13]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:57:56]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:57:56]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:59:07]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:59:07]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 15:59:47]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 15:59:47]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 16:00:24]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 16:00:24]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 16:04:13]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 16:04:13]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 16:07:43]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 16:07:43]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 16:09:18]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 16:09:18]: Client "BalandinAI@fsfk.local" has been updated.
+[28.12.2020 16:15:48]: Client is already exist: "BalandinAI@fsfk.local"
+[28.12.2020 16:15:48]: Client "BalandinAI@fsfk.local" has been updated.

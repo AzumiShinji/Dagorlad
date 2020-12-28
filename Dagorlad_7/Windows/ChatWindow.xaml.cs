@@ -460,35 +460,21 @@ namespace Dagorlad_7.Windows
                 }
             }
         }
-        bool IsTyping = false;
+
         private async void MessageTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
         {
+
+ 
             try
             {
-                if (IsTyping == false)
-                {
-                    var s = Task.Factory.StartNew(new Action(async () =>
-                      {
-                          if (SelectedUser != null && SelectedUser.Email != common_chat && Proxy != null)
-                          {
-                              await HandleChatClient();
-                              if (Proxy != null)
-                              {
-                                  IsTyping = true;
-                                  if (Proxy != null)
-                                      await Proxy.IsWritingAsync(Me);
-                                  await Task.Delay(1000);
-                                  if (Proxy != null && Proxy.State == CommunicationState.Opened)
-                                      await Proxy.IsWritingAsync(null);
-                                  IsTyping = false;
-                              }
-                          }
-                      }));
-                }
-                if (e.Key == Key.Enter)
-                {
-                    await SendText();
-                }
+
+                //if (e.Key == Key.Enter)
+                //{
+
+                //    return;
+                //}
+
+
             }
             catch (Exception ex)
             {
@@ -496,6 +482,48 @@ namespace Dagorlad_7.Windows
             }
         }
 
+        bool IsTyping = false;
+        private async void MessageTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (IsTyping == false)
+            {
+                var s = Task.Factory.StartNew(new Action(async () =>
+                {
+                    if (SelectedUser != null && SelectedUser.Email != common_chat && Proxy != null)
+                    {
+                        await HandleChatClient();
+                        if (Proxy != null)
+                        {
+                            IsTyping = true;
+                            if (Proxy != null)
+                                await Proxy.IsWritingAsync(Me);
+                            await Task.Delay(1000);
+                            if (Proxy != null && Proxy.State == CommunicationState.Opened)
+                                await Proxy.IsWritingAsync(null);
+                            IsTyping = false;
+                        }
+                    }
+                }));
+            }
+            var textbox = (TextBox)sender;
+            if (((Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift) && e.Key == Key.Enter)
+            {
+                Console.WriteLine("Shift+Enter");
+                textbox.CaretIndex = textbox.Text.Length;
+                return;
+            }
+            switch (e.Key)
+            {
+                default:
+                    e.Handled = false;
+                    break;
+                case (Key.Enter):
+                    Console.WriteLine("Enter");
+                    e.Handled = true;
+                    await SendText();
+                    break;
+            }
+        }
         private ScrollViewer FindVisualChild(DependencyObject obj)
         {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)

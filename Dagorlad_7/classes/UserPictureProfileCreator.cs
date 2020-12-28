@@ -52,8 +52,10 @@ namespace Dagorlad_7.classes
                 // Dibuja el Texto:
                 g.DrawString(Texto, Fuente, new System.Drawing.SolidBrush(Foreground), new System.Drawing.Point(posX, posY));
 
-                //christmas hat             
-                g.DrawImage(ConvertFromBitmapImageToBitmapData(new Uri(@"pack://application:,,,/Dagorlad;component/images/hat_40.png", UriKind.Absolute)), new Point(0,0));
+                //christmas hat  
+                var dt_now = DateTime.Now;
+                if ((dt_now.Month == 12 && dt_now.Day >= 20) || (dt_now.Month == 1 && dt_now.Day <= 13))
+                    g.DrawImage(ConvertFromBitmapImageToBitmapData(new Uri(@"pack://application:,,,/Dagorlad;component/images/hat_40.png", UriKind.Absolute)), new Point(0, 0));
             }
             
             return Canvas;
