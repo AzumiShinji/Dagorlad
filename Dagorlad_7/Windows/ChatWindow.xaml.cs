@@ -77,6 +77,7 @@ namespace Dagorlad_7.Windows
             StickersPopup.DataContext = list_stickers;
             RunConnection().GetAwaiter();
             DataContext = ItemsOfChat;
+            DispatcherControls.SetBackgroundDialog(MySettings.Settings.IsTransparentBackgroundDialogOfChatWindow);
         }
 
         public void IsWritingCallback(SVC.Client client)
@@ -350,7 +351,6 @@ namespace Dagorlad_7.Windows
             {
                 if (Proxy != null)
                 {
-                    Console.WriteLine("Proxy:{0}", Proxy.State.ToString());
                     switch (Proxy.State)
                     {
                         case CommunicationState.Closed:
@@ -378,10 +378,6 @@ namespace Dagorlad_7.Windows
                         default:
                             break;
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Proxy:{0}", "null");
                 }
             }
             catch (Exception ex)
@@ -422,8 +418,8 @@ namespace Dagorlad_7.Windows
                     new Action(delegate ()
                     {
                         MessageTextBox.Focus();
+                        ScrollDialogToEnd();
                     }));
-                    ScrollDialogToEnd();
                 }
             }
         }
@@ -461,27 +457,6 @@ namespace Dagorlad_7.Windows
             }
         }
 
-        private async void MessageTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
-        {
-
- 
-            try
-            {
-
-                //if (e.Key == Key.Enter)
-                //{
-
-                //    return;
-                //}
-
-
-            }
-            catch (Exception ex)
-            {
-                Logger.Write(Logger.TypeLogs.chat, ex.ToString());
-            }
-        }
-
         bool IsTyping = false;
         private async void MessageTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -508,7 +483,6 @@ namespace Dagorlad_7.Windows
             var textbox = (TextBox)sender;
             if (((Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift) && e.Key == Key.Enter)
             {
-                Console.WriteLine("Shift+Enter");
                 textbox.CaretIndex = textbox.Text.Length;
                 return;
             }
@@ -518,7 +492,6 @@ namespace Dagorlad_7.Windows
                     e.Handled = false;
                     break;
                 case (Key.Enter):
-                    Console.WriteLine("Enter");
                     e.Handled = true;
                     await SendText();
                     break;
@@ -836,6 +809,7 @@ namespace Dagorlad_7.Windows
             if (SelectedUser != null && !String.IsNullOrEmpty(SelectedUser.Email))
             {
                 PopupInfoAboutClient.DataContext = await DispatcherControls.FindEmployees(SelectedUser.Email);
+                InformationClientDateEnter.Text = String.Format("Время входа: {0}",SelectedUser.Time);
                 //VersionOfClientTextBox.Text = String.Format("Версия клиента:\n{0}",SelectedUser.VersionOfClient);
                 //   InformationAboutClientTextBox.Text = await DispatcherControls.GetClientInformation(SelectedUser.Email);
                 PopupInfoAboutClient.IsOpen = true;

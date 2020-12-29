@@ -66,6 +66,7 @@ namespace Dagorlad_7.Windows
             public bool IsRegGlobalHook = true;
             public string ClearingFolder { get; set; }
             public bool IsSearchOrganizations = true;
+            public bool IsTransparentBackgroundDialogOfChatWindow = false;
         }
         public MySettingsWindow()
         {
@@ -98,6 +99,7 @@ namespace Dagorlad_7.Windows
             }
             IsRegGlobalEventCheckBox.IsChecked = MySettings.Settings.IsRegGlobalHook;
             IsSearchOrganizationsCheckBox.IsChecked = MySettings.Settings.IsSearchOrganizations;
+            IsTransparentBackgroundDialogOfChatWindowCheckBox.IsChecked = MySettings.Settings.IsTransparentBackgroundDialogOfChatWindow;
             return Task.CompletedTask;
         }
         private async Task SaveSettings()
@@ -124,6 +126,7 @@ namespace Dagorlad_7.Windows
             }
             MySettings.Settings.IsRegGlobalHook = IsRegGlobalEventCheckBox.IsChecked.Value;
             MySettings.Settings.IsSearchOrganizations = IsSearchOrganizationsCheckBox.IsChecked.Value;
+            MySettings.Settings.IsTransparentBackgroundDialogOfChatWindow = IsTransparentBackgroundDialogOfChatWindowCheckBox.IsChecked.Value;
             await MySettings.Save();
         }
         private async void SaveButton_Click(object sender, RoutedEventArgs e)

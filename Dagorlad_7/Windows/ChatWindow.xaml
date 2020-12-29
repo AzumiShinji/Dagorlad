@@ -54,8 +54,9 @@
             </Grid>
         </Grid>
         <Grid x:Name="AdditionalBlock" Grid.Column="2" Grid.Row="1" Background="{DynamicResource Background.Outside}"
-              VerticalAlignment="Stretch" Height="38">
+              VerticalAlignment="Stretch" Height="42">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
@@ -84,6 +85,16 @@
                     <Border Background="{DynamicResource Background.HalfOutside}" Padding="10" CornerRadius="5" 
                             BorderThickness="3" BorderBrush="{DynamicResource Background.Inside.Blob}">
                         <Grid>
+                            <Grid.Resources>
+                                <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                                    <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
+                                    <Setter Property="Background" Value="{DynamicResource Background.HalfOutside}"/>
+                                    <Setter Property="SelectionBrush" Value="{DynamicResource Background.Highlight}"/>
+                                    <Setter Property="Margin" Value="0"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                    <Setter Property="IsReadOnly" Value="True"/>
+                                </Style>
+                            </Grid.Resources>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition/>
@@ -94,40 +105,19 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
+                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Image x:Name="InformationAboutClientImage" Stretch="None"/>
-                            <TextBox Foreground="{DynamicResource Foreground}"
-                                     Text="{Binding Code,StringFormat={}Код: {0}}"
-                                      Margin="0" Padding="5" Grid.Row="1" Background="{DynamicResource Background.HalfOutside}"
-                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                            <TextBox Foreground="{DynamicResource Foreground}"
-                                     Text="{Binding Email,StringFormat={}Email: {0}}"
-                                      Margin="0" Padding="5" Grid.Row="2" Background="{DynamicResource Background.HalfOutside}"
-                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                            <TextBox Foreground="{DynamicResource Foreground}"
-                                     Text="{Binding Name,StringFormat={}ФИО: {0}}"
-                                      Margin="0" Padding="5" Grid.Row="3" Background="{DynamicResource Background.HalfOutside}"
-                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                            <TextBox Foreground="{DynamicResource Foreground}"
-                                     Text="{Binding Direction,StringFormat={}Направление: {0}}"
-                                      Margin="0" Padding="5" Grid.Row="4" Background="{DynamicResource Background.HalfOutside}"
-                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                            <TextBox Foreground="{DynamicResource Foreground}"
-                                     Text="{Binding BirthDate,StringFormat={}День рождения: {0:dd MMMM}}" Language="RU"
-                                      Margin="0" Padding="5" Grid.Row="5" Background="{DynamicResource Background.HalfOutside}"
-                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                            <TextBox Foreground="{DynamicResource Foreground}"
-                                     Text="{Binding Phone,StringFormat={}Телефон: {0}}"
-                                      Margin="0" Padding="5" Grid.Row="6" Background="{DynamicResource Background.HalfOutside}"
-                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                            <TextBox Foreground="{DynamicResource Foreground}"
-                                     Text="{Binding Position,StringFormat={}Должность: {0}}"
-                                      Margin="0" Padding="5" Grid.Row="7" Background="{DynamicResource Background.HalfOutside}"
-                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                            <TextBox Foreground="{DynamicResource Foreground}"
-                                     Text="{Binding Rest,StringFormat={}Отпуска: {0}}"
-                                      Margin="0" Padding="5" Grid.Row="8" Background="{DynamicResource Background.HalfOutside}"
-                                     IsReadOnly="True" SelectionBrush="{DynamicResource Background.Highlight}"/>
+                            <TextBox Text="{Binding Code,StringFormat={}Код: {0}}" Grid.Row="1"/>
+                            <TextBox Text="{Binding Email,StringFormat={}Email: {0}}" Grid.Row="2"/>
+                            <TextBox Text="{Binding Name,StringFormat={}ФИО: {0}}" Grid.Row="3"/>
+                            <TextBox Text="{Binding Direction,StringFormat={}Направление: {0}}" Grid.Row="4"/>
+                            <TextBox Text="{Binding BirthDate,StringFormat={}День рождения: {0:dd MMMM}}" Language="RU" Grid.Row="5"/>
+                            <TextBox Text="{Binding Phone,StringFormat={}Телефон: {0}}" Grid.Row="6"/>
+                            <TextBox Text="{Binding Position,StringFormat={}Должность: {0}}" Grid.Row="7"/>
+                            <TextBox Text="{Binding Rest,StringFormat={}Отпуска: {0}}" Grid.Row="8"/>
+                            <TextBox x:Name="InformationClientDateEnter" FontWeight="Medium" FontSize="12"
+                                    Language="RU" Grid.Row="9"/>
                         </Grid>
                     </Border>
                 </Popup>
@@ -187,118 +177,123 @@
         </ListView>
         <GridSplitter Grid.Column="1" Width="1" HorizontalAlignment="Stretch" Grid.Row="1" Focusable="False"
                       Grid.RowSpan="4" Background="{DynamicResource Background.Outside}" BorderThickness="0"/>
-        <ListView x:Name="DialogListView" Grid.Column="2" Grid.Row="2" ItemsSource="{Binding msgs}"
+        <Grid Tag="DialogListViewGrid" Grid.Column="2" Grid.Row="2">
+            <Grid.Background>
+                <ImageBrush x:Name="BackgroundChatDialog" ImageSource="{x:Null}" TileMode="None" Stretch="UniformToFill" />
+            </Grid.Background>
+            <ListView x:Name="DialogListView" ItemsSource="{Binding msgs}"
                   PreviewMouseMove="DialogListView_PreviewMouseMove" VirtualizingPanel.ScrollUnit="Pixel"
                   Loaded="DialogListView_Loaded"
                   Background="Transparent" BorderThickness="0">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemDialog}">
-                    <EventSetter Event="Loaded" Handler="DialogListViewItem_Loaded"/>
-                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border Width="{Binding ActualWidth,ElementName=DialogListView,Converter={StaticResource WidthFixedListViewConverter},ConverterParameter=27}"
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemDialog}">
+                        <EventSetter Event="Loaded" Handler="DialogListViewItem_Loaded"/>
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="{Binding ActualWidth,ElementName=DialogListView,Converter={StaticResource WidthFixedListViewConverter},ConverterParameter=27}"
                         Background="{Binding IsSticker,Converter={StaticResource TransparentIfSticker}}" CornerRadius="5,5,0,5" Padding="10,10,10,10" MaxWidth="350">
-                        <Grid>
-                            <Grid.Style>
-                                <Style TargetType="Grid">
-                                    <Style.Triggers>
-                                        <EventTrigger RoutedEvent="Loaded">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <DoubleAnimation
+                            <Grid>
+                                <Grid.Style>
+                                    <Style TargetType="Grid">
+                                        <Style.Triggers>
+                                            <EventTrigger RoutedEvent="Loaded">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation
                              Storyboard.TargetProperty="Opacity"
                                  Duration="0:0:0.2"
                              From="0.0" To="1.0"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Grid.Style>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Foreground="{DynamicResource Foreground.History}" Padding="0" FontSize="10"
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Foreground="{DynamicResource Foreground.History}" Padding="0" FontSize="10"
                                    VerticalContentAlignment="Center" FontWeight="Medium"
                                    Content="{Binding SenderName}"/>
-                                <Label Grid.Column="1" Content="{Binding Time,StringFormat={}}" Language="RU" FontSize="8" Padding="0"
+                                    <Label Grid.Column="1" Content="{Binding Time,StringFormat={}}" Language="RU" FontSize="8" Padding="0"
                                      Background="Transparent" Foreground="{DynamicResource Foreground.History}"/>
-                            </Grid>
-                            <RichTextBox IsReadOnly="True" Grid.Row="1" Padding="0" BorderThickness="0" IsDocumentEnabled="True"
+                                </Grid>
+                                <RichTextBox IsReadOnly="True" Grid.Row="1" Padding="0" BorderThickness="0" IsDocumentEnabled="True"
                                      Visibility="{Binding Converter={StaticResource BooleanVisibilityConverter},ConverterParameter=text}" 
                                          Tag="{Binding RelativeSource={RelativeSource Self},Converter={StaticResource FindHandlingLink}}" Margin="0,5,0,0"
                                      Background="Transparent" Foreground="{DynamicResource Foreground}" SelectionBrush="{DynamicResource Background.Highlight}">
-                                <RichTextBox.Resources>
-                                    <Style TargetType="RichTextBox">
-                                        <Style.Resources>
-                                            <Style TargetType="Hyperlink">
-                                                <Setter Property="Foreground" Value="{DynamicResource Background.Highlight}"/>
-                                            </Style>
-                                        </Style.Resources>
-                                    </Style>
-                                </RichTextBox.Resources>
-                            </RichTextBox>
-                            <Image gif:ImageBehavior.AnimatedSource="{Binding LinkSticker,TargetNullValue={x:Null}}" Margin="5"
+                                    <RichTextBox.Resources>
+                                        <Style TargetType="RichTextBox">
+                                            <Style.Resources>
+                                                <Style TargetType="Hyperlink">
+                                                    <Setter Property="Foreground" Value="{DynamicResource Background.Highlight}"/>
+                                                </Style>
+                                            </Style.Resources>
+                                        </Style>
+                                    </RichTextBox.Resources>
+                                </RichTextBox>
+                                <Image gif:ImageBehavior.AnimatedSource="{Binding LinkSticker,TargetNullValue={x:Null}}" Margin="5"
                                    Stretch="None" MaxWidth="256" MaxHeight="192" gif:ImageBehavior.RepeatBehavior="Forever"
                                    Grid.Row="2" Visibility="{Binding Converter={StaticResource BooleanVisibilityConverter},ConverterParameter=sticker}"/>
-                            <ListView Grid.Row="3" ItemsSource="{Binding FileLinks}"
+                                <ListView Grid.Row="3" ItemsSource="{Binding FileLinks}"
                                       Background="Transparent" BorderThickness="0" SelectionMode="Single"
                                       Visibility="{Binding Converter={StaticResource BooleanVisibilityConverter},ConverterParameter=file}">
-                                <ListBox.ItemContainerStyle>
-                                    <Style TargetType="{x:Type ListBoxItem}">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="ListBoxItem">
-                                                    <Border Name="Border" Padding="2" SnapsToDevicePixels="true" Background="Transparent" Margin="0">
-                                                        <ContentPresenter/>
-                                                    </Border>
-                                                    <ControlTemplate.Triggers>
-                                                        <Trigger Property="IsSelected" Value="true">
-                                                            <Setter TargetName="Border" Property="Background" Value="Transparent"/>
-                                                        </Trigger>
-                                                    </ControlTemplate.Triggers>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </ListBox.ItemContainerStyle>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Button Grid.Column="1" Template="{StaticResource ButtonStandart}" Padding="0"
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListBoxItem}">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="ListBoxItem">
+                                                        <Border Name="Border" Padding="2" SnapsToDevicePixels="true" Background="Transparent" Margin="0">
+                                                            <ContentPresenter/>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsSelected" Value="true">
+                                                                <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Grid.Column="1" Template="{StaticResource ButtonStandart}" Padding="0"
                                                     Foreground="{DynamicResource Foreground.History}" VerticalContentAlignment="Center"
                                                 CommandParameter="{Binding Value}"  Click="OpenDownloadedFile_Click">
-                                            <Button.Content>
-                                                <Border Padding="5">
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="auto"/>
-                                                            <ColumnDefinition/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <ContentPresenter Content="{StaticResource Canvas_Attachments}" VerticalAlignment="Center"/>
-                                                        <TextBlock Grid.Column="1" Text="{Binding Key}" Padding="5,0,0,0" VerticalAlignment="Center"/>
-                                                    </Grid>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                                <Button.Content>
+                                                    <Border Padding="5">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="auto"/>
+                                                                <ColumnDefinition/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <ContentPresenter Content="{StaticResource Canvas_Attachments}" VerticalAlignment="Center"/>
+                                                            <TextBlock Grid.Column="1" Text="{Binding Key}" Padding="5,0,0,0" VerticalAlignment="Center"/>
+                                                        </Grid>
+                                                    </Border>
+                                                </Button.Content>
+                                            </Button>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
         <Grid x:Name="MessageSendingGrid" Grid.Row="3" Grid.Column="2" Background="{DynamicResource Background.Outside}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -315,7 +310,7 @@
             <TextBox x:Name="MessageTextBox" Grid.Column="2" Height="auto" MaxHeight="300" VerticalContentAlignment="Center"
                      AcceptsReturn="True" PreviewKeyDown="MessageTextBox_PreviewKeyDown"
                      SelectionBrush="{DynamicResource Background.Highlight}"
-                     PreviewKeyUp="MessageTextBox_PreviewKeyUp" Grid.Row="1" GotFocus="MessageTextBox_GotFocus"/>
+                     Grid.Row="1" GotFocus="MessageTextBox_GotFocus"/>
             <Button x:Name="SendMessageButton" Height="40" Width="40"
                     Template="{StaticResource ButtonStandart}" VerticalAlignment="Bottom"
                     Content="{StaticResource Canvas_Send}" Grid.Column="3" Click="SendMessageButton_Click" Grid.Row="1"/>

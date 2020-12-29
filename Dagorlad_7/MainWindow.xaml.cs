@@ -242,7 +242,8 @@ namespace Dagorlad_7
             {
                 ShowMiniMenu();
                 DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme,false);
-                    GlobalHookEventGrid.IsEnabled = MySettings.Settings.IsRegGlobalHook;
+                DispatcherControls.SetBackgroundDialog(MySettings.Settings.IsTransparentBackgroundDialogOfChatWindow);
+                GlobalHookEventGrid.IsEnabled = MySettings.Settings.IsRegGlobalHook;
                 if (MySettings.Settings.IsRegGlobalHook)
                     GlobalHook.StartHooking();
                 else GlobalHook.StopHooking();

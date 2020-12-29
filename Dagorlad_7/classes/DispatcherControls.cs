@@ -492,6 +492,40 @@ namespace Dagorlad_7.classes
                 );
             return result;
         }
+        public static void SetBackgroundDialog(bool IsTransparent)
+        {
+            ChatWindow chat = null;
+            foreach (var s in Application.Current.Windows)
+            {
+                if (s.GetType() == typeof(ChatWindow))
+                {
+                    chat = s as ChatWindow;
+                    break;
+                }
+            }
+            if (chat != null)
+            {
+                if (IsTransparent)
+                {
+                    chat.BackgroundChatDialog.ImageSource = null;
+                    return;
+                }
+                switch (MySettings.Settings.TypeColorScheme)
+                {
+                    case (TypeColorScheme.dark):
+                        {
+
+                            chat.BackgroundChatDialog.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Dagorlad;component/background/nautre_dark.jpg", UriKind.Absolute));
+                            break;
+                        }
+                    case (TypeColorScheme.light):
+                        {
+                            chat.BackgroundChatDialog.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Dagorlad;component/background/nature_light.jpg", UriKind.Absolute));
+                            break;
+                        }
+                }
+            }
+        }
     }
     class CursorPosition
     {

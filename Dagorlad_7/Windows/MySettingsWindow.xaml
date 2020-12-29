@@ -85,6 +85,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Label Content="Цветовая схема" Foreground="{DynamicResource Foreground}" HorizontalContentAlignment="Center"
                            FontSize="14" FontWeight="Medium" Grid.ColumnSpan="2"/>
@@ -92,6 +93,8 @@
                                  Foreground="{DynamicResource Foreground}" FontSize="14" FontWeight="Medium"/>
                     <RadioButton Grid.Column="1" Content="Светлая" GroupName="TypeScheme" Margin="10,0,0,0" x:Name="LightColorSchemeRadioButton" Grid.Row="1"
                                  Foreground="{DynamicResource Foreground}" FontSize="14" FontWeight="Medium"/>
+                    <CheckBox x:Name="IsTransparentBackgroundDialogOfChatWindowCheckBox" Grid.Row="2" Grid.ColumnSpan="2" IsChecked="False"
+                              Content="Фон без изображения" Foreground="{DynamicResource Foreground}" VerticalContentAlignment="Center"/>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
