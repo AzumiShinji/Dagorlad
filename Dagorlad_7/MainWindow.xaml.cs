@@ -55,6 +55,19 @@ namespace Dagorlad_7
             CheckingUpdateApplicationStart();
 #endif
         }
+        
+        private DispatcherTimer timerToRestartClipboardWatcher = new DispatcherTimer();
+        private void RestartClipboardMonitor_Start()
+        {
+            Logger.Write(Logger.TypeLogs.clipboard, "Started update, next update attempt in " + timerToUpdate.Interval.TotalSeconds + " minutes.");
+            timerToRestartClipboardWatcher.Interval = TimeSpan.FromSeconds(4);
+            timerToRestartClipboardWatcher.Tick += (q, e) =>
+            {
+                Logger.Write(Logger.TypeLogs.clipboard, "Clipboard Monitor has been Updated.");
+                InitClipboardMonitor();
+            };
+            timerToRestartClipboardWatcher.Start();
+        }
         private DispatcherTimer timerToUpdate = new DispatcherTimer();
         private void CheckingUpdateApplicationStart()
         {
@@ -76,7 +89,10 @@ namespace Dagorlad_7
                 MySettings.Settings.IsFirstTimeLanuched = false;
             }
             await MySettings.Save();
+
             InitClipboardMonitor();
+            RestartClipboardMonitor_Start();
+
             UpdateLabelAboutUpdate().GetAwaiter();
             if (!String.IsNullOrEmpty(MySettings.Settings.ClearingFolder))
                 FolderToBeClearedTextBlock.Text = MySettings.Settings.ClearingFolder;
@@ -104,11 +120,12 @@ namespace Dagorlad_7
         {
             try
             {
-                Clipboard.Clear();
+                ClipboardMonitor.Stop();
+                ClipboardMonitor.OnClipboardChange -= ClipboardMonitor_OnClipboardChange;
+                ClipboardMonitor.OnClipboardChange += ClipboardMonitor_OnClipboardChange;
+                ClipboardMonitor.Start();
             }
             catch (Exception ex) { Logger.Write(Logger.TypeLogs.clipboard, ex.ToString()); }
-            ClipboardMonitor.OnClipboardChange += new ClipboardMonitor.OnClipboardChangeEventHandler(ClipboardMonitor_OnClipboardChange);
-            ClipboardMonitor.Start();
         }
 
         bool IsAlreadyLaunched = false;

@@ -268,9 +268,10 @@ namespace Dagorlad_7.Windows
                                 Proxy.InnerDuplexChannel.Closed += new EventHandler(InnerDuplexChannel_Event);
                                 var result = await Proxy.ConnectAsync(Me);
                                 Logger.Write(Logger.TypeLogs.chat, "Result connection: " + result);
-                                if (!result)
+                                if (result != true)
                                 {
                                     RestartConnection();
+                                    MessageSendingGrid.IsEnabled = false;
                                     return false;
                                 }
                                 else
@@ -284,7 +285,7 @@ namespace Dagorlad_7.Windows
                         else
                         {
                             Logger.Write(Logger.TypeLogs.chat, "The login was registered under a different name!");
-                            DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "Не удалось присоединиться к чату, ошибка доступа.", TimeSpan.FromSeconds(10), this, TypeImageNotify.chat,null);
+                            DispatcherControls.NewMyNotifyWindow("Dagorlad - чат", "Не удалось присоединиться к чату, ошибка доступа.", TimeSpan.FromSeconds(10), this, TypeImageNotify.chat, null);
                         }
                     }
                     else

@@ -19,21 +19,22 @@ namespace Dagorlad_7
         public static void Start()
         {
             ClipboardWatcher.Start();
-            ClipboardWatcher.OnClipboardChange += (ClipboardFormat format, object data) =>
-            {
-                try
-                {
-                    if (OnClipboardChange != null)
-                        OnClipboardChange(format, data);
-                    else Logger.Write(Logger.TypeLogs.clipboard, "OnClipboardChange.OnClipboardChange is null");
-                }
-                catch (Exception ex) { Logger.Write(Logger.TypeLogs.clipboard, ex.ToString()); }
-            };
+            ClipboardWatcher.OnClipboardChange += Event_;
         }
-
+        private static void Event_(ClipboardFormat format, object data)
+        {
+            try
+            {
+                if (OnClipboardChange != null)
+                    OnClipboardChange(format, data);
+                else Logger.Write(Logger.TypeLogs.clipboard, "OnClipboardChange.OnClipboardChange is null");
+            }
+            catch (Exception ex) { Logger.Write(Logger.TypeLogs.clipboard, ex.ToString()); }
+        }
         public static void Stop()
         {
             OnClipboardChange = null;
+            ClipboardWatcher.OnClipboardChange -= Event_;
             ClipboardWatcher.Stop();
         }
 
@@ -73,16 +74,18 @@ namespace Dagorlad_7
             // stop listening (dispose form)
             public static void Stop()
             {
-                try { 
-                mInstance.Invoke(new MethodInvoker(() =>
+                if (mInstance == null) return;
+                try
                 {
-                    ChangeClipboardChain(mInstance.Handle, nextClipboardViewer);
-                }));
-                mInstance.Invoke(new MethodInvoker(mInstance.Close));
+                    mInstance.Invoke(new MethodInvoker(() =>
+                    {
+                        ChangeClipboardChain(mInstance.Handle, nextClipboardViewer);
+                    }));
+                    mInstance.Invoke(new MethodInvoker(mInstance.Close));
 
-                mInstance.Dispose();
+                    mInstance.Dispose();
 
-                mInstance = null;
+                    mInstance = null;
                 }
                 catch (Exception ex) { Logger.Write(Logger.TypeLogs.clipboard, ex.ToString()); }
             }
