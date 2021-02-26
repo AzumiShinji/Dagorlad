@@ -36,7 +36,33 @@
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{DynamicResource Foreground}"/>
+                <Setter Property="TextBlock.Foreground" Value="{DynamicResource Foreground}"/>
                 <Setter Property="Background" Value="{DynamicResource Background.MouseOver}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" TargetName="border" Value="{DynamicResource Background.Highlight}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{DynamicResource Foreground.Pressed}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" TargetName="border" Value="DarkGray"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="TextElement.FontWeight" Value="Medium"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="ButtonExit" TargetType="{x:Type ButtonBase}">
+        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Button.IsDefaulted" Value="True">
+                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{DynamicResource Foreground}"/>
+                <Setter Property="TextBlock.Foreground" Value="{DynamicResource Foreground}"/>
+                <Setter Property="Background" Value="Red"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="Background" TargetName="border" Value="{DynamicResource Background.Highlight}"/>
@@ -49,7 +75,6 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    
     <SolidColorBrush x:Key="Item.MouseOver.Background" Color="#353c43"/>
     <SolidColorBrush x:Key="Item.MouseOver.Border" Color="#a826A0Da"/>
     <SolidColorBrush x:Key="Item.SelectedInactive.Border" Color="#FFDADADA"/>

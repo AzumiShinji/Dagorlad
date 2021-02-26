@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dagorlad_7.Windows"
+        xmlns:pgs="clr-namespace:Dagorlad_7.Pages"
         mc:Ignorable="d"
         WindowStyle="None"
         Background="{DynamicResource Background.Outside}"
@@ -12,8 +13,7 @@
         ResizeMode="NoResize" Closing="Window_Closing" PreviewKeyUp="Window_PreviewKeyUp"
         Title="Смарт-меню" MaxHeight="700" MaxWidth="900">
     <Window.Resources>
-        <local:WidthFixedListViewConverter x:Key="WidthFixedListViewConverter"/>
-        <local:NullableContentToHidden x:Key="NullableContentToHidden"/>
+        <pgs:NullableContentToHidden x:Key="NullableContentToHidden"/>
         <local:ImageEditShowConverter x:Key="ImageEditShowConverter"/>
     </Window.Resources>
     <Grid Margin="0">
@@ -45,7 +45,7 @@
                       HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
         <Grid x:Name="SmartAnswersGrid" Background="{DynamicResource Background.Inside}" Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="0.3*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -68,17 +68,18 @@
                                 Template="{StaticResource ButtonStandart}" Click="SmartAnswers_NewItemAddButton_Click" Content="{StaticResource Canvas_Plus}"/>
                 </Grid>
                 <ListBox x:Name="SmartAnswersListBox" VirtualizingPanel.ScrollUnit="Pixel"
-                         Grid.Row="1" ItemsSource="{Binding}" MinWidth="200"
+                         Grid.Row="1" ItemsSource="{Binding}" Width="200"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      Background="Transparent" BorderThickness="0" SelectionMode="Single">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                             <EventSetter Event="Selected" Handler="SmartAnswersListBox_SelectedEvent"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         </Style>
                     </ListBox.ItemContainerStyle>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Grid x:Name="ControlMenuGrid" ToolTip="{Binding name}"
-                                Width="{Binding ActualWidth,ElementName=SmartAnswersListBox,Converter={StaticResource WidthFixedListViewConverter},ConverterParameter=27}">
+                            <Grid x:Name="ControlMenuGrid" ToolTip="{Binding name}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition Width="auto"/>
@@ -92,7 +93,7 @@
                                             <ColumnDefinition Width="auto"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="{Binding name}" Padding="5" VerticalAlignment="Center"
-                                       TextTrimming="WordEllipsis" 
+                                       TextTrimming="CharacterEllipsis" 
                                         TextWrapping="NoWrap" x:Name="TextBlockName"
                                        Foreground="{DynamicResource Foreground}"
                                        Background="Transparent" />
@@ -156,12 +157,17 @@
                                 Template="{StaticResource ButtonStandart}" Click="SmartAnswers_NewItemSubAddButton_Click" Content="{StaticResource Canvas_Plus}"/>
                 </Grid>
                 <ListBox x:Name="SmartAnswers_Items_ListBox" 
-                         VirtualizingPanel.ScrollUnit="Pixel" MinWidth="400"
+                         VirtualizingPanel.ScrollUnit="Pixel" Width="400"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      Grid.Row="1" Background="{DynamicResource Background.Inside}" BorderThickness="0" SelectionMode="Single">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Grid ToolTip="{Binding title}" x:Name="ControlMenuGrid"
-                                MaxHeight="70" Width="{Binding ActualWidth,ElementName=SmartAnswers_Items_ListBox,Converter={StaticResource WidthFixedListViewConverter},ConverterParameter=27}">
+                            <Grid ToolTip="{Binding title}" x:Name="ControlMenuGrid" MaxHeight="70">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition Width="auto"/>
@@ -173,7 +179,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Border Grid.Column="0" Height="auto">
                                     <TextBlock Text="{Binding title}" Foreground="{DynamicResource Foreground}"
-                                           VerticalAlignment="Center" TextWrapping="NoWrap" TextTrimming="WordEllipsis"
+                                           VerticalAlignment="Center" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"
                                        Padding="5" Background="Transparent" />
                                 </Border>
                                 <Grid Tag="MoveItem" Grid.Column="1">

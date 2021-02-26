@@ -40,11 +40,12 @@
                         <Setter Property="BorderThickness" Value="0,0,0,0"/>
                         <EventSetter Event="MouseEnter" Handler="ListViewItem_MouseEnter" />
                         <EventSetter Event="MouseLeave" Handler="ListViewItem_MouseLeave" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Width="{Binding ActualWidth,ElementName=NotifiesListView,Converter={StaticResource WidthFixedListViewConverter},ConverterParameter=0}">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="auto"/>

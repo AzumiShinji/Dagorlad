@@ -1,4 +1,5 @@
 ﻿using Dagorlad_7.classes;
+using Dagorlad_7.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -141,12 +143,12 @@ namespace Dagorlad_7.Windows
             await StartAutoCloseTemporaryNotifies(seconds);
         }
 
-        private void Grid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private async void Grid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var item = sender as Grid;
-            //var textbox = item.FindName("TextBoxText") as TextBox;
-            //var titlebox = item.FindName("TitleBoxText") as TextBox;
-            //if (textbox.IsFocused || titlebox.IsFocused) return;
+            var textbox = item.FindName("TextBoxText") as TextBlock;
+            var titlebox = item.FindName("TitleBoxText") as TextBlock;
+            if (textbox.IsFocused || titlebox.IsFocused) return;
             if (item != null)
             {
                 if (FromWindow != null)
@@ -157,18 +159,29 @@ namespace Dagorlad_7.Windows
                     FromWindow.WindowState = WindowState.Normal;
                     FromWindow.Activate();
                     FromWindow.Focus();
-                    if(FromWindow.GetType()==typeof(ChatWindow))
+                    if (FromWindow.GetType() == typeof(MainWindow))
                     {
-                        var chatwindow = FromWindow as ChatWindow;
-                        if (LinkFocusObject != null && LinkFocusObject.GetType() == typeof(ChatWindow.ChatsClass))
+                        var mw = FromWindow as MainWindow;
+                        if (LinkFocusObject != null && LinkFocusObject.GetType() == typeof(ChatPage.ChatsClass))
                         {
-                            var client = LinkFocusObject as ChatWindow.ChatsClass;
-                            if (chatwindow.UsersListView != null)
-                                chatwindow.UsersListView.SelectedItem = client;
+                            var client = LinkFocusObject as ChatPage.ChatsClass;
+                            mw.ChatButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                            while ((mw.MainFrame.Content as ChatPage) == null)
+                                await Task.Delay(50);
+                            if ((mw.MainFrame.Content as ChatPage) != null)
+                            {
+                                var chatpage = (mw.MainFrame.Content as ChatPage);
+                                chatpage.UsersListView.SelectedItem = client;
+                            }
+                        }
+                        if (LinkFocusObject != null && LinkFocusObject.GetType() == typeof(SearchOrganizationsPage))
+                        {
+                            mw.OrganizationButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
                         }
                     }
                 }
-                DispatcherControls.MyNotifyList.Remove((MyNotifyClass)item.DataContext);
+                if ((item.DataContext as MyNotifyClass) != null)
+                    DispatcherControls.MyNotifyList.Remove((MyNotifyClass)item.DataContext);
                 HideIfZero();
             }
         }

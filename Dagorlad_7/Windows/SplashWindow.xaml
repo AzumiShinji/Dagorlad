@@ -10,14 +10,14 @@
         WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight"
         WindowStyle="None"
         Topmost="True" >
-    <Grid Background="{DynamicResource Background.Inside}" Margin="-1">
+    <Grid Background="{DynamicResource Background.HalfOutside}" Margin="-1">
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid Margin="10">
-                <Image Width="64" Height="64" Source="/favicon.ico" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                <Image Width="64" Height="64" Source="/favicon.ico"/>
             </Grid>
             <Grid Grid.Row="1" Margin="5" HorizontalAlignment="Center">
                 <Grid.RowDefinitions>

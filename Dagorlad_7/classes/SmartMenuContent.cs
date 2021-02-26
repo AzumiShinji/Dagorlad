@@ -1,4 +1,5 @@
-﻿using Dagorlad_7.Windows;
+﻿using Dagorlad_7.Pages;
+using Dagorlad_7.Windows;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

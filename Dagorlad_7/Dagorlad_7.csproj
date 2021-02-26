@@ -52,8 +52,8 @@
     <Reference Include="HtmlAgilityPack, Version=1.11.29.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.11.29\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.9.0.0, Culture=neutral, PublicKeyToken=e25603a88b3aa7da, processorArchitecture=MSIL">
-      <HintPath>..\packages\TaskScheduler.2.9.0\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
+    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.9.1.0, Culture=neutral, PublicKeyToken=e25603a88b3aa7da, processorArchitecture=MSIL">
+      <HintPath>..\packages\TaskScheduler.2.9.1\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -91,6 +91,7 @@
     <Compile Include="classes\DispatcherControls.cs" />
     <Compile Include="classes\GlobalHook.cs" />
     <Compile Include="classes\Hash.cs" />
+    <Compile Include="classes\MySettings.cs" />
     <Compile Include="classes\Updater.cs" />
     <Compile Include="classes\UserPictureProfileCreator.cs" />
     <Compile Include="classes\Logger.cs" />
@@ -101,11 +102,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ChatPage.xaml.cs">
+      <DependentUpon>ChatPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SearchOrganizationsPage.xaml.cs">
+      <DependentUpon>SearchOrganizationsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UtilitiesPage.xaml.cs">
+      <DependentUpon>UtilitiesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AuthenticationWebServiceWindow.xaml.cs">
       <DependentUpon>AuthenticationWebServiceWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\ChatWindow.xaml.cs">
-      <DependentUpon>ChatWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MiniMenuWindow.xaml.cs">
       <DependentUpon>MiniMenuWindow.xaml</DependentUpon>
@@ -115,9 +125,6 @@
     </Compile>
     <Compile Include="Windows\MyNotifyWindow.xaml.cs">
       <DependentUpon>MyNotifyWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\MySettingsWindow.xaml.cs">
-      <DependentUpon>MySettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SmartMenuWindow.xaml.cs">
       <DependentUpon>SmartMenuWindow.xaml</DependentUpon>
@@ -137,6 +144,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\ChatPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SearchOrganizationsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UtilitiesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Canvases.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -149,10 +172,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ChatWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Windows\MiniMenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,10 +181,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MyNotifyWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\MySettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,9 +282,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="chat.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\sad_64.png" />

@@ -36,7 +36,6 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Styles\Styles.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\MainWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\MiniMenuWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\MyDialogWindow.g.cs
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\MySettingsWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\SmartMenuWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\SplashWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\App.g.cs
@@ -48,7 +47,6 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\MainWindow.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Styles\Canvases.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\MiniMenuWindow.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\MyDialogWindow.baml
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\MySettingsWindow.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\SmartMenuWindow.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\SplashWindow.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Dagorlad.g.resources
@@ -62,9 +60,15 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\MyNotifyWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\MyNotifyWindow.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\HtmlAgilityPack.xml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\WpfAnimatedGif.xml
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\ChatWindow.g.cs
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\ChatWindow.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Dagorlad_7.csproj.Fody.CopyLocal.cache
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\bin\Release\Microsoft.Win32.TaskScheduler.xml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\AuthenticationWebServiceWindow.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Windows\AuthenticationWebServiceWindow.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Pages\ChatPage.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Pages\SearchOrganizationsPage.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Pages\SettingsPage.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Pages\UtilitiesPage.g.cs
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Pages\ChatPage.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Pages\SearchOrganizationsPage.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Pages\SettingsPage.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Pages\UtilitiesPage.baml

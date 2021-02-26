@@ -4,193 +4,109 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dagorlad_7"
+        xmlns:cls="clr-namespace:Dagorlad_7.classes"
+        xmlns:pgs="clr-namespace:Dagorlad_7.Pages"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanResizeWithGrip" Closing="Window_Closing"
+        Closing="Window_Closing"
         Background="{DynamicResource Background.Inside}"
         Foreground="{DynamicResource Foreground}"
         Title="Dagorlad"
-        Width="600" Height="600"
-        MinHeight="600" MinWidth="500">
-    <Window.Resources>
-        <local:WidthFixedListViewConverter x:Key="WidthFixedListViewConverter"/>
-        <local:statusNameBrushConverter x:Key="statusNameBrushConverter"/>
-    </Window.Resources>
-    <Grid Margin="10">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>
-        <Grid Tag="Top" HorizontalAlignment="Right" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" HorizontalAlignment="Right">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Template="{StaticResource ButtonStandart}" Width="40" Height="40"
-                    Content="{StaticResource Canvas_Settings}" Click="SettingsButton_Click" ToolTip="Настройки"/>
-                <Button Grid.Column="1" Template="{StaticResource ButtonStandart}"
-                    Click="CloseApplicationButton_Click" Width="40" Height="40" 
-                    ToolTip="Выйти из приложения"
-                    Content="{StaticResource Canvas_Exit}"/>
-            </Grid>
-            <Grid Grid.Row="1" x:Name="GlobalHookEventGrid">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid Tag="ClearFolder" Grid.Row="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <Label Content="Очищать папку (Pause)" Foreground="{DynamicResource Foreground}" FontWeight="Medium" FontSize="14"/>
-                    <Button x:Name="FolderToBeClearedButton" Foreground="{DynamicResource Foreground}"
-                                Grid.Row="1" Click="FolderToBeClearedButton_Click"
-                            ToolTip="{Binding Text, ElementName=FolderToBeClearedTextBlock}"
-                                Template="{StaticResource ButtonStandart}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="/images/folder_16.png" Height="16" Width="16" Margin="0,0,5,0" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-                            <TextBlock Text="Выбрать папку" x:Name="FolderToBeClearedTextBlock" TextTrimming="CharacterEllipsis" MaxWidth="150" Grid.Column="1"/>
-                        </Grid>
-                    </Button>
-                </Grid>
-            </Grid>
+        Width="1000" Height="600"
+        MinHeight="600" MinWidth="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Tag="Menu" Background="{DynamicResource Background.HalfOutside}" Margin="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <Button CommandParameter="Organizations" Click="SelectPageClick_Button" Template="{StaticResource ButtonStandart}" x:Name="OrganizationButton">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter Content="{StaticResource Canvas_Organization}" Width="25" Height="25" Margin="0,0,5,0"/>
+                        <TextBlock Text="Поиск организаций" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+                </Button>
+                <Button Template="{StaticResource ButtonStandart}" CommandParameter="Chat" Click="SelectPageClick_Button" x:Name="ChatButton">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter Content="{StaticResource Canvas_Chat}" Width="25" Height="25" Margin="0,0,5,0"/>
+                        <TextBlock Text="Чат" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Border Grid.Column="2" CornerRadius="50" Width="16" Height="16" Background="OrangeRed" TextElement.Foreground="White" Margin="5,0,0,0" Padding="1">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Source={x:Static pgs:AllCountUnreadedClass.Instance},Path=AllCountUnreaded,UpdateSourceTrigger=PropertyChanged,Mode=OneWay}" Value="0">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Text="{Binding Source={x:Static pgs:AllCountUnreadedClass.Instance},Path=AllCountUnreaded,UpdateSourceTrigger=PropertyChanged,Mode=OneWay}" 
+                                       Margin="0,0,0.5,1.4"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </Button>
+                <Button CommandParameter="Utilities" Click="SelectPageClick_Button" Template="{StaticResource ButtonStandart}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static cls:MySettings.Settings},Path=IsRegGlobalHook,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter Content="{StaticResource Canvas_Utilities}" Width="25" Height="25" Margin="0,0,5,0"/>
+                        <TextBlock Text="Утилиты" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="1">
+                <Button Template="{StaticResource ButtonStandart}" Click="SelectPageClick_Button" CommandParameter="Settings">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter Content="{StaticResource Canvas_Settings}" Width="25" Height="25" Margin="0,0,5,0"/>
+                        <TextBlock Text="Настройки" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+                </Button>
+                <Button Template="{StaticResource ButtonExit}" Click="CloseApplicationButton_Click">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter Content="{StaticResource Canvas_Exit}" Width="25" Height="25" Margin="0,0,5,0"/>
+                        <TextBlock Text="Выход" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+                </Button>
+            </StackPanel>
         </Grid>
-        <Grid Tag="Organization" Margin="0" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid Tag="PanelOrganizationsControl" Margin="0,0,0,0" Grid.Row="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label x:Name="DateUpdateDataBaseOfOrganizationsLabel" Foreground="{DynamicResource Foreground}" 
-                   Margin="0,0,0,5"
-                   Padding="0" Grid.Row="0" FontWeight="Medium" FontSize="12" Language="RU" Content=""/>
-                <Grid Grid.Row="1" x:Name="SearchGrid" Margin="0,0,0,5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="SearchTextBox" SelectionBrush="{DynamicResource Background.Highlight}" PreviewKeyUp="SearchTextBox_PreviewKeyUp"
-                     Background="{DynamicResource Background.Inside.Blob}" VerticalContentAlignment="Center"/>
-                    <Button x:Name="SearchOrganizationFromListViewButton" Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="1"
-                        Click="SearchOrganizationFromListView_Click"
-                        Content="{StaticResource Canvas_Search}"/>
-                    <Button x:Name="Cancel_SearchOrganizationFromListView_Button" Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="2"
-                        Click="Cancel_SearchOrganizationFromListView_Click"
-                        Content="{StaticResource Canvas_Cancel}"/>
-                </Grid>
-            </Grid>
-            <ListView x:Name="OrganizationsListView" BorderBrush="{DynamicResource Background.Outside}" Grid.Row="1"
-                      Background="Transparent" VirtualizingPanel.ScrollUnit="Item" SelectionMode="Single">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Width="{Binding ActualWidth,ElementName=OrganizationsListView,Converter={StaticResource WidthFixedListViewConverter},ConverterParameter=31}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Border Grid.Row="0" Background="{Binding statusName,Converter={StaticResource statusNameBrushConverter}}" Padding="5">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding statusName}" Foreground="{DynamicResource Foreground}" 
-                                               FontWeight="Medium" FontSize="14"
-                                               HorizontalAlignment="Center"/>
-                                    <Label Grid.Column="1" x:Name="CopiedLabel" Foreground="{DynamicResource Foreground}" FontWeight="Medium"/>
-                                    <Button Grid.Column="2" Content="{DynamicResource Canvas_Copy}" Tag="{Binding ElementName=CopiedLabel}"
-                                            CommandParameter="{Binding}" Template="{StaticResource ButtonStandart}"
-                                            Click="CopyOrganizationInformation_Click"/>
-                                </Grid>
-                            </Border>
-                            <Grid Tag="Names" Grid.Row="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
-                                <TextBox Grid.Row="0"
-                                    IsReadOnly="True" Text="{Binding fullName}" TextWrapping="Wrap" Background="Transparent"
-                                         FontWeight="Medium" FontSize="14"
-                                         Foreground="{DynamicResource Foreground}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                                <TextBox Grid.Row="1"
-                                    IsReadOnly="True" Text="{Binding shortName,StringFormat={}Сокр. наименование: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         FontWeight="Normal" FontSize="12"
-                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                            </Grid>
-                            <Grid Grid.Row="2" Tag="Codes">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <TextBox Grid.Column="0" Grid.Row="0" IsReadOnly="True" Text="{Binding inn,StringFormat={}ИНН: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                                <TextBox Grid.Column="1" Grid.Row="0" IsReadOnly="True" Text="{Binding code,StringFormat={}Код по сводному реестру: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                                <TextBox Grid.Column="2" Grid.Row="0" IsReadOnly="True" Text="{Binding ogrn,StringFormat={}ОГРН: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                                <TextBox Grid.Column="0" Grid.Row="1" IsReadOnly="True" Text="{Binding kpp,StringFormat={}КПП: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                                <TextBox Grid.Column="1" Grid.Row="1" IsReadOnly="True" Text="{Binding okpoCode,StringFormat={}ОКПО: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                                <TextBox Grid.Column="2" Grid.Row="1" IsReadOnly="True" Text="{Binding pgmu,StringFormat={}ПГМУ: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                            </Grid>
-                            <Grid Grid.Row="3" Tag="AdditionalInformations">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <TextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" IsReadOnly="True" Text="{Binding fio,StringFormat={}Руководитель: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                                <TextBox Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" IsReadOnly="True" Text="{Binding recordNum,StringFormat={}Регистрационный номер: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-
-                                <TextBox Grid.Column="0" Grid.Row="1" IsReadOnly="True" Text="{Binding cityName,StringFormat={}Регион: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                                <TextBox Grid.Column="1" Grid.Row="1" IsReadOnly="True" Text="{Binding phone,StringFormat={}Телефон: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                                <TextBox Grid.Column="2" Grid.Row="1" IsReadOnly="True" Text="{Binding mail,StringFormat={}Почта: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-
-                                <TextBox Grid.Column="0" Grid.Row="2" IsReadOnly="True" Text="{Binding orfkCode,StringFormat={}Код УФК: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                                <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" IsReadOnly="True" Text="{Binding orfkName,StringFormat={}УФК: {0}}" TextWrapping="Wrap" Background="Transparent"
-                                         Foreground="{DynamicResource Foreground.History}" SelectionBrush="{DynamicResource Background.Highlight}"/>
-                            </Grid>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        <Grid Grid.Row="1">
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Navigating="MainFrame_Navigating" Panel.ZIndex="1"/>
         </Grid>
     </Grid>
 </Window>

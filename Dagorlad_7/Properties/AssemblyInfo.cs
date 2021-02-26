@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("{52101E9A-EC88-42C3-B34B-1D2F43E82ECF}")]
 [assembly: AssemblyCompany("krislechy")]
 [assembly: AssemblyProduct("Dagorlad")]
-[assembly: AssemblyCopyright("Copyright © krislechy 2020")]
+[assembly: AssemblyCopyright("Copyright © krislechy 2021")]
 [assembly: AssemblyTrademark("krislechy")]
 [assembly: AssemblyCulture("")]
 
@@ -54,6 +54,6 @@ using System.Windows;
 #if(DEBUG)
 [assembly: AssemblyVersion("0.0.*")]
 #else
-[assembly: AssemblyVersion("7.23.*")]
+[assembly: AssemblyVersion("7.100.*")]
 #endif
 //[assembly: AssemblyFileVersion("1.0.0.0")]

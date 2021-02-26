@@ -1,0 +1,32 @@
+﻿<Page x:Class="Dagorlad_7.Pages.UtilitiesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Dagorlad_7.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UtilitiesPage">
+    <Grid>
+        <Grid Tag="ClearFolder" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Очищать папку (Pause)" Foreground="{DynamicResource Foreground}" FontWeight="Medium" FontSize="14"/>
+            <Button x:Name="FolderToBeClearedButton" Foreground="{DynamicResource Foreground}"
+                                Grid.Row="1" Click="FolderToBeClearedButton_Click"
+                            ToolTip="{Binding Text, ElementName=FolderToBeClearedTextBlock}"
+                                Template="{StaticResource ButtonStandart}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/images/folder_16.png" Height="16" Width="16" Margin="0,0,5,0" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                    <TextBlock Text="Выбрать папку" x:Name="FolderToBeClearedTextBlock" TextTrimming="CharacterEllipsis" MaxWidth="150" Grid.Column="1"/>
+                </Grid>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

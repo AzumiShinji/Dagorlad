@@ -1,4 +1,5 @@
 ﻿using Dagorlad_7.classes;
+using Dagorlad_7.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

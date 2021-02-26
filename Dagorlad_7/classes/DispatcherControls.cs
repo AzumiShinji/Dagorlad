@@ -1,12 +1,15 @@
-﻿using Dagorlad_7.Windows;
+﻿using Dagorlad_7.Pages;
+using Dagorlad_7.Windows;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +36,42 @@ namespace Dagorlad_7.classes
         dark = 0,
         light = 1,
     }
-    class DispatcherControls
+
+    public sealed class BitmapImageClassBackgroundChatClass : INotifyPropertyChanged
+    {
+        private static readonly BitmapImageClassBackgroundChatClass instance = new BitmapImageClassBackgroundChatClass();
+        private BitmapImageClassBackgroundChatClass() { }
+        public static BitmapImageClassBackgroundChatClass Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        private BitmapImage _BitmapImage = null;
+        public BitmapImage BitmapImage
+        {
+            get { return this._BitmapImage; }
+
+            set
+            {
+                if (value != this._BitmapImage)
+                {
+                    this._BitmapImage = value;
+                    NotifyPropertyChanged("BitmapImage");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+    public class DispatcherControls
     {
 #if (DEBUG)
         public static string ConnectionString_RUNBP = @"Data Source=(LocalDB)\db11;Initial Catalog=runbp;Integrated Security=True;Connect Timeout=30;";
@@ -135,6 +173,28 @@ namespace Dagorlad_7.classes
             };
             cmc.BeginAnimation(Window.OpacityProperty, da);
         }
+        public static MiniMenuWindow minimenu;
+        public static void ShowMiniMenu()
+        {
+            if (MySettings.Settings.SmartMenuIsEnabled)
+            {
+                if (minimenu == null)
+                {
+                    minimenu = new MiniMenuWindow();
+                    minimenu.Show();
+                }
+            }
+            else
+            {
+                if (minimenu != null)
+                {
+                    minimenu.Closing -= (qq, ee) => { ee.Cancel = true; };
+                    minimenu.Closing += (qq, ee) => { ee.Cancel = false; };
+                    minimenu.Close();
+                    minimenu = null;
+                }
+            }
+        }
         public static System.Windows.Forms.NotifyIcon Install_Notify_Main;
         public static System.Windows.Forms.NotifyIcon Install_Notify_Dialog;
         public static void HideWindowToTaskMenu(Window win,string name)
@@ -146,20 +206,6 @@ namespace Dagorlad_7.classes
                 Install_Notify_Main.Text = Assembly.GetExecutingAssembly().GetName().Name;
                 Install_Notify_Main.Visible = true;
                 Install_Notify_Main.Click +=
-                    (object sender, EventArgs args) =>
-                    {
-                        win.Show();
-                        win.WindowState = WindowState.Normal;
-                        win.Activate();
-                    };
-            }
-            if (win.GetType() == typeof(ChatWindow))
-            {
-                Install_Notify_Dialog = new System.Windows.Forms.NotifyIcon();
-                Install_Notify_Dialog.Icon = Dagorlad_7.Properties.Resources.chat;
-                Install_Notify_Dialog.Text = Assembly.GetExecutingAssembly().GetName().Name + " - " + name;
-                Install_Notify_Dialog.Visible = true;
-                Install_Notify_Dialog.Click +=
                     (object sender, EventArgs args) =>
                     {
                         win.Show();
@@ -258,7 +304,7 @@ namespace Dagorlad_7.classes
         /// <param name="title">Title</param>
         /// <param name="text">Text</param>
         /// <param name="closeafterseconds">After what notify will be closed, TimeSpan</param>
-        /// <param name="win">Шnitiator window, NULL</param>
+        /// <param name="win">initiator window, NULL</param>
         /// <param name="image">TypeImageNotify</param>
         /// <param name="LinkFocusObject">Link to what should be focused, NULL</param>
         public static void NewMyNotifyWindow(string title, string text, TimeSpan closeafterseconds, Window win, object image,object LinkFocusObject)
@@ -492,38 +538,28 @@ namespace Dagorlad_7.classes
                 );
             return result;
         }
+
         public static void SetBackgroundDialog(bool IsTransparent)
         {
-            ChatWindow chat = null;
-            foreach (var s in Application.Current.Windows)
-            {
-                if (s.GetType() == typeof(ChatWindow))
-                {
-                    chat = s as ChatWindow;
-                    break;
-                }
-            }
-            if (chat != null)
-            {
-                if (IsTransparent)
-                {
-                    chat.BackgroundChatDialog.ImageSource = null;
-                    return;
-                }
-                switch (MySettings.Settings.TypeColorScheme)
-                {
-                    case (TypeColorScheme.dark):
-                        {
 
-                            chat.BackgroundChatDialog.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Dagorlad;component/background/nautre_dark.jpg", UriKind.Absolute));
-                            break;
-                        }
-                    case (TypeColorScheme.light):
-                        {
-                            chat.BackgroundChatDialog.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Dagorlad;component/background/nature_light.jpg", UriKind.Absolute));
-                            break;
-                        }
-                }
+            if (IsTransparent)
+            {
+                BitmapImageClassBackgroundChatClass.Instance.BitmapImage = null;
+                return;
+            }
+            switch (MySettings.Settings.TypeColorScheme)
+            {
+                case (TypeColorScheme.dark):
+                    {
+
+                        BitmapImageClassBackgroundChatClass.Instance.BitmapImage = new BitmapImage(new Uri("pack://application:,,,/Dagorlad;component/background/nautre_dark.jpg", UriKind.Absolute));
+                        break;
+                    }
+                case (TypeColorScheme.light):
+                    {
+                        BitmapImageClassBackgroundChatClass.Instance.BitmapImage = new BitmapImage(new Uri("pack://application:,,,/Dagorlad;component/background/nature_light.jpg", UriKind.Absolute));
+                        break;
+                    }
             }
         }
     }
