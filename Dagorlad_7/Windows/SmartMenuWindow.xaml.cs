@@ -329,6 +329,13 @@ namespace Dagorlad_7.Windows
                 return;
             }
         }
+
+        private void ListBoxItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var obj = (ListBoxItem)sender;
+            var btn = obj.FindChild<Button>("CopyContentSmartMenuButton");
+            btn.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        }
     }
     public class WidthFixedListViewConverter : IValueConverter
     {

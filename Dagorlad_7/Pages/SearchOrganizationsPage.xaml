@@ -17,26 +17,42 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Tag="PanelOrganizationsControl" Margin="0,0,0,0" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label x:Name="DateUpdateDataBaseOfOrganizationsLabel" Foreground="{DynamicResource Foreground}" 
-                   Margin="0,0,0,5"
+                   Margin="0,0,0,5" Grid.Column="0"
                    Padding="0" Grid.Row="0" FontWeight="Medium" FontSize="12" Language="RU" Content=""/>
-            <Grid Grid.Row="1" x:Name="SearchGrid" Margin="0,0,0,5">
+            <TextBlock Grid.Column="1" Margin="10,0,0,0">           
+                     <Hyperlink NavigateUri="http://webservice/org.aspx" RequestNavigate="Hyperlink_RequestNavigate"  Foreground="{StaticResource Background.Highlight}">
+                         <TextBlock>
+                             <Run Text="Открыть"/>
+                             <Run Text="поиск организаций" FontWeight="Medium"/>
+                             <Run Text="в Веб-сервисе (Черная база)"/>
+                         </TextBlock>
+                     </Hyperlink>
+            </TextBlock>
+            <Grid Grid.Row="1" x:Name="SearchGrid" Margin="0,0,0,5" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
+                <TextBlock Text="Поиск среди найденных" Foreground="{StaticResource Foreground}" FontSize="12"
+                           VerticalAlignment="Center" FontWeight="Medium" TextWrapping="Wrap" Width="80"/>
                 <TextBox x:Name="SearchTextBox" SelectionBrush="{DynamicResource Background.Highlight}" PreviewKeyUp="SearchTextBox_PreviewKeyUp"
-                     Background="{DynamicResource Background.Inside.Blob}" VerticalContentAlignment="Center"/>
-                <Button x:Name="SearchOrganizationFromListViewButton" Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="1"
-                        Click="SearchOrganizationFromListView_Click"
+                     Background="{DynamicResource Background.Inside.Blob}" VerticalContentAlignment="Center" Grid.Column="1"/>
+                <Button x:Name="SearchOrganizationFromListViewButton" Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="2"
+                        Click="SearchOrganizationFromListView_Click" ToolTip="Поиск"
                         Content="{StaticResource Canvas_Search}"/>
-                <Button x:Name="Cancel_SearchOrganizationFromListView_Button" Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="2"
-                        Click="Cancel_SearchOrganizationFromListView_Click"
+                <Button x:Name="Cancel_SearchOrganizationFromListView_Button" Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="3"
+                        Click="Cancel_SearchOrganizationFromListView_Click" ToolTip="Отменить поиск"
                         Content="{StaticResource Canvas_Cancel}"/>
             </Grid>
         </Grid>

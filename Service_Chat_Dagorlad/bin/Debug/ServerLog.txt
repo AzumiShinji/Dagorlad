@@ -840,3 +840,34 @@ Version Application: v.0.0.7727.30958, [26.02.2021 17:11:56] (Debug)
 
 [26.02.2021 17:17:53]: BalandinAI@fsfk.local - has been disconnected successfully.
 [26.02.2021 17:17:53]: Cannot be user for communication because it has been Aborted. 422, BalandinAI@fsfk.local
+[25.03.2021 10:11:10]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7754.18327, [25.03.2021 10:10:54] (Debug)
+
+[25.03.2021 10:11:41]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 10:11:41]: Client "BalandinAI@fsfk.local" has been updated.
+[25.03.2021 10:12:16]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 10:12:16]: Client "BalandinAI@fsfk.local" has been updated.
+[25.03.2021 10:14:16]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 10:14:16]: Client "BalandinAI@fsfk.local" has been updated.
+[25.03.2021 10:15:02]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 10:15:02]: Client "BalandinAI@fsfk.local" has been updated.
+[25.03.2021 10:20:59]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 10:20:59]: Client "BalandinAI@fsfk.local" has been updated.
+[25.03.2021 10:22:00]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 10:22:00]: Client "BalandinAI@fsfk.local" has been updated.
+[25.03.2021 10:23:37]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 10:23:37]: Client "BalandinAI@fsfk.local" has been updated.
+[25.03.2021 10:24:45]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 10:24:45]: Client "BalandinAI@fsfk.local" has been updated.
+[25.03.2021 10:25:27]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 10:25:27]: Client "BalandinAI@fsfk.local" has been updated.
+[25.03.2021 10:34:39]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 10:34:39]: Client "BalandinAI@fsfk.local" has been updated.
+[25.03.2021 10:40:54]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 10:40:54]: Client "BalandinAI@fsfk.local" has been updated.
+[25.03.2021 10:52:14]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 10:52:14]: Client "BalandinAI@fsfk.local" has been updated.

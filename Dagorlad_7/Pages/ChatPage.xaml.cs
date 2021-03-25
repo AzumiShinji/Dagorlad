@@ -335,6 +335,7 @@ namespace Dagorlad_7.Pages
                                 {
                                     InformationBlockLabel.Content = null;
                                     MessageSendingGrid.IsEnabled = true;
+                                    HandeConnectButton.Visibility = Visibility.Collapsed;
                                     return true;
                                 }
                             }

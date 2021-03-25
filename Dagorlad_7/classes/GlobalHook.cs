@@ -49,21 +49,22 @@ namespace Dagorlad_7.classes
                 int vkCode = Marshal.ReadInt32(lParam);
                 if(wParam==(IntPtr)WM_KEYUP)
                     KeysDown.Clear();
-                if(wParam==(IntPtr)WM_KEYDOWN)
+                if (wParam == (IntPtr)WM_KEYDOWN)
                 {
-                    //if(
-                    //    (KeysDown.Contains((int)Keys.LControlKey) || KeysDown.Contains((int)Keys.RControlKey)) && 
-                    //    (KeysDown.Contains((int)Keys.LShiftKey) || KeysDown.Contains((int)Keys.RShiftKey))
-                    //    )
-                    //{
-                        if (vkCode == (int)Keys.Pause)
-                        {
-                            DispatcherControls.ClearDirectory(MySettings.Settings.ClearingFolder);
-                            Console.WriteLine("ClearingFolder has been started");
-                            KeysDown.Clear();
-                        }
-                    //}
-                    //KeysDown.Add(vkCode);
+                    if (vkCode == (int)Keys.Pause)
+                    {
+                        DispatcherControls.ClearDirectory(MySettings.Settings.ClearingFolder);
+                        Console.WriteLine("ClearingFolder has been started");
+                        KeysDown.Clear();
+                    }
+                    KeysDown.Add(vkCode);
+                    if ((KeysDown.Contains((int)Keys.LWin) || KeysDown.Contains((int)Keys.RWin)) &&
+                     (KeysDown.Contains((int)Keys.LShiftKey) || KeysDown.Contains((int)Keys.RShiftKey)) && KeysDown.Contains((int)Keys.A))
+                    {
+                        Console.WriteLine("win shift a");
+                        DispatcherControls.ShowSmartMenu();
+                        KeysDown.Clear();
+                    }
                 }
             }
 

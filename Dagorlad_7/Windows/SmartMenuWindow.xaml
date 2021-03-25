@@ -31,7 +31,9 @@
                 </Grid.ColumnDefinitions>
                 <Label x:Name="HeaderLabel" Content="СМАРТ-МЕНЮ" Grid.Column="0" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Medium"
                    VerticalContentAlignment="Center" Foreground="{DynamicResource Foreground}"/>
-                <Label x:Name="TemporaryNumberOfHandlingLabel" Grid.Column="1" Visibility="{Binding Content,RelativeSource={RelativeSource Self},Converter={StaticResource NullableContentToHidden}}" 
+                <Label Content="(Win+Shift+A)" Grid.Column="0" HorizontalContentAlignment="Center" FontSize="8" Padding="0" Margin="0,-25,0,0"
+                   VerticalContentAlignment="Center" Foreground="{DynamicResource Foreground}"/>
+                <Label x:Name="TemporaryNumberOfHandlingLabel"  Grid.Column="2" Visibility="{Binding Content,RelativeSource={RelativeSource Self},Converter={StaticResource NullableContentToHidden}}" 
                        ContentStringFormat="{}Номер: {0}"
                        HorizontalContentAlignment="Center" FontSize="14" FontWeight="Medium"
                    VerticalContentAlignment="Center" Foreground="{DynamicResource Background.Highlight}"/>
@@ -163,6 +165,7 @@
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <EventSetter Event="MouseDoubleClick"  Handler="ListBoxItem_MouseDoubleClick"/>
                         </Style>
                     </ListBox.ItemContainerStyle>
                     <ListBox.ItemTemplate>
@@ -194,9 +197,9 @@
                                 </Grid>
                                 <Label Grid.Column="2" x:Name="CopiedLabel" Foreground="{DynamicResource Foreground}" FontWeight="Medium" VerticalContentAlignment="Center"/>
                                 <Button Grid.Column="3" Template="{StaticResource ButtonStandart}" ToolTip="Копировать содержание" 
-                                        Width="30" Height="30" Content="{DynamicResource Canvas_Copy}"
+                                        Width="30" Height="30" Content="{DynamicResource Canvas_Copy}" x:Name="CopyContentSmartMenuButton"
                                         Click="ControlContent_Click" CommandParameter="copy" Tag="{Binding ElementName=CopiedLabel}"/>
-                                <Button Grid.Column="4" Template="{StaticResource ButtonStandart}" 
+                                <Button Grid.Column="4" Template="{StaticResource ButtonStandart}"  x:Name="SmartAnswersShowPopup"
                                         Tag="{Binding ElementName=SmartAnswers_Items_ShowPopup}" Width="30" Height="30"
                                         ToolTip="Редактировать содержание" Click="ControlContent_Click" CommandParameter="show">
                                     <Image Source="{Binding text,Converter={StaticResource ImageEditShowConverter}}"
@@ -225,7 +228,7 @@
                                     </Button>
                                 </Grid>
                                 <Popup x:Name="SmartAnswers_Items_ShowPopup" StaysOpen="False" Focusable="True"
-                                       AllowsTransparency="True" Placement="MousePoint" PopupAnimation="Fade">
+                                       AllowsTransparency="True" PlacementTarget="{Binding ElementName=SmartAnswersShowPopup}" PopupAnimation="Fade">
                                     <Border MinHeight="400" MinWidth="500" Background="{DynamicResource Background.Inside}">
                                         <Grid>
                                             <Grid.RowDefinitions>

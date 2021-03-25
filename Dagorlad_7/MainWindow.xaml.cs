@@ -55,6 +55,9 @@ namespace Dagorlad_7
             CheckingUpdateApplicationStart();
 #endif
             organizationsPage = new Pages.SearchOrganizationsPage();
+            MainFrame.Content = organizationsPage;
+            PreviousButton = OrganizationButton;
+            OrganizationButton.IsEnabled = false;
             chatPage = new Pages.ChatPage();
         }
         
