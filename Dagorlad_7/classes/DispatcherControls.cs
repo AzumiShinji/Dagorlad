@@ -147,6 +147,12 @@ namespace Dagorlad_7.classes
                     var wnd = ((SmartMenuWindow)window);
                     if (wnd.IsLoaded)
                     {
+                        if (wnd.Visibility == Visibility.Visible)
+                        {
+                            wnd.Visibility = Visibility.Hidden;
+                            return;
+                        }
+                        else wnd.Visibility = Visibility.Visible;
                         if (wnd.IsActive)
                             return;
                         cmc = wnd;
