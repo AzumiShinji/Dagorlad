@@ -139,7 +139,9 @@ namespace Dagorlad_7.classes
         {
             bool IsExistWindow = false;
             SmartMenuWindow cmc = null;
+            MiniMenuWindow mm = null;
             foreach (var window in App.Current.Windows)
+            {
                 if (window.GetType() == typeof(SmartMenuWindow))
                 {
                     var wnd = ((SmartMenuWindow)window);
@@ -152,6 +154,9 @@ namespace Dagorlad_7.classes
                         break;
                     }
                 }
+                if (window.GetType() == typeof(MiniMenuWindow))
+                    mm = (MiniMenuWindow)window;
+            }
             if (!IsExistWindow)
             {
                 cmc = new SmartMenuWindow();
@@ -159,9 +164,11 @@ namespace Dagorlad_7.classes
             }
             cmc.Topmost = true;
             cmc.WindowStartupLocation = WindowStartupLocation.Manual;
-            Point mousePositionInApp = CursorPosition.GetCursorPosition();
-            cmc.Top = mousePositionInApp.Y;
-            cmc.Left = mousePositionInApp.X;
+            //Point mousePositionInApp = CursorPosition.GetCursorPosition();
+            //cmc.Top = mousePositionInApp.Y;
+            //cmc.Left = mousePositionInApp.X;
+            cmc.Top = mm.Top+mm.ActualHeight;
+            cmc.Left= mm.Left-cmc.ActualWidth;
             cmc.Opacity = 0;
             cmc.Show();
             await DispatcherControls.ChangeToStablePositionWindow(cmc);
