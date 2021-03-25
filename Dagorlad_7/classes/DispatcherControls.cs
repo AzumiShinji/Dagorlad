@@ -174,7 +174,7 @@ namespace Dagorlad_7.classes
             //cmc.Top = mousePositionInApp.Y;
             //cmc.Left = mousePositionInApp.X;
             cmc.Top = mm.Top+mm.ActualHeight;
-            cmc.Left= mm.Left-cmc.ActualWidth;
+            cmc.Left= mm.Left==0? mm.Left + mm.ActualWidth: mm.Left - cmc.ActualWidth;
             cmc.Opacity = 0;
             cmc.Show();
             await DispatcherControls.ChangeToStablePositionWindow(cmc);

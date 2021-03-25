@@ -898,3 +898,16 @@ Version Application: v.0.0.7754.29628, [25.03.2021 16:27:36] (Debug)
 [25.03.2021 16:29:57]: Client "BalandinAI@fsfk.local" has been updated.
 [25.03.2021 16:30:53]: Client is already exist: "BalandinAI@fsfk.local"
 [25.03.2021 16:30:53]: Client "BalandinAI@fsfk.local" has been updated.
+[25.03.2021 16:36:33]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0.7754.29891, [25.03.2021 16:36:22] (Debug)
+
+[25.03.2021 16:37:47]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 16:37:47]: Client "BalandinAI@fsfk.local" has been updated.
+[25.03.2021 16:38:27]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 16:38:28]: Client "BalandinAI@fsfk.local" has been updated.
+[25.03.2021 16:38:54]: Client is already exist: "BalandinAI@fsfk.local"
+[25.03.2021 16:38:54]: Client "BalandinAI@fsfk.local" has been updated.
