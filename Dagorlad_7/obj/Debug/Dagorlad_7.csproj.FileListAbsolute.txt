@@ -83,4 +83,5 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Pages\UtilitiesPage.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Pages\UtilitiesPage.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Pages\ChatPage.g.cs
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Pages\ChatPage.baml
-C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csprojAssemblyReference.cache
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Styles\CheckBox.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Debug\Dagorlad_7.csproj.AssemblyReference.cache

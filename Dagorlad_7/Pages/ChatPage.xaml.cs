@@ -707,7 +707,7 @@ namespace Dagorlad_7.Pages
                     catch (Exception ex)
                     {
                         Logger.Write(Logger.TypeLogs.transferfiles, ex.ToString());
-                        DispatcherControls.ShowMyDialog("Ошибка отправки файлов", ex.Message, MyDialogWindow.TypeMyDialog.Ok, Application.Current.MainWindow);
+                        DispatcherControls.ShowMyDialog(ex.Message, MyDialogWindow.TypeMyDialog.Ok, Application.Current.MainWindow);
                     }
                     break;
             }
@@ -792,7 +792,7 @@ namespace Dagorlad_7.Pages
                 }
                 StickersTabControl.SelectedIndex = 0;
             }
-            catch (Exception ex) { DispatcherControls.ShowMyDialog("Ошибка", ex.Message, MyDialogWindow.TypeMyDialog.Ok, Application.Current.MainWindow); }
+            catch (Exception ex) { DispatcherControls.ShowMyDialog(ex.Message, MyDialogWindow.TypeMyDialog.Ok, Application.Current.MainWindow); }
         }
 
         private async void StickersTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -831,7 +831,7 @@ namespace Dagorlad_7.Pages
                     }
                 }
             }
-            catch (Exception ex) { DispatcherControls.ShowMyDialog("Ошибка", ex.Message, MyDialogWindow.TypeMyDialog.Ok, Application.Current.MainWindow); }
+            catch (Exception ex) { DispatcherControls.ShowMyDialog(ex.Message, MyDialogWindow.TypeMyDialog.Ok, Application.Current.MainWindow); }
         }
 
         public Task<ImageSource> ByteToImage(byte[] imageData)
@@ -927,19 +927,21 @@ namespace Dagorlad_7.Pages
                 var content = rtb.DataContext as Message;
                 if (!String.IsNullOrEmpty(content.Content))
                 {
-                    if (content.Content.Contains("SD") || content.Content.Contains("IM"))
+                    var contentupper = content.Content.ToUpper();
+                    if (contentupper.Contains("SD") || contentupper.Contains("IM"))
                     {
                         var run = new Run();
                         var paragraph = new Paragraph();
                         var splitted = content.Content.Split(' ');
                         foreach (var s in splitted)
                         {
-                            if (s.Contains("SD") || s.Contains("IM") && s.Length >= 8)
+                            var perhabs_number = s.ToUpper();
+                            if (perhabs_number.StartsWith("SD") || perhabs_number.StartsWith("IM") && perhabs_number.Length >= 8)
                             {
                                 paragraph.Inlines.Add(run);
                                 run = new Run();
                                 //
-                                var number = s.Trim();
+                                var number = perhabs_number.Trim();
                                 var link = new Hyperlink();
                                 link.IsEnabled = true;
                                 link.Inlines.Add(number);

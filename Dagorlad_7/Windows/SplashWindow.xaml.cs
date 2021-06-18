@@ -11,7 +11,8 @@ namespace Dagorlad_7.Windows
         {
             InitializeComponent();
             AppNameLabel.Content = "DAGORLAD";
-            AppVersionLabel.Content = "v."+System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            AppVersionLabel.Content = string.Format("v.{0}.{1}",version.Major,version.Minor);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

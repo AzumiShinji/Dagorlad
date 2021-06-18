@@ -32,12 +32,11 @@ namespace Dagorlad_7.Windows
             YesNo=1,
         }
         TypeMyDialog _type;
-        public MyDialogWindow(string title,string text,TypeMyDialog type)
+        public MyDialogWindow(string text,TypeMyDialog type)
         {
             InitializeComponent();
             _type=type;
-            TitleLabel.Content = title;
-            this.Title = title;
+            this.Title = text;
             TextTextBox.Text = text;
             switch(type)
             {

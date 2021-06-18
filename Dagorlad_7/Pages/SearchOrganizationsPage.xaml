@@ -29,7 +29,7 @@
                    Margin="0,0,0,5" Grid.Column="0"
                    Padding="0" Grid.Row="0" FontWeight="Medium" FontSize="12" Language="RU" Content=""/>
             <TextBlock Grid.Column="1" Margin="10,0,0,0">           
-                     <Hyperlink NavigateUri="http://webservice/org.aspx" RequestNavigate="Hyperlink_RequestNavigate"  Foreground="{StaticResource Background.Highlight}">
+                     <Hyperlink NavigateUri="http://webservice/org.aspx" RequestNavigate="Hyperlink_RequestNavigate" Foreground="{StaticResource Foreground.Highlight}">
                          <TextBlock>
                              <Run Text="Открыть"/>
                              <Run Text="поиск организаций" FontWeight="Medium"/>
@@ -44,16 +44,18 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Поиск среди найденных" Foreground="{StaticResource Foreground}" FontSize="12"
+                <TextBlock Text="Поиск среди найденных" Foreground="{DynamicResource Foreground}" FontSize="12"
                            VerticalAlignment="Center" FontWeight="Medium" TextWrapping="Wrap" Width="80"/>
                 <TextBox x:Name="SearchTextBox" SelectionBrush="{DynamicResource Background.Highlight}" PreviewKeyUp="SearchTextBox_PreviewKeyUp"
                      Background="{DynamicResource Background.Inside.Blob}" VerticalContentAlignment="Center" Grid.Column="1"/>
                 <Button x:Name="SearchOrganizationFromListViewButton" Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="2"
-                        Click="SearchOrganizationFromListView_Click" ToolTip="Поиск"
-                        Content="{StaticResource Canvas_Search}"/>
+                        Click="SearchOrganizationFromListView_Click" ToolTip="Поиск">
+                    <ContentPresenter Content="{StaticResource Canvas_Search}"/>
+                </Button>
                 <Button x:Name="Cancel_SearchOrganizationFromListView_Button" Template="{StaticResource ButtonStandart}" Width="40" Height="40" Grid.Column="3"
-                        Click="Cancel_SearchOrganizationFromListView_Click" ToolTip="Отменить поиск"
-                        Content="{StaticResource Canvas_Cancel}"/>
+                        Click="Cancel_SearchOrganizationFromListView_Click" ToolTip="Отменить поиск">
+                    <ContentPresenter Content="{StaticResource Canvas_Cancel}"/>
+                </Button>
             </Grid>
         </Grid>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">

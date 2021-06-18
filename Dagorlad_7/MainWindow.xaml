@@ -25,7 +25,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Button CommandParameter="Organizations" Click="SelectPageClick_Button" Template="{StaticResource ButtonStandart}" x:Name="OrganizationButton">
+                <Button CommandParameter="Organizations" Click="SelectPageClick_Button" Template="{StaticResource ButtonStandart}" x:Name="OrganizationButton" Tag="Menu">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
@@ -35,7 +35,7 @@
                         <TextBlock Text="Поиск организаций" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     </Grid>
                 </Button>
-                <Button Template="{StaticResource ButtonStandart}" CommandParameter="Chat" Click="SelectPageClick_Button" x:Name="ChatButton">
+                <Button Template="{StaticResource ButtonStandart}" CommandParameter="Chat" Click="SelectPageClick_Button" x:Name="ChatButton" Tag="Menu">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
@@ -61,7 +61,7 @@
                         </Border>
                     </Grid>
                 </Button>
-                <Button CommandParameter="Utilities" Click="SelectPageClick_Button" Template="{StaticResource ButtonStandart}">
+                <Button CommandParameter="Utilities" Click="SelectPageClick_Button" Template="{StaticResource ButtonStandart}" Tag="Menu">
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                             <Setter Property="Visibility" Value="Collapsed"/>
@@ -83,7 +83,7 @@
                 </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1">
-                <Button Template="{StaticResource ButtonStandart}" Click="SelectPageClick_Button" CommandParameter="Settings">
+                <Button Template="{StaticResource ButtonStandart}" Click="SelectPageClick_Button" CommandParameter="Settings" Tag="Menu">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
@@ -95,12 +95,12 @@
                 </Button>
                 <Button Template="{StaticResource ButtonExit}" Click="CloseApplicationButton_Click">
                     <Grid>
-                        <Grid.ColumnDefinitions>
+                        <!--<Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <ContentPresenter Content="{StaticResource Canvas_Exit}" Width="25" Height="25" Margin="0,0,5,0"/>
-                        <TextBlock Text="Выход" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Grid.ColumnDefinitions>-->
+                        <ContentPresenter Content="{StaticResource Canvas_Exit}" Width="25" Height="25" Margin="0,0,0,0"/>
+                        <!--<TextBlock Text="" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
                     </Grid>
                 </Button>
             </StackPanel>

@@ -120,7 +120,7 @@ namespace Dagorlad_7.classes
                         break;
                     }
             }
-            return String.Format("v.{0}, [{1}] ({2})", version, dt, typebuild);
+            return String.Format("v.{0}.{1}, от {2} ({3})", version.Major,version.Minor, dt, typebuild);
         }
         public static Task ChangeToStablePositionWindow(Window win)
         {
@@ -137,15 +137,15 @@ namespace Dagorlad_7.classes
         }
         public static async void ShowSmartMenu()
         {
-            bool IsExistWindow = false;
             SmartMenuWindow cmc = null;
             MiniMenuWindow mm = null;
             foreach (var window in App.Current.Windows)
             {
+                if (window == null) continue;
                 if (window.GetType() == typeof(SmartMenuWindow))
                 {
                     var wnd = ((SmartMenuWindow)window);
-                    if (wnd.IsLoaded)
+                    if (wnd != null && wnd.IsLoaded)
                     {
                         if (wnd.Visibility == Visibility.Visible)
                         {
@@ -156,25 +156,36 @@ namespace Dagorlad_7.classes
                         if (wnd.IsActive)
                             return;
                         cmc = wnd;
-                        IsExistWindow = true;
                         break;
                     }
                 }
-                if (window.GetType() == typeof(MiniMenuWindow))
-                    mm = (MiniMenuWindow)window;
             }
-            if (!IsExistWindow)
+            foreach (var window in App.Current.Windows)
+            {
+                if (window == null) continue;
+                if (window.GetType() == typeof(MiniMenuWindow))
+                { 
+                    mm = (MiniMenuWindow)window;
+                    break;
+                }
+            }
+            if (cmc == null)
             {
                 cmc = new SmartMenuWindow();
                 cmc.TemporaryNumberOfHandlingLabel.Content = DispatcherControls.LastNumberOfHandling;
+            }
+            if (mm == null)
+            {
+                mm = new MiniMenuWindow();
+                mm.Show();
             }
             cmc.Topmost = true;
             cmc.WindowStartupLocation = WindowStartupLocation.Manual;
             //Point mousePositionInApp = CursorPosition.GetCursorPosition();
             //cmc.Top = mousePositionInApp.Y;
             //cmc.Left = mousePositionInApp.X;
-            cmc.Top = mm.Top+mm.ActualHeight;
-            cmc.Left= mm.Left==0? mm.Left + mm.ActualWidth: mm.Left - cmc.ActualWidth;
+            cmc.Top = mm.Top + mm.ActualHeight;
+            cmc.Left = mm.Left == 0 ? mm.Left + mm.ActualWidth : mm.Left - cmc.ActualWidth;
             cmc.Opacity = 0;
             cmc.Show();
             await DispatcherControls.ChangeToStablePositionWindow(cmc);
@@ -295,9 +306,9 @@ namespace Dagorlad_7.classes
             }
             catch (Exception ex){ Logger.Write(Logger.TypeLogs.main,ex.ToString()); return false; }
         }
-        public static MyDialogWindow.ResultMyDialog ShowMyDialog(string title,string text, MyDialogWindow.TypeMyDialog type,Window win)
+        public static MyDialogWindow.ResultMyDialog ShowMyDialog(string text, MyDialogWindow.TypeMyDialog type,Window win)
         {
-            var g = new MyDialogWindow(title,text,type);
+            var g = new MyDialogWindow(text,type);
             if(win != null && win.IsLoaded)
             g.Owner = win;
             var result = g.ShowDialog();
@@ -472,11 +483,13 @@ namespace Dagorlad_7.classes
                         Application.Current.Resources["Background.Outside"] = new SolidColorBrush(Colors.WhiteSmoke);
                         Application.Current.Resources["Background.HalfOutside"] = new SolidColorBrush(Colors.GhostWhite);
                         Application.Current.Resources["Background.Highlight"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#009687"));
-                        Application.Current.Resources["Background.Highlight.Color"] = (Color)ColorConverter.ConvertFromString("#009687");
-                        Application.Current.Resources["Background.MouseOver"] = new SolidColorBrush(Colors.Gray);
+                        Application.Current.Resources["Background.Highlight.Color"] = (Color)System.Windows.Media.ColorConverter.ConvertFromString("#009687");
+                        Application.Current.Resources["Foreground.Highlight"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#009687"));
+                        Application.Current.Resources["Background.MouseOver"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#80DEDADA"));
                         Application.Current.Resources["Foreground"] = new SolidColorBrush(Colors.Black);
                         Application.Current.Resources["Foreground.History"] = new SolidColorBrush(Colors.DimGray);
                         Application.Current.Resources["Foreground.Pressed"] = new SolidColorBrush(Colors.White);
+                        Application.Current.Resources["Button.Pressed"] = new SolidColorBrush(Colors.Transparent);
                         break;
                     }
                 case (TypeColorScheme.dark):
@@ -487,18 +500,22 @@ namespace Dagorlad_7.classes
                         Application.Current.Resources["Background.Outside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#282e33"));
                         Application.Current.Resources["Background.HalfOutside"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#20262b"));
                         Application.Current.Resources["Background.Highlight"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#009687"));
-                        Application.Current.Resources["Background.Highlight.Color"] = (Color)ColorConverter.ConvertFromString("#009687");
+                        Application.Current.Resources["Background.Highlight.Color"] = (Color)System.Windows.Media.ColorConverter.ConvertFromString("#009687");
+                        Application.Current.Resources["Foreground.Highlight"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#25dbca"));
                         Application.Current.Resources["Background.MouseOver"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#43474d"));
                         Application.Current.Resources["Foreground"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#f5f5f5"));
                         Application.Current.Resources["Foreground.History"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#8d939e"));
                         Application.Current.Resources["Foreground.Pressed"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#313b43"));
+                        Application.Current.Resources["Button.Pressed"] = (SolidColorBrush)(new BrushConverter().ConvertFrom("#3c474f"));
                         break;
                     }
             }
             var styles = new Uri("pack://application:,,,/Dagorlad;component/Styles/Styles.xaml", UriKind.RelativeOrAbsolute);
+            var checkbox = new Uri("pack://application:,,,/Dagorlad;component/Styles/CheckBox.xaml", UriKind.RelativeOrAbsolute);
             var canvas = new Uri("pack://application:,,,/Dagorlad;component/Styles/Canvases.xaml", UriKind.RelativeOrAbsolute);
             Application.Current.Resources.MergedDictionaries.Clear();
             Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = styles });
+            Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = checkbox });
             Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = canvas });
         }
         public static Task ClearDirectory(string dir)

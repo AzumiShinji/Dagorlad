@@ -35,7 +35,7 @@ namespace Dagorlad_7.Pages
         private void RestartClipboardMonitor_Start()
         {
             timerToRestartClipboardWatcher.Interval = TimeSpan.FromMinutes(10);
-            Logger.Write(Logger.TypeLogs.clipboard, "Started update, next update attempt in " + timerToRestartClipboardWatcher.Interval.TotalSeconds + " minutes.");
+            Logger.Write(Logger.TypeLogs.clipboard, "Started update, next update attempt in " + timerToRestartClipboardWatcher.Interval.Minutes + " minutes.");
             timerToRestartClipboardWatcher.Tick += (q, e) =>
             {
                 Logger.Write(Logger.TypeLogs.clipboard, "Clipboard Monitor has been Updated.");
@@ -289,12 +289,12 @@ namespace Dagorlad_7.Pages
                     if (str.ToLower() != "действующая")
                         return Brushes.OrangeRed;
             }
-            return (Brush)new BrushConverter().ConvertFromString("#FF3A6FD8");
+            return (Brush)new BrushConverter().ConvertFromString("#803A6FD8");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return (Brush)new BrushConverter().ConvertFromString("#FF3A6FD8");
+            return (Brush)new BrushConverter().ConvertFromString("#803A6FD8");
         }
     }
 }

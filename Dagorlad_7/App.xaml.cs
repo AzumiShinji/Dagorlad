@@ -74,7 +74,7 @@ namespace Dagorlad_7
                     var canvas = new Uri("pack://application:,,,/Dagorlad;component/Styles/Canvases.xaml", UriKind.RelativeOrAbsolute);
                     Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = styles });
                     Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = canvas });
-                    var g=DispatcherControls.ShowMyDialog(Assembly.GetEntryAssembly().GetName().Name + " уже запущен", "Разрешен запуск только одной копии приложения.",MyDialogWindow.TypeMyDialog.Ok,null);
+                    var g=DispatcherControls.ShowMyDialog("Разрешен запуск только одной копии приложения.",MyDialogWindow.TypeMyDialog.Ok,null);
                     if (g == MyDialogWindow.ResultMyDialog.Ok)
                     Process.GetCurrentProcess().Kill();
                 }
@@ -89,7 +89,7 @@ namespace Dagorlad_7
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             Logger.Write(Logger.TypeLogs.main, e.Exception.ToString());
-            DispatcherControls.ShowMyDialog("Необработанное исключение",e.Exception.Message,MyDialogWindow.TypeMyDialog.Ok,null);
+            DispatcherControls.ShowMyDialog(e.Exception.Message,MyDialogWindow.TypeMyDialog.Ok,null);
         }
     }
 }

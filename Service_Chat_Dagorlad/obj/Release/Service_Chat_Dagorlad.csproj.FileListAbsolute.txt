@@ -6,4 +6,4 @@ C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Release\Service_Chat_Dago
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Release\Service_Chat_Dagorlad.exe
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Release\Service_Chat_Dagorlad.pdb
 C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Release\Service_Chat_Dagorlad.g.resources
-C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Release\Service_Chat_Dagorlad.csprojAssemblyReference.cache
+C:\Main\Programs\VS\Dagorlad\Service_Chat_Dagorlad\obj\Release\Service_Chat_Dagorlad.csproj.AssemblyReference.cache

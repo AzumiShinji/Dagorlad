@@ -72,3 +72,5 @@ C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Pages\ChatPage.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Pages\SearchOrganizationsPage.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Pages\SettingsPage.baml
 C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Pages\UtilitiesPage.baml
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Dagorlad_7.csproj.AssemblyReference.cache
+C:\Main\Programs\VS\Dagorlad\Dagorlad_7\obj\Release\Styles\CheckBox.baml

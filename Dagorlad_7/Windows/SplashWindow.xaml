@@ -8,29 +8,35 @@
         Title="SplashWindow" ShowInTaskbar="False" 
         ResizeMode="NoResize" Closing="Window_Closing"
         WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight"
-        WindowStyle="None"
+        WindowStyle="None" AllowsTransparency="True" Background="{x:Null}"
         Topmost="True" >
-    <Grid Background="{DynamicResource Background.HalfOutside}" Margin="-1">
-        <Grid Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+    <Border BorderThickness="3" BorderBrush="{DynamicResource Background.Inside.Blob}" CornerRadius="3">
+        <Grid Background="{DynamicResource Background.HalfOutside}" Margin="-1">
             <Grid Margin="10">
-                <Image Width="64" Height="64" Source="/favicon.ico"/>
-            </Grid>
-            <Grid Grid.Row="1" Margin="5" HorizontalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" x:Name="AppNameLabel" Foreground="{DynamicResource Foreground.History}" 
+                <Grid Margin="10">
+                    <Grid.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.5"/>
+                    </Grid.Effect>
+                    <!--<Image Width="32" Height="32" Source="/favicon.ico"/>-->
+                    <ContentPresenter Content="{StaticResource Canvas_Logo}" Height="36" Width="36"/>
+                </Grid>
+                <Grid Grid.Row="1" Margin="5" HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" x:Name="AppNameLabel" Foreground="{DynamicResource Foreground.History}" 
                        HorizontalContentAlignment="Center"
-                       Content="%APPINFO%" FontWeight="Medium" FontSize="14"/>
-                <Label Grid.Row="1" x:Name="AppVersionLabel" Foreground="{DynamicResource Foreground.History}"
+                       Content="%APPINFO%" FontWeight="Medium" FontSize="12"/>
+                    <Label Grid.Row="1" x:Name="AppVersionLabel" Foreground="{DynamicResource Foreground.History}"
                        HorizontalContentAlignment="Center" Padding="0"
-                       Content="%APPVERSION" FontWeight="Medium" FontSize="8"/>
+                       Content="%APPVERSION" FontWeight="Medium" FontSize="10"/>
+                </Grid>
             </Grid>
         </Grid>
-    </Grid>
+    </Border>
 </Window>

@@ -6,6 +6,8 @@
     <SolidColorBrush x:Key="Background.Outside" Color="#282e33"/>
     <SolidColorBrush x:Key="Background.HalfOutside" Color="#20262b"/>
     <SolidColorBrush x:Key="Background.Highlight" Color="#009687"/>
+    <SolidColorBrush x:Key="Foreground.Highlight" Color="#25dbca"/>
+    <SolidColorBrush x:Key="Button.Pressed" Color="#3c474f"/>
     <Color x:Key="Background.Highlight.Color">#009687</Color>
     <SolidColorBrush x:Key="Background.MouseOver" Color="#43474d"/>
     <SolidColorBrush x:Key="Foreground" Color="#f5f5f5"/>
@@ -26,6 +28,12 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="5"/>
     </Style>
+    <Style TargetType="ToolTip">
+        <Setter Property="Background" Value="{StaticResource Background.HalfOutside}"/>
+        <Setter Property="Foreground" Value="{StaticResource Foreground}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="10"/>
+    </Style>
     <ControlTemplate x:Key="ButtonStandart" TargetType="{x:Type ButtonBase}">
         <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
             <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -40,15 +48,23 @@
                 <Setter Property="Background" Value="{DynamicResource Background.MouseOver}"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" TargetName="border" Value="{DynamicResource Background.Highlight}"/>
-                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{DynamicResource Foreground.Pressed}"/>
+                <Setter Property="Background" TargetName="border" Value="{DynamicResource Button.Pressed}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{DynamicResource Foreground.Highlight}"/>
+                <Setter Property="TextBlock.Foreground" Value="{DynamicResource Foreground.Highlight}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" TargetName="border" Value="DarkGray"/>
+                <Setter Property="Background" TargetName="border" Value="Transparent"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
-                <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="TextElement.FontWeight" Value="Medium"/>
+                <Setter Property="Foreground" Value="{DynamicResource Foreground.History}"/>
             </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Tag" Value="Menu"/>
+                    <Condition Property="IsEnabled" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" TargetName="border" Value="{DynamicResource Button.Pressed}"/>
+                <Setter Property="Foreground" Value="{DynamicResource Foreground.Highlight}"/>
+            </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
     <ControlTemplate x:Key="ButtonExit" TargetType="{x:Type ButtonBase}">
@@ -61,11 +77,11 @@
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{DynamicResource Foreground}"/>
-                <Setter Property="TextBlock.Foreground" Value="{DynamicResource Foreground}"/>
-                <Setter Property="Background" Value="Red"/>
+                <Setter Property="TextBlock.Foreground" Value="{DynamicResource Background.MouseOver}"/>
+                <Setter Property="TextBlock.Foreground" Value="OrangeRed"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" TargetName="border" Value="{DynamicResource Background.Highlight}"/>
+                <Setter Property="Background" TargetName="border" Value="{DynamicResource Button.Pressed}"/>
                 <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{DynamicResource Foreground.Pressed}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">

@@ -76,11 +76,19 @@ namespace Dagorlad_7.Pages
             }
             if (DarkColorSchemeRadioButton.IsChecked == true)
             {
-                MySettings.Settings.TypeColorScheme = TypeColorScheme.dark;
+                if (MySettings.Settings.TypeColorScheme != TypeColorScheme.dark)
+                {
+                    MySettings.Settings.TypeColorScheme = TypeColorScheme.dark;
+                    DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme, false);
+                }
             }
             else if (LightColorSchemeRadioButton.IsChecked == true)
             {
-                MySettings.Settings.TypeColorScheme = TypeColorScheme.light;
+                if (MySettings.Settings.TypeColorScheme != TypeColorScheme.light)
+                {
+                    MySettings.Settings.TypeColorScheme = TypeColorScheme.light;
+                    DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme, false);
+                }
             }
             MySettings.Settings.IsRegGlobalHook = IsRegGlobalEventCheckBox.IsChecked.Value;
             MySettings.Settings.IsSearchOrganizations = IsSearchOrganizationsCheckBox.IsChecked.Value;
@@ -89,13 +97,20 @@ namespace Dagorlad_7.Pages
         }
         private async void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            var btn = (Button)sender;
+            btn.IsEnabled = false;
             await SaveSettings();
             DispatcherControls.ShowMiniMenu();
-            DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme, false);
+            //DispatcherControls.SetSchemeColor(MySettings.Settings.TypeColorScheme, false);
             DispatcherControls.SetBackgroundDialog(MySettings.Settings.IsTransparentBackgroundDialogOfChatWindow);
             if (MySettings.Settings.IsRegGlobalHook)
                 GlobalHook.StartHooking();
             else GlobalHook.StopHooking();
+            var old_content = btn.Content;
+            btn.Content = "Сохранено";
+            await Task.Delay(2500);
+            btn.Content = old_content;
+            btn.IsEnabled = true;
         }
         private void OpenLogsFolder_Click(object sender, RoutedEventArgs e)
         {

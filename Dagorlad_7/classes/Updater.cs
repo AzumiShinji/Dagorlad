@@ -69,7 +69,7 @@ namespace Dagorlad_7.classes
             catch (Exception ex)
             {
                 Logger.Write(Logger.TypeLogs.updater,ex.ToString());
-                DispatcherControls.ShowMyDialog("Ошибка обновления",ex.ToString(),Windows.MyDialogWindow.TypeMyDialog.Ok,Application.Current.MainWindow);
+                DispatcherControls.ShowMyDialog(ex.ToString(),Windows.MyDialogWindow.TypeMyDialog.Ok,Application.Current.MainWindow);
             }
             return Task.CompletedTask;
         }

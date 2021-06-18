@@ -122,7 +122,7 @@
                 </Popup>
             </Grid>
         </Grid>
-        <ListView x:Name="UsersListView" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3"
+        <ListView x:Name="UsersListView" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" Margin="0,0,0,0"
                   Background="{DynamicResource Background.Outside}" BorderThickness="0" ItemsSource="{Binding Source={StaticResource src}}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
@@ -178,7 +178,8 @@
                       Grid.RowSpan="4" Background="{DynamicResource Background.Outside}" BorderThickness="0"/>
         <Grid Tag="DialogListViewGrid" Grid.Column="2" Grid.Row="2">
             <Grid.Background>
-                <ImageBrush x:Name="BackgroundChatDialog" ImageSource="{Binding Source={x:Static clss:BitmapImageClassBackgroundChatClass.Instance},Path=BitmapImage,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" 
+                <ImageBrush x:Name="BackgroundChatDialog"
+                            ImageSource="{Binding Source={x:Static clss:BitmapImageClassBackgroundChatClass.Instance},Path=BitmapImage,Mode=OneWay,UpdateSourceTrigger=PropertyChanged,TargetNullValue={x:Null}}" 
                             TileMode="None" Stretch="UniformToFill" />
             </Grid.Background>
             <ListView x:Name="DialogListView" ItemsSource="{Binding msgs}"

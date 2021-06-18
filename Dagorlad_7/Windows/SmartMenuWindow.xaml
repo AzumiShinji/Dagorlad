@@ -22,9 +22,15 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Grid.ColumnSpan="2" PreviewMouseDown="DragablePanel_PreviewMouseDown"
-                    x:Name="DragablePanel" Background="{DynamicResource Background.Outside}" Height="40" Margin="0">
-            <Grid HorizontalAlignment="Center">
+        <CheckBox Content="Закрепить" Foreground="{DynamicResource Foreground}" IsEnabled="True"
+                      x:Name="StaysOpenCheckBox" IsChecked="False" FontSize="13" FontWeight="Normal"
+                        Margin="10,0,0,0" Grid.Column="0" Panel.ZIndex="999"
+                      Checked="StaysOpenCheckBox_Checked" Unchecked="StaysOpenCheckBox_Unchecked"
+                        VerticalAlignment="Center"
+                      HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+        <Grid Grid.Row="0" Grid.Column="1" PreviewMouseDown="DragablePanel_PreviewMouseDown" HorizontalAlignment="Stretch"
+                    x:Name="DragablePanel" Background="{DynamicResource Background.Outside}" Height="40">
+            <Grid HorizontalAlignment="Center" Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -33,19 +39,13 @@
                    VerticalContentAlignment="Center" Foreground="{DynamicResource Foreground}"/>
                 <Label Content="(Win+Shift+A)" Grid.Column="0" HorizontalContentAlignment="Center" FontSize="8" Padding="0" Margin="0,-25,0,0"
                    VerticalContentAlignment="Center" Foreground="{DynamicResource Foreground}"/>
-                <Label x:Name="TemporaryNumberOfHandlingLabel"  Grid.Column="2" Visibility="{Binding Content,RelativeSource={RelativeSource Self},Converter={StaticResource NullableContentToHidden}}" 
-                       ContentStringFormat="{}Номер: {0}"
-                       HorizontalContentAlignment="Center" FontSize="14" FontWeight="Medium"
-                   VerticalContentAlignment="Center" Foreground="{DynamicResource Background.Highlight}"/>
             </Grid>
+            <Label x:Name="TemporaryNumberOfHandlingLabel"  Grid.Column="1" Visibility="{Binding Content,RelativeSource={RelativeSource Self},Converter={StaticResource NullableContentToHidden}}" 
+                       ContentStringFormat="{}Номер: {0}" HorizontalAlignment="Right"
+                       HorizontalContentAlignment="Center" FontSize="14" FontWeight="Medium"
+                   VerticalContentAlignment="Center" Foreground="{DynamicResource Foreground.Highlight}"/>
         </Grid>
-        <CheckBox Content="Закрепить окно" Foreground="{DynamicResource Foreground}" 
-                      x:Name="StaysOpenCheckBox" IsChecked="False" FontSize="14" FontWeight="Medium"
-                        Margin="10,0,0,0"
-                      Checked="StaysOpenCheckBox_Checked" Unchecked="StaysOpenCheckBox_Unchecked"
-                        VerticalAlignment="Center"
-                      HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-        <Grid x:Name="SmartAnswersGrid" Background="{DynamicResource Background.Inside}" Grid.Row="1">
+        <Grid x:Name="SmartAnswersGrid" Background="{DynamicResource Background.Inside}" Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*"/>
                 <ColumnDefinition/>
@@ -286,7 +286,7 @@
                 </ListBox>
             </Grid>
         </Grid>
-        <Button x:Name="WindowHideButton" Grid.Row="2" Height="40" FontSize="14" Foreground="{DynamicResource Foreground.History}"
+        <Button x:Name="WindowHideButton" Grid.Row="2" Height="40" FontSize="14" Grid.ColumnSpan="2" Foreground="{DynamicResource Foreground.History}"
                 Content="Закрыть" Click="WindowHideButton_Click" Template="{StaticResource ButtonStandart}"/>
     </Grid>
 </Window>

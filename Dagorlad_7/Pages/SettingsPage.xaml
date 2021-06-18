@@ -24,7 +24,32 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Image Source="/favicon.ico" Width="64" Height="64" Grid.Column="0" Margin="10"/>
+                <Grid Margin="10">
+                    <!--<Grid.Resources>
+                        <Storyboard x:Key="ani" Storyboard.TargetProperty="Effect.Direction">
+                            <DoubleAnimation RepeatBehavior="Forever" Timeline.DesiredFrameRate="20"
+                                                        Duration="0:0:3"
+                                                        From="360"
+                                                        To="0" >
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </Grid.Resources>
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard Storyboard="{StaticResource ani}"/>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>-->
+                    <Grid.Effect>
+                        <DropShadowEffect x:Name="dropEffect" BlurRadius="15" ShadowDepth="5" Opacity="1" Color="{StaticResource Background.Highlight.Color}"/>
+                    </Grid.Effect>
+                    <!--<Image Width="32" Height="32" Source="/favicon.ico"/>-->
+                    <ContentPresenter Content="{StaticResource Canvas_Logo}" Height="36" Width="36"/>
+                </Grid>
+                <!--<Image Source="/favicon.ico" Width="64" Height="64" Grid.Column="0" Margin="10"/>-->
                 <Grid  Grid.Column="1" VerticalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
