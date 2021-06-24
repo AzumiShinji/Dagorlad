@@ -1048,3 +1048,11 @@ Version Application: v.0.0.7839.20293, [18.06.2021 11:16:26] (Debug)
 [18.06.2021 16:07:21]: Client "BalandinAI@fsfk.local" has been updated.
 [18.06.2021 16:09:28]: Client is already exist: "BalandinAI@fsfk.local"
 [18.06.2021 16:09:28]: Client "BalandinAI@fsfk.local" has been updated.
+[24.06.2021 17:18:09]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0, от 18.06.2021 16:07:10 (Debug)
+
+[24.06.2021 17:25:14]: BalandinAI@fsfk.local - has been disconnected successfully.
