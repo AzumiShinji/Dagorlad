@@ -1056,3 +1056,10 @@ UserDomainName: KRISLECHY
 Version Application: v.0.0, от 18.06.2021 16:07:10 (Debug)
 
 [24.06.2021 17:25:14]: BalandinAI@fsfk.local - has been disconnected successfully.
+[25.06.2021 9:07:29]: "BalandinAI@fsfk.local" has been added to clients list.
+UserName: krislechy
+MachineName: KRISLECHY
+OS: Microsoft Windows NT 6.2.9200.0
+UserDomainName: KRISLECHY
+Version Application: v.0.0, от 25.06.2021 9:07:14 (Debug)
+

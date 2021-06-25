@@ -262,13 +262,12 @@
                                                      VerticalContentAlignment="Stretch"
                                                      AcceptsReturn="True"/>
                                             </Border>
-                                            <Border Grid.Row="2" Padding="10" CornerRadius="5" Margin="10,0,10,10"
-                                                    Background="{DynamicResource Background.HalfOutside}">
-                                                <TextBlock Padding="0" Margin="0" TextWrapping="Wrap"
-                                                       Foreground="{DynamicResource Foreground}">
-                                                        Здесь можно указать номер запроса в формате {N}, тогда при копировании он автоматически подставиться.
+                                            <Border Grid.Row="2" Padding="0" CornerRadius="5" Margin="10,0,10,10">
+                                                <TextBlock Padding="0" Margin="0" TextWrapping="Wrap" FontSize="12"
+                                                       Foreground="{DynamicResource Foreground.History}">
+                                                        Укажите формат {N} в тексте если хотите что бы номер запроса подставился при копировании из смарт-меню.
                                                     <LineBreak/>
-                                                    Например: Консультация по запросу {N}.
+                                                    <Run Text="Например" TextDecorations="Underline"/>: Консультация по запросу {N}.
                                                     <LineBreak/>
                                                     {S} - любой текст в буфере.
                                                 </TextBlock>
