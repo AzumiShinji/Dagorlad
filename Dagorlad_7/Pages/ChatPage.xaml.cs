@@ -305,11 +305,11 @@ namespace Dagorlad_7.Pages
 
                                 Proxy.ClientCredentials.Windows.ClientCredential.Domain = "";
 #if (DEBUG)
-                                Proxy.ClientCredentials.Windows.ClientCredential.UserName = "krislechy";
-                                Proxy.ClientCredentials.Windows.ClientCredential.Password = "SeriX45*";
+                                Proxy.ClientCredentials.Windows.ClientCredential.UserName = !"";
+                                Proxy.ClientCredentials.Windows.ClientCredential.Password = !"";
 #else
                                 Proxy.ClientCredentials.Windows.ClientCredential.UserName = "sql";
-                                Proxy.ClientCredentials.Windows.ClientCredential.Password = "4815162342";
+                                Proxy.ClientCredentials.Windows.ClientCredential.Password = !"";
 #endif
                                 Proxy.Endpoint.Binding.OpenTimeout = new TimeSpan(0, 1, 0);
                                 Logger.Write(Logger.TypeLogs.chat, "Parameters Endpoint: " + host + ":" + serviceListenPort + servicePath);
